@@ -1,6 +1,4 @@
 ///***************************************************************************************
-/// Entity
-///
 /// Frame Resources, 
 /// Taken from examples from Graphics, GBC 2021. 
 /// Updated to work with this project.
