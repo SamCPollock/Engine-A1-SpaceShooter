@@ -1,0 +1,39 @@
+\hypertarget{main_8cpp_source}{}\doxysection{main.\+cpp}
+\label{main_8cpp_source}\index{Project7\_InstancesAndCulling/main.cpp@{Project7\_InstancesAndCulling/main.cpp}}
+\mbox{\hyperlink{main_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00001}00001 \textcolor{comment}{//***************************************************************************************}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00002}00002 \textcolor{comment}{// Shows how to draw a box in Direct3D 12.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00003}00003 \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00004}00004 \textcolor{comment}{// Controls:}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00005}00005 \textcolor{comment}{//   Hold the left mouse button down and move the mouse to rotate.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00006}00006 \textcolor{comment}{//   Hold the right mouse button down and move the mouse to zoom in and out.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00007}00007 \textcolor{comment}{//***************************************************************************************}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00008}00008 }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00009}00009 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_shooter_game_8h}{ShooterGame.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00010}00010 }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00011}\mbox{\hyperlink{main_8cpp_aabcda87589d774901aa87061b8fd0176}{00011}} \textcolor{keywordtype}{int} WINAPI \mbox{\hyperlink{main_8cpp_aabcda87589d774901aa87061b8fd0176}{WinMain}}(HINSTANCE hInstance, HINSTANCE prevInstance,}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00012}00012     PSTR cmdLine, \textcolor{keywordtype}{int} showCmd)}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00013}00013 \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00014}00014     \textcolor{comment}{// Enable run-\/time memory check for debug builds.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00015}00015 \textcolor{preprocessor}{\#if defined(DEBUG) | defined(\_DEBUG)}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00016}00016     \_CrtSetDbgFlag(\_CRTDBG\_ALLOC\_MEM\_DF | \_CRTDBG\_LEAK\_CHECK\_DF);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00017}00017 \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00018}00018 }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00019}00019     \textcolor{keywordflow}{try}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00020}00020     \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00021}00021         \mbox{\hyperlink{class_game}{Game}} theApp(hInstance);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00022}00022         \textcolor{keywordflow}{if} (!theApp.\mbox{\hyperlink{class_game_a16354d232327f6c21319713bf6983674}{Initialize}}())}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00023}00023             \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00024}00024 }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00025}00025         \textcolor{keywordflow}{return} theApp.Run();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00026}00026     \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00027}00027     \textcolor{keywordflow}{catch} (DxException\& e)}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00028}00028     \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00029}00029         MessageBox(\textcolor{keyword}{nullptr}, e.ToString().c\_str(), L\textcolor{stringliteral}{"{}HR Failed"{}}, MB\_OK);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00030}00030         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00031}00031     \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00032}00032 \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00033}00033 }
+
+\end{DoxyCode}
