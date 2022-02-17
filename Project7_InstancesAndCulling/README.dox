@@ -4,6 +4,13 @@
 
 @author Sam Pollock
 
-@note GBC 2022, Instructor Hooman Salamat
+@attention HOW IT WORKS
+ Fleet of Cube ships automatically fly from side to side, tilting to indicate their direction of movement. 
+Use WASD to move the camera. 
+Use LeftMouseClick + moving mouse to aim the camera. 
+
+// Made by Sam Pollock for Game Engine Development (Taught by Hooman Salamat) at George Brown College, Winter 2022.
+
+
 
 */
