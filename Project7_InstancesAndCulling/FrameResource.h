@@ -1,4 +1,11 @@
-// Taken from Year 2 Graphics Examples
+///***************************************************************************************
+/// Entity
+///
+/// Frame Resources, 
+/// Taken from examples from Graphics, GBC 2021. 
+/// Updated to work with this project.
+/// Sam Pollock, 2022
+///***************************************************************************************
 
 #pragma once
 

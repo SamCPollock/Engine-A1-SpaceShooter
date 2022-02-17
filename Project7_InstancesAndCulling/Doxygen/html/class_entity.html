@@ -99,6 +99,9 @@ $(document).ready(function(){initNavTree('class_entity.html',''); initResizable(
 </div><!--header-->
 <div class="contents">
 
+<p><a class="el" href="class_entity.html" title="Entity.">Entity</a>.  
+ <a href="class_entity.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_entity_8h_source.html">Entity.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for Entity:</div>
@@ -107,15 +110,15 @@ Inheritance diagram for Entity:</div>
   <img src="class_entity.png" usemap="#Entity_map" alt=""/>
   <map id="Entity_map" name="Entity_map">
 <area href="class_scene_node.html" title="Scenenode" alt="SceneNode" shape="rect" coords="44,0,122,24"/>
-<area href="class_ship.html" alt="Ship" shape="rect" coords="0,112,78,136"/>
-<area href="class_sprite_node.html" alt="SpriteNode" shape="rect" coords="88,112,166,136"/>
+<area href="class_ship.html" title="Ship, Used to set up Ship entity, determines type (ie, whether brick or tile)." alt="Ship" shape="rect" coords="0,112,78,136"/>
+<area href="class_sprite_node.html" title="SpriteNode Variant of Scenenode with less options." alt="SpriteNode" shape="rect" coords="88,112,166,136"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a9f6b0ce5dcbdb9107ba1972da24003a6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_entity.html#a9f6b0ce5dcbdb9107ba1972da24003a6">Entity</a> (<a class="el" href="class_game.html">Game</a> *<a class="el" href="class_scene_node.html#a06d1261ef839789469f228e7a7f2bfb9">game</a>)</td></tr>
-<tr class="memdesc:a9f6b0ce5dcbdb9107ba1972da24003a6"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_entity.html">Entity</a> constructor.  <a href="class_entity.html#a9f6b0ce5dcbdb9107ba1972da24003a6">More...</a><br /></td></tr>
+<tr class="memdesc:a9f6b0ce5dcbdb9107ba1972da24003a6"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_entity.html" title="Entity.">Entity</a> constructor.  <a href="class_entity.html#a9f6b0ce5dcbdb9107ba1972da24003a6">More...</a><br /></td></tr>
 <tr class="separator:a9f6b0ce5dcbdb9107ba1972da24003a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a472e1690df5fb48c6c7f052e4cb39c78"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_entity.html#a472e1690df5fb48c6c7f052e4cb39c78">setVelocity</a> (XMFLOAT3 velocity)</td></tr>
 <tr class="memdesc:a472e1690df5fb48c6c7f052e4cb39c78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set Velocity using a XMFLOAT3 (Vector 3 like).  <a href="class_entity.html#a472e1690df5fb48c6c7f052e4cb39c78">More...</a><br /></td></tr>
@@ -193,8 +196,10 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:a51b22a4d6789039a96ebab097ed03db0 inherit pro_attribs_class_scene_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_entity_8h_source.html#l00004">4</a> of file <a class="el" href="_entity_8h_source.html">Entity.h</a>.</p>
+<div class="textblock"><p ><a class="el" href="class_entity.html" title="Entity.">Entity</a>. </p>
+<p >Parent class for "Entity" <a class="el" href="class_game.html" title="ShooterGame Handles game functionality, initializing the game, taking user input.">Game</a> Objects. Used to set velocity and update position of moving entities. Sam Pollock, 2022 </p><hr  />
+ 
+<p class="definition">Definition at line <a class="el" href="_entity_8h_source.html#l00012">12</a> of file <a class="el" href="_entity_8h_source.html">Entity.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a9f6b0ce5dcbdb9107ba1972da24003a6" name="a9f6b0ce5dcbdb9107ba1972da24003a6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9f6b0ce5dcbdb9107ba1972da24003a6">&#9670;&nbsp;</a></span>Entity()</h2>
@@ -212,8 +217,8 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="class_entity.html">Entity</a> constructor. </p>
-<p >Sets <a class="el" href="class_game.html">Game</a> &amp; ScenNode references, initializes velocity to (0,0,0) </p>
+<p><a class="el" href="class_entity.html" title="Entity.">Entity</a> constructor. </p>
+<p >Sets <a class="el" href="class_game.html" title="ShooterGame Handles game functionality, initializing the game, taking user input.">Game</a> &amp; ScenNode references, initializes velocity to (0,0,0) </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">game</td><td></td></tr>
@@ -375,7 +380,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_entity_8h_source.html#l00016">16</a> of file <a class="el" href="_entity_8h_source.html">Entity.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_entity_8h_source.html#l00024">24</a> of file <a class="el" href="_entity_8h_source.html">Entity.h</a>.</p>
 
 </div>
 </div>

@@ -1,3 +1,11 @@
+///***************************************************************************************
+/// Scene Node,
+/// Uses RenderItem from GBC Graphics, 2021. 
+/// Used to in scene to set up heirarchy and handle updated, transform, and drawing.
+/// Sam Pollock, 2022
+///***************************************************************************************
+
+
 #pragma once
 #include "../Common/d3dApp.h"
 #include "../Common/MathHelper.h"

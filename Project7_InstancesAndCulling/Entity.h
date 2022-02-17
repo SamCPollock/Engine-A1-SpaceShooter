@@ -1,3 +1,11 @@
+///***************************************************************************************
+/// Entity
+///
+/// Parent class for "Entity" Game Objects. Used to set velocity and update position of moving entities. 
+/// Sam Pollock, 2022
+///***************************************************************************************
+
+
 #pragma once
 #include "SceneNode.h"
 

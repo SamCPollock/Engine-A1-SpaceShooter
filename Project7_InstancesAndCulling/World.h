@@ -1,3 +1,10 @@
+///***************************************************************************************
+///  World
+/// Set up the world, setting up layers and choosing entities to populate them. 
+/// Sam Pollock, 2022
+///***************************************************************************************
+
+
 #pragma once
 #include "SceneNode.h"
 #include "Ship.h"
