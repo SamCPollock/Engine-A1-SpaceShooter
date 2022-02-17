@@ -409,7 +409,7 @@ void Game::LoadTextures()
 	//Eagle
 	auto EagleTex = std::make_unique<Texture>();
 	EagleTex->Name = "EagleTex";
-	EagleTex->Filename = L"../../Textures/checkboard.dds";
+	EagleTex->Filename = L"Textures/checkboard.dds";
 	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
 		mCommandList.Get(), EagleTex->Filename.c_str(),
 		EagleTex->Resource, EagleTex->UploadHeap));
@@ -419,7 +419,7 @@ void Game::LoadTextures()
 	//Raptor
 	auto RaptorTex = std::make_unique<Texture>();
 	RaptorTex->Name = "RaptorTex";
-	RaptorTex->Filename = L"../../Textures/bricks2.dds";
+	RaptorTex->Filename = L"Textures/bricks2.dds";
 	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
 		mCommandList.Get(), RaptorTex->Filename.c_str(),
 		RaptorTex->Resource, RaptorTex->UploadHeap));
@@ -429,7 +429,7 @@ void Game::LoadTextures()
 	//Desert
 	auto DesertTex = std::make_unique<Texture>();
 	DesertTex->Name = "DesertTex";
-	DesertTex->Filename = L"../../Textures/bricks3.dds";
+	DesertTex->Filename = L"Textures/bricks3.dds";
 	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
 		mCommandList.Get(), DesertTex->Filename.c_str(),
 		DesertTex->Resource, DesertTex->UploadHeap));
