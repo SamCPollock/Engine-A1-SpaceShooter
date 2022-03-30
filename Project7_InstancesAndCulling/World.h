@@ -9,6 +9,8 @@
 #include "SceneNode.h"
 #include "Ship.h"
 #include "SpriteNode.h"
+#include "Command.h"
+#include "InputCommandQueue.h"
 
 class World
 {
@@ -19,13 +21,20 @@ public:
 
 	void buildScene();
 
+	InputCommandQueue& getCommandQueue();
+
 
 private:
+	InputCommandQueue mCommandQueue;
+
 	enum class Layer
 	{
 		Background,
 		Air
 	};
+
+	void adaptPlayerPosition();
+	void adaptPlayerVelocity();
 
 
 private:

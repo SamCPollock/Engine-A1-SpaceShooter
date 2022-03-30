@@ -23,6 +23,7 @@ public:
 
 public:
 	Ship(Type type, Game* game);
+	virtual unsigned int getCategory() const; 
 
 
 private:

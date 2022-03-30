@@ -18,6 +18,8 @@ public:
 	void setVelocity(float vx, float vy, float vz);			// Sets velocity using 3 floats (seperated) 
 	XMFLOAT3 getVelocity() const;							// Return velocity as float3
 	
+	void accelerate(XMFLOAT3 velocity);
+
 	virtual	void updateCurrent(const GameTimer& gt);		// Updates stuff (Moves according to velocity, renders stuff)
 
 public:

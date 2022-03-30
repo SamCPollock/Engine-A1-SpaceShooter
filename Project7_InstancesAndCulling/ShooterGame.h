@@ -6,6 +6,7 @@
 
 
 #include "World.h"
+#include "Player.h"
 
 class Game : public D3DApp
 {
@@ -17,6 +18,9 @@ public:
 
 	virtual bool Initialize()override;
 private:
+
+	void ProcessInput();
+
 	virtual void Update(const GameTimer& gt)override;
 	virtual void Draw(const GameTimer& gt)override;
 
@@ -31,7 +35,7 @@ private:
 	void UpdateCamera(const GameTimer& gt);
 	//void AnimateMaterials(const GameTimer& gt);	// Not using in this build. 
 	
-	// Updates
+	// CB Updates
 	void UpdateObjectCBs(const GameTimer& gt);
 	void UpdateMaterialCBs(const GameTimer& gt);
 	void UpdateMainPassCB(const GameTimer& gt);
@@ -91,6 +95,7 @@ public:
 	POINT mLastMousePos;
 	Camera mCamera;
 	World mWorld;
+	Player mPlayer;
 
 public:
 	ID3D12GraphicsCommandList* getCmdList() { return mCommandList.Get(); }

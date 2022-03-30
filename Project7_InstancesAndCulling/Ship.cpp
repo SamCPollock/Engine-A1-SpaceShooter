@@ -23,6 +23,17 @@ Ship::Ship(Type type, Game* game) : Entity(game)
 	}
 }
 
+unsigned int Ship::getCategory() const
+{
+	switch (mType)
+	{
+		case Type::Eagle:
+		return Category::PlayerAircraft;
+
+	default:
+		return Category::EnemyAircraft;
+	}
+}
 
 /// <summary>
 /// Overrides virtual SceneNode function, draws self.

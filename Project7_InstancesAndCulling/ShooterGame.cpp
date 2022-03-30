@@ -10,6 +10,7 @@ const int gNumFrameResources = 3;
 Game::Game(HINSTANCE hInstance)
 	: D3DApp(hInstance)
 	, mWorld(this)
+	, mPlayer()
 {
 }
 
@@ -36,11 +37,9 @@ bool Game::Initialize()
 	if (!D3DApp::Initialize())
 		return false;
 
-
-	mMainWndCaption = L"Pollock-Assignment1";
+	mMainWndCaption = L"Pollock-Assignment2";
 
 	mCamera.SetPosition(0.0f, 20.0f, -6.0f);
-	//mCamera.Pitch(2.8f / 2.0f);
 	mCamera.Pitch(7.5f);
 
 	// Reset the command list to prep for initialization commands.
@@ -70,31 +69,13 @@ bool Game::Initialize()
 
 	return true;
 }
-//
-//void Game::OnResize()
-//{
-//	D3DApp::OnResize();
-//
-//	// The window resized, so update the aspect ratio and recompute the projection matrix.
-//	//XMMATRIX P = XMMatrixPerspectiveFovLH(0.25f * MathHelper::Pi, AspectRatio(), 1.0f, 1000.0f);
-//	//XMStoreFloat4x4(&mProj, P);
-//
-//	mCamera.SetLens(0.25f * MathHelper::Pi, AspectRatio(), 1.0f, 1000.0f);
-//}
 
-/// <summary>
-/// Game update, 
-/// gets keyboard input, 
-/// cycles through frame resource array 
-/// 
-/// updates materials. 
-/// </summary>
-/// <param name="gt"></param>
 void Game::Update(const GameTimer& gt)
 {
-	OnKeyboardInput(gt);
+	//OnKeyboardInput(gt);
+	ProcessInput();
 	mWorld.update(gt);
-	//UpdateCamera(gt);
+	UpdateCamera(gt);
 
 	// Cycle through the circular frame resource array.
 	mCurrFrameResourceIndex = (mCurrFrameResourceIndex + 1) % gNumFrameResources;
@@ -223,6 +204,13 @@ void Game::OnMouseMove(WPARAM btnState, int x, int y)
 	mLastMousePos.y = y;
 }
 
+void Game::ProcessInput()
+{
+	InputCommandQueue& commands = mWorld.getCommandQueue();
+	mPlayer.handleEvent(commands);
+	mPlayer.handleRealtimeInput(commands);
+}
+
 /// <summary>
 /// Takes keyboard input, uses it to move the camera. 
 /// </summary>
@@ -295,6 +283,7 @@ void Game::UpdateCamera(const GameTimer& gt)
 	//XMMATRIX view = XMMatrixLookAtLH(pos, target, up);
 	//XMStoreFloat4x4(&mView, view);
 
+	mCamera.UpdateViewMatrix(); // Need this to update the camera when ProcessKeyboardInput is not getting called every update.
 
 }
 //

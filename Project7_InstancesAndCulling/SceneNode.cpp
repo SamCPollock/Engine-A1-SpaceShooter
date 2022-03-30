@@ -247,3 +247,25 @@ void SceneNode::move(float x, float y, float z)
 	mWorldPosition.y += y;
 	mWorldPosition.z += z;
 }
+
+/// <summary>
+/// Returns the category of the game object (Returns 'Scene' by default
+/// </summary>
+/// <returns></returns>
+unsigned int SceneNode::getCategory() const
+{
+	return Category::Scene;
+}
+
+void SceneNode::onCommand(const Command& command, const GameTimer& gt)
+{
+	if (command.category & getCategory())	// command self
+	{
+		command.action(*this, gt);
+	}
+
+	for (Ptr& child : mChildren)			// for loop for each child, commands them
+	{
+		child->onCommand(command, gt);
+	}
+}
