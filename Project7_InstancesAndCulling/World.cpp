@@ -63,18 +63,32 @@ void World::update(const GameTimer& gt)
 
 	if (mPlayerShip->getVelocity().x > 0)
 	{
-		mPlayerShip->setWorldRotation(0, 0, -5);
+		mPlayerShip->setWorldRotation(mPlayerShip->getWorldRotation().x, 0, -5);
 
 	}
 	else if (mPlayerShip->getVelocity().x < 0)
 	{
-		mPlayerShip->setWorldRotation(0, 0, 5);
+		mPlayerShip->setWorldRotation(mPlayerShip->getWorldRotation().x, 0, 5);
 	}
 	else
 	{
-		mPlayerShip->setWorldRotation(0, 0, 0);
+		mPlayerShip->setWorldRotation(mPlayerShip->getWorldRotation().x, 0, 0);
+	}
+
+	if (mPlayerShip->getVelocity().z > 0)
+	{
+		mPlayerShip->setWorldRotation(0.5, 0, mPlayerShip->getWorldRotation().z);
+	}
+	else if (mPlayerShip->getVelocity().z < 0)
+	{
+		mPlayerShip->setWorldRotation(-0.5, 0, mPlayerShip->getWorldRotation().z);
 	}
 	
+	else
+	{
+		mPlayerShip->setWorldRotation(0, 0, mPlayerShip->getWorldRotation().z);
+
+	}
 }
 
 /// <summary>
