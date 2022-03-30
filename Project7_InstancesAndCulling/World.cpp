@@ -37,11 +37,9 @@ void World::update(const GameTimer& gt)
 		mSceneGraph->onCommand(mCommandQueue.pop(), gt);
 	}
 
-	adaptPlayerVelocity();
 
 	mSceneGraph->update(gt);
 
-	//adaptPlayerPosition();	// for use for clamping the player to the screen.
 
 
 	if (mEnemy->getWorldPosition().x > -mWorldBounds.x)
@@ -164,30 +162,4 @@ void World::buildScene()
 	mSceneGraph->attachChild(std::move(backgroundSprite));
 
 	mSceneGraph->build();
-}
-//
-//void World::adaptPlayerPosition()
-//{
-//	const float borderDistance = 10.0f;
-//
-//	XMFLOAT3 position = mPlayerShip->getWorldPosition();
-//
-//	position.x = std::max(position.x, mWorldBounds.x);
-//	position.x = std::min(position.x, mWorldBounds.y);
-//	position.z = std::max(position.z, mWorldBounds.z);
-//	position.z = std::min(position.z, mWorldBounds.w);
-//	
-//	//mPlayerShip->setPosition(position.x, position.y, position.z);	//TODO: Clamp to onscreen
-//}
-
-void World::adaptPlayerVelocity()
-{
-	XMFLOAT3 velocity = mPlayerShip->getVelocity();
-
-	if (velocity.x != 0.f && velocity.z != 0.f)
-	{
-		mPlayerShip->setVelocity(XMFLOAT3(velocity.x, velocity.y, velocity.z));
-		//mPlayerAircraft->setVelocity(velocity.x / std::sqrt(2.f), velocity.y / std::sqrt(2.f), velocity.z / std::sqrt(2.f));
-
-	}
 }

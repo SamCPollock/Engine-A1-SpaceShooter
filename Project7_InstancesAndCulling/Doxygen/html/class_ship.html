@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>GameEngine-A1-SpaceShooter: Ship Class Reference</title>
+<title>GameEngine-A2-SpaceShooter: Ship Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -30,7 +30,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">GameEngine-A1-SpaceShooter
+   <div id="projectname">GameEngine-A2-SpaceShooter
    </div>
   </td>
     <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -129,6 +129,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab91be4278e0552e249c040d95d1467e2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ship.html#ab91be4278e0552e249c040d95d1467e2">Ship</a> (<a class="el" href="class_ship.html#a34a678eafbd25e014d84021dea22aef9">Type</a> type, <a class="el" href="class_game.html">Game</a> *<a class="el" href="class_scene_node.html#a06d1261ef839789469f228e7a7f2bfb9">game</a>)</td></tr>
 <tr class="memdesc:ab91be4278e0552e249c040d95d1467e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor, uses switch case to determine what type of ship to create.  <a href="class_ship.html#ab91be4278e0552e249c040d95d1467e2">More...</a><br /></td></tr>
 <tr class="separator:ab91be4278e0552e249c040d95d1467e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64400cae1ee87a212471b631b35108fe"><td class="memItemLeft" align="right" valign="top">virtual unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_ship.html#a64400cae1ee87a212471b631b35108fe">getCategory</a> () const</td></tr>
+<tr class="memdesc:a64400cae1ee87a212471b631b35108fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">GetCategory, returns an int representing the category of the ship (Either PlayerAircraft or EnemyAircraft, to determine response to commands)  <a href="class_ship.html#a64400cae1ee87a212471b631b35108fe">More...</a><br /></td></tr>
+<tr class="separator:a64400cae1ee87a212471b631b35108fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_entity"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_entity')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_entity.html">Entity</a></td></tr>
 <tr class="memitem:a9f6b0ce5dcbdb9107ba1972da24003a6 inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_entity.html#a9f6b0ce5dcbdb9107ba1972da24003a6">Entity</a> (<a class="el" href="class_game.html">Game</a> *<a class="el" href="class_scene_node.html#a06d1261ef839789469f228e7a7f2bfb9">game</a>)</td></tr>
 <tr class="memdesc:a9f6b0ce5dcbdb9107ba1972da24003a6 inherit pub_methods_class_entity"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_entity.html" title="Entity.">Entity</a> constructor.  <a href="class_entity.html#a9f6b0ce5dcbdb9107ba1972da24003a6">More...</a><br /></td></tr>
@@ -142,6 +145,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af4fcc5c9f7e9d705502269444ef3eca3 inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top">XMFLOAT3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_entity.html#af4fcc5c9f7e9d705502269444ef3eca3">getVelocity</a> () const</td></tr>
 <tr class="memdesc:af4fcc5c9f7e9d705502269444ef3eca3 inherit pub_methods_class_entity"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns velocity as an XMFLOAT3  <a href="class_entity.html#af4fcc5c9f7e9d705502269444ef3eca3">More...</a><br /></td></tr>
 <tr class="separator:af4fcc5c9f7e9d705502269444ef3eca3 inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6604e7ba4eee5511a6aa21345cbdaf28 inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_entity.html#a6604e7ba4eee5511a6aa21345cbdaf28">accelerate</a> (XMFLOAT3 velocity)</td></tr>
+<tr class="separator:a6604e7ba4eee5511a6aa21345cbdaf28 inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac2ba9cb8ca54fff11ad7397334edcd94 inherit pub_methods_class_entity"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_entity.html#ac2ba9cb8ca54fff11ad7397334edcd94">updateCurrent</a> (const GameTimer &amp;gt)</td></tr>
 <tr class="memdesc:ac2ba9cb8ca54fff11ad7397334edcd94 inherit pub_methods_class_entity"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates current, uses GameTimer to determine rate of update.  <a href="class_entity.html#ac2ba9cb8ca54fff11ad7397334edcd94">More...</a><br /></td></tr>
 <tr class="separator:ac2ba9cb8ca54fff11ad7397334edcd94 inherit pub_methods_class_entity"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -191,6 +196,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aec657f40def4be5c901192ec85027a35 inherit pub_methods_class_scene_node"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_node.html#aec657f40def4be5c901192ec85027a35">move</a> (float x, float y, float z)</td></tr>
 <tr class="memdesc:aec657f40def4be5c901192ec85027a35 inherit pub_methods_class_scene_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">Takes 3 floats to move the sceneNode's worldPostiion.  <a href="class_scene_node.html#aec657f40def4be5c901192ec85027a35">More...</a><br /></td></tr>
 <tr class="separator:aec657f40def4be5c901192ec85027a35 inherit pub_methods_class_scene_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a378e78ad679c28301c0db51afa389cb6 inherit pub_methods_class_scene_node"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_node.html#a378e78ad679c28301c0db51afa389cb6">onCommand</a> (const <a class="el" href="struct_command.html">Command</a> &amp;command, const GameTimer &amp;gt)</td></tr>
+<tr class="memdesc:a378e78ad679c28301c0db51afa389cb6 inherit pub_methods_class_scene_node"><td class="mdescLeft">&#160;</td><td class="mdescRight">OnCommand, goes through self and children to perform command actions.  <a href="class_scene_node.html#a378e78ad679c28301c0db51afa389cb6">More...</a><br /></td></tr>
+<tr class="separator:a378e78ad679c28301c0db51afa389cb6 inherit pub_methods_class_scene_node"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -277,9 +285,42 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a64400cae1ee87a212471b631b35108fe" name="a64400cae1ee87a212471b631b35108fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64400cae1ee87a212471b631b35108fe">&#9670;&nbsp;</a></span>getCategory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int Ship::getCategory </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>GetCategory, returns an int representing the category of the ship (Either PlayerAircraft or EnemyAircraft, to determine response to commands) </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p>Reimplemented from <a class="el" href="class_scene_node.html#af713a8c58831a27bc791a2efdfb7c495">SceneNode</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_ship_8cpp_source.html#l00030">30</a> of file <a class="el" href="_ship_8cpp_source.html">Ship.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>Project7_InstancesAndCulling/<a class="el" href="_ship_8h_source.html">Ship.h</a></li>
-<li>Project7_InstancesAndCulling/<a class="el" href="_ship_8cpp_source.html">Ship.cpp</a></li>
+<li>C:/Users/samcp/Downloads/GBC/Year 3 - Downloads/Semester 2/Game Engine 4/A1-DX12-Shooter/A1-BonusTime/Project7_InstancesAndCulling/<a class="el" href="_ship_8h_source.html">Ship.h</a></li>
+<li>C:/Users/samcp/Downloads/GBC/Year 3 - Downloads/Semester 2/Game Engine 4/A1-DX12-Shooter/A1-BonusTime/Project7_InstancesAndCulling/<a class="el" href="_ship_8cpp_source.html">Ship.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

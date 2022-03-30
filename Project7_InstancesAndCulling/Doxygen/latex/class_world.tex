@@ -20,7 +20,9 @@ void \mbox{\hyperlink{class_world_a36c003f54e14e022a360551af5e7923e}{update}} (c
 void \mbox{\hyperlink{class_world_ab51a17ccbb108616daacd0c34973dc8d}{draw}} ()
 \begin{DoxyCompactList}\small\item\em Calls the scene\+Graphs draw function \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_world_ae7df49f5d488e5cd1254bf360966f410}{build\+Scene}} ()
-\begin{DoxyCompactList}\small\item\em Build scene, create unique ptr for each object, set up the initial entitiy properties for them. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Build scene, create unique ptr for each object, set up the initial entitiy properties for them. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_input_command_queue}{Input\+Command\+Queue}} \& \mbox{\hyperlink{class_world_ad57739b1e6659c2846b57a6fa2621d68}{get\+Command\+Queue}} ()
+\begin{DoxyCompactList}\small\item\em Returns the member input command queue \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -29,7 +31,7 @@ void \mbox{\hyperlink{class_world_ae7df49f5d488e5cd1254bf360966f410}{build\+Scen
 Sam Pollock, 2022 \DoxyHorRuler{0}
  
 
-Definition at line \mbox{\hyperlink{_world_8h_source_l00013}{13}} of file \mbox{\hyperlink{_world_8h_source}{World.\+h}}.
+Definition at line \mbox{\hyperlink{_world_8h_source_l00015}{15}} of file \mbox{\hyperlink{_world_8h_source}{World.\+h}}.
 
 
 
@@ -52,7 +54,7 @@ Constructor, makes the world Sets the scene\+Graph (scenenode), sets up a nullpt
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{_world_8cpp_source_l00013}{13}} of file \mbox{\hyperlink{_world_8cpp_source}{World.\+cpp}}.
+Definition at line \mbox{\hyperlink{_world_8cpp_source_l00014}{14}} of file \mbox{\hyperlink{_world_8cpp_source}{World.\+cpp}}.
 
 
 
@@ -69,7 +71,7 @@ Build scene, create unique ptr for each object, set up the initial entitiy prope
 
 
 
-Definition at line \mbox{\hyperlink{_world_8cpp_source_l00064}{64}} of file \mbox{\hyperlink{_world_8cpp_source}{World.\+cpp}}.
+Definition at line \mbox{\hyperlink{_world_8cpp_source_l00102}{102}} of file \mbox{\hyperlink{_world_8cpp_source}{World.\+cpp}}.
 
 \mbox{\Hypertarget{class_world_ab51a17ccbb108616daacd0c34973dc8d}\label{class_world_ab51a17ccbb108616daacd0c34973dc8d}} 
 \index{World@{World}!draw@{draw}}
@@ -83,7 +85,24 @@ Calls the scene\+Graphs draw function
 
 
 
-Definition at line \mbox{\hyperlink{_world_8cpp_source_l00055}{55}} of file \mbox{\hyperlink{_world_8cpp_source}{World.\+cpp}}.
+Definition at line \mbox{\hyperlink{_world_8cpp_source_l00093}{93}} of file \mbox{\hyperlink{_world_8cpp_source}{World.\+cpp}}.
+
+\mbox{\Hypertarget{class_world_ad57739b1e6659c2846b57a6fa2621d68}\label{class_world_ad57739b1e6659c2846b57a6fa2621d68}} 
+\index{World@{World}!getCommandQueue@{getCommandQueue}}
+\index{getCommandQueue@{getCommandQueue}!World@{World}}
+\doxysubsubsection{\texorpdfstring{getCommandQueue()}{getCommandQueue()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_input_command_queue}{Input\+Command\+Queue}} \& World\+::get\+Command\+Queue (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the member input command queue 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_world_8cpp_source_l00084}{84}} of file \mbox{\hyperlink{_world_8cpp_source}{World.\+cpp}}.
 
 \mbox{\Hypertarget{class_world_a36c003f54e14e022a360551af5e7923e}\label{class_world_a36c003f54e14e022a360551af5e7923e}} 
 \index{World@{World}!update@{update}}
@@ -102,11 +121,11 @@ Definition at line \mbox{\hyperlink{_world_8cpp_source_l00055}{55}} of file \mbo
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{_world_8cpp_source_l00029}{29}} of file \mbox{\hyperlink{_world_8cpp_source}{World.\+cpp}}.
+Definition at line \mbox{\hyperlink{_world_8cpp_source_l00030}{30}} of file \mbox{\hyperlink{_world_8cpp_source}{World.\+cpp}}.
 
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Project7\+\_\+\+Instances\+And\+Culling/\mbox{\hyperlink{_world_8h}{World.\+h}}\item 
-Project7\+\_\+\+Instances\+And\+Culling/\mbox{\hyperlink{_world_8cpp}{World.\+cpp}}\end{DoxyCompactItemize}
+C\+:/\+Users/samcp/\+Downloads/\+GBC/\+Year 3 -\/ Downloads/\+Semester 2/\+Game Engine 4/\+A1-\/\+DX12-\/\+Shooter/\+A1-\/\+Bonus\+Time/\+Project7\+\_\+\+Instances\+And\+Culling/\mbox{\hyperlink{_world_8h}{World.\+h}}\item 
+C\+:/\+Users/samcp/\+Downloads/\+GBC/\+Year 3 -\/ Downloads/\+Semester 2/\+Game Engine 4/\+A1-\/\+DX12-\/\+Shooter/\+A1-\/\+Bonus\+Time/\+Project7\+\_\+\+Instances\+And\+Culling/\mbox{\hyperlink{_world_8cpp}{World.\+cpp}}\end{DoxyCompactItemize}

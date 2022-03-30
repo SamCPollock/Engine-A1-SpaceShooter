@@ -1,3 +1,10 @@
+///***************************************************************************************
+/// Player
+///
+/// Class which contains the key bindings for various player inputs and actions.
+/// Sam Pollock, 2022
+///***************************************************************************************
+
 #pragma once
 
 #include "Command.h"

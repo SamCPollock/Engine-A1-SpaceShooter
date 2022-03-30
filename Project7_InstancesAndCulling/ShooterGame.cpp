@@ -204,6 +204,9 @@ void Game::OnMouseMove(WPARAM btnState, int x, int y)
 	mLastMousePos.y = y;
 }
 
+/// <summary>
+/// ProcessInput, handles each event and input from the player's command queue. 
+/// </summary>
 void Game::ProcessInput()
 {
 	InputCommandQueue& commands = mWorld.getCommandQueue();

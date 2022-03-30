@@ -1,3 +1,10 @@
+///***************************************************************************************
+/// Command
+///
+/// Command struct, denotes messages that are sent tho game objects. Actions tell game objects to perform functions.
+/// /// Sam Pollock, 2022
+///***************************************************************************************
+
 
 #pragma once
 #include "Category.h"

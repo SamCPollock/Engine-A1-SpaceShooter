@@ -1,7 +1,20 @@
 var searchData=
 [
-  ['texc_0',['TexC',['../struct_vertex.html#a43e8c374e56c6ed3acc708ba2de1c70c',1,'Vertex']]],
-  ['textransform_1',['TexTransform',['../struct_object_constants.html#a0a7f8e4817a18595707569b307060a42',1,'ObjectConstants::TexTransform()'],['../struct_render_item.html#ac6799548474209d172cbb3d337f56074',1,'RenderItem::TexTransform()']]],
-  ['totaltime_2',['TotalTime',['../struct_pass_constants.html#a8b7dc8578d216518bff83264bc85d34c',1,'PassConstants']]],
-  ['type_3',['Type',['../class_ship.html#a34a678eafbd25e014d84021dea22aef9',1,'Ship']]]
+  ['scene_0',['Scene',['../namespace_category.html#a2ff936dbd42aeae91fdfb6f8456a8ab0ae45daecedd1b5f037e9e6e915a44f3b0',1,'Category']]],
+  ['scenenode_1',['SceneNode',['../class_scene_node.html',1,'SceneNode'],['../class_scene_node.html#af1f3bf5e98c8b2c90b36057df2577d1a',1,'SceneNode::SceneNode()']]],
+  ['scenenode_2ecpp_2',['SceneNode.cpp',['../_scene_node_8cpp.html',1,'']]],
+  ['scenenode_2eh_3',['SceneNode.h',['../_scene_node_8h.html',1,'']]],
+  ['setposition_4',['setPosition',['../class_scene_node.html#a45f8882749060b059fe26eb02f7f843b',1,'SceneNode']]],
+  ['setscale_5',['setScale',['../class_scene_node.html#a753cea60b8a939a82a47258f4a51df82',1,'SceneNode']]],
+  ['setvelocity_6',['setVelocity',['../class_entity.html#a472e1690df5fb48c6c7f052e4cb39c78',1,'Entity::setVelocity(XMFLOAT3 velocity)'],['../class_entity.html#abb3c22fe7e78968131560642e360e12b',1,'Entity::setVelocity(float vx, float vy, float vz)']]],
+  ['setworldrotation_7',['setWorldRotation',['../class_scene_node.html#a66fa14e7553900ae540f13e4dc5f749b',1,'SceneNode']]],
+  ['ship_8',['Ship',['../class_ship.html',1,'Ship'],['../class_ship.html#ab91be4278e0552e249c040d95d1467e2',1,'Ship::Ship()']]],
+  ['ship_2ecpp_9',['Ship.cpp',['../_ship_8cpp.html',1,'']]],
+  ['ship_2eh_10',['Ship.h',['../_ship_8h.html',1,'']]],
+  ['shootergame_2ecpp_11',['ShooterGame.cpp',['../_shooter_game_8cpp.html',1,'']]],
+  ['shootergame_2eh_12',['ShooterGame.h',['../_shooter_game_8h.html',1,'']]],
+  ['spritenode_13',['SpriteNode',['../class_sprite_node.html',1,'SpriteNode'],['../class_sprite_node.html#af9a13269b4f3d7a194e1826c704155dc',1,'SpriteNode::SpriteNode()']]],
+  ['spritenode_2ecpp_14',['SpriteNode.cpp',['../_sprite_node_8cpp.html',1,'']]],
+  ['spritenode_2eh_15',['SpriteNode.h',['../_sprite_node_8h.html',1,'']]],
+  ['startindexlocation_16',['StartIndexLocation',['../struct_render_item.html#a979179c6dd354cd329563e3599245463',1,'RenderItem']]]
 ];

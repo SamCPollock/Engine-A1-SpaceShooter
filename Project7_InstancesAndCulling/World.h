@@ -33,8 +33,6 @@ private:
 		Air
 	};
 
-	void adaptPlayerPosition();
-	void adaptPlayerVelocity();
 
 
 private:

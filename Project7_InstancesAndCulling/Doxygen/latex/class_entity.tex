@@ -26,6 +26,8 @@ void \mbox{\hyperlink{class_entity_abb3c22fe7e78968131560642e360e12b}{set\+Veloc
 \begin{DoxyCompactList}\small\item\em Sets velocity, but split into 3 floats. \end{DoxyCompactList}\item 
 XMFLOAT3 \mbox{\hyperlink{class_entity_af4fcc5c9f7e9d705502269444ef3eca3}{get\+Velocity}} () const
 \begin{DoxyCompactList}\small\item\em Returns velocity as an XMFLOAT3 \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_entity_a6604e7ba4eee5511a6aa21345cbdaf28}{accelerate}} (XMFLOAT3 velocity)
+\item 
 virtual void \mbox{\hyperlink{class_entity_ac2ba9cb8ca54fff11ad7397334edcd94}{update\+Current}} (const Game\+Timer \&gt)
 \begin{DoxyCompactList}\small\item\em Updates current, uses Game\+Timer to determine rate of update. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Public Attributes}
@@ -71,6 +73,16 @@ Definition at line \mbox{\hyperlink{_entity_8cpp_source_l00007}{7}} of file \mbo
 
 
 \doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_entity_a6604e7ba4eee5511a6aa21345cbdaf28}\label{class_entity_a6604e7ba4eee5511a6aa21345cbdaf28}} 
+\index{Entity@{Entity}!accelerate@{accelerate}}
+\index{accelerate@{accelerate}!Entity@{Entity}}
+\doxysubsubsection{\texorpdfstring{accelerate()}{accelerate()}}
+{\footnotesize\ttfamily void Entity\+::accelerate (\begin{DoxyParamCaption}\item[{XMFLOAT3}]{velocity }\end{DoxyParamCaption})}
+
+
+
+Definition at line \mbox{\hyperlink{_entity_8cpp_source_l00043}{43}} of file \mbox{\hyperlink{_entity_8cpp_source}{Entity.\+cpp}}.
+
 \mbox{\Hypertarget{class_entity_af4fcc5c9f7e9d705502269444ef3eca3}\label{class_entity_af4fcc5c9f7e9d705502269444ef3eca3}} 
 \index{Entity@{Entity}!getVelocity@{getVelocity}}
 \index{getVelocity@{getVelocity}!Entity@{Entity}}
@@ -155,7 +167,7 @@ Reimplemented from \mbox{\hyperlink{class_scene_node}{Scene\+Node}}.
 
 
 
-Definition at line \mbox{\hyperlink{_entity_8cpp_source_l00048}{48}} of file \mbox{\hyperlink{_entity_8cpp_source}{Entity.\+cpp}}.
+Definition at line \mbox{\hyperlink{_entity_8cpp_source_l00056}{56}} of file \mbox{\hyperlink{_entity_8cpp_source}{Entity.\+cpp}}.
 
 
 
@@ -168,11 +180,11 @@ Definition at line \mbox{\hyperlink{_entity_8cpp_source_l00048}{48}} of file \mb
 
 
 
-Definition at line \mbox{\hyperlink{_entity_8h_source_l00024}{24}} of file \mbox{\hyperlink{_entity_8h_source}{Entity.\+h}}.
+Definition at line \mbox{\hyperlink{_entity_8h_source_l00026}{26}} of file \mbox{\hyperlink{_entity_8h_source}{Entity.\+h}}.
 
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Project7\+\_\+\+Instances\+And\+Culling/\mbox{\hyperlink{_entity_8h}{Entity.\+h}}\item 
-Project7\+\_\+\+Instances\+And\+Culling/\mbox{\hyperlink{_entity_8cpp}{Entity.\+cpp}}\end{DoxyCompactItemize}
+C\+:/\+Users/samcp/\+Downloads/\+GBC/\+Year 3 -\/ Downloads/\+Semester 2/\+Game Engine 4/\+A1-\/\+DX12-\/\+Shooter/\+A1-\/\+Bonus\+Time/\+Project7\+\_\+\+Instances\+And\+Culling/\mbox{\hyperlink{_entity_8h}{Entity.\+h}}\item 
+C\+:/\+Users/samcp/\+Downloads/\+GBC/\+Year 3 -\/ Downloads/\+Semester 2/\+Game Engine 4/\+A1-\/\+DX12-\/\+Shooter/\+A1-\/\+Bonus\+Time/\+Project7\+\_\+\+Instances\+And\+Culling/\mbox{\hyperlink{_entity_8cpp}{Entity.\+cpp}}\end{DoxyCompactItemize}

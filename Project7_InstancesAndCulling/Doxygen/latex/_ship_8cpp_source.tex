@@ -1,5 +1,4 @@
-\hypertarget{_ship_8cpp_source}{}\doxysection{Ship.\+cpp}
-\label{_ship_8cpp_source}\index{Project7\_InstancesAndCulling/Ship.cpp@{Project7\_InstancesAndCulling/Ship.cpp}}
+\hypertarget{_ship_8cpp_source}{}\doxysection{C\+:/\+Users/samcp/\+Downloads/\+GBC/\+Year 3 -\/ Downloads/\+Semester 2/\+Game Engine 4/\+A1-\/\+DX12-\/\+Shooter/\+A1-\/\+Bonus\+Time/\+Project7\+\_\+\+Instances\+And\+Culling/\+Ship.cpp}
 \mbox{\hyperlink{_ship_8cpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_ship_8h}{Ship.h}}"{}}}
@@ -22,51 +21,62 @@
 \DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00023}00023     \}}
 \DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00024}00024 \}}
 \DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00025}00025 }
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00026}00026 }
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00030}00030 \textcolor{keywordtype}{void} Ship::drawCurrent()\textcolor{keyword}{ const}}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00030}\mbox{\hyperlink{class_ship_a64400cae1ee87a212471b631b35108fe}{00030}} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_ship_a64400cae1ee87a212471b631b35108fe}{Ship::getCategory}}()\textcolor{keyword}{ const}}
 \DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00031}00031 \textcolor{keyword}{}\{}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00032}00032     \textcolor{comment}{// Set buffer sizes according to object and material constants. }}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00033}00033     UINT objCBByteSize = d3dUtil::CalcConstantBufferByteSize(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_object_constants}{ObjectConstants}}));}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00034}00034     UINT matCBByteSize = d3dUtil::CalcConstantBufferByteSize(\textcolor{keyword}{sizeof}(MaterialConstants));}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00035}00035 }
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00036}00036     \textcolor{keyword}{auto} objectCB = \mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}}-\/>\mbox{\hyperlink{class_game_a6119ac12b9dafae4e105ac9b4e80c1b2}{mCurrFrameResource}}-\/>\mbox{\hyperlink{struct_frame_resource_adec81cdfb788278fac8ad38066e6c18f}{ObjectCB}}-\/>Resource();}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00037}00037     \textcolor{keyword}{auto} matCB = \mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}}-\/>\mbox{\hyperlink{class_game_a6119ac12b9dafae4e105ac9b4e80c1b2}{mCurrFrameResource}}-\/>\mbox{\hyperlink{struct_frame_resource_a502a3bd044ed30d31280f4382cc07570}{MaterialCB}}-\/>Resource();}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00038}00038 }
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00039}00039     \textcolor{comment}{// Render the ship. }}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00040}00040     \textcolor{keywordflow}{if} (mShipRitem != \textcolor{keyword}{nullptr})}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00041}00041     \{}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00042}00042         \mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}}-\/>\mbox{\hyperlink{class_game_a9283a2ccc7cad9fdd4b25f7979d3c5c1}{getCmdList}}()-\/>IASetVertexBuffers(0, 1, \&mShipRitem-\/>\mbox{\hyperlink{struct_render_item_a7e4ddbefdc41b7efcad3c3a4b0ceccd9}{Geo}}-\/>VertexBufferView());}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00043}00043         \mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}}-\/>\mbox{\hyperlink{class_game_a9283a2ccc7cad9fdd4b25f7979d3c5c1}{getCmdList}}()-\/>IASetIndexBuffer(\&mShipRitem-\/>\mbox{\hyperlink{struct_render_item_a7e4ddbefdc41b7efcad3c3a4b0ceccd9}{Geo}}-\/>IndexBufferView());}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00044}00044         \mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}}-\/>\mbox{\hyperlink{class_game_a9283a2ccc7cad9fdd4b25f7979d3c5c1}{getCmdList}}()-\/>IASetPrimitiveTopology(mShipRitem-\/>\mbox{\hyperlink{struct_render_item_ab3aad9050526250c4877956789e50b3a}{PrimitiveType}});}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00045}00045 }
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00046}00046         CD3DX12\_GPU\_DESCRIPTOR\_HANDLE tex(\mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}}-\/>\mbox{\hyperlink{class_game_a85befdbe03bbcdd30ad94cd64e0a1bd1}{mSrvDescriptorHeap}}-\/>GetGPUDescriptorHandleForHeapStart());}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00047}00047         tex.Offset(mShipRitem-\/>\mbox{\hyperlink{struct_render_item_a356068fffd78f172c796d44fe02d08d2}{Mat}}-\/>DiffuseSrvHeapIndex, \mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}}-\/>\mbox{\hyperlink{class_game_ad7a064571877d4b8becd1f53c98cafa9}{mCbvSrvDescriptorSize}});}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00048}00048 }
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00049}00049         D3D12\_GPU\_VIRTUAL\_ADDRESS objCBAddress = objectCB-\/>GetGPUVirtualAddress() + (UINT64)mShipRitem-\/>\mbox{\hyperlink{struct_render_item_a4a4015284acd79469b70c358b6c1c2a1}{ObjCBIndex}} * objCBByteSize;}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00050}00050         D3D12\_GPU\_VIRTUAL\_ADDRESS matCBAddress = matCB-\/>GetGPUVirtualAddress() + (UINT64)mShipRitem-\/>\mbox{\hyperlink{struct_render_item_a356068fffd78f172c796d44fe02d08d2}{Mat}}-\/>MatCBIndex * matCBByteSize;}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00051}00051 }
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00052}00052         \mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}}-\/>\mbox{\hyperlink{class_game_a9283a2ccc7cad9fdd4b25f7979d3c5c1}{getCmdList}}()-\/>SetGraphicsRootDescriptorTable(0, tex);}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00053}00053         \mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}}-\/>\mbox{\hyperlink{class_game_a9283a2ccc7cad9fdd4b25f7979d3c5c1}{getCmdList}}()-\/>SetGraphicsRootConstantBufferView(1, objCBAddress);}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00054}00054         \mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}}-\/>\mbox{\hyperlink{class_game_a9283a2ccc7cad9fdd4b25f7979d3c5c1}{getCmdList}}()-\/>SetGraphicsRootConstantBufferView(3, matCBAddress);}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00055}00055 }
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00056}00056         \mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}}-\/>\mbox{\hyperlink{class_game_a9283a2ccc7cad9fdd4b25f7979d3c5c1}{getCmdList}}()-\/>DrawIndexedInstanced(mShipRitem-\/>\mbox{\hyperlink{struct_render_item_ad95fafa012c0d99c216b998f11207e38}{IndexCount}}, 1, mShipRitem-\/>\mbox{\hyperlink{struct_render_item_a979179c6dd354cd329563e3599245463}{StartIndexLocation}}, mShipRitem-\/>\mbox{\hyperlink{struct_render_item_a3750ef7b2791ea922df46e222649f3dc}{BaseVertexLocation}}, 0);}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00057}00057     \}}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00058}00058 \}}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00059}00059 }
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00063}00063 \textcolor{keywordtype}{void} Ship::buildCurrent()}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00064}00064 \{}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00065}00065     \textcolor{keyword}{auto} render = std::make\_unique<RenderItem>();}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00066}00066     \mbox{\hyperlink{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}{renderer}} = render.get();}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00067}00067     \mbox{\hyperlink{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}{renderer}}-\/>\mbox{\hyperlink{struct_render_item_a2e0a651d0ad4ba7975455e22fbde1a28}{World}} = \mbox{\hyperlink{class_scene_node_a5e503eeca953d36b652a12ceadb64d28}{getTransform}}();}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00068}00068     \mbox{\hyperlink{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}{renderer}}-\/>\mbox{\hyperlink{struct_render_item_a4a4015284acd79469b70c358b6c1c2a1}{ObjCBIndex}} = (UINT)\mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}}-\/>\mbox{\hyperlink{class_game_aab13f3fdd19f7fec4d64922e36cf3088}{getRenderItems}}().size();}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00069}00069     \mbox{\hyperlink{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}{renderer}}-\/>\mbox{\hyperlink{struct_render_item_a356068fffd78f172c796d44fe02d08d2}{Mat}} = \mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}}-\/>\mbox{\hyperlink{class_game_a2ab854095110829c9fb607b8bf3b50e1}{getMaterials}}()[mSprite].get();}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00070}00070     \mbox{\hyperlink{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}{renderer}}-\/>\mbox{\hyperlink{struct_render_item_a7e4ddbefdc41b7efcad3c3a4b0ceccd9}{Geo}} = \mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}}-\/>\mbox{\hyperlink{class_game_a8fecc6dedc120a94d9940ad5d7518242}{getGeometries}}()[\textcolor{stringliteral}{"{}boxGeo"{}}].get();}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00071}00071     \mbox{\hyperlink{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}{renderer}}-\/>\mbox{\hyperlink{struct_render_item_ab3aad9050526250c4877956789e50b3a}{PrimitiveType}} = D3D\_PRIMITIVE\_TOPOLOGY\_TRIANGLELIST;}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00072}00072     \mbox{\hyperlink{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}{renderer}}-\/>\mbox{\hyperlink{struct_render_item_ad95fafa012c0d99c216b998f11207e38}{IndexCount}} = \mbox{\hyperlink{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}{renderer}}-\/>\mbox{\hyperlink{struct_render_item_a7e4ddbefdc41b7efcad3c3a4b0ceccd9}{Geo}}-\/>DrawArgs[\textcolor{stringliteral}{"{}box"{}}].IndexCount;}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00073}00073     \mbox{\hyperlink{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}{renderer}}-\/>\mbox{\hyperlink{struct_render_item_a979179c6dd354cd329563e3599245463}{StartIndexLocation}} = \mbox{\hyperlink{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}{renderer}}-\/>\mbox{\hyperlink{struct_render_item_a7e4ddbefdc41b7efcad3c3a4b0ceccd9}{Geo}}-\/>DrawArgs[\textcolor{stringliteral}{"{}box"{}}].StartIndexLocation;}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00074}00074     \mbox{\hyperlink{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}{renderer}}-\/>\mbox{\hyperlink{struct_render_item_a3750ef7b2791ea922df46e222649f3dc}{BaseVertexLocation}} = \mbox{\hyperlink{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}{renderer}}-\/>\mbox{\hyperlink{struct_render_item_a7e4ddbefdc41b7efcad3c3a4b0ceccd9}{Geo}}-\/>DrawArgs[\textcolor{stringliteral}{"{}box"{}}].BaseVertexLocation;}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00075}00075     mShipRitem = render.get();}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00076}00076     \mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}}-\/>\mbox{\hyperlink{class_game_aab13f3fdd19f7fec4d64922e36cf3088}{getRenderItems}}().push\_back(std::move(render));}
-\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00077}00077 \}}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00032}00032     \textcolor{keywordflow}{switch} (mType)}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00033}00033     \{}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00034}00034         \textcolor{keywordflow}{case} \mbox{\hyperlink{class_ship_a34a678eafbd25e014d84021dea22aef9a7885830f9d3a8722f628e2985cd26daf}{Type::Eagle}}:}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00035}00035         \textcolor{keywordflow}{return} \mbox{\hyperlink{namespace_category_a2ff936dbd42aeae91fdfb6f8456a8ab0ac17fded322e70d4086e2f5dfcc706679}{Category::PlayerAircraft}};}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00036}00036 }
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00037}00037     \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00038}00038         \textcolor{keywordflow}{return} \mbox{\hyperlink{namespace_category_a2ff936dbd42aeae91fdfb6f8456a8ab0a200d37e43bb2556f6e93fcc933124034}{Category::EnemyAircraft}};}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00039}00039     \}}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00040}00040 \}}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00041}00041 }
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00045}00045 \textcolor{keywordtype}{void} Ship::drawCurrent()\textcolor{keyword}{ const}}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00046}00046 \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00047}00047     \textcolor{comment}{// Set buffer sizes according to object and material constants. }}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00048}00048     UINT objCBByteSize = d3dUtil::CalcConstantBufferByteSize(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_object_constants}{ObjectConstants}}));}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00049}00049     UINT matCBByteSize = d3dUtil::CalcConstantBufferByteSize(\textcolor{keyword}{sizeof}(MaterialConstants));}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00050}00050 }
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00051}00051     \textcolor{keyword}{auto} objectCB = \mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}}-\/>\mbox{\hyperlink{class_game_a6119ac12b9dafae4e105ac9b4e80c1b2}{mCurrFrameResource}}-\/>\mbox{\hyperlink{struct_frame_resource_adec81cdfb788278fac8ad38066e6c18f}{ObjectCB}}-\/>Resource();}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00052}00052     \textcolor{keyword}{auto} matCB = \mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}}-\/>\mbox{\hyperlink{class_game_a6119ac12b9dafae4e105ac9b4e80c1b2}{mCurrFrameResource}}-\/>\mbox{\hyperlink{struct_frame_resource_a502a3bd044ed30d31280f4382cc07570}{MaterialCB}}-\/>Resource();}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00053}00053 }
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00054}00054     \textcolor{comment}{// Render the ship. }}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00055}00055     \textcolor{keywordflow}{if} (mShipRitem != \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00056}00056     \{}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00057}00057         \mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}}-\/>\mbox{\hyperlink{class_game_a9283a2ccc7cad9fdd4b25f7979d3c5c1}{getCmdList}}()-\/>IASetVertexBuffers(0, 1, \&mShipRitem-\/>\mbox{\hyperlink{struct_render_item_a7e4ddbefdc41b7efcad3c3a4b0ceccd9}{Geo}}-\/>VertexBufferView());}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00058}00058         \mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}}-\/>\mbox{\hyperlink{class_game_a9283a2ccc7cad9fdd4b25f7979d3c5c1}{getCmdList}}()-\/>IASetIndexBuffer(\&mShipRitem-\/>\mbox{\hyperlink{struct_render_item_a7e4ddbefdc41b7efcad3c3a4b0ceccd9}{Geo}}-\/>IndexBufferView());}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00059}00059         \mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}}-\/>\mbox{\hyperlink{class_game_a9283a2ccc7cad9fdd4b25f7979d3c5c1}{getCmdList}}()-\/>IASetPrimitiveTopology(mShipRitem-\/>\mbox{\hyperlink{struct_render_item_ab3aad9050526250c4877956789e50b3a}{PrimitiveType}});}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00060}00060 }
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00061}00061         CD3DX12\_GPU\_DESCRIPTOR\_HANDLE tex(\mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}}-\/>\mbox{\hyperlink{class_game_a85befdbe03bbcdd30ad94cd64e0a1bd1}{mSrvDescriptorHeap}}-\/>GetGPUDescriptorHandleForHeapStart());}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00062}00062         tex.Offset(mShipRitem-\/>\mbox{\hyperlink{struct_render_item_a356068fffd78f172c796d44fe02d08d2}{Mat}}-\/>DiffuseSrvHeapIndex, \mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}}-\/>\mbox{\hyperlink{class_game_ad7a064571877d4b8becd1f53c98cafa9}{mCbvSrvDescriptorSize}});}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00063}00063 }
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00064}00064         D3D12\_GPU\_VIRTUAL\_ADDRESS objCBAddress = objectCB-\/>GetGPUVirtualAddress() + (UINT64)mShipRitem-\/>\mbox{\hyperlink{struct_render_item_a4a4015284acd79469b70c358b6c1c2a1}{ObjCBIndex}} * objCBByteSize;}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00065}00065         D3D12\_GPU\_VIRTUAL\_ADDRESS matCBAddress = matCB-\/>GetGPUVirtualAddress() + (UINT64)mShipRitem-\/>\mbox{\hyperlink{struct_render_item_a356068fffd78f172c796d44fe02d08d2}{Mat}}-\/>MatCBIndex * matCBByteSize;}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00066}00066 }
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00067}00067         \mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}}-\/>\mbox{\hyperlink{class_game_a9283a2ccc7cad9fdd4b25f7979d3c5c1}{getCmdList}}()-\/>SetGraphicsRootDescriptorTable(0, tex);}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00068}00068         \mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}}-\/>\mbox{\hyperlink{class_game_a9283a2ccc7cad9fdd4b25f7979d3c5c1}{getCmdList}}()-\/>SetGraphicsRootConstantBufferView(1, objCBAddress);}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00069}00069         \mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}}-\/>\mbox{\hyperlink{class_game_a9283a2ccc7cad9fdd4b25f7979d3c5c1}{getCmdList}}()-\/>SetGraphicsRootConstantBufferView(3, matCBAddress);}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00070}00070 }
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00071}00071         \mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}}-\/>\mbox{\hyperlink{class_game_a9283a2ccc7cad9fdd4b25f7979d3c5c1}{getCmdList}}()-\/>DrawIndexedInstanced(mShipRitem-\/>\mbox{\hyperlink{struct_render_item_ad95fafa012c0d99c216b998f11207e38}{IndexCount}}, 1, mShipRitem-\/>\mbox{\hyperlink{struct_render_item_a979179c6dd354cd329563e3599245463}{StartIndexLocation}}, mShipRitem-\/>\mbox{\hyperlink{struct_render_item_a3750ef7b2791ea922df46e222649f3dc}{BaseVertexLocation}}, 0);}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00072}00072     \}}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00073}00073 \}}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00074}00074 }
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00078}00078 \textcolor{keywordtype}{void} Ship::buildCurrent()}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00079}00079 \{}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00080}00080     \textcolor{keyword}{auto} render = std::make\_unique<RenderItem>();}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00081}00081     \mbox{\hyperlink{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}{renderer}} = render.get();}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00082}00082     \mbox{\hyperlink{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}{renderer}}-\/>\mbox{\hyperlink{struct_render_item_a2e0a651d0ad4ba7975455e22fbde1a28}{World}} = \mbox{\hyperlink{class_scene_node_a5e503eeca953d36b652a12ceadb64d28}{getTransform}}();}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00083}00083     \mbox{\hyperlink{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}{renderer}}-\/>\mbox{\hyperlink{struct_render_item_a4a4015284acd79469b70c358b6c1c2a1}{ObjCBIndex}} = (UINT)\mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}}-\/>\mbox{\hyperlink{class_game_aab13f3fdd19f7fec4d64922e36cf3088}{getRenderItems}}().size();}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00084}00084     \mbox{\hyperlink{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}{renderer}}-\/>\mbox{\hyperlink{struct_render_item_a356068fffd78f172c796d44fe02d08d2}{Mat}} = \mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}}-\/>\mbox{\hyperlink{class_game_a2ab854095110829c9fb607b8bf3b50e1}{getMaterials}}()[mSprite].get();}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00085}00085     \mbox{\hyperlink{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}{renderer}}-\/>\mbox{\hyperlink{struct_render_item_a7e4ddbefdc41b7efcad3c3a4b0ceccd9}{Geo}} = \mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}}-\/>\mbox{\hyperlink{class_game_a8fecc6dedc120a94d9940ad5d7518242}{getGeometries}}()[\textcolor{stringliteral}{"{}boxGeo"{}}].get();}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00086}00086     \mbox{\hyperlink{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}{renderer}}-\/>\mbox{\hyperlink{struct_render_item_ab3aad9050526250c4877956789e50b3a}{PrimitiveType}} = D3D\_PRIMITIVE\_TOPOLOGY\_TRIANGLELIST;}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00087}00087     \mbox{\hyperlink{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}{renderer}}-\/>\mbox{\hyperlink{struct_render_item_ad95fafa012c0d99c216b998f11207e38}{IndexCount}} = \mbox{\hyperlink{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}{renderer}}-\/>\mbox{\hyperlink{struct_render_item_a7e4ddbefdc41b7efcad3c3a4b0ceccd9}{Geo}}-\/>DrawArgs[\textcolor{stringliteral}{"{}box"{}}].IndexCount;}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00088}00088     \mbox{\hyperlink{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}{renderer}}-\/>\mbox{\hyperlink{struct_render_item_a979179c6dd354cd329563e3599245463}{StartIndexLocation}} = \mbox{\hyperlink{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}{renderer}}-\/>\mbox{\hyperlink{struct_render_item_a7e4ddbefdc41b7efcad3c3a4b0ceccd9}{Geo}}-\/>DrawArgs[\textcolor{stringliteral}{"{}box"{}}].StartIndexLocation;}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00089}00089     \mbox{\hyperlink{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}{renderer}}-\/>\mbox{\hyperlink{struct_render_item_a3750ef7b2791ea922df46e222649f3dc}{BaseVertexLocation}} = \mbox{\hyperlink{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}{renderer}}-\/>\mbox{\hyperlink{struct_render_item_a7e4ddbefdc41b7efcad3c3a4b0ceccd9}{Geo}}-\/>DrawArgs[\textcolor{stringliteral}{"{}box"{}}].BaseVertexLocation;}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00090}00090     mShipRitem = render.get();}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00091}00091     \mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}}-\/>\mbox{\hyperlink{class_game_aab13f3fdd19f7fec4d64922e36cf3088}{getRenderItems}}().push\_back(std::move(render));}
+\DoxyCodeLine{\Hypertarget{_ship_8cpp_source_l00092}00092 \}}
 
 \end{DoxyCode}

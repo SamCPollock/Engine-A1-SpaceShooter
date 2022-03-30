@@ -1,5 +1,4 @@
-\hypertarget{_entity_8cpp_source}{}\doxysection{Entity.\+cpp}
-\label{_entity_8cpp_source}\index{Project7\_InstancesAndCulling/Entity.cpp@{Project7\_InstancesAndCulling/Entity.cpp}}
+\hypertarget{_entity_8cpp_source}{}\doxysection{C\+:/\+Users/samcp/\+Downloads/\+GBC/\+Year 3 -\/ Downloads/\+Semester 2/\+Game Engine 4/\+A1-\/\+DX12-\/\+Shooter/\+A1-\/\+Bonus\+Time/\+Project7\+\_\+\+Instances\+And\+Culling/\+Entity.cpp}
 \mbox{\hyperlink{_entity_8cpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_entity_8h}{Entity.h}}"{}}}
@@ -26,17 +25,25 @@
 \DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00040}00040     \textcolor{keywordflow}{return} \mbox{\hyperlink{class_entity_a15aa77787228598dfa35f5f822695c43}{mVelocity}};}
 \DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00041}00041 \}}
 \DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00042}00042 }
-\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00048}\mbox{\hyperlink{class_entity_ac2ba9cb8ca54fff11ad7397334edcd94}{00048}} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_entity_ac2ba9cb8ca54fff11ad7397334edcd94}{Entity::updateCurrent}}(\textcolor{keyword}{const} GameTimer\& gt)}
-\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00049}00049 \{}
-\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00050}00050     XMFLOAT3 mV;}
-\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00051}00051     mV.x = \mbox{\hyperlink{class_entity_a15aa77787228598dfa35f5f822695c43}{mVelocity}}.x * gt.DeltaTime();}
-\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00052}00052     mV.y = \mbox{\hyperlink{class_entity_a15aa77787228598dfa35f5f822695c43}{mVelocity}}.y * gt.DeltaTime();}
-\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00053}00053     mV.z = \mbox{\hyperlink{class_entity_a15aa77787228598dfa35f5f822695c43}{mVelocity}}.z * gt.DeltaTime();}
-\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00054}00054 }
-\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00055}00055     \mbox{\hyperlink{class_scene_node_aec657f40def4be5c901192ec85027a35}{move}}(mV.x, mV.y, mV.z);}
-\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00056}00056 }
-\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00057}00057     \mbox{\hyperlink{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}{renderer}}-\/>\mbox{\hyperlink{struct_render_item_a2e0a651d0ad4ba7975455e22fbde1a28}{World}} = \mbox{\hyperlink{class_scene_node_a58fbaea11dad15681acbe6abdbff03a7}{getWorldTransform}}();}
-\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00058}00058     \mbox{\hyperlink{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}{renderer}}-\/>\mbox{\hyperlink{struct_render_item_aca6ae2de91638af530fd5ce91fea3306}{NumFramesDirty}}++;}
-\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00059}00059 \}}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00043}\mbox{\hyperlink{class_entity_a6604e7ba4eee5511a6aa21345cbdaf28}{00043}} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_entity_a6604e7ba4eee5511a6aa21345cbdaf28}{Entity::accelerate}}(XMFLOAT3 velocity)}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00044}00044 \{}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00045}00045     \mbox{\hyperlink{class_entity_a15aa77787228598dfa35f5f822695c43}{mVelocity}}.x = \mbox{\hyperlink{class_entity_a15aa77787228598dfa35f5f822695c43}{mVelocity}}.x + velocity.x; }
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00046}00046     \mbox{\hyperlink{class_entity_a15aa77787228598dfa35f5f822695c43}{mVelocity}}.y = \mbox{\hyperlink{class_entity_a15aa77787228598dfa35f5f822695c43}{mVelocity}}.y + velocity.y;}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00047}00047     \mbox{\hyperlink{class_entity_a15aa77787228598dfa35f5f822695c43}{mVelocity}}.z = \mbox{\hyperlink{class_entity_a15aa77787228598dfa35f5f822695c43}{mVelocity}}.z + velocity.z;}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00048}00048 }
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00049}00049 \}}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00050}00050 }
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00056}\mbox{\hyperlink{class_entity_ac2ba9cb8ca54fff11ad7397334edcd94}{00056}} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_entity_ac2ba9cb8ca54fff11ad7397334edcd94}{Entity::updateCurrent}}(\textcolor{keyword}{const} GameTimer\& gt)}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00057}00057 \{}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00058}00058     XMFLOAT3 mV;}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00059}00059     mV.x = \mbox{\hyperlink{class_entity_a15aa77787228598dfa35f5f822695c43}{mVelocity}}.x * gt.DeltaTime();}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00060}00060     mV.y = \mbox{\hyperlink{class_entity_a15aa77787228598dfa35f5f822695c43}{mVelocity}}.y * gt.DeltaTime();}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00061}00061     mV.z = \mbox{\hyperlink{class_entity_a15aa77787228598dfa35f5f822695c43}{mVelocity}}.z * gt.DeltaTime();}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00062}00062 }
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00063}00063     \mbox{\hyperlink{class_scene_node_aec657f40def4be5c901192ec85027a35}{move}}(mV.x, mV.y, mV.z);}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00064}00064 }
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00065}00065     \mbox{\hyperlink{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}{renderer}}-\/>\mbox{\hyperlink{struct_render_item_a2e0a651d0ad4ba7975455e22fbde1a28}{World}} = \mbox{\hyperlink{class_scene_node_a58fbaea11dad15681acbe6abdbff03a7}{getWorldTransform}}();}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00066}00066     \mbox{\hyperlink{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}{renderer}}-\/>\mbox{\hyperlink{struct_render_item_aca6ae2de91638af530fd5ce91fea3306}{NumFramesDirty}}++;}
+\DoxyCodeLine{\Hypertarget{_entity_8cpp_source_l00067}00067 \}}
 
 \end{DoxyCode}

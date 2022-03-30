@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['objcbindex_0',['ObjCBIndex',['../struct_render_item.html#a4a4015284acd79469b70c358b6c1c2a1',1,'RenderItem']]],
-  ['objectcb_1',['ObjectCB',['../struct_frame_resource.html#adec81cdfb788278fac8ad38066e6c18f',1,'FrameResource']]],
-  ['objectconstants_2',['ObjectConstants',['../struct_object_constants.html',1,'']]],
-  ['operator_3d_3',['operator=',['../struct_frame_resource.html#a4d75d2a5a7bca5a0bd70a15b449c5776',1,'FrameResource::operator=()'],['../class_game.html#a9bda5763ea460634fef947be2530c8f5',1,'Game::operator=()']]]
+  ['nearz_0',['NearZ',['../struct_pass_constants.html#affe3124795eccdba77dae8cef5399e7d',1,'PassConstants']]],
+  ['nominmax_1',['NOMINMAX',['../_world_8cpp.html#a9f918755b601cf4bffca775992e6fb90',1,'World.cpp']]],
+  ['none_2',['None',['../namespace_category.html#a2ff936dbd42aeae91fdfb6f8456a8ab0af5e99963224a9d7e0d16e4a782446ebf',1,'Category']]],
+  ['normal_3',['Normal',['../struct_vertex.html#a553ed48ae98dda36da8e57cfa53877d4',1,'Vertex']]],
+  ['numframesdirty_4',['NumFramesDirty',['../struct_render_item.html#aca6ae2de91638af530fd5ce91fea3306',1,'RenderItem']]]
 ];

@@ -23,6 +23,10 @@ Ship::Ship(Type type, Game* game) : Entity(game)
 	}
 }
 
+/// <summary>
+/// GetCategory, returns an int representing the category of the ship (Either PlayerAircraft or EnemyAircraft, to determine response to commands) 
+/// </summary>
+/// <returns></returns>
 unsigned int Ship::getCategory() const
 {
 	switch (mType)

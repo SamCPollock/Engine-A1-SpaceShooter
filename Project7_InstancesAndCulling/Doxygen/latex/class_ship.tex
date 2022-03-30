@@ -26,7 +26,9 @@ enum class \mbox{\hyperlink{class_ship_a34a678eafbd25e014d84021dea22aef9}{Type}}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{class_ship_ab91be4278e0552e249c040d95d1467e2}{Ship}} (\mbox{\hyperlink{class_ship_a34a678eafbd25e014d84021dea22aef9}{Type}} type, \mbox{\hyperlink{class_game}{Game}} $\ast$\mbox{\hyperlink{class_scene_node_a06d1261ef839789469f228e7a7f2bfb9}{game}})
-\begin{DoxyCompactList}\small\item\em Constructor, uses switch case to determine what type of ship to create. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Constructor, uses switch case to determine what type of ship to create. \end{DoxyCompactList}\item 
+virtual unsigned int \mbox{\hyperlink{class_ship_a64400cae1ee87a212471b631b35108fe}{get\+Category}} () const
+\begin{DoxyCompactList}\small\item\em Get\+Category, returns an int representing the category of the ship (Either Player\+Aircraft or Enemy\+Aircraft, to determine response to commands) \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Additional Inherited Members}
 
 
@@ -87,7 +89,31 @@ Definition at line \mbox{\hyperlink{_ship_8cpp_source_l00009}{9}} of file \mbox{
 
 
 
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_ship_a64400cae1ee87a212471b631b35108fe}\label{class_ship_a64400cae1ee87a212471b631b35108fe}} 
+\index{Ship@{Ship}!getCategory@{getCategory}}
+\index{getCategory@{getCategory}!Ship@{Ship}}
+\doxysubsubsection{\texorpdfstring{getCategory()}{getCategory()}}
+{\footnotesize\ttfamily unsigned int Ship\+::get\+Category (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Get\+Category, returns an int representing the category of the ship (Either Player\+Aircraft or Enemy\+Aircraft, to determine response to commands) 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{class_scene_node_af713a8c58831a27bc791a2efdfb7c495}{Scene\+Node}}.
+
+
+
+Definition at line \mbox{\hyperlink{_ship_8cpp_source_l00030}{30}} of file \mbox{\hyperlink{_ship_8cpp_source}{Ship.\+cpp}}.
+
+
+
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Project7\+\_\+\+Instances\+And\+Culling/\mbox{\hyperlink{_ship_8h}{Ship.\+h}}\item 
-Project7\+\_\+\+Instances\+And\+Culling/\mbox{\hyperlink{_ship_8cpp}{Ship.\+cpp}}\end{DoxyCompactItemize}
+C\+:/\+Users/samcp/\+Downloads/\+GBC/\+Year 3 -\/ Downloads/\+Semester 2/\+Game Engine 4/\+A1-\/\+DX12-\/\+Shooter/\+A1-\/\+Bonus\+Time/\+Project7\+\_\+\+Instances\+And\+Culling/\mbox{\hyperlink{_ship_8h}{Ship.\+h}}\item 
+C\+:/\+Users/samcp/\+Downloads/\+GBC/\+Year 3 -\/ Downloads/\+Semester 2/\+Game Engine 4/\+A1-\/\+DX12-\/\+Shooter/\+A1-\/\+Bonus\+Time/\+Project7\+\_\+\+Instances\+And\+Culling/\mbox{\hyperlink{_ship_8cpp}{Ship.\+cpp}}\end{DoxyCompactItemize}

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>GameEngine-A1-SpaceShooter: World Class Reference</title>
+<title>GameEngine-A2-SpaceShooter: World Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -30,7 +30,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">GameEngine-A1-SpaceShooter
+   <div id="projectname">GameEngine-A2-SpaceShooter
    </div>
   </td>
     <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -118,12 +118,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae7df49f5d488e5cd1254bf360966f410"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world.html#ae7df49f5d488e5cd1254bf360966f410">buildScene</a> ()</td></tr>
 <tr class="memdesc:ae7df49f5d488e5cd1254bf360966f410"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build scene, create unique ptr for each object, set up the initial entitiy properties for them.  <a href="class_world.html#ae7df49f5d488e5cd1254bf360966f410">More...</a><br /></td></tr>
 <tr class="separator:ae7df49f5d488e5cd1254bf360966f410"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad57739b1e6659c2846b57a6fa2621d68"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_input_command_queue.html">InputCommandQueue</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_world.html#ad57739b1e6659c2846b57a6fa2621d68">getCommandQueue</a> ()</td></tr>
+<tr class="memdesc:ad57739b1e6659c2846b57a6fa2621d68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the member input command queue  <a href="class_world.html#ad57739b1e6659c2846b57a6fa2621d68">More...</a><br /></td></tr>
+<tr class="separator:ad57739b1e6659c2846b57a6fa2621d68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p ><a class="el" href="class_world.html" title="World Set up the world, setting up layers and choosing entities to populate them.">World</a> Set up the world, setting up layers and choosing entities to populate them. </p>
 <p >Sam Pollock, 2022 </p><hr  />
  
-<p class="definition">Definition at line <a class="el" href="_world_8h_source.html#l00013">13</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_world_8h_source.html#l00015">15</a> of file <a class="el" href="_world_8h_source.html">World.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a358fecc8d0e42996d7bd1884f126a97c" name="a358fecc8d0e42996d7bd1884f126a97c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a358fecc8d0e42996d7bd1884f126a97c">&#9670;&nbsp;</a></span>World()</h2>
@@ -158,7 +161,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_world_8cpp_source.html#l00013">13</a> of file <a class="el" href="_world_8cpp_source.html">World.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_world_8cpp_source.html#l00014">14</a> of file <a class="el" href="_world_8cpp_source.html">World.cpp</a>.</p>
 
 </div>
 </div>
@@ -180,7 +183,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Build scene, create unique ptr for each object, set up the initial entitiy properties for them. </p>
 
-<p class="definition">Definition at line <a class="el" href="_world_8cpp_source.html#l00064">64</a> of file <a class="el" href="_world_8cpp_source.html">World.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_world_8cpp_source.html#l00102">102</a> of file <a class="el" href="_world_8cpp_source.html">World.cpp</a>.</p>
 
 </div>
 </div>
@@ -201,7 +204,29 @@ Public Member Functions</h2></td></tr>
 
 <p>Calls the sceneGraphs draw function </p>
 
-<p class="definition">Definition at line <a class="el" href="_world_8cpp_source.html#l00055">55</a> of file <a class="el" href="_world_8cpp_source.html">World.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_world_8cpp_source.html#l00093">93</a> of file <a class="el" href="_world_8cpp_source.html">World.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ad57739b1e6659c2846b57a6fa2621d68" name="ad57739b1e6659c2846b57a6fa2621d68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad57739b1e6659c2846b57a6fa2621d68">&#9670;&nbsp;</a></span>getCommandQueue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_input_command_queue.html">InputCommandQueue</a> &amp; World::getCommandQueue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the member input command queue </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_world_8cpp_source.html#l00084">84</a> of file <a class="el" href="_world_8cpp_source.html">World.cpp</a>.</p>
 
 </div>
 </div>
@@ -229,13 +254,13 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_world_8cpp_source.html#l00029">29</a> of file <a class="el" href="_world_8cpp_source.html">World.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_world_8cpp_source.html#l00030">30</a> of file <a class="el" href="_world_8cpp_source.html">World.cpp</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>Project7_InstancesAndCulling/<a class="el" href="_world_8h_source.html">World.h</a></li>
-<li>Project7_InstancesAndCulling/<a class="el" href="_world_8cpp_source.html">World.cpp</a></li>
+<li>C:/Users/samcp/Downloads/GBC/Year 3 - Downloads/Semester 2/Game Engine 4/A1-DX12-Shooter/A1-BonusTime/Project7_InstancesAndCulling/<a class="el" href="_world_8h_source.html">World.h</a></li>
+<li>C:/Users/samcp/Downloads/GBC/Year 3 - Downloads/Semester 2/Game Engine 4/A1-DX12-Shooter/A1-BonusTime/Project7_InstancesAndCulling/<a class="el" href="_world_8cpp_source.html">World.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

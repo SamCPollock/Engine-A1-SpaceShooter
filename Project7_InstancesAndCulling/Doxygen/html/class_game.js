@@ -22,6 +22,7 @@ var class_game =
     [ "mMaterials", "class_game.html#a871400f233e46cc637f383106e89dd71", null ],
     [ "mOpaquePSO", "class_game.html#acb640d01b04bbb82f3f2b02ac09554b2", null ],
     [ "mOpaqueRitems", "class_game.html#a626d5d97ee0e536b99703094828f5f79", null ],
+    [ "mPlayer", "class_game.html#a1633a90f20203779bc1a1171c2d7ad77", null ],
     [ "mRootSignature", "class_game.html#a987fac1aded1b4f4b9495eb0f1464c12", null ],
     [ "mShaders", "class_game.html#a5d821a872c24ff21b97300d24e37ac23", null ],
     [ "mSrvDescriptorHeap", "class_game.html#a85befdbe03bbcdd30ad94cd64e0a1bd1", null ],

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>GameEngine-A1-SpaceShooter: SceneNode Class Reference</title>
+<title>GameEngine-A2-SpaceShooter: SceneNode Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -30,7 +30,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">GameEngine-A1-SpaceShooter
+   <div id="projectname">GameEngine-A2-SpaceShooter
    </div>
   </td>
     <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -168,6 +168,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aec657f40def4be5c901192ec85027a35"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_node.html#aec657f40def4be5c901192ec85027a35">move</a> (float x, float y, float z)</td></tr>
 <tr class="memdesc:aec657f40def4be5c901192ec85027a35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Takes 3 floats to move the sceneNode's worldPostiion.  <a href="class_scene_node.html#aec657f40def4be5c901192ec85027a35">More...</a><br /></td></tr>
 <tr class="separator:aec657f40def4be5c901192ec85027a35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a378e78ad679c28301c0db51afa389cb6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_node.html#a378e78ad679c28301c0db51afa389cb6">onCommand</a> (const <a class="el" href="struct_command.html">Command</a> &amp;command, const GameTimer &amp;gt)</td></tr>
+<tr class="memdesc:a378e78ad679c28301c0db51afa389cb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">OnCommand, goes through self and children to perform command actions.  <a href="class_scene_node.html#a378e78ad679c28301c0db51afa389cb6">More...</a><br /></td></tr>
+<tr class="separator:a378e78ad679c28301c0db51afa389cb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af713a8c58831a27bc791a2efdfb7c495"><td class="memItemLeft" align="right" valign="top">virtual unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_scene_node.html#af713a8c58831a27bc791a2efdfb7c495">getCategory</a> () const</td></tr>
+<tr class="memdesc:af713a8c58831a27bc791a2efdfb7c495"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the category of the game object (Returns 'Scene' by default  <a href="class_scene_node.html#af713a8c58831a27bc791a2efdfb7c495">More...</a><br /></td></tr>
+<tr class="separator:af713a8c58831a27bc791a2efdfb7c495"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -179,7 +185,7 @@ Protected Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Scenenode </p>
 
-<p class="definition">Definition at line <a class="el" href="_scene_node_8h_source.html#l00063">63</a> of file <a class="el" href="_scene_node_8h_source.html">SceneNode.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_scene_node_8h_source.html#l00064">64</a> of file <a class="el" href="_scene_node_8h_source.html">SceneNode.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="aaf5c9ad8475874b51b70e400822f2e9a" name="aaf5c9ad8475874b51b70e400822f2e9a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaf5c9ad8475874b51b70e400822f2e9a">&#9670;&nbsp;</a></span>Ptr</h2>
@@ -193,7 +199,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_scene_node_8h_source.html#l00066">66</a> of file <a class="el" href="_scene_node_8h_source.html">SceneNode.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_scene_node_8h_source.html#l00067">67</a> of file <a class="el" href="_scene_node_8h_source.html">SceneNode.h</a>.</p>
 
 </div>
 </div>
@@ -324,6 +330,38 @@ Protected Attributes</h2></td></tr>
 <p>Calls drawcurrent (does nothing) and drawChildren. </p>
 
 <p class="definition">Definition at line <a class="el" href="_scene_node_8cpp_source.html#l00086">86</a> of file <a class="el" href="_scene_node_8cpp_source.html">SceneNode.cpp</a>.</p>
+
+</div>
+</div>
+<a id="af713a8c58831a27bc791a2efdfb7c495" name="af713a8c58831a27bc791a2efdfb7c495"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af713a8c58831a27bc791a2efdfb7c495">&#9670;&nbsp;</a></span>getCategory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned int SceneNode::getCategory </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns the category of the game object (Returns 'Scene' by default </p>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p>Reimplemented in <a class="el" href="class_ship.html#a64400cae1ee87a212471b631b35108fe">Ship</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_scene_node_8cpp_source.html#l00255">255</a> of file <a class="el" href="_scene_node_8cpp_source.html">SceneNode.cpp</a>.</p>
 
 </div>
 </div>
@@ -482,6 +520,45 @@ Protected Attributes</h2></td></tr>
 </dl>
 
 <p class="definition">Definition at line <a class="el" href="_scene_node_8cpp_source.html#l00244">244</a> of file <a class="el" href="_scene_node_8cpp_source.html">SceneNode.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a378e78ad679c28301c0db51afa389cb6" name="a378e78ad679c28301c0db51afa389cb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a378e78ad679c28301c0db51afa389cb6">&#9670;&nbsp;</a></span>onCommand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SceneNode::onCommand </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_command.html">Command</a> &amp;&#160;</td>
+          <td class="paramname"><em>command</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const GameTimer &amp;&#160;</td>
+          <td class="paramname"><em>gt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>OnCommand, goes through self and children to perform command actions. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">command</td><td></td></tr>
+    <tr><td class="paramname">gt</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_scene_node_8cpp_source.html#l00265">265</a> of file <a class="el" href="_scene_node_8cpp_source.html">SceneNode.cpp</a>.</p>
 
 </div>
 </div>
@@ -673,7 +750,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_scene_node_8h_source.html#l00100">100</a> of file <a class="el" href="_scene_node_8h_source.html">SceneNode.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_scene_node_8h_source.html#l00107">107</a> of file <a class="el" href="_scene_node_8h_source.html">SceneNode.h</a>.</p>
 
 </div>
 </div>
@@ -697,13 +774,13 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_scene_node_8h_source.html#l00101">101</a> of file <a class="el" href="_scene_node_8h_source.html">SceneNode.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_scene_node_8h_source.html#l00108">108</a> of file <a class="el" href="_scene_node_8h_source.html">SceneNode.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>Project7_InstancesAndCulling/<a class="el" href="_scene_node_8h_source.html">SceneNode.h</a></li>
-<li>Project7_InstancesAndCulling/<a class="el" href="_scene_node_8cpp_source.html">SceneNode.cpp</a></li>
+<li>C:/Users/samcp/Downloads/GBC/Year 3 - Downloads/Semester 2/Game Engine 4/A1-DX12-Shooter/A1-BonusTime/Project7_InstancesAndCulling/<a class="el" href="_scene_node_8h_source.html">SceneNode.h</a></li>
+<li>C:/Users/samcp/Downloads/GBC/Year 3 - Downloads/Semester 2/Game Engine 4/A1-DX12-Shooter/A1-BonusTime/Project7_InstancesAndCulling/<a class="el" href="_scene_node_8cpp_source.html">SceneNode.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

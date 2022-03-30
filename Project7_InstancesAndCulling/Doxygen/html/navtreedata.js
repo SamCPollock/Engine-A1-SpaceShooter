@@ -24,8 +24,16 @@
 */
 var NAVTREE =
 [
-  [ "GameEngine-A1-SpaceShooter", "index.html", [
-    [ "Game Engine Development II - Assignment 1", "index.html", null ],
+  [ "GameEngine-A2-SpaceShooter", "index.html", [
+    [ "Game Engine Development II - Assignment 2", "index.html", null ],
+    [ "Namespaces", "namespaces.html", [
+      [ "Namespace List", "namespaces.html", "namespaces_dup" ],
+      [ "Namespace Members", "namespacemembers.html", [
+        [ "All", "namespacemembers.html", null ],
+        [ "Enumerations", "namespacemembers_enum.html", null ],
+        [ "Enumerator", "namespacemembers_eval.html", null ]
+      ] ]
+    ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -35,7 +43,8 @@ var NAVTREE =
         [ "Functions", "functions_func.html", null ],
         [ "Variables", "functions_vars.html", null ],
         [ "Typedefs", "functions_type.html", null ],
-        [ "Enumerations", "functions_enum.html", null ]
+        [ "Enumerations", "functions_enum.html", null ],
+        [ "Enumerator", "functions_eval.html", null ]
       ] ]
     ] ],
     [ "Files", "files.html", [
@@ -43,7 +52,8 @@ var NAVTREE =
       [ "File Members", "globals.html", [
         [ "All", "globals.html", null ],
         [ "Functions", "globals_func.html", null ],
-        [ "Variables", "globals_vars.html", null ]
+        [ "Variables", "globals_vars.html", null ],
+        [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
   ] ]
@@ -51,7 +61,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_entity_8cpp.html"
+"_category_8h.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

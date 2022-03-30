@@ -257,6 +257,11 @@ unsigned int SceneNode::getCategory() const
 	return Category::Scene;
 }
 
+/// <summary>
+/// OnCommand, goes through self and children to perform command actions. 
+/// </summary>
+/// <param name="command"></param>
+/// <param name="gt"></param>
 void SceneNode::onCommand(const Command& command, const GameTimer& gt)
 {
 	if (command.category & getCategory())	// command self

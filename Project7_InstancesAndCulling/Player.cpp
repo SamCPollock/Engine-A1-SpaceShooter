@@ -12,6 +12,9 @@
 
 using namespace DirectX;
 
+/// <summary>
+/// Playermover struct, changes player position and accelerates player velocity.
+/// </summary>
 struct PlayerMover
 {
 	XMFLOAT3 velocity;
@@ -28,6 +31,11 @@ struct PlayerMover
 
 };
 
+
+/// <summary>
+/// Player constructor. 
+/// Set up default key bindings and initialize actions. 
+/// </summary>
 Player::Player()
 {
 	// default key bindings
@@ -51,6 +59,10 @@ Player::Player()
 
 }
 
+/// <summary>
+/// handleEvent, takes in a command and checks for related actions. 
+/// </summary>
+/// <param name="commands"></param>
 void Player::handleEvent(InputCommandQueue& commands)
 {
 	for (auto pair : mKeyBinding)
@@ -76,6 +88,10 @@ void Player::handleEvent(InputCommandQueue& commands)
 	}
 }
 
+/// <summary>
+/// HandleRealtimeInput, takes in an InputCommandQUeueu and goes through each action. 
+/// </summary>
+/// <param name="commands"></param>
 void Player::handleRealtimeInput(InputCommandQueue& commands)
 {
 	for (auto pair : mKeyBinding)
@@ -87,6 +103,11 @@ void Player::handleRealtimeInput(InputCommandQueue& commands)
 	}
 }
 
+/// <summary>
+/// AssignKey, unbinds previous key bindings to replace with new keybindings. 
+/// </summary>
+/// <param name="action"></param>
+/// <param name="key"></param>
 void Player::assignKey(Action action, char key)
 {
 	for (auto i = mKeyBinding.begin(); i != mKeyBinding.end(); )
@@ -104,6 +125,11 @@ void Player::assignKey(Action action, char key)
 	mKeyBinding[key] = action;
 }
 
+/// <summary>
+/// GetKeyAssigned, returns the key bound to an action.
+/// </summary>
+/// <param name="action"></param>
+/// <returns></returns>
 char Player::getAssignedKey(Action action) const 
 {
 	for (auto pair : mKeyBinding)
@@ -117,6 +143,9 @@ char Player::getAssignedKey(Action action) const
 	}
 }
 
+/// <summary>
+/// InitializeActions, sets up the actionBindings. 
+/// </summary>
 void Player::initializeActions()
 {
 	const float playerSpeed = 4.0f;
@@ -129,6 +158,11 @@ void Player::initializeActions()
 
 }
 
+/// <summary>
+/// isRealTimeAction, returns a boolean depending on whether any actions are realtime. 
+/// </summary>
+/// <param name="action"></param>
+/// <returns></returns>
 bool Player::isRealtimeAction(Action action)
 {
 	switch (action)

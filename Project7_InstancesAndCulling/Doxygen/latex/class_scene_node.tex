@@ -52,7 +52,11 @@ XMFLOAT4\+X4 \mbox{\hyperlink{class_scene_node_a58fbaea11dad15681acbe6abdbff03a7
 XMFLOAT4\+X4 \mbox{\hyperlink{class_scene_node_a5e503eeca953d36b652a12ceadb64d28}{get\+Transform}} () const
 \begin{DoxyCompactList}\small\item\em Returns transform as an XMFLOAT4x4. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_scene_node_aec657f40def4be5c901192ec85027a35}{move}} (float x, float y, float z)
-\begin{DoxyCompactList}\small\item\em Takes 3 floats to move the scene\+Node\textquotesingle{}s world\+Postiion. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Takes 3 floats to move the scene\+Node\textquotesingle{}s world\+Postiion. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_scene_node_a378e78ad679c28301c0db51afa389cb6}{on\+Command}} (const \mbox{\hyperlink{struct_command}{Command}} \&command, const Game\+Timer \&gt)
+\begin{DoxyCompactList}\small\item\em On\+Command, goes through self and children to perform command actions. \end{DoxyCompactList}\item 
+virtual unsigned int \mbox{\hyperlink{class_scene_node_af713a8c58831a27bc791a2efdfb7c495}{get\+Category}} () const
+\begin{DoxyCompactList}\small\item\em Returns the category of the game object (Returns \textquotesingle{}Scene\textquotesingle{} by default \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -65,7 +69,7 @@ void \mbox{\hyperlink{class_scene_node_aec657f40def4be5c901192ec85027a35}{move}}
 \doxysubsection{Detailed Description}
 Scenenode 
 
-Definition at line \mbox{\hyperlink{_scene_node_8h_source_l00063}{63}} of file \mbox{\hyperlink{_scene_node_8h_source}{Scene\+Node.\+h}}.
+Definition at line \mbox{\hyperlink{_scene_node_8h_source_l00064}{64}} of file \mbox{\hyperlink{_scene_node_8h_source}{Scene\+Node.\+h}}.
 
 
 
@@ -78,7 +82,7 @@ Definition at line \mbox{\hyperlink{_scene_node_8h_source_l00063}{63}} of file \
 
 
 
-Definition at line \mbox{\hyperlink{_scene_node_8h_source_l00066}{66}} of file \mbox{\hyperlink{_scene_node_8h_source}{Scene\+Node.\+h}}.
+Definition at line \mbox{\hyperlink{_scene_node_8h_source_l00067}{67}} of file \mbox{\hyperlink{_scene_node_8h_source}{Scene\+Node.\+h}}.
 
 
 
@@ -175,6 +179,27 @@ Calls drawcurrent (does nothing) and draw\+Children.
 
 
 Definition at line \mbox{\hyperlink{_scene_node_8cpp_source_l00086}{86}} of file \mbox{\hyperlink{_scene_node_8cpp_source}{Scene\+Node.\+cpp}}.
+
+\mbox{\Hypertarget{class_scene_node_af713a8c58831a27bc791a2efdfb7c495}\label{class_scene_node_af713a8c58831a27bc791a2efdfb7c495}} 
+\index{SceneNode@{SceneNode}!getCategory@{getCategory}}
+\index{getCategory@{getCategory}!SceneNode@{SceneNode}}
+\doxysubsubsection{\texorpdfstring{getCategory()}{getCategory()}}
+{\footnotesize\ttfamily unsigned int Scene\+Node\+::get\+Category (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Returns the category of the game object (Returns \textquotesingle{}Scene\textquotesingle{} by default 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{class_ship_a64400cae1ee87a212471b631b35108fe}{Ship}}.
+
+
+
+Definition at line \mbox{\hyperlink{_scene_node_8cpp_source_l00255}{255}} of file \mbox{\hyperlink{_scene_node_8cpp_source}{Scene\+Node.\+cpp}}.
 
 \mbox{\Hypertarget{class_scene_node_a5e503eeca953d36b652a12ceadb64d28}\label{class_scene_node_a5e503eeca953d36b652a12ceadb64d28}} 
 \index{SceneNode@{SceneNode}!getTransform@{getTransform}}
@@ -288,6 +313,27 @@ Takes 3 floats to move the scene\+Node\textquotesingle{}s world\+Postiion.
 
 Definition at line \mbox{\hyperlink{_scene_node_8cpp_source_l00244}{244}} of file \mbox{\hyperlink{_scene_node_8cpp_source}{Scene\+Node.\+cpp}}.
 
+\mbox{\Hypertarget{class_scene_node_a378e78ad679c28301c0db51afa389cb6}\label{class_scene_node_a378e78ad679c28301c0db51afa389cb6}} 
+\index{SceneNode@{SceneNode}!onCommand@{onCommand}}
+\index{onCommand@{onCommand}!SceneNode@{SceneNode}}
+\doxysubsubsection{\texorpdfstring{onCommand()}{onCommand()}}
+{\footnotesize\ttfamily void Scene\+Node\+::on\+Command (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_command}{Command}} \&}]{command,  }\item[{const Game\+Timer \&}]{gt }\end{DoxyParamCaption})}
+
+
+
+On\+Command, goes through self and children to perform command actions. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command} & \\
+\hline
+{\em gt} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_scene_node_8cpp_source_l00265}{265}} of file \mbox{\hyperlink{_scene_node_8cpp_source}{Scene\+Node.\+cpp}}.
+
 \mbox{\Hypertarget{class_scene_node_a45f8882749060b059fe26eb02f7f843b}\label{class_scene_node_a45f8882749060b059fe26eb02f7f843b}} 
 \index{SceneNode@{SceneNode}!setPosition@{setPosition}}
 \index{setPosition@{setPosition}!SceneNode@{SceneNode}}
@@ -389,7 +435,7 @@ Definition at line \mbox{\hyperlink{_scene_node_8cpp_source_l00052}{52}} of file
 
 
 
-Definition at line \mbox{\hyperlink{_scene_node_8h_source_l00100}{100}} of file \mbox{\hyperlink{_scene_node_8h_source}{Scene\+Node.\+h}}.
+Definition at line \mbox{\hyperlink{_scene_node_8h_source_l00107}{107}} of file \mbox{\hyperlink{_scene_node_8h_source}{Scene\+Node.\+h}}.
 
 \mbox{\Hypertarget{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}\label{class_scene_node_a51b22a4d6789039a96ebab097ed03db0}} 
 \index{SceneNode@{SceneNode}!renderer@{renderer}}
@@ -399,11 +445,11 @@ Definition at line \mbox{\hyperlink{_scene_node_8h_source_l00100}{100}} of file 
 
 
 
-Definition at line \mbox{\hyperlink{_scene_node_8h_source_l00101}{101}} of file \mbox{\hyperlink{_scene_node_8h_source}{Scene\+Node.\+h}}.
+Definition at line \mbox{\hyperlink{_scene_node_8h_source_l00108}{108}} of file \mbox{\hyperlink{_scene_node_8h_source}{Scene\+Node.\+h}}.
 
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-Project7\+\_\+\+Instances\+And\+Culling/\mbox{\hyperlink{_scene_node_8h}{Scene\+Node.\+h}}\item 
-Project7\+\_\+\+Instances\+And\+Culling/\mbox{\hyperlink{_scene_node_8cpp}{Scene\+Node.\+cpp}}\end{DoxyCompactItemize}
+C\+:/\+Users/samcp/\+Downloads/\+GBC/\+Year 3 -\/ Downloads/\+Semester 2/\+Game Engine 4/\+A1-\/\+DX12-\/\+Shooter/\+A1-\/\+Bonus\+Time/\+Project7\+\_\+\+Instances\+And\+Culling/\mbox{\hyperlink{_scene_node_8h}{Scene\+Node.\+h}}\item 
+C\+:/\+Users/samcp/\+Downloads/\+GBC/\+Year 3 -\/ Downloads/\+Semester 2/\+Game Engine 4/\+A1-\/\+DX12-\/\+Shooter/\+A1-\/\+Bonus\+Time/\+Project7\+\_\+\+Instances\+And\+Culling/\mbox{\hyperlink{_scene_node_8cpp}{Scene\+Node.\+cpp}}\end{DoxyCompactItemize}

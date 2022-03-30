@@ -1,5 +1,4 @@
-\hypertarget{_world_8h_source}{}\doxysection{World.\+h}
-\label{_world_8h_source}\index{Project7\_InstancesAndCulling/World.h@{Project7\_InstancesAndCulling/World.h}}
+\hypertarget{_world_8h_source}{}\doxysection{C\+:/\+Users/samcp/\+Downloads/\+GBC/\+Year 3 -\/ Downloads/\+Semester 2/\+Game Engine 4/\+A1-\/\+DX12-\/\+Shooter/\+A1-\/\+Bonus\+Time/\+Project7\+\_\+\+Instances\+And\+Culling/\+World.h}
 \mbox{\hyperlink{_world_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\Hypertarget{_world_8h_source_l00001}00001 }
@@ -9,37 +8,44 @@
 \DoxyCodeLine{\Hypertarget{_world_8h_source_l00009}00009 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_scene_node_8h}{SceneNode.h}}"{}}}
 \DoxyCodeLine{\Hypertarget{_world_8h_source_l00010}00010 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_ship_8h}{Ship.h}}"{}}}
 \DoxyCodeLine{\Hypertarget{_world_8h_source_l00011}00011 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_sprite_node_8h}{SpriteNode.h}}"{}}}
-\DoxyCodeLine{\Hypertarget{_world_8h_source_l00012}00012 }
-\DoxyCodeLine{\Hypertarget{_world_8h_source_l00013}\mbox{\hyperlink{class_world}{00013}} \textcolor{keyword}{class }\mbox{\hyperlink{class_world}{World}}}
-\DoxyCodeLine{\Hypertarget{_world_8h_source_l00014}00014 \{}
-\DoxyCodeLine{\Hypertarget{_world_8h_source_l00015}00015 \textcolor{keyword}{public}:}
-\DoxyCodeLine{\Hypertarget{_world_8h_source_l00016}00016     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_world_a358fecc8d0e42996d7bd1884f126a97c}{World}}(\mbox{\hyperlink{class_game}{Game}}* game);}
-\DoxyCodeLine{\Hypertarget{_world_8h_source_l00017}00017     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_world_a36c003f54e14e022a360551af5e7923e}{update}}(\textcolor{keyword}{const} GameTimer\& gt);}
-\DoxyCodeLine{\Hypertarget{_world_8h_source_l00018}00018     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_world_ab51a17ccbb108616daacd0c34973dc8d}{draw}}();}
-\DoxyCodeLine{\Hypertarget{_world_8h_source_l00019}00019 }
-\DoxyCodeLine{\Hypertarget{_world_8h_source_l00020}00020     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_world_ae7df49f5d488e5cd1254bf360966f410}{buildScene}}();}
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00012}00012 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_command_8h}{Command.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00013}00013 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_input_command_queue_8h}{InputCommandQueue.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00014}00014 }
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00015}\mbox{\hyperlink{class_world}{00015}} \textcolor{keyword}{class }\mbox{\hyperlink{class_world}{World}}}
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00016}00016 \{}
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00017}00017 \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00018}00018     \textcolor{keyword}{explicit} \mbox{\hyperlink{class_world_a358fecc8d0e42996d7bd1884f126a97c}{World}}(\mbox{\hyperlink{class_game}{Game}}* game);}
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00019}00019     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_world_a36c003f54e14e022a360551af5e7923e}{update}}(\textcolor{keyword}{const} GameTimer\& gt);}
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00020}00020     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_world_ab51a17ccbb108616daacd0c34973dc8d}{draw}}();}
 \DoxyCodeLine{\Hypertarget{_world_8h_source_l00021}00021 }
-\DoxyCodeLine{\Hypertarget{_world_8h_source_l00022}00022 }
-\DoxyCodeLine{\Hypertarget{_world_8h_source_l00023}00023 \textcolor{keyword}{private}:}
-\DoxyCodeLine{\Hypertarget{_world_8h_source_l00024}00024     \textcolor{keyword}{enum class} Layer}
-\DoxyCodeLine{\Hypertarget{_world_8h_source_l00025}00025     \{}
-\DoxyCodeLine{\Hypertarget{_world_8h_source_l00026}00026         Background,}
-\DoxyCodeLine{\Hypertarget{_world_8h_source_l00027}00027         Air}
-\DoxyCodeLine{\Hypertarget{_world_8h_source_l00028}00028     \};}
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00022}00022     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_world_ae7df49f5d488e5cd1254bf360966f410}{buildScene}}();}
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00023}00023 }
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00024}00024     \mbox{\hyperlink{class_input_command_queue}{InputCommandQueue}}\& \mbox{\hyperlink{class_world_ad57739b1e6659c2846b57a6fa2621d68}{getCommandQueue}}();}
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00025}00025 }
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00027}00027 \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00028}00028     \mbox{\hyperlink{class_input_command_queue}{InputCommandQueue}} mCommandQueue;}
 \DoxyCodeLine{\Hypertarget{_world_8h_source_l00029}00029 }
-\DoxyCodeLine{\Hypertarget{_world_8h_source_l00030}00030 }
-\DoxyCodeLine{\Hypertarget{_world_8h_source_l00031}00031 \textcolor{keyword}{private}:}
-\DoxyCodeLine{\Hypertarget{_world_8h_source_l00032}00032     \mbox{\hyperlink{class_game}{Game}}* mGame;}
-\DoxyCodeLine{\Hypertarget{_world_8h_source_l00033}00033 }
-\DoxyCodeLine{\Hypertarget{_world_8h_source_l00034}00034     \mbox{\hyperlink{class_scene_node}{SceneNode}}* mSceneGraph;}
-\DoxyCodeLine{\Hypertarget{_world_8h_source_l00035}00035     std::array<SceneNode*, 2>   mSceneLayers;}
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00030}00030     \textcolor{keyword}{enum class} Layer}
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00031}00031     \{}
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00032}00032         Background,}
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00033}00033         Air}
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00034}00034     \};}
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00035}00035 }
 \DoxyCodeLine{\Hypertarget{_world_8h_source_l00036}00036 }
-\DoxyCodeLine{\Hypertarget{_world_8h_source_l00037}00037     XMFLOAT4 mWorldBounds;}
-\DoxyCodeLine{\Hypertarget{_world_8h_source_l00038}00038     XMFLOAT2 mSpawnPosition;}
-\DoxyCodeLine{\Hypertarget{_world_8h_source_l00039}00039     \textcolor{keywordtype}{float} mScrollSpeed;}
-\DoxyCodeLine{\Hypertarget{_world_8h_source_l00040}00040     \mbox{\hyperlink{class_ship}{Ship}}* mPlayerShip;}
-\DoxyCodeLine{\Hypertarget{_world_8h_source_l00041}00041     \mbox{\hyperlink{class_sprite_node}{SpriteNode}}* mBackground;}
-\DoxyCodeLine{\Hypertarget{_world_8h_source_l00042}00042     \mbox{\hyperlink{class_ship}{Ship}}* mEnemy;}
-\DoxyCodeLine{\Hypertarget{_world_8h_source_l00043}00043 \};}
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00037}00037 }
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00038}00038 \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00039}00039     \mbox{\hyperlink{class_game}{Game}}* mGame;}
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00040}00040 }
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00041}00041     \mbox{\hyperlink{class_scene_node}{SceneNode}}* mSceneGraph;}
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00042}00042     std::array<SceneNode*, 2>   mSceneLayers;}
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00043}00043 }
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00044}00044     XMFLOAT4 mWorldBounds;}
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00045}00045     XMFLOAT2 mSpawnPosition;}
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00046}00046     \textcolor{keywordtype}{float} mScrollSpeed;}
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00047}00047     \mbox{\hyperlink{class_ship}{Ship}}* mPlayerShip;}
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00048}00048     \mbox{\hyperlink{class_sprite_node}{SpriteNode}}* mBackground;}
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00049}00049     \mbox{\hyperlink{class_ship}{Ship}}* mEnemy;}
+\DoxyCodeLine{\Hypertarget{_world_8h_source_l00050}00050 \};}
 
 \end{DoxyCode}

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>GameEngine-A1-SpaceShooter: Project7_InstancesAndCulling/Entity.h Source File</title>
+<title>GameEngine-A2-SpaceShooter: C:/Users/samcp/Downloads/GBC/Year 3 - Downloads/Semester 2/Game Engine 4/A1-DX12-Shooter/A1-BonusTime/Project7_InstancesAndCulling/Entity.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -30,7 +30,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">GameEngine-A1-SpaceShooter
+   <div id="projectname">GameEngine-A2-SpaceShooter
    </div>
   </td>
     <td>        <div id="MSearchBox" class="MSearchBoxInactive">
@@ -91,7 +91,7 @@ $(document).ready(function(){initNavTree('_entity_8h_source.html',''); initResiz
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">Entity.h</div></div>
+  <div class="headertitle"><div class="title">C:/Users/samcp/Downloads/GBC/Year 3 - Downloads/Semester 2/Game Engine 4/A1-DX12-Shooter/A1-BonusTime/Project7_InstancesAndCulling/Entity.h</div></div>
 </div><!--header-->
 <div class="contents">
 <a href="_entity_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
@@ -109,28 +109,31 @@ $(document).ready(function(){initNavTree('_entity_8h_source.html',''); initResiz
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_entity.html#a472e1690df5fb48c6c7f052e4cb39c78">setVelocity</a>(<span class="keywordtype">float</span> vx, <span class="keywordtype">float</span> vy, <span class="keywordtype">float</span> vz);         <span class="comment">// Sets velocity using 3 floats (seperated) </span></div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    XMFLOAT3 <a class="code hl_function" href="class_entity.html#af4fcc5c9f7e9d705502269444ef3eca3">getVelocity</a>() <span class="keyword">const</span>;                           <span class="comment">// Return velocity as float3</span></div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_entity.html#ac2ba9cb8ca54fff11ad7397334edcd94">updateCurrent</a>(<span class="keyword">const</span> GameTimer&amp; gt);        <span class="comment">// Updates stuff (Moves according to velocity, renders stuff)</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_entity.html#a6604e7ba4eee5511a6aa21345cbdaf28">accelerate</a>(XMFLOAT3 velocity);</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="class_entity.html#a15aa77787228598dfa35f5f822695c43">   24</a></span>    XMFLOAT3 <a class="code hl_variable" href="class_entity.html#a15aa77787228598dfa35f5f822695c43">mVelocity</a>;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>};</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="class_entity.html#ac2ba9cb8ca54fff11ad7397334edcd94">updateCurrent</a>(<span class="keyword">const</span> GameTimer&amp; gt);        <span class="comment">// Updates stuff (Moves according to velocity, renders stuff)</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="class_entity.html#a15aa77787228598dfa35f5f822695c43">   26</a></span>    XMFLOAT3 <a class="code hl_variable" href="class_entity.html#a15aa77787228598dfa35f5f822695c43">mVelocity</a>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>};</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
 <div class="ttc" id="a_scene_node_8h_html"><div class="ttname"><a href="_scene_node_8h.html">SceneNode.h</a></div></div>
 <div class="ttc" id="aclass_entity_html"><div class="ttname"><a href="class_entity.html">Entity</a></div><div class="ttdoc">Entity.</div><div class="ttdef"><b>Definition:</b> <a href="_entity_8h_source.html#l00012">Entity.h:14</a></div></div>
-<div class="ttc" id="aclass_entity_html_a15aa77787228598dfa35f5f822695c43"><div class="ttname"><a href="class_entity.html#a15aa77787228598dfa35f5f822695c43">Entity::mVelocity</a></div><div class="ttdeci">XMFLOAT3 mVelocity</div><div class="ttdef"><b>Definition:</b> <a href="_entity_8h_source.html#l00024">Entity.h:24</a></div></div>
+<div class="ttc" id="aclass_entity_html_a15aa77787228598dfa35f5f822695c43"><div class="ttname"><a href="class_entity.html#a15aa77787228598dfa35f5f822695c43">Entity::mVelocity</a></div><div class="ttdeci">XMFLOAT3 mVelocity</div><div class="ttdef"><b>Definition:</b> <a href="_entity_8h_source.html#l00026">Entity.h:26</a></div></div>
 <div class="ttc" id="aclass_entity_html_a472e1690df5fb48c6c7f052e4cb39c78"><div class="ttname"><a href="class_entity.html#a472e1690df5fb48c6c7f052e4cb39c78">Entity::setVelocity</a></div><div class="ttdeci">void setVelocity(XMFLOAT3 velocity)</div><div class="ttdoc">Set Velocity using a XMFLOAT3 (Vector 3 like).</div><div class="ttdef"><b>Definition:</b> <a href="_entity_8cpp_source.html#l00015">Entity.cpp:15</a></div></div>
+<div class="ttc" id="aclass_entity_html_a6604e7ba4eee5511a6aa21345cbdaf28"><div class="ttname"><a href="class_entity.html#a6604e7ba4eee5511a6aa21345cbdaf28">Entity::accelerate</a></div><div class="ttdeci">void accelerate(XMFLOAT3 velocity)</div><div class="ttdef"><b>Definition:</b> <a href="_entity_8cpp_source.html#l00043">Entity.cpp:43</a></div></div>
 <div class="ttc" id="aclass_entity_html_a9f6b0ce5dcbdb9107ba1972da24003a6"><div class="ttname"><a href="class_entity.html#a9f6b0ce5dcbdb9107ba1972da24003a6">Entity::Entity</a></div><div class="ttdeci">Entity(Game *game)</div><div class="ttdoc">Entity constructor.</div><div class="ttdef"><b>Definition:</b> <a href="_entity_8cpp_source.html#l00007">Entity.cpp:7</a></div></div>
-<div class="ttc" id="aclass_entity_html_ac2ba9cb8ca54fff11ad7397334edcd94"><div class="ttname"><a href="class_entity.html#ac2ba9cb8ca54fff11ad7397334edcd94">Entity::updateCurrent</a></div><div class="ttdeci">virtual void updateCurrent(const GameTimer &amp;gt)</div><div class="ttdoc">Updates current, uses GameTimer to determine rate of update.</div><div class="ttdef"><b>Definition:</b> <a href="_entity_8cpp_source.html#l00048">Entity.cpp:48</a></div></div>
+<div class="ttc" id="aclass_entity_html_ac2ba9cb8ca54fff11ad7397334edcd94"><div class="ttname"><a href="class_entity.html#ac2ba9cb8ca54fff11ad7397334edcd94">Entity::updateCurrent</a></div><div class="ttdeci">virtual void updateCurrent(const GameTimer &amp;gt)</div><div class="ttdoc">Updates current, uses GameTimer to determine rate of update.</div><div class="ttdef"><b>Definition:</b> <a href="_entity_8cpp_source.html#l00056">Entity.cpp:56</a></div></div>
 <div class="ttc" id="aclass_entity_html_af4fcc5c9f7e9d705502269444ef3eca3"><div class="ttname"><a href="class_entity.html#af4fcc5c9f7e9d705502269444ef3eca3">Entity::getVelocity</a></div><div class="ttdeci">XMFLOAT3 getVelocity() const</div><div class="ttdoc">Returns velocity as an XMFLOAT3</div><div class="ttdef"><b>Definition:</b> <a href="_entity_8cpp_source.html#l00038">Entity.cpp:38</a></div></div>
-<div class="ttc" id="aclass_game_html"><div class="ttname"><a href="class_game.html">Game</a></div><div class="ttdoc">ShooterGame Handles game functionality, initializing the game, taking user input.</div><div class="ttdef"><b>Definition:</b> <a href="_shooter_game_8h_source.html#l00010">ShooterGame.h:11</a></div></div>
-<div class="ttc" id="aclass_scene_node_html"><div class="ttname"><a href="class_scene_node.html">SceneNode</a></div><div class="ttdoc">Scenenode</div><div class="ttdef"><b>Definition:</b> <a href="_scene_node_8h_source.html#l00063">SceneNode.h:64</a></div></div>
-<div class="ttc" id="aclass_scene_node_html_a06d1261ef839789469f228e7a7f2bfb9"><div class="ttname"><a href="class_scene_node.html#a06d1261ef839789469f228e7a7f2bfb9">SceneNode::game</a></div><div class="ttdeci">Game * game</div><div class="ttdef"><b>Definition:</b> <a href="_scene_node_8h_source.html#l00100">SceneNode.h:100</a></div></div>
+<div class="ttc" id="aclass_game_html"><div class="ttname"><a href="class_game.html">Game</a></div><div class="ttdoc">ShooterGame Handles game functionality, initializing the game, taking user input.</div><div class="ttdef"><b>Definition:</b> <a href="_shooter_game_8h_source.html#l00011">ShooterGame.h:12</a></div></div>
+<div class="ttc" id="aclass_scene_node_html"><div class="ttname"><a href="class_scene_node.html">SceneNode</a></div><div class="ttdoc">Scenenode</div><div class="ttdef"><b>Definition:</b> <a href="_scene_node_8h_source.html#l00064">SceneNode.h:65</a></div></div>
+<div class="ttc" id="aclass_scene_node_html_a06d1261ef839789469f228e7a7f2bfb9"><div class="ttname"><a href="class_scene_node.html#a06d1261ef839789469f228e7a7f2bfb9">SceneNode::game</a></div><div class="ttdeci">Game * game</div><div class="ttdef"><b>Definition:</b> <a href="_scene_node_8h_source.html#l00107">SceneNode.h:107</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_053d0637796bcbc66d07e070f05aecaf.html">Project7_InstancesAndCulling</a></li><li class="navelem"><a class="el" href="_entity_8h.html">Entity.h</a></li>
+    <li class="navelem"><a class="el" href="_entity_8h.html">Entity.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>

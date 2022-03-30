@@ -1,5 +1,4 @@
-\hypertarget{_entity_8h_source}{}\doxysection{Entity.\+h}
-\label{_entity_8h_source}\index{Project7\_InstancesAndCulling/Entity.h@{Project7\_InstancesAndCulling/Entity.h}}
+\hypertarget{_entity_8h_source}{}\doxysection{C\+:/\+Users/samcp/\+Downloads/\+GBC/\+Year 3 -\/ Downloads/\+Semester 2/\+Game Engine 4/\+A1-\/\+DX12-\/\+Shooter/\+A1-\/\+Bonus\+Time/\+Project7\+\_\+\+Instances\+And\+Culling/\+Entity.h}
 \mbox{\hyperlink{_entity_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\Hypertarget{_entity_8h_source_l00001}00001 }
@@ -17,11 +16,13 @@
 \DoxyCodeLine{\Hypertarget{_entity_8h_source_l00018}00018     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_entity_a472e1690df5fb48c6c7f052e4cb39c78}{setVelocity}}(\textcolor{keywordtype}{float} vx, \textcolor{keywordtype}{float} vy, \textcolor{keywordtype}{float} vz);          \textcolor{comment}{// Sets velocity using 3 floats (seperated) }}
 \DoxyCodeLine{\Hypertarget{_entity_8h_source_l00019}00019     XMFLOAT3 \mbox{\hyperlink{class_entity_af4fcc5c9f7e9d705502269444ef3eca3}{getVelocity}}() \textcolor{keyword}{const};                            \textcolor{comment}{// Return velocity as float3}}
 \DoxyCodeLine{\Hypertarget{_entity_8h_source_l00020}00020     }
-\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00021}00021     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_entity_ac2ba9cb8ca54fff11ad7397334edcd94}{updateCurrent}}(\textcolor{keyword}{const} GameTimer\& gt);       \textcolor{comment}{// Updates stuff (Moves according to velocity, renders stuff)}}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00021}00021     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_entity_a6604e7ba4eee5511a6aa21345cbdaf28}{accelerate}}(XMFLOAT3 velocity);}
 \DoxyCodeLine{\Hypertarget{_entity_8h_source_l00022}00022 }
-\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00023}00023 \textcolor{keyword}{public}:}
-\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00024}\mbox{\hyperlink{class_entity_a15aa77787228598dfa35f5f822695c43}{00024}}     XMFLOAT3 \mbox{\hyperlink{class_entity_a15aa77787228598dfa35f5f822695c43}{mVelocity}};}
-\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00025}00025 \};}
-\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00026}00026 }
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00023}00023     \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_entity_ac2ba9cb8ca54fff11ad7397334edcd94}{updateCurrent}}(\textcolor{keyword}{const} GameTimer\& gt);       \textcolor{comment}{// Updates stuff (Moves according to velocity, renders stuff)}}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00024}00024 }
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00025}00025 \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00026}\mbox{\hyperlink{class_entity_a15aa77787228598dfa35f5f822695c43}{00026}}     XMFLOAT3 \mbox{\hyperlink{class_entity_a15aa77787228598dfa35f5f822695c43}{mVelocity}};}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00027}00027 \};}
+\DoxyCodeLine{\Hypertarget{_entity_8h_source_l00028}00028 }
 
 \end{DoxyCode}

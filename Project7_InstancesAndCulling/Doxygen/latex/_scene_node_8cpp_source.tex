@@ -1,5 +1,4 @@
-\hypertarget{_scene_node_8cpp_source}{}\doxysection{Scene\+Node.\+cpp}
-\label{_scene_node_8cpp_source}\index{Project7\_InstancesAndCulling/SceneNode.cpp@{Project7\_InstancesAndCulling/SceneNode.cpp}}
+\hypertarget{_scene_node_8cpp_source}{}\doxysection{C\+:/\+Users/samcp/\+Downloads/\+GBC/\+Year 3 -\/ Downloads/\+Semester 2/\+Game Engine 4/\+A1-\/\+DX12-\/\+Shooter/\+A1-\/\+Bonus\+Time/\+Project7\+\_\+\+Instances\+And\+Culling/\+Scene\+Node.cpp}
 \mbox{\hyperlink{_scene_node_8cpp}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{\Hypertarget{_scene_node_8cpp_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_scene_node_8h}{SceneNode.h}}"{}}}
@@ -158,5 +157,23 @@
 \DoxyCodeLine{\Hypertarget{_scene_node_8cpp_source_l00247}00247     mWorldPosition.y += y;}
 \DoxyCodeLine{\Hypertarget{_scene_node_8cpp_source_l00248}00248     mWorldPosition.z += z;}
 \DoxyCodeLine{\Hypertarget{_scene_node_8cpp_source_l00249}00249 \}}
+\DoxyCodeLine{\Hypertarget{_scene_node_8cpp_source_l00250}00250 }
+\DoxyCodeLine{\Hypertarget{_scene_node_8cpp_source_l00255}\mbox{\hyperlink{class_scene_node_af713a8c58831a27bc791a2efdfb7c495}{00255}} \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{int} \mbox{\hyperlink{class_scene_node_af713a8c58831a27bc791a2efdfb7c495}{SceneNode::getCategory}}()\textcolor{keyword}{ const}}
+\DoxyCodeLine{\Hypertarget{_scene_node_8cpp_source_l00256}00256 \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_scene_node_8cpp_source_l00257}00257     \textcolor{keywordflow}{return} \mbox{\hyperlink{namespace_category_a2ff936dbd42aeae91fdfb6f8456a8ab0ae45daecedd1b5f037e9e6e915a44f3b0}{Category::Scene}};}
+\DoxyCodeLine{\Hypertarget{_scene_node_8cpp_source_l00258}00258 \}}
+\DoxyCodeLine{\Hypertarget{_scene_node_8cpp_source_l00259}00259 }
+\DoxyCodeLine{\Hypertarget{_scene_node_8cpp_source_l00265}\mbox{\hyperlink{class_scene_node_a378e78ad679c28301c0db51afa389cb6}{00265}} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_scene_node_a378e78ad679c28301c0db51afa389cb6}{SceneNode::onCommand}}(\textcolor{keyword}{const} \mbox{\hyperlink{struct_command}{Command}}\& command, \textcolor{keyword}{const} GameTimer\& gt)}
+\DoxyCodeLine{\Hypertarget{_scene_node_8cpp_source_l00266}00266 \{}
+\DoxyCodeLine{\Hypertarget{_scene_node_8cpp_source_l00267}00267     \textcolor{keywordflow}{if} (command.\mbox{\hyperlink{struct_command_a1529e898c9e6dd47b1826b5b1eac09fb}{category}} \& \mbox{\hyperlink{class_scene_node_af713a8c58831a27bc791a2efdfb7c495}{getCategory}}())    \textcolor{comment}{// command self}}
+\DoxyCodeLine{\Hypertarget{_scene_node_8cpp_source_l00268}00268     \{}
+\DoxyCodeLine{\Hypertarget{_scene_node_8cpp_source_l00269}00269         command.\mbox{\hyperlink{struct_command_adb4b67355dc411fac72c2a704ae92c74}{action}}(*\textcolor{keyword}{this}, gt);}
+\DoxyCodeLine{\Hypertarget{_scene_node_8cpp_source_l00270}00270     \}}
+\DoxyCodeLine{\Hypertarget{_scene_node_8cpp_source_l00271}00271 }
+\DoxyCodeLine{\Hypertarget{_scene_node_8cpp_source_l00272}00272     \textcolor{keywordflow}{for} (\mbox{\hyperlink{class_scene_node_aaf5c9ad8475874b51b70e400822f2e9a}{Ptr}}\& child : mChildren)         \textcolor{comment}{// for loop for each child, commands them}}
+\DoxyCodeLine{\Hypertarget{_scene_node_8cpp_source_l00273}00273     \{}
+\DoxyCodeLine{\Hypertarget{_scene_node_8cpp_source_l00274}00274         child-\/>onCommand(command, gt);}
+\DoxyCodeLine{\Hypertarget{_scene_node_8cpp_source_l00275}00275     \}}
+\DoxyCodeLine{\Hypertarget{_scene_node_8cpp_source_l00276}00276 \}}
 
 \end{DoxyCode}
