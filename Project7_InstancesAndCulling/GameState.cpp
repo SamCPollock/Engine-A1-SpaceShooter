@@ -45,15 +45,15 @@ bool GameState::Update(const GameTimer& gt)
 
 bool GameState::HandleEvent(WPARAM btnState)
 {
-	////Handle player input
-	//InputCommandQueue& commands = mWorld->getCommandQueue();
-	//mPlayer->handleEvent(commands);
+	//Handle player input
+	InputCommandQueue& commands = mWorld->getCommandQueue();
+	mPlayer->handleEvent(commands);
 
-	//If ESC is pressed
-	if (btnState == VK_ESCAPE)
+	//If Return to title is pressed
+	if (btnState == 'M')
 	{
 		//Push Pause State
-		RequestStackPush(States::Pause);
+		RequestStackPush(States::Title);
 	}
 
 	return true;

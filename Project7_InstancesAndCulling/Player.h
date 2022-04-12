@@ -28,6 +28,10 @@ public:
 		MoveLeft,
 		MoveRight,
 		ActionCount
+
+		, MainMenu
+
+
 	};
 
 	void assignKey(Action action, char key);

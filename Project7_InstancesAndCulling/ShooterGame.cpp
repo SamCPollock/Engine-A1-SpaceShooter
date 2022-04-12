@@ -233,69 +233,69 @@ void Game::OnMouseMove(WPARAM btnState, int x, int y)
 /// <summary>
 /// ProcessInput, handles each event and input from the player's command queue. 
 /// </summary>
-void Game::ProcessInput()
-{
-	InputCommandQueue& commands = mWorld.getCommandQueue();
-	mPlayer.handleEvent(commands);
-	mPlayer.handleRealtimeInput(commands);
-}
+//void Game::ProcessInput()
+//{
+//	InputCommandQueue& commands = mWorld.getCommandQueue();
+//	mPlayer.handleEvent(commands);
+//	mPlayer.handleRealtimeInput(commands);
+//}
 
 /// <summary>
 /// Takes keyboard input, uses it to move the camera. 
 /// </summary>
 /// <param name="gt"></param>
-void Game::OnKeyboardInput(const GameTimer& gt)
-{
-	const float dt = gt.DeltaTime();
-
-	mCamera.GetLook();
-	float tmin = 0;
-	float buffer = 0.5;
-	XMFLOAT3  oppositef3(-1, -1, -1);
-	XMVECTOR opposite = XMLoadFloat3(&oppositef3);
-
-	if (GetAsyncKeyState('W') & 0x8000)
-	{
-		bool hit = false;
-
-		if (!hit)
-		{
-			mCamera.Walk(10.0f * dt);
-
-		}
-	}
-
-	if (GetAsyncKeyState('S') & 0x8000)
-	{
-		bool hit = false;
-		if (!hit)
-		{
-			mCamera.Walk(-10.0f * dt);
-		}
-
-	}
-	if (GetAsyncKeyState('A') & 0x8000)
-	{
-		bool hit = false;
-		if (!hit)
-		{
-			mCamera.Strafe(-10.0f * dt);
-		}
-
-
-	}
-	if (GetAsyncKeyState('D') & 0x8000)
-	{
-		bool hit = false;
-		if (!hit)
-		{
-			mCamera.Strafe(10.0f * dt);
-		}
-	}
-
-
-	mCamera.UpdateViewMatrix();
-}
+//void Game::OnKeyboardInput(const GameTimer& gt)
+//{
+//	const float dt = gt.DeltaTime();
+//
+//	mCamera.GetLook();
+//	float tmin = 0;
+//	float buffer = 0.5;
+//	XMFLOAT3  oppositef3(-1, -1, -1);
+//	XMVECTOR opposite = XMLoadFloat3(&oppositef3);
+//
+//	if (GetAsyncKeyState('W') & 0x8000)
+//	{
+//		bool hit = false;
+//
+//		if (!hit)
+//		{
+//			mCamera.Walk(10.0f * dt);
+//
+//		}
+//	}
+//
+//	if (GetAsyncKeyState('S') & 0x8000)
+//	{
+//		bool hit = false;
+//		if (!hit)
+//		{
+//			mCamera.Walk(-10.0f * dt);
+//		}
+//
+//	}
+//	if (GetAsyncKeyState('A') & 0x8000)
+//	{
+//		bool hit = false;
+//		if (!hit)
+//		{
+//			mCamera.Strafe(-10.0f * dt);
+//		}
+//
+//
+//	}
+//	if (GetAsyncKeyState('D') & 0x8000)
+//	{
+//		bool hit = false;
+//		if (!hit)
+//		{
+//			mCamera.Strafe(10.0f * dt);
+//		}
+//	}
+//
+//
+//	mCamera.UpdateViewMatrix();
+//}
 
 void Game::UpdateCamera(const GameTimer& gt)
 {
@@ -579,11 +579,11 @@ void Game::BuildDescriptorHeaps()
 	auto RaptorTex = mTextures["RaptorTex"]->Resource;
 	auto DesertTex = mTextures["DesertTex"]->Resource;
 	
-	/*auto TitleBackgroundTex = mTextures["Background"]->Resource;
-	auto TitleTextTex = mTextures["TitleText"]->Resource;
-	auto MenuBackgroundTex = mTextures["Background"]->Resource;
-	auto MenuInstructionsTex = mTextures["MenuInstructions"]->Resource;
-	auto PauseOverlayTex = mTextures["PauseOverlay"]->Resource;*/
+	auto TitleBackgroundTex = mTextures["TitleBackgroundTex"]->Resource;
+	auto TitleTextTex = mTextures["TitleTextTex"]->Resource;
+	auto MenuBackgroundTex = mTextures["MenuBackgroundTex"]->Resource;
+	auto MenuInstructionsTex = mTextures["MenuInstructionsTex"]->Resource;
+	auto PauseOverlayTex = mTextures["PauseOverlayTex"]->Resource;
 
 
 	D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
@@ -816,12 +816,33 @@ void Game::BuildMaterials()
 
 	mMaterials["Desert"] = std::move(Desert);
 
+	//CreateMaterials("Desert", XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT3(0.05f, 0.05f, 0.05f), 0.2f);
 
-	CreateMaterials("TitleBackgroundMat", XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT3(0.05f, 0.05f, 0.05f), 0.2f);
+
+	auto TitleBackgroundMat = std::make_unique<Material>();
+	TitleBackgroundMat->Name = "TitleBackgroundMat";
+	TitleBackgroundMat->MatCBIndex = 2;
+	TitleBackgroundMat->DiffuseSrvHeapIndex = 2;
+	TitleBackgroundMat->DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+	TitleBackgroundMat->FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);
+	TitleBackgroundMat->Roughness = 0.2f;
+	mMaterials["TitleBackgroundMat"] = std::move(TitleBackgroundMat);
+
+	auto TitleTextMat = std::make_unique<Material>();
+	TitleTextMat->Name = "TitleTextMat";
+	TitleTextMat->MatCBIndex = 2;
+	TitleTextMat->DiffuseSrvHeapIndex = 2;
+	TitleTextMat->DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+	TitleTextMat->FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);
+	TitleTextMat->Roughness = 0.2f;
+	mMaterials["TitleTextMat"] = std::move(TitleTextMat);
+
+
+	/*CreateMaterials("TitleBackgroundMat", XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT3(0.05f, 0.05f, 0.05f), 0.2f);
 	CreateMaterials("TitleTextMat", XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT3(0.05f, 0.05f, 0.05f), 0.2f);
 	CreateMaterials("MenuBackgroundMat", XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT3(0.05f, 0.05f, 0.05f), 0.2f);
 	CreateMaterials("MenuInstructionsMat", XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT3(0.05f, 0.05f, 0.05f), 0.2f);
-	CreateMaterials("PauseOverlayMat", XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT3(0.05f, 0.05f, 0.05f), 0.2f);
+	CreateMaterials("PauseOverlayMat", XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT3(0.05f, 0.05f, 0.05f), 0.2f);*/
 }
 
 void Game::CreateMaterials(std::string name, XMFLOAT4 diffuseAlbedo, XMFLOAT3 fresnelR0, float roughness)
@@ -844,6 +865,12 @@ void Game::RegisterStates()
 	mStateStack.registerState<GameState>(States::Game);
 	mStateStack.registerState<PauseState>(States::Pause);
 }
+
+void Game::OnKeyDown(WPARAM btnState)
+{
+	mStateStack.HandleEvent(btnState);
+}
+
 
 /// <summary>
 /// Builds render items (calls the buildScene function from the world)

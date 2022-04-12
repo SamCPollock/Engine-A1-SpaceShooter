@@ -23,6 +23,7 @@ public:
 
 	void BuildFrameResources(int renderItemCount);
 	void ResetFrameResources();
+	virtual void OnKeyDown(WPARAM btnState);
 
 
 private:
@@ -62,6 +63,7 @@ private:
 	void CreateMaterials(std::string name, XMFLOAT4 diffuseAlbedo, XMFLOAT3 fresnelR0, float roughness);
 
 	void RegisterStates();
+
 
 	std::array<const CD3DX12_STATIC_SAMPLER_DESC, 6> GetStaticSamplers();
 

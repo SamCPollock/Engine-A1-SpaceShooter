@@ -49,6 +49,8 @@ Player::Player()
 	mKeyBinding['A'] = MoveLeft;
 	mKeyBinding['D'] = MoveRight;
 
+	mKeyBinding['M'] = MainMenu;
+
 	// default action bindings
 	initializeActions();
 
@@ -176,6 +178,7 @@ bool Player::isRealtimeAction(Action action)
 	case MoveDown:
 	case MoveLeft:
 	case MoveRight:
+	case MainMenu:
 		return true;
 
 

@@ -18,12 +18,12 @@ TitleState::TitleState(StateStack& stack, Context context)
 	backgroundSprite->setPosition(0, -2, 0);
 	mWorld->GetSceneGraph()->attachChild(std::move(backgroundSprite));
 
-	// Text
-	std::unique_ptr<SpriteNode> textSprite = std::make_unique<SpriteNode>(context.game);
-	textSprite->SetMatGeoDrawName("TitleTextMat", "shapeGeo", "quad");
-	textSprite->setScale(7, 4, 1);
-	textSprite->setPosition(0, -2, 0);
-	mWorld->GetSceneGraph()->attachChild(std::move(textSprite));
+	//// Text
+	//std::unique_ptr<SpriteNode> textSprite = std::make_unique<SpriteNode>(context.game);
+	//textSprite->SetMatGeoDrawName("TitleTextMat", "shapeGeo", "quad");
+	//textSprite->setScale(7, 4, 1);
+	//textSprite->setPosition(0, -2, 0);
+	//mWorld->GetSceneGraph()->attachChild(std::move(textSprite));
 
 
 	context.game->BuildFrameResources(context.game->mAllRitems.size());
