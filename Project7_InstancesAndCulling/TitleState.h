@@ -13,5 +13,8 @@ public:
 	virtual bool HandleRealTimeInput();
 
 	World* mWorld;
+
+private:
+	SpriteNode* mBackground; 
 };
 

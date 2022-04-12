@@ -6,17 +6,17 @@ TitleState::TitleState(StateStack& stack, Context context)
 	: State(stack, context)
 	, mWorld(&(context.game->mWorld))
 {
-	context.game->mAllRitems.clear();
-	context.game->mOpaqueRitems.clear();
+	//context.game->mAllRitems.clear();
+	//context.game->mOpaqueRitems.clear();
 	context.game->ResetFrameResources();
 
 
-	//Background
-	std::unique_ptr<SpriteNode> backgroundSprite = std::make_unique<SpriteNode>(context.game);
-	backgroundSprite->SetMatGeoDrawName("TitleBackgroundMat", "shapeGeo", "quad");
-	backgroundSprite->setScale(17, 11, 1);
-	backgroundSprite->setPosition(0, -2, 0);
-	mWorld->GetSceneGraph()->attachChild(std::move(backgroundSprite));
+	////Background
+	//std::unique_ptr<SpriteNode> backgroundSprite = std::make_unique<SpriteNode>(context.game);
+	//backgroundSprite->SetMatGeoDrawName("TitleBackgroundMat", "shapeGeo", "quad");
+	//backgroundSprite->setScale(200.0, 1, 200.0);
+	//backgroundSprite->setPosition(0, 0, 0);
+	//mWorld->GetSceneGraph()->attachChild(std::move(backgroundSprite));
 
 	//// Text
 	//std::unique_ptr<SpriteNode> textSprite = std::make_unique<SpriteNode>(context.game);
@@ -27,6 +27,7 @@ TitleState::TitleState(StateStack& stack, Context context)
 
 
 	context.game->BuildFrameResources(context.game->mAllRitems.size());
+	//mWorld->GetSceneGraph()->build();
 }
 
 void TitleState::Draw()
@@ -45,9 +46,13 @@ bool TitleState::Update(const GameTimer& gt)
 bool TitleState::HandleEvent(WPARAM btnState)
 {
 	// Any button press triggers this. 
-	RequestStackPop();
-	RequestStackPush(States::Menu);
-
+	/*RequestStackPop();
+	RequestStackPush(States::Menu);*/
+	if (btnState == 'G')
+	{
+		//Push Pause State
+		RequestStackPush(States::Game);
+	}
 	return true;
 }
 
