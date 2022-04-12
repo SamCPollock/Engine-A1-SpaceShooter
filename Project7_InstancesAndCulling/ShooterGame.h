@@ -7,6 +7,7 @@
 
 #include "World.h"
 #include "Player.h"
+#include "StateStack.h"
 
 class Game : public D3DApp
 {
@@ -17,6 +18,13 @@ public:
 	~Game();
 
 	virtual bool Initialize()override;
+	
+	void BuildMaterials();
+
+	void BuildFrameResources(int renderItemCount);
+	void ResetFrameResources();
+
+
 private:
 
 	void ProcessInput();
@@ -47,13 +55,21 @@ private:
 	void BuildShapeGeometry();
 	void BuildPSOs();
 	void BuildFrameResources();
-	void BuildMaterials();
 	void BuildRenderItems();
 	void DrawRenderItems(ID3D12GraphicsCommandList* cmdList, const std::vector<RenderItem*>& ritems);
+
+	void CreateTextures(std::string name, std::wstring path);
+	void CreateMaterials(std::string name, XMFLOAT4 diffuseAlbedo, XMFLOAT3 fresnelR0, float roughness);
+
+	void RegisterStates();
 
 	std::array<const CD3DX12_STATIC_SAMPLER_DESC, 6> GetStaticSamplers();
 
 public:
+
+
+	int mMatCBIdx = 0;
+	int mDiffuseSrvHeapIdx = 0;
 
 	std::vector<std::unique_ptr<FrameResource>> mFrameResources;
 	FrameResource* mCurrFrameResource = nullptr;
@@ -67,6 +83,7 @@ public:
 
 	std::unordered_map<std::string, std::unique_ptr<MeshGeometry>> mGeometries;
 	std::unordered_map<std::string, std::unique_ptr<Material>> mMaterials;
+	std::vector<std::string> mTexturesName;
 
 	std::unordered_map<std::string, std::unique_ptr<Texture>> mTextures;
 
@@ -96,6 +113,8 @@ public:
 	Camera mCamera;
 	World mWorld;
 	Player mPlayer;
+
+	StateStack mStateStack;
 
 public:
 	ID3D12GraphicsCommandList* getCmdList() { return mCommandList.Get(); }

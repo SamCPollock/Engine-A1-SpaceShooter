@@ -48,6 +48,7 @@ void Ship::drawCurrent() const
 	UINT objCBByteSize = d3dUtil::CalcConstantBufferByteSize(sizeof(ObjectConstants));
 	UINT matCBByteSize = d3dUtil::CalcConstantBufferByteSize(sizeof(MaterialConstants));
 
+
 	auto objectCB = game->mCurrFrameResource->ObjectCB->Resource();
 	auto matCB = game->mCurrFrameResource->MaterialCB->Resource();
 

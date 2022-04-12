@@ -257,6 +257,14 @@ unsigned int SceneNode::getCategory() const
 	return Category::Scene;
 }
 
+
+void SceneNode::SetMatGeoDrawName(std::string materialName, std::string geometriesName, std::string drawArgsName)
+{
+	mMaterialName = materialName;
+	mGeometriesName = geometriesName;
+	mDrawArgsName = drawArgsName;
+}
+
 /// <summary>
 /// OnCommand, goes through self and children to perform command actions. 
 /// </summary>

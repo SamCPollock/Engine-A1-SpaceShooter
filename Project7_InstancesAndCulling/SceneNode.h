@@ -93,6 +93,9 @@ public:
 	void onCommand(const Command& command, const GameTimer& gt);	// forwards command to children
 	virtual unsigned int getCategory() const;		// returns the category of the game object. 
 
+	void SetMatGeoDrawName(std::string materialName, std::string geometriesName, std::string drawArgsName);
+
+
 
 private:
 	virtual void updateCurrent(const GameTimer& gt);	// updates scenNode
@@ -106,6 +109,13 @@ private:
 protected:
 	Game* game;
 	RenderItem* renderer;
+
+	//unsigned int mCategory = Category::Scene;
+
+	std::string mMaterialName;
+	std::string mGeometriesName;
+	std::string mDrawArgsName;
+
 private:
 	XMFLOAT3				mWorldPosition;
 	XMFLOAT3				mWorldRotation;

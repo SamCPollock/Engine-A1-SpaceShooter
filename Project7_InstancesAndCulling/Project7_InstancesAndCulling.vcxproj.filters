@@ -19,6 +19,9 @@
     <Filter Include="Models">
       <UniqueIdentifier>{5f63ab1e-efd4-4913-bc61-a2de61ae1876}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Part3">
+      <UniqueIdentifier>{493b4f1a-f1fd-4c4c-944a-77dad6d1ac0d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Common\Camera.cpp">
@@ -48,15 +51,6 @@
     <ClCompile Include="SceneNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ShooterGame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="World.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Ship.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -77,6 +71,33 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuState.cpp">
+      <Filter>Part3</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseState.cpp">
+      <Filter>Part3</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>Part3</Filter>
+    </ClCompile>
+    <ClCompile Include="StateStack.cpp">
+      <Filter>Part3</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleState.cpp">
+      <Filter>Part3</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>Part3</Filter>
+    </ClCompile>
+    <ClCompile Include="ShooterGame.cpp">
+      <Filter>Part3</Filter>
+    </ClCompile>
+    <ClCompile Include="Ship.cpp">
+      <Filter>Part3</Filter>
+    </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>Part3</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -113,15 +134,6 @@
     <ClInclude Include="SceneNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ShooterGame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="World.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Ship.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FrameResource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -139,6 +151,36 @@
     </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>Part3</Filter>
+    </ClInclude>
+    <ClInclude Include="StateStack.h">
+      <Filter>Part3</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseState.h">
+      <Filter>Part3</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuState.h">
+      <Filter>Part3</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>Part3</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleState.h">
+      <Filter>Part3</Filter>
+    </ClInclude>
+    <ClInclude Include="ShooterGame.h">
+      <Filter>Part3</Filter>
+    </ClInclude>
+    <ClInclude Include="Ship.h">
+      <Filter>Part3</Filter>
+    </ClInclude>
+    <ClInclude Include="World.h">
+      <Filter>Part3</Filter>
+    </ClInclude>
+    <ClInclude Include="StateIdentifiers.h">
+      <Filter>Part3</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -152,10 +152,13 @@
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="FrameResource.cpp" />
+    <ClCompile Include="GameState.cpp" />
     <ClCompile Include="InputCommandQueue.cpp" />
     <ClCompile Include="main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="MenuState.cpp" />
+    <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SceneNode.cpp" />
     <ClCompile Include="Ship.cpp" />
@@ -163,6 +166,9 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="SpriteNode.cpp" />
+    <ClCompile Include="State.cpp" />
+    <ClCompile Include="StateStack.cpp" />
+    <ClCompile Include="TitleState.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -179,12 +185,19 @@
     <ClInclude Include="Command.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="FrameResource.h" />
+    <ClInclude Include="GameState.h" />
     <ClInclude Include="InputCommandQueue.h" />
+    <ClInclude Include="MenuState.h" />
+    <ClInclude Include="PauseState.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="SceneNode.h" />
     <ClInclude Include="Ship.h" />
     <ClInclude Include="ShooterGame.h" />
     <ClInclude Include="SpriteNode.h" />
+    <ClInclude Include="State.h" />
+    <ClInclude Include="StateIdentifiers.h" />
+    <ClInclude Include="StateStack.h" />
+    <ClInclude Include="TitleState.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>

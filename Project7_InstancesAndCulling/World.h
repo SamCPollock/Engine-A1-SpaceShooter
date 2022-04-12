@@ -19,8 +19,10 @@ public:
 	void update(const GameTimer& gt);
 	void draw();
 
+
 	void buildScene();
 
+	SceneNode* GetSceneGraph() { return mSceneGraph;  }
 	InputCommandQueue& getCommandQueue();
 
 
