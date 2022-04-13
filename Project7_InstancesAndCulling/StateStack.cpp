@@ -65,6 +65,11 @@ void StateStack::clearStates()
 	mPendingList.push_back(PendingChange(Clear));
 }
 
+std::vector<State::StatePtr>* StateStack::GetStateStack()
+{
+	return &mStack;
+}
+
 State* StateStack::GetPreviousState()
 {
 	if (mStack.size() >= 2)

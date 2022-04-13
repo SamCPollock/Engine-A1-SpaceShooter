@@ -22,7 +22,7 @@ public:
 
 
 public:
-	Ship(Type type, Game* game);
+	Ship(Type type, State* state);
 	virtual unsigned int getCategory() const; 
 
 
@@ -34,5 +34,5 @@ private:
 private:
 	Type mType;
 	std::string mSprite;
-	RenderItem* mShipRitem;
+	//RenderItem* mShipRitem;
 };

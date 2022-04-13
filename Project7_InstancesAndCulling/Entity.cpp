@@ -4,7 +4,7 @@
 /// Entity constructor. Sets Game & ScenNode references, initializes velocity to (0,0,0)
 /// </summary>
 /// <param name="game"></param>
-Entity::Entity(Game* game) : SceneNode(game), mVelocity(0, 0, 0)
+Entity::Entity(State* state) : SceneNode(state), mVelocity(0, 0, 0)
 {
 }
 

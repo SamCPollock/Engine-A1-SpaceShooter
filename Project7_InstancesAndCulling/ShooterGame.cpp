@@ -1,11 +1,5 @@
 #include "ShooterGame.h"
 
-#include "State.h"
-
-#include "TitleState.h"
-#include "MenuState.h"
-#include "GameState.h"
-#include "PauseState.h"
 
 
 const int gNumFrameResources = 3;
@@ -15,11 +9,18 @@ const int gNumFrameResources = 3;
 /// Sets the world instance to this game. 
 /// </summary>
 /// <param name="hInstance"></param>
+//Game::Game(HINSTANCE hInstance)
+//	: D3DApp(hInstance)
+//	//, mWorld(this)	// Maybe don't need, doing state stack instead? 
+//	//, mPlayer()
+//	, mStateStack(State::Context(&mPlayer, this))
+//
+//{
+//}
+
 Game::Game(HINSTANCE hInstance)
 	: D3DApp(hInstance)
-	, mWorld(this)	// Maybe don't need, doing state stack instead? 
-	, mPlayer()
-	, mStateStack(State::Context(this, mPlayer))
+	, mStateStack(State::Context(&mPlayer, this))
 {
 }
 
@@ -64,12 +65,11 @@ bool Game::Initialize()
 	BuildShadersAndInputLayout();
 	BuildShapeGeometry();
 	BuildMaterials();
-	BuildRenderItems();
-	BuildFrameResources();
+	//BuildRenderItems();
+	//BuildFrameResources();
 	BuildPSOs();
 
 	RegisterStates();
-	mStateStack.pushState(States::Game);
 
 	// Execute the initialization commands.
 	ThrowIfFailed(mCommandList->Close());
@@ -78,6 +78,8 @@ bool Game::Initialize()
 
 	// Wait until initialization is complete.
 	FlushCommandQueue();
+
+	mStateStack.pushState(States::Game);
 
 	return true;
 }
@@ -328,7 +330,7 @@ void Game::UpdateCamera(const GameTimer& gt)
 void Game::UpdateObjectCBs(const GameTimer& gt)
 {
 	auto currObjectCB = mCurrFrameResource->ObjectCB.get();
-	for (auto& e : mAllRitems)
+	for (auto& e : mStateStack.GetStateStack()->front().get()->mAllRitems)
 	{
 		// Only update the cbuffer data if the constants have changed.  
 		// This needs to be tracked per frame resource.
@@ -756,17 +758,6 @@ void Game::BuildPSOs()
 /// <summary>
 /// Builds frame resources. 
 /// </summary>
-void Game::BuildFrameResources()
-{
-	for (int i = 0; i < gNumFrameResources; ++i)
-	{
-		mFrameResources.push_back(std::make_unique<FrameResource>(md3dDevice.Get(),
-			1, (UINT)mAllRitems.size(), (UINT)mMaterials.size()));
-	}
-}
-
-
-
 void Game::BuildFrameResources(int renderItemCount)
 {
 	for (int i = 0; i < gNumFrameResources; i++)
@@ -775,6 +766,7 @@ void Game::BuildFrameResources(int renderItemCount)
 			1, (UINT)renderItemCount, (UINT)mMaterials.size()));
 	}
 }
+
 
 void Game::ResetFrameResources()
 {
@@ -877,11 +869,11 @@ void Game::OnKeyDown(WPARAM btnState)
 /// </summary>
 void Game::BuildRenderItems()
 {
-	mWorld.buildScene();
+	//mWorld.buildScene();
 
-	// All the render items are opaque.
-	for (auto& e : mAllRitems)
-		mOpaqueRitems.push_back(e.get());
+	//// All the render items are opaque.
+	//for (auto& e : mAllRitems)
+	//	mOpaqueRitems.push_back(e.get());
 }
 
 /// <summary>

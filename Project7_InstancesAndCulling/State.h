@@ -2,6 +2,9 @@
 
 #include "../Common/d3dApp.h"
 #include "StateIdentifiers.h"
+#include "SceneNode.h"
+#include "StateStack.h"
+#include "SpriteNode.h"
 
 #include <memory>
 
@@ -18,14 +21,16 @@ public:
 
 	struct Context
 	{
-		Context(Game* _game, Player& _player);
-
+		Context(Player* player, Game* Game);
+		
+		Player* player;
 		Game* game; 
-		Player* player; 
 
 	};
 
-	State(StateStack& stack, Context context);
+	//SceneNode* GetSceneGraph() { return mSceneGraph; }
+
+	State(StateStack* stack, Context* context);
 	virtual ~State();
 
 	virtual void Draw() = 0;
@@ -33,8 +38,10 @@ public:
 	virtual bool Update(const GameTimer& gt) = 0;
 	virtual bool HandleEvent(WPARAM btnState) = 0;
 	virtual bool HandleRealTimeInput() = 0;
+	virtual void BuildScene() = 0;
 
-	Context GetContext() const;
+	Context* GetContext() const;
+	std::vector < std::unique_ptr<RenderItem>> mAllRitems;
 
 protected:
 	void RequestStackPush(States::ID stateID);
@@ -42,7 +49,11 @@ protected:
 	void RequestStateClear();
 
 	StateStack* mStack;
-	Context mContext;
+
+	SceneNode* mSceneGraph;
+
+private:
+	Context* mContext;
 
 
 };

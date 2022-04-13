@@ -7,7 +7,14 @@
 
 #include "World.h"
 #include "Player.h"
+
 #include "StateStack.h"
+#include "StateIdentifiers.h"
+
+#include "TitleState.h"
+#include "GameState.h"
+#include "MenuState.h"
+#include "PauseState.h"
 
 class Game : public D3DApp
 {
@@ -54,7 +61,8 @@ private:
 	void BuildShadersAndInputLayout();
 	void BuildShapeGeometry();
 	void BuildPSOs();
-	void BuildFrameResources();
+	//void BuildFrameResources();
+
 	void BuildRenderItems();
 	void DrawRenderItems(ID3D12GraphicsCommandList* cmdList, const std::vector<RenderItem*>& ritems);
 
@@ -94,11 +102,11 @@ public:
 
 	ComPtr<ID3D12PipelineState> mOpaquePSO = nullptr;
 
-	// List of all the render items.
-	std::vector<std::unique_ptr<RenderItem>> mAllRitems;
+	//// List of all the render items.
+	//std::vector<std::unique_ptr<RenderItem>> mAllRitems;
 
-	// Render items divided by PSO.
-	std::vector<RenderItem*> mOpaqueRitems;
+	//// Render items divided by PSO.
+	//std::vector<RenderItem*> mOpaqueRitems;
 
 	PassConstants mMainPassCB;
 
@@ -112,14 +120,21 @@ public:
 
 	POINT mLastMousePos;
 	Camera mCamera;
-	World mWorld;
+	//World mWorld;
 	Player mPlayer;
-
 	StateStack mStateStack;
+
+private:
+
 
 public:
 	ID3D12GraphicsCommandList* getCmdList() { return mCommandList.Get(); }
-	std::vector<std::unique_ptr<RenderItem>>& getRenderItems() { return mAllRitems; }
+	//std::vector<std::unique_ptr<RenderItem>>& getRenderItems() { return mAllRitems; }
 	std::unordered_map<std::string, std::unique_ptr<Material>>& getMaterials() { return mMaterials; }
 	std::unordered_map<std::string, std::unique_ptr<MeshGeometry>>& getGeometries() { return mGeometries; }
+
+	ID3D12DescriptorHeap* GetSrvSrvDescriptorHeap() { return mSrvDescriptorHeap.Get(); }
+	UINT GetCbvSrvDescriptorSize() { return mCbvSrvDescriptorSize; }
+	FrameResource* GetCurrFrameResource() { return mCurrFrameResource; }
+
 };

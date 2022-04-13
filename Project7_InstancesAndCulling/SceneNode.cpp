@@ -8,10 +8,10 @@
 /// sets the world poistion, scaling, and rotation to defaults. 
 /// </summary>
 /// <param name="game"></param>
-SceneNode::SceneNode(Game* game)
+SceneNode::SceneNode(State* state)
 	: mChildren()
 	, mParent(nullptr)
-	, game(game)
+	, state(state)
 {
 	mWorldPosition = XMFLOAT3(0, 0, 0);
 	mWorldScaling = XMFLOAT3(1, 1, 1);

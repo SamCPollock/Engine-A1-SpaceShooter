@@ -1,15 +1,16 @@
 #include "State.h"
-#include "ShooterGame.h"
 
-State::Context::Context(Game* _game, Player& _player)
-	: game(_game),
-	player(&_player)
+
+State::Context::Context(Player* player, Game* game)
+	: player(player), game(game)
 {
 }
 
-State::State(StateStack& stack, Context context)
-	: mStack(&stack),
-	mContext(context)
+
+State::State(StateStack* stack, Context* context)
+	: mStack(stack),
+	mContext(context),
+	mSceneGraph(new SceneNode(this))
 {
 }
 
@@ -17,7 +18,7 @@ State::~State()
 {
 }
 
-State::Context State::GetContext() const
+State::Context* State::GetContext() const
 {
 	return mContext;
 }

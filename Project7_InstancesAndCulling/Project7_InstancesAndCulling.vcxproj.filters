@@ -45,19 +45,10 @@
     <ClCompile Include="..\..\Common\MathHelper.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="Entity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SceneNode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FrameResource.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SpriteNode.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BoxApp.cpp">
@@ -99,6 +90,15 @@
     <ClCompile Include="World.cpp">
       <Filter>Part3</Filter>
     </ClCompile>
+    <ClCompile Include="SceneNode.cpp">
+      <Filter>Part3</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteNode.cpp">
+      <Filter>Part3</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Part3</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Common\Camera.h">
@@ -128,16 +128,7 @@
     <ClInclude Include="..\..\Common\UploadBuffer.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SceneNode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FrameResource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SpriteNode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Command.h">
@@ -180,6 +171,15 @@
       <Filter>Part3</Filter>
     </ClInclude>
     <ClInclude Include="StateIdentifiers.h">
+      <Filter>Part3</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneNode.h">
+      <Filter>Part3</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteNode.h">
+      <Filter>Part3</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
       <Filter>Part3</Filter>
     </ClInclude>
   </ItemGroup>

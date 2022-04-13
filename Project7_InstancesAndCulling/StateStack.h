@@ -39,6 +39,7 @@ public:
 	void clearStates();
 
 	bool isEmpty() const { return mStack.empty(); }
+	std::vector<State::StatePtr>* GetStateStack();
 
 
 	int GetStackSize() { return mStack.size(); }

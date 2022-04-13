@@ -14,6 +14,8 @@
 #include "../Common/Camera.h"
 #include "FrameResource.h"
 
+#include "Category.h"
+
 using Microsoft::WRL::ComPtr;
 using namespace DirectX;
 using namespace DirectX::PackedVector;
@@ -55,7 +57,7 @@ struct RenderItem
 	int BaseVertexLocation = 0;
 };
 
-class Game;
+class State;
 struct Command;
 
 /// <summary>
@@ -68,7 +70,7 @@ public:
 
 
 public:
-	SceneNode(Game* game);								// Constuctor
+	SceneNode(State* game);								// Constuctor
 
 	void attachChild(Ptr child);						// Attach another scenenode as child.
 	Ptr detachChild(const SceneNode& node);				// Detach child
@@ -107,7 +109,7 @@ private:
 	void buildChildren();								// builds all children
 
 protected:
-	Game* game;
+	State* state;
 	RenderItem* renderer;
 
 	//unsigned int mCategory = Category::Scene;
