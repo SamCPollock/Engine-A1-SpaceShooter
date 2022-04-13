@@ -43,5 +43,7 @@ protected:
 
 	StateStack* mStack;
 	Context mContext;
+
+
 };
 

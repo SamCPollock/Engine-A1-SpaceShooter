@@ -1,5 +1,6 @@
 #include "StateStack.h"
 
+
 StateStack::StateStack(State::Context context)
 	: mStack(),
 	mPendingList(),
@@ -82,11 +83,13 @@ State::StatePtr StateStack::createState(States::ID stateID)
 
 void StateStack::applyPendingChanges()
 {
+	
 	for (PendingChange change : mPendingList)
 	{
 		switch (change.action)
 		{
 		case Push:
+			//mContext.game->FlushCommandQueue();
 			mStack.push_back(createState(change.stateID));
 			break;
 		case Pop:

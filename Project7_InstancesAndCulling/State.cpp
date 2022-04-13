@@ -24,6 +24,7 @@ State::Context State::GetContext() const
 
 void State::RequestStackPush(States::ID stateID)
 {
+	//mContext.game->FlushCommandQueue();
 	mStack->pushState(stateID);
 }
 

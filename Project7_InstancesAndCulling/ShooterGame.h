@@ -25,7 +25,6 @@ public:
 	void ResetFrameResources();
 	virtual void OnKeyDown(WPARAM btnState);
 
-
 private:
 
 	void ProcessInput();
