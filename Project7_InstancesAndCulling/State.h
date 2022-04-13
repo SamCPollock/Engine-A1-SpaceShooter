@@ -2,8 +2,6 @@
 
 #include "../Common/d3dApp.h"
 #include "StateIdentifiers.h"
-#include "SceneNode.h"
-#include "StateStack.h"
 #include "SpriteNode.h"
 
 #include <memory>

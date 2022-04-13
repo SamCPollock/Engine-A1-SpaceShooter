@@ -1,5 +1,5 @@
 #include "State.h"
-
+#include "StateStack.h"
 
 State::Context::Context(Player* player, Game* game)
 	: player(player), game(game)
