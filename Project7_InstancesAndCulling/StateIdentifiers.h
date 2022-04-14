@@ -8,7 +8,6 @@ namespace States
 	{
 		None,
 		Title,
-		Menu,
 		Game,
 		Setting,
 		Pause

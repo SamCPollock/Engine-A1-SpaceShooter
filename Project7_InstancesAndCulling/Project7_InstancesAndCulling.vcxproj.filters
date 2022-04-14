@@ -60,9 +60,6 @@
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MenuState.cpp">
-      <Filter>Part3</Filter>
-    </ClCompile>
     <ClCompile Include="PauseState.cpp">
       <Filter>Part3</Filter>
     </ClCompile>
@@ -147,9 +144,6 @@
       <Filter>Part3</Filter>
     </ClInclude>
     <ClInclude Include="PauseState.h">
-      <Filter>Part3</Filter>
-    </ClInclude>
-    <ClInclude Include="MenuState.h">
       <Filter>Part3</Filter>
     </ClInclude>
     <ClInclude Include="GameState.h">

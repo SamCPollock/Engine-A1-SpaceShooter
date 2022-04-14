@@ -172,7 +172,7 @@ void Game::Draw(const GameTimer& gt)
 void Game::registerStates()
 {
 	mStateStack.registerState<TitleState>(States::Title);
-	mStateStack.registerState<MenuState>(States::Menu);
+	//mStateStack.registerState<MenuState>(States::Menu);
 	mStateStack.registerState<GameState>(States::Game);
 	mStateStack.registerState<PauseState>(States::Pause);
 	//mStateStack.registerState<SettingState>(States::Setting);
@@ -330,7 +330,7 @@ void Game::LoadTextures()
 	//Eagle
 	auto EagleTex = std::make_unique<Texture>();
 	EagleTex->Name = "EagleTex";
-	EagleTex->Filename = L"../../Textures/checkboard.dds";
+	EagleTex->Filename = L"../Textures/checkboard.dds";
 	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
 		mCommandList.Get(), EagleTex->Filename.c_str(),
 		EagleTex->Resource, EagleTex->UploadHeap));
@@ -340,7 +340,7 @@ void Game::LoadTextures()
 	//Raptor
 	auto RaptorTex = std::make_unique<Texture>();
 	RaptorTex->Name = "RaptorTex";
-	RaptorTex->Filename = L"../../Textures/bricks2.dds";
+	RaptorTex->Filename = L"../Textures/bricks2.dds";
 	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
 		mCommandList.Get(), RaptorTex->Filename.c_str(),
 		RaptorTex->Resource, RaptorTex->UploadHeap));
@@ -350,111 +350,39 @@ void Game::LoadTextures()
 	//Desert
 	auto DesertTex = std::make_unique<Texture>();
 	DesertTex->Name = "DesertTex";
-	DesertTex->Filename = L"../../Textures/bricks3.dds";
+	DesertTex->Filename = L"../Textures/bricks3.dds";
 	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
 		mCommandList.Get(), DesertTex->Filename.c_str(),
 		DesertTex->Resource, DesertTex->UploadHeap));
 
 	mTextures[DesertTex->Name] = std::move(DesertTex);
 
-	//MenuBackground
-	auto MenuTex = std::make_unique<Texture>();
-	MenuTex->Name = "MenuTex";
-	MenuTex->Filename = L"../../Textures/checkboard.dds";
+	//Title Background
+	auto TitleBackgroundTex = std::make_unique<Texture>();
+	TitleBackgroundTex->Name = "TitleBackground";
+	TitleBackgroundTex->Filename = L"../Textures/checkboard.dds";
 	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
-		mCommandList.Get(), MenuTex->Filename.c_str(),
-		MenuTex->Resource, MenuTex->UploadHeap));
+		mCommandList.Get(), TitleBackgroundTex->Filename.c_str(),
+		TitleBackgroundTex->Resource, TitleBackgroundTex->UploadHeap));
 
-	mTextures[MenuTex->Name] = std::move(MenuTex);
+	mTextures[TitleBackgroundTex->Name] = std::move(TitleBackgroundTex);
 
-	//MenuBackground
-	auto TitlePromptTex = std::make_unique<Texture>();
-	TitlePromptTex->Name = "TitlePrompt";
-	TitlePromptTex->Filename = L"../Textures/TitleScreen.dds";
+	//TitleText
+	auto TitleTextTex = std::make_unique<Texture>();
+	TitleTextTex->Name = "TitleText";
+	TitleTextTex->Filename = L"../Textures/TitleScreen.dds";
 	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
-		mCommandList.Get(), TitlePromptTex->Filename.c_str(),
-		TitlePromptTex->Resource, TitlePromptTex->UploadHeap));
+		mCommandList.Get(), TitleTextTex->Filename.c_str(),
+		TitleTextTex->Resource, TitleTextTex->UploadHeap));
 
-	mTextures[TitlePromptTex->Name] = std::move(TitlePromptTex);
-
-	//MenuBackground
-	auto MenuPlayTex = std::make_unique<Texture>();
-	MenuPlayTex->Name = "MenuPlay";
-	MenuPlayTex->Filename = L"../../Textures/Desert.dds";
-	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
-		mCommandList.Get(), MenuPlayTex->Filename.c_str(),
-		MenuPlayTex->Resource, MenuPlayTex->UploadHeap));
-
-	mTextures[MenuPlayTex->Name] = std::move(MenuPlayTex);
-
-
-	//MenuBackground
-	auto MenuQuitTex = std::make_unique<Texture>();
-	MenuQuitTex->Name = "MenuQuit";
-	MenuQuitTex->Filename = L"../../Textures/Desert.dds";
-	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
-		mCommandList.Get(), MenuQuitTex->Filename.c_str(),
-		MenuQuitTex->Resource, MenuQuitTex->UploadHeap));
-
-	mTextures[MenuQuitTex->Name] = std::move(MenuQuitTex);
-
-	//MenuBackground
-	auto MenuArrowTex = std::make_unique<Texture>();
-	MenuArrowTex->Name = "MenuArrow";
-	MenuArrowTex->Filename = L"../../Textures/Desert.dds";
-	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
-		mCommandList.Get(), MenuArrowTex->Filename.c_str(),
-		MenuArrowTex->Resource, MenuArrowTex->UploadHeap));
-
-	mTextures[MenuArrowTex->Name] = std::move(MenuArrowTex);
-
-	//MenuBackground
-	auto SettingWASDTex = std::make_unique<Texture>();
-	SettingWASDTex->Name = "SettingWASD";
-	SettingWASDTex->Filename = L"../../Textures/Desert.dds";
-	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
-		mCommandList.Get(), SettingWASDTex->Filename.c_str(),
-		SettingWASDTex->Resource, SettingWASDTex->UploadHeap));
-
-	mTextures[SettingWASDTex->Name] = std::move(SettingWASDTex);
-
-	//MenuBackground
-	auto SettingArrowTex = std::make_unique<Texture>();
-	SettingArrowTex->Name = "SettingArrow";
-	SettingArrowTex->Filename = L"../../Textures/Desert.dds";
-	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
-		mCommandList.Get(), SettingArrowTex->Filename.c_str(),
-		SettingArrowTex->Resource, SettingArrowTex->UploadHeap));
-
-	mTextures[SettingArrowTex->Name] = std::move(SettingArrowTex);
-
-	//MenuBackground
-	auto MenuSettingTex = std::make_unique<Texture>();
-	MenuSettingTex->Name = "MenuSettingTex";
-	MenuSettingTex->Filename = L"../../Textures/Desert.dds";
-	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
-		mCommandList.Get(), MenuSettingTex->Filename.c_str(),
-		MenuSettingTex->Resource, MenuSettingTex->UploadHeap));
-
-	mTextures[MenuSettingTex->Name] = std::move(MenuSettingTex);
-
-	//MenuBackground
-	auto SettingReturnTex = std::make_unique<Texture>();
-	SettingReturnTex->Name = "SettingReturn";
-	SettingReturnTex->Filename = L"../../Textures/Desert.dds";
-	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
-		mCommandList.Get(), SettingReturnTex->Filename.c_str(),
-		SettingReturnTex->Resource, SettingReturnTex->UploadHeap));
-
-	mTextures[SettingReturnTex->Name] = std::move(SettingReturnTex);
-
+	mTextures[TitleTextTex->Name] = std::move(TitleTextTex);
 
 
 
 	//PAUSE STATE
 	auto PauseDisplayTex = std::make_unique<Texture>();
 	PauseDisplayTex->Name = "PauseDisplay";
-	PauseDisplayTex->Filename = L"../../Textures/Desert.dds";
+	PauseDisplayTex->Filename = L"../Textures/PauseScreen.dds";
 	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
 		mCommandList.Get(), PauseDisplayTex->Filename.c_str(),
 		PauseDisplayTex->Resource, PauseDisplayTex->UploadHeap));
@@ -526,15 +454,9 @@ void Game::BuildDescriptorHeaps()
 	auto EagleTex = mTextures["EagleTex"]->Resource;
 	auto RaptorTex = mTextures["RaptorTex"]->Resource;
 	auto DesertTex = mTextures["DesertTex"]->Resource;
-	auto MenuTex = mTextures["MenuTex"]->Resource;
-	auto TitlePromptTex = mTextures["TitlePrompt"]->Resource;
-	auto MenuPlayTex = mTextures["MenuPlay"]->Resource;
-	auto MenuQuitTex = mTextures["MenuQuit"]->Resource;
-	auto MenuArrowTex = mTextures["MenuArrow"]->Resource;
-	auto SettingWASDTex = mTextures["SettingWASD"]->Resource;
-	auto SettingArrowTex = mTextures["SettingArrow"]->Resource;
-	auto MenuSettingTex = mTextures["MenuSettingTex"]->Resource;
-	auto SettingReturnTex = mTextures["SettingReturn"]->Resource;
+	auto TitleBackgroundTex = mTextures["TitleBackground"]->Resource;
+	auto TitleTextTex = mTextures["TitleText"]->Resource;
+
 	auto PauseDisplayTex = mTextures["PauseDisplay"]->Resource;
 
 	D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
@@ -572,50 +494,15 @@ void Game::BuildDescriptorHeaps()
 	md3dDevice->CreateShaderResourceView(DesertTex.Get(), &srvDesc, hDescriptor);
 
 
-	//Menu Descriptor
+	//TitleBackground Descriptor
 	hDescriptor.Offset(1, mCbvSrvDescriptorSize);
-	srvDesc.Format = MenuTex->GetDesc().Format;
-	md3dDevice->CreateShaderResourceView(MenuTex.Get(), &srvDesc, hDescriptor);
+	srvDesc.Format = TitleBackgroundTex->GetDesc().Format;
+	md3dDevice->CreateShaderResourceView(TitleBackgroundTex.Get(), &srvDesc, hDescriptor);
 
-	//Title Prompt Descriptor
+	//Title Text Descriptor
 	hDescriptor.Offset(1, mCbvSrvDescriptorSize);
-	srvDesc.Format = TitlePromptTex->GetDesc().Format;
-	md3dDevice->CreateShaderResourceView(TitlePromptTex.Get(), &srvDesc, hDescriptor);
-
-	//Play text Descriptor
-	hDescriptor.Offset(1, mCbvSrvDescriptorSize);
-	srvDesc.Format = MenuPlayTex->GetDesc().Format;
-	md3dDevice->CreateShaderResourceView(MenuPlayTex.Get(), &srvDesc, hDescriptor);
-
-	//Quit Text Descriptor
-	hDescriptor.Offset(1, mCbvSrvDescriptorSize);
-	srvDesc.Format = MenuQuitTex->GetDesc().Format;
-	md3dDevice->CreateShaderResourceView(MenuQuitTex.Get(), &srvDesc, hDescriptor);
-
-	//Arrow text Descriptor
-	hDescriptor.Offset(1, mCbvSrvDescriptorSize);
-	srvDesc.Format = MenuArrowTex->GetDesc().Format;
-	md3dDevice->CreateShaderResourceView(MenuArrowTex.Get(), &srvDesc, hDescriptor);
-
-	//WASD Text Descriptor
-	hDescriptor.Offset(1, mCbvSrvDescriptorSize);
-	srvDesc.Format = SettingWASDTex->GetDesc().Format;
-	md3dDevice->CreateShaderResourceView(SettingWASDTex.Get(), &srvDesc, hDescriptor);
-
-	//Setting Arrow Descriptor
-	hDescriptor.Offset(1, mCbvSrvDescriptorSize);
-	srvDesc.Format = SettingArrowTex->GetDesc().Format;
-	md3dDevice->CreateShaderResourceView(SettingArrowTex.Get(), &srvDesc, hDescriptor);
-
-	//Setting Label Descriptor
-	hDescriptor.Offset(1, mCbvSrvDescriptorSize);
-	srvDesc.Format = MenuSettingTex->GetDesc().Format;
-	md3dDevice->CreateShaderResourceView(MenuSettingTex.Get(), &srvDesc, hDescriptor);
-
-	//Setting Return Texture Descriptor
-	hDescriptor.Offset(1, mCbvSrvDescriptorSize);
-	srvDesc.Format = SettingReturnTex->GetDesc().Format;
-	md3dDevice->CreateShaderResourceView(SettingReturnTex.Get(), &srvDesc, hDescriptor);
+	srvDesc.Format = TitleTextTex->GetDesc().Format;
+	md3dDevice->CreateShaderResourceView(TitleTextTex.Get(), &srvDesc, hDescriptor);
 
 	//Pause DisplayDescriptor
 	hDescriptor.Offset(1, mCbvSrvDescriptorSize);
@@ -779,7 +666,7 @@ void Game::BuildMaterials()
 	mMaterials["Desert"] = std::move(Desert);
 
 
-	// menu background material
+	// Title background material
 	auto TitleScreen = std::make_unique<Material>();
 	TitleScreen->Name = "TitleScreen";
 	TitleScreen->MatCBIndex = index;
@@ -790,7 +677,7 @@ void Game::BuildMaterials()
 
 	mMaterials["TitleScreen"] = std::move(TitleScreen);
 
-	// title prompt material
+	// title text material
 	auto TitleScreenPrompt = std::make_unique<Material>();
 	TitleScreenPrompt->Name = "TitleScreenPrompt";
 	TitleScreenPrompt->MatCBIndex = index;
@@ -801,84 +688,7 @@ void Game::BuildMaterials()
 
 	mMaterials["TitleScreenPrompt"] = std::move(TitleScreenPrompt);
 
-	// title prompt material
-	auto MenuPlay = std::make_unique<Material>();
-	MenuPlay->Name = "MenuPlay";
-	MenuPlay->MatCBIndex = index;
-	MenuPlay->DiffuseSrvHeapIndex = index++;
-	MenuPlay->DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
-	MenuPlay->FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);
-	MenuPlay->Roughness = 0.2f;
-
-	mMaterials["MenuPlay"] = std::move(MenuPlay);
-
-	// title prompt material
-	auto MenuQuit = std::make_unique<Material>();
-	MenuQuit->Name = "MenuQuit";
-	MenuQuit->MatCBIndex = index;
-	MenuQuit->DiffuseSrvHeapIndex = index++;
-	MenuQuit->DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
-	MenuQuit->FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);
-	MenuQuit->Roughness = 0.2f;
-
-	mMaterials["MenuQuit"] = std::move(MenuQuit);
-
-	// title prompt material
-	auto MenuArrow = std::make_unique<Material>();
-	MenuArrow->Name = "MenuArrow";
-	MenuArrow->MatCBIndex = index;
-	MenuArrow->DiffuseSrvHeapIndex = index++;
-	MenuArrow->DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
-	MenuArrow->FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);
-	MenuArrow->Roughness = 0.2f;
-
-	mMaterials["MenuArrow"] = std::move(MenuArrow);
-
-	// title prompt material
-	auto SettingWASD = std::make_unique<Material>();
-	SettingWASD->Name = "SettingWASD";
-	SettingWASD->MatCBIndex = index;
-	SettingWASD->DiffuseSrvHeapIndex = index++;
-	SettingWASD->DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
-	SettingWASD->FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);
-	SettingWASD->Roughness = 0.2f;
-
-	mMaterials["SettingWASD"] = std::move(SettingWASD);
-
-	// title prompt material
-	auto SettingArrow = std::make_unique<Material>();
-	SettingArrow->Name = "SettingArrow";
-	SettingArrow->MatCBIndex = index;
-	SettingArrow->DiffuseSrvHeapIndex = index++;
-	SettingArrow->DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
-	SettingArrow->FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);
-	SettingArrow->Roughness = 0.2f;
-
-	mMaterials["SettingArrow"] = std::move(SettingArrow);
-
-	// title prompt material
-	auto MenuSetting = std::make_unique<Material>();
-	MenuSetting->Name = "MenuSetting";
-	MenuSetting->MatCBIndex = index;
-	MenuSetting->DiffuseSrvHeapIndex = index++;
-	MenuSetting->DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
-	MenuSetting->FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);
-	MenuSetting->Roughness = 0.2f;
-
-	mMaterials["MenuSettingTex"] = std::move(MenuSetting);
-
-	// title prompt material
-	auto SettingReturn = std::make_unique<Material>();
-	SettingReturn->Name = "SettingReturn";
-	SettingReturn->MatCBIndex = index;
-	SettingReturn->DiffuseSrvHeapIndex = index++;
-	SettingReturn->DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
-	SettingReturn->FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);
-	SettingReturn->Roughness = 0.2f;
-
-	mMaterials["SettingReturn"] = std::move(SettingReturn);
-
-
+	// pause material
 	auto PauseDisplay = std::make_unique<Material>();
 	PauseDisplay->Name = "PauseDisplay";
 	PauseDisplay->MatCBIndex = index;

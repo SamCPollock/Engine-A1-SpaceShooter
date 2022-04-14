@@ -4,9 +4,7 @@
 #include "StateIdentifiers.h"
 #include "TitleState.h"
 #include "GameState.h"
-#include "MenuState.h"
 #include "PauseState.h"
-//#include "SettingState.h"
 #include "StateStack.h"
 
 class StateStack;
