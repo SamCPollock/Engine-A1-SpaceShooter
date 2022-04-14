@@ -23,6 +23,10 @@ var files_dup =
       [ "InputCommandQueue", "class_input_command_queue.html", "class_input_command_queue" ]
     ] ],
     [ "main.cpp", "main_8cpp.html", "main_8cpp" ],
+    [ "MainMenuState.cpp", "_main_menu_state_8cpp.html", null ],
+    [ "MainMenuState.h", "_main_menu_state_8h.html", [
+      [ "MainMenuState", "class_main_menu_state.html", "class_main_menu_state" ]
+    ] ],
     [ "PauseState.cpp", "_pause_state_8cpp.html", null ],
     [ "PauseState.h", "_pause_state_8h.html", [
       [ "PauseState", "class_pause_state.html", "class_pause_state" ]

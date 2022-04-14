@@ -20,6 +20,7 @@ var hierarchy =
     [ "ShipMover", "struct_ship_mover.html", null ],
     [ "State", "class_state.html", [
       [ "GameState", "class_game_state.html", null ],
+      [ "MainMenuState", "class_main_menu_state.html", null ],
       [ "PauseState", "class_pause_state.html", null ],
       [ "TitleState", "class_title_state.html", null ]
     ] ],

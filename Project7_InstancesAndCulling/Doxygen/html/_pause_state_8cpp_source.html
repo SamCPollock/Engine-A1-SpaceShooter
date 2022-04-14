@@ -123,25 +123,24 @@ $(document).ready(function(){initNavTree('_pause_state_8cpp_source.html',''); in
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="class_pause_state.html#ab8d59fbe563e47d4e8cbdcd387c103c5">   48</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="class_pause_state.html#ab8d59fbe563e47d4e8cbdcd387c103c5">PauseState::handleEvent</a>(WPARAM btnState)</div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>{</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordflow">if</span> (btnState == <span class="charliteral">&#39;P&#39;</span>)    <span class="comment">// unpause</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordflow">if</span> (btnState == <span class="charliteral">&#39;P&#39;</span> || btnState == VK_RETURN)   <span class="comment">// unpause</span></div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    {</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        <a class="code hl_function" href="class_state.html#aa418660892d6161772c907bd8d70f910">requestStackPop</a>();</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    }</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordflow">else</span> <span class="keywordflow">if</span> (btnState == VK_BACK) <span class="comment">// Quit game</span></div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    {</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="comment">// backspace pressed, remove itself to return to the game</span></div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <a class="code hl_function" href="class_state.html#a4b602bed9bf0179ee5f6748fce340ae6">requestStateClear</a>();</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <a class="code hl_function" href="class_state.html#a6763de833ceb9c23df45aff163a4a1cd">requestStackPush</a>(<a class="code hl_enumvalue" href="namespace_states.html#a571a0dc62822f97bb9511eb013d8e1c3abe3968e68fb767032bf86cf4b08cb9e4">States::Title</a>);</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    }</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>}</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="keywordtype">void</span> PauseState::BuildScene()</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>{</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>}</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="preprocessor">#pragma endregion</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <a class="code hl_function" href="class_state.html#a4b602bed9bf0179ee5f6748fce340ae6">requestStateClear</a>();</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <a class="code hl_function" href="class_state.html#a6763de833ceb9c23df45aff163a4a1cd">requestStackPush</a>(<a class="code hl_enumvalue" href="namespace_states.html#a571a0dc62822f97bb9511eb013d8e1c3ab7a82fdec62fa927adbfbb27fb6370ad">States::MainMenu</a>);</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    }</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>}</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="keywordtype">void</span> PauseState::BuildScene()</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>{</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>}</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="preprocessor">#pragma endregion</span></div>
 <div class="ttc" id="a_game_state_8h_html"><div class="ttname"><a href="_game_state_8h.html">GameState.h</a></div></div>
 <div class="ttc" id="a_pause_state_8h_html"><div class="ttname"><a href="_pause_state_8h.html">PauseState.h</a></div></div>
 <div class="ttc" id="a_shooter_game_8h_html"><div class="ttname"><a href="_shooter_game_8h.html">ShooterGame.h</a></div></div>
@@ -159,7 +158,7 @@ $(document).ready(function(){initNavTree('_pause_state_8cpp_source.html',''); in
 <div class="ttc" id="aclass_state_html_af0424dd012cc1ceb6e0f416982aa9228"><div class="ttname"><a href="class_state.html#af0424dd012cc1ceb6e0f416982aa9228">State::mStack</a></div><div class="ttdeci">StateStack * mStack</div><div class="ttdef"><b>Definition:</b> <a href="_state_8h_source.html#l00046">State.h:46</a></div></div>
 <div class="ttc" id="aclass_state_stack_html"><div class="ttname"><a href="class_state_stack.html">StateStack</a></div><div class="ttdef"><b>Definition:</b> <a href="_state_stack_8h_source.html#l00024">StateStack.h:25</a></div></div>
 <div class="ttc" id="aclass_state_stack_html_a0ac721da5ae23e27a29a4962dce091b3"><div class="ttname"><a href="class_state_stack.html#a0ac721da5ae23e27a29a4962dce091b3">StateStack::GetStateStack</a></div><div class="ttdeci">std::vector&lt; State::Ptr &gt; * GetStateStack()</div><div class="ttdoc">Returns a pointer to the statestack</div><div class="ttdef"><b>Definition:</b> <a href="_state_stack_8cpp_source.html#l00096">StateStack.cpp:96</a></div></div>
-<div class="ttc" id="anamespace_states_html_a571a0dc62822f97bb9511eb013d8e1c3abe3968e68fb767032bf86cf4b08cb9e4"><div class="ttname"><a href="namespace_states.html#a571a0dc62822f97bb9511eb013d8e1c3abe3968e68fb767032bf86cf4b08cb9e4">States::Title</a></div><div class="ttdeci">@ Title</div><div class="ttdef"><b>Definition:</b> <a href="_state_identifiers_8h_source.html#l00017">StateIdentifiers.h:17</a></div></div>
+<div class="ttc" id="anamespace_states_html_a571a0dc62822f97bb9511eb013d8e1c3ab7a82fdec62fa927adbfbb27fb6370ad"><div class="ttname"><a href="namespace_states.html#a571a0dc62822f97bb9511eb013d8e1c3ab7a82fdec62fa927adbfbb27fb6370ad">States::MainMenu</a></div><div class="ttdeci">@ MainMenu</div><div class="ttdef"><b>Definition:</b> <a href="_state_identifiers_8h_source.html#l00021">StateIdentifiers.h:20</a></div></div>
 <div class="ttc" id="astruct_state_1_1_context_html"><div class="ttname"><a href="struct_state_1_1_context.html">State::Context</a></div><div class="ttdef"><b>Definition:</b> <a href="_state_8h_source.html#l00025">State.h:26</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

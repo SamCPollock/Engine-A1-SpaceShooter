@@ -1,13 +1,20 @@
 /**
 
-@mainpage Game Engine Development II - Assignment 2
+@mainpage Game Engine Development II - Assignment 3
 
 @author Sam Pollock
 
 @attention HOW IT WORKS
-A Fleet of Cube ships automatically fly from side to side, tilting to indicate their direction of movement. 
-Use ARROW KEYS to move the player cube. 
-Use LeftMouseClick + moving mouse to aim the camera. 
+Use WASD or Arrow Keys to Steer your Cube. 
+Your cube tilts to indicate direction movement and to get that 3D Feeling. 
+
+Title Screen:Press any key to proceed to menu. 
+
+Menu Screen: Press Enter to proceed to game. Press Backspace to quit. 
+
+Game Screen: WASD/Arrow Keys to move. Press 'P'/Enter/Backspace to bring up the pause menu
+
+Pause Menu: Press Backspace to return to menu. Press 'P'/Enter to Unpause.
 
 // Made by Sam Pollock for Game Engine Development (Taught by Hooman Salamat) at George Brown College, Winter 2022.
 

@@ -34,108 +34,113 @@
 \DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00038}00038     mKeyBinding[\textcolor{charliteral}{'S'}] = \mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88a685fada3f0a5111b3b8e56f5357a05b0}{MoveDown}};}
 \DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00039}00039     mKeyBinding[\textcolor{charliteral}{'D'}] = \mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88aa89dbd9060b77566a66b115531df631b}{MoveRight}};}
 \DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00040}00040 }
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00041}00041     \textcolor{comment}{// Set initial action bindings}}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00042}00042     initializeActions();}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00043}00043 }
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00044}00044     \mbox{\hyperlink{class_player_ab64bba89bb7995a8b517668ec85c36e7}{resetKeyFlags}}();}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00041}00041     mKeyBinding[VK\_UP] = \mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88a6c74df21e9d4e850dd175a23b78c6540}{MoveUp}};}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00042}00042     mKeyBinding[VK\_LEFT] = \mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88a0166b28e57a9a8553a603a4c0fbe5807}{MoveLeft}};}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00043}00043     mKeyBinding[VK\_DOWN] = \mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88a685fada3f0a5111b3b8e56f5357a05b0}{MoveDown}};}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00044}00044     mKeyBinding[VK\_RIGHT] = \mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88aa89dbd9060b77566a66b115531df631b}{MoveRight}};}
 \DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00045}00045 }
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00046}00046     \textcolor{comment}{// Assign all categories to player's aircraft}}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00047}00047     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& pair : mActionBinding)}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00048}00048         pair.second.category = \mbox{\hyperlink{namespace_category_a2ff936dbd42aeae91fdfb6f8456a8ab0ac17fded322e70d4086e2f5dfcc706679}{Category::PlayerAircraft}};}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00049}00049 \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00046}00046     \textcolor{comment}{// Set initial action bindings}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00047}00047     initializeActions();}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00048}00048 }
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00049}00049     \mbox{\hyperlink{class_player_ab64bba89bb7995a8b517668ec85c36e7}{resetKeyFlags}}();}
 \DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00050}00050 }
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00055}\mbox{\hyperlink{class_player_a1a0a2008ad8a81caec0b473d231f483f}{00055}} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_player_a1a0a2008ad8a81caec0b473d231f483f}{Player::handleEvent}}(\mbox{\hyperlink{class_input_command_queue}{InputCommandQueue}}\& commands)}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00056}00056 \{}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00057}00057     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} pair : mKeyBinding)}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00058}00058     \{}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00059}00059         \textcolor{keywordflow}{if} (!isRealtimeAction(pair.second))}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00060}00060         \{}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00061}00061             \textcolor{keywordflow}{if} (mKeyFlag[pair.first])}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00062}00062             \{}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00063}00063                 \textcolor{keywordflow}{if} (!GetAsyncKeyState(pair.first))}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00064}00064                 \{}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00065}00065                     mKeyFlag[pair.first] = \textcolor{keyword}{false}; \textcolor{comment}{// RELEASED}}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00066}00066                 \}}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00067}00067             \}}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00068}00068             \textcolor{keywordflow}{else}}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00069}00069             \{}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00070}00070                 \textcolor{keywordflow}{if} (GetAsyncKeyState(pair.first) \& 0x8000)}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00071}00071                 \{}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00072}00072                     mKeyFlag[pair.first] = \textcolor{keyword}{true}; \textcolor{comment}{// PRESSED}}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00073}00073                     commands.\mbox{\hyperlink{class_input_command_queue_acf870146d03009ffdd3460acd83f4b57}{push}}(mActionBinding[pair.second]);}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00074}00074                 \}}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00075}00075             \}}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00076}00076         \}}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00077}00077     \}}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00078}00078 \}}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00079}00079 }
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00084}\mbox{\hyperlink{class_player_aab9d82be79245fbfeaa899c73c7c1b76}{00084}} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_player_aab9d82be79245fbfeaa899c73c7c1b76}{Player::handleRealtimeInput}}(\mbox{\hyperlink{class_input_command_queue}{InputCommandQueue}}\& commands)}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00085}00085 \{}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00086}00086     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} pair : mKeyBinding)}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00087}00087     \{}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00088}00088         \textcolor{keywordflow}{if} (GetAsyncKeyState(pair.first) \& 0x8000 \&\& isRealtimeAction(pair.second))}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00089}00089         \{}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00090}00090             commands.\mbox{\hyperlink{class_input_command_queue_acf870146d03009ffdd3460acd83f4b57}{push}}(mActionBinding[pair.second]); \textcolor{comment}{// HOLDING DOWN}}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00091}00091         \}}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00092}00092     \}}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00093}00093 \}}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00094}00094 }
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00100}\mbox{\hyperlink{class_player_a1aebc48270700e3052aaf2653be62bc6}{00100}} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_player_a1aebc48270700e3052aaf2653be62bc6}{Player::assignKey}}(\mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88}{Action}} action, \textcolor{keywordtype}{char} key)}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00101}00101 \{}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00102}00102     \textcolor{comment}{// Remove all keys that already map to action}}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00103}00103     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} itr = mKeyBinding.begin(); itr != mKeyBinding.end(); )}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00104}00104     \{}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00105}00105         \textcolor{keywordflow}{if} (itr-\/>second == action)}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00106}00106             mKeyBinding.erase(itr++);}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00107}00107         \textcolor{keywordflow}{else}}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00108}00108             ++itr;}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00109}00109     \}}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00110}00110 }
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00111}00111     \textcolor{comment}{// Insert new binding}}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00112}00112     mKeyBinding[key] = action;}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00113}00113 \}}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00119}\mbox{\hyperlink{class_player_a6ffaa42ae4d105bd8a775f18ce37c463}{00119}} \textcolor{keywordtype}{char} \mbox{\hyperlink{class_player_a6ffaa42ae4d105bd8a775f18ce37c463}{Player::getAssignedKey}}(\mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88}{Action}} action)\textcolor{keyword}{ const}}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00120}00120 \textcolor{keyword}{}\{}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00121}00121     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} pair : mKeyBinding)}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00122}00122     \{}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00123}00123         \textcolor{keywordflow}{if} (pair.second == action)}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00124}00124             \textcolor{keywordflow}{return} pair.first;}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00125}00125     \}}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00126}00126 }
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00127}00127     \textcolor{keywordflow}{return} 0x00;}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00128}00128 \}}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00132}00132 \textcolor{keywordtype}{void} Player::initializeActions()}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00133}00133 \{}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00134}00134     \textcolor{keyword}{const} \textcolor{keywordtype}{float} playerSpeed = 6.f;}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00135}00135 }
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00136}00136     mActionBinding[\mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88a0166b28e57a9a8553a603a4c0fbe5807}{MoveLeft}}].action = derivedAction<Ship>(\mbox{\hyperlink{struct_ship_mover}{ShipMover}}(-\/playerSpeed, 0.f, 0.0f));}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00137}00137     mActionBinding[\mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88aa89dbd9060b77566a66b115531df631b}{MoveRight}}].action = derivedAction<Ship>(\mbox{\hyperlink{struct_ship_mover}{ShipMover}}(+playerSpeed, 0.f, 0.0f));}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00138}00138     mActionBinding[\mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88a6c74df21e9d4e850dd175a23b78c6540}{MoveUp}}].action = derivedAction<Ship>(\mbox{\hyperlink{struct_ship_mover}{ShipMover}}(0.f, 0.0f, +playerSpeed));}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00139}00139     mActionBinding[\mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88a685fada3f0a5111b3b8e56f5357a05b0}{MoveDown}}].action = derivedAction<Ship>(\mbox{\hyperlink{struct_ship_mover}{ShipMover}}(0.f, 0.0f, -\/playerSpeed));}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00140}00140 \}}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00146}\mbox{\hyperlink{class_player_ab64bba89bb7995a8b517668ec85c36e7}{00146}} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_player_ab64bba89bb7995a8b517668ec85c36e7}{Player::resetKeyFlags}}()}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00147}00147 \{}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00148}00148     mKeyFlag.clear();}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00149}00149     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} pair : mKeyBinding)}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00150}00150     \{}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00151}00151         mKeyFlag[pair.first] = \textcolor{keyword}{false};}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00152}00152     \}}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00153}00153 \}}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00159}00159 \textcolor{keywordtype}{bool} Player::isRealtimeAction(Action action)}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00160}00160 \{}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00161}00161     \textcolor{keywordflow}{switch} (action)}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00162}00162     \{}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00163}00163     \textcolor{keywordflow}{case} \mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88a0166b28e57a9a8553a603a4c0fbe5807}{MoveLeft}}:}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00164}00164     \textcolor{keywordflow}{case} \mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88aa89dbd9060b77566a66b115531df631b}{MoveRight}}:}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00165}00165     \textcolor{keywordflow}{case} \mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88a685fada3f0a5111b3b8e56f5357a05b0}{MoveDown}}:}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00166}00166     \textcolor{keywordflow}{case} \mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88a6c74df21e9d4e850dd175a23b78c6540}{MoveUp}}:}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00167}00167         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00168}00168 }
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00169}00169     \textcolor{keywordflow}{default}:}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00170}00170         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00171}00171     \}}
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00172}00172 \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00051}00051     \textcolor{comment}{// Assign all categories to player's aircraft}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00052}00052     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& pair : mActionBinding)}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00053}00053         pair.second.category = \mbox{\hyperlink{namespace_category_a2ff936dbd42aeae91fdfb6f8456a8ab0ac17fded322e70d4086e2f5dfcc706679}{Category::PlayerAircraft}};}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00054}00054 \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00055}00055 }
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00060}\mbox{\hyperlink{class_player_a1a0a2008ad8a81caec0b473d231f483f}{00060}} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_player_a1a0a2008ad8a81caec0b473d231f483f}{Player::handleEvent}}(\mbox{\hyperlink{class_input_command_queue}{InputCommandQueue}}\& commands)}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00061}00061 \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00062}00062     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} pair : mKeyBinding)}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00063}00063     \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00064}00064         \textcolor{keywordflow}{if} (!isRealtimeAction(pair.second))}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00065}00065         \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00066}00066             \textcolor{keywordflow}{if} (mKeyFlag[pair.first])}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00067}00067             \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00068}00068                 \textcolor{keywordflow}{if} (!GetAsyncKeyState(pair.first))}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00069}00069                 \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00070}00070                     mKeyFlag[pair.first] = \textcolor{keyword}{false}; \textcolor{comment}{// RELEASED}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00071}00071                 \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00072}00072             \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00073}00073             \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00074}00074             \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00075}00075                 \textcolor{keywordflow}{if} (GetAsyncKeyState(pair.first) \& 0x8000)}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00076}00076                 \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00077}00077                     mKeyFlag[pair.first] = \textcolor{keyword}{true}; \textcolor{comment}{// PRESSED}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00078}00078                     commands.\mbox{\hyperlink{class_input_command_queue_acf870146d03009ffdd3460acd83f4b57}{push}}(mActionBinding[pair.second]);}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00079}00079                 \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00080}00080             \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00081}00081         \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00082}00082     \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00083}00083 \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00084}00084 }
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00089}\mbox{\hyperlink{class_player_aab9d82be79245fbfeaa899c73c7c1b76}{00089}} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_player_aab9d82be79245fbfeaa899c73c7c1b76}{Player::handleRealtimeInput}}(\mbox{\hyperlink{class_input_command_queue}{InputCommandQueue}}\& commands)}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00090}00090 \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00091}00091     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} pair : mKeyBinding)}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00092}00092     \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00093}00093         \textcolor{keywordflow}{if} (GetAsyncKeyState(pair.first) \& 0x8000 \&\& isRealtimeAction(pair.second))}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00094}00094         \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00095}00095             commands.\mbox{\hyperlink{class_input_command_queue_acf870146d03009ffdd3460acd83f4b57}{push}}(mActionBinding[pair.second]); \textcolor{comment}{// HOLDING DOWN}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00096}00096         \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00097}00097     \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00098}00098 \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00099}00099 }
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00105}\mbox{\hyperlink{class_player_a1aebc48270700e3052aaf2653be62bc6}{00105}} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_player_a1aebc48270700e3052aaf2653be62bc6}{Player::assignKey}}(\mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88}{Action}} action, \textcolor{keywordtype}{char} key)}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00106}00106 \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00107}00107     \textcolor{comment}{// Remove all keys that already map to action}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00108}00108     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} itr = mKeyBinding.begin(); itr != mKeyBinding.end(); )}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00109}00109     \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00110}00110         \textcolor{keywordflow}{if} (itr-\/>second == action)}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00111}00111             mKeyBinding.erase(itr++);}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00112}00112         \textcolor{keywordflow}{else}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00113}00113             ++itr;}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00114}00114     \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00115}00115 }
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00116}00116     \textcolor{comment}{// Insert new binding}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00117}00117     mKeyBinding[key] = action;}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00118}00118 \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00124}\mbox{\hyperlink{class_player_a6ffaa42ae4d105bd8a775f18ce37c463}{00124}} \textcolor{keywordtype}{char} \mbox{\hyperlink{class_player_a6ffaa42ae4d105bd8a775f18ce37c463}{Player::getAssignedKey}}(\mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88}{Action}} action)\textcolor{keyword}{ const}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00125}00125 \textcolor{keyword}{}\{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00126}00126     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} pair : mKeyBinding)}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00127}00127     \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00128}00128         \textcolor{keywordflow}{if} (pair.second == action)}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00129}00129             \textcolor{keywordflow}{return} pair.first;}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00130}00130     \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00131}00131 }
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00132}00132     \textcolor{keywordflow}{return} 0x00;}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00133}00133 \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00137}00137 \textcolor{keywordtype}{void} Player::initializeActions()}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00138}00138 \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00139}00139     \textcolor{keyword}{const} \textcolor{keywordtype}{float} playerSpeed = 6.f;}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00140}00140 }
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00141}00141     mActionBinding[\mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88a0166b28e57a9a8553a603a4c0fbe5807}{MoveLeft}}].action = derivedAction<Ship>(\mbox{\hyperlink{struct_ship_mover}{ShipMover}}(-\/playerSpeed, 0.f, 0.0f));}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00142}00142     mActionBinding[\mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88aa89dbd9060b77566a66b115531df631b}{MoveRight}}].action = derivedAction<Ship>(\mbox{\hyperlink{struct_ship_mover}{ShipMover}}(+playerSpeed, 0.f, 0.0f));}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00143}00143     mActionBinding[\mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88a6c74df21e9d4e850dd175a23b78c6540}{MoveUp}}].action = derivedAction<Ship>(\mbox{\hyperlink{struct_ship_mover}{ShipMover}}(0.f, 0.0f, +playerSpeed));}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00144}00144     mActionBinding[\mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88a685fada3f0a5111b3b8e56f5357a05b0}{MoveDown}}].action = derivedAction<Ship>(\mbox{\hyperlink{struct_ship_mover}{ShipMover}}(0.f, 0.0f, -\/playerSpeed));}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00145}00145 \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00151}\mbox{\hyperlink{class_player_ab64bba89bb7995a8b517668ec85c36e7}{00151}} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_player_ab64bba89bb7995a8b517668ec85c36e7}{Player::resetKeyFlags}}()}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00152}00152 \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00153}00153     mKeyFlag.clear();}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00154}00154     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto} pair : mKeyBinding)}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00155}00155     \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00156}00156         mKeyFlag[pair.first] = \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00157}00157     \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00158}00158 \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00164}00164 \textcolor{keywordtype}{bool} Player::isRealtimeAction(Action action)}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00165}00165 \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00166}00166     \textcolor{keywordflow}{switch} (action)}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00167}00167     \{}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00168}00168     \textcolor{keywordflow}{case} \mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88a0166b28e57a9a8553a603a4c0fbe5807}{MoveLeft}}:}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00169}00169     \textcolor{keywordflow}{case} \mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88aa89dbd9060b77566a66b115531df631b}{MoveRight}}:}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00170}00170     \textcolor{keywordflow}{case} \mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88a685fada3f0a5111b3b8e56f5357a05b0}{MoveDown}}:}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00171}00171     \textcolor{keywordflow}{case} \mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88a6c74df21e9d4e850dd175a23b78c6540}{MoveUp}}:}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00172}00172         \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
 \DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00173}00173 }
-\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00174}00174 \textcolor{preprocessor}{\#pragma endregion}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00174}00174     \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00175}00175         \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00176}00176     \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00177}00177 \}}
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00178}00178 }
+\DoxyCodeLine{\Hypertarget{_player_8cpp_source_l00179}00179 \textcolor{preprocessor}{\#pragma endregion}}
 
 \end{DoxyCode}

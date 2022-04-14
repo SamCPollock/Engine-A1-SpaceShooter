@@ -26,7 +26,7 @@
 \DoxyCodeLine{\Hypertarget{_game_state_8cpp_source_l00041}\mbox{\hyperlink{class_game_state_aebcbccf8a184f5444758320061ba5cc9}{00041}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_game_state_aebcbccf8a184f5444758320061ba5cc9}{GameState::handleEvent}}(WPARAM btnState)}
 \DoxyCodeLine{\Hypertarget{_game_state_8cpp_source_l00042}00042 \{}
 \DoxyCodeLine{\Hypertarget{_game_state_8cpp_source_l00043}00043     \textcolor{comment}{// Handle player input}}
-\DoxyCodeLine{\Hypertarget{_game_state_8cpp_source_l00044}00044     \textcolor{keywordflow}{if} (btnState == \textcolor{charliteral}{'P'})}
+\DoxyCodeLine{\Hypertarget{_game_state_8cpp_source_l00044}00044     \textcolor{keywordflow}{if} (btnState == \textcolor{charliteral}{'P'} || btnState == VK\_RETURN || btnState == VK\_BACK)}
 \DoxyCodeLine{\Hypertarget{_game_state_8cpp_source_l00045}00045     \{}
 \DoxyCodeLine{\Hypertarget{_game_state_8cpp_source_l00046}00046         \mbox{\hyperlink{class_state_a6763de833ceb9c23df45aff163a4a1cd}{requestStackPush}}(\mbox{\hyperlink{namespace_states_a571a0dc62822f97bb9511eb013d8e1c3a7cbdc18ae28451f619eac360e384790a}{States::Pause}});}
 \DoxyCodeLine{\Hypertarget{_game_state_8cpp_source_l00047}00047     \}}

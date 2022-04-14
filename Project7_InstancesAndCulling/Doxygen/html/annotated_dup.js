@@ -6,6 +6,7 @@ var annotated_dup =
     [ "Game", "class_game.html", "class_game" ],
     [ "GameState", "class_game_state.html", "class_game_state" ],
     [ "InputCommandQueue", "class_input_command_queue.html", "class_input_command_queue" ],
+    [ "MainMenuState", "class_main_menu_state.html", "class_main_menu_state" ],
     [ "ObjectConstants", "struct_object_constants.html", "struct_object_constants" ],
     [ "PassConstants", "struct_pass_constants.html", "struct_pass_constants" ],
     [ "PauseState", "class_pause_state.html", "class_pause_state" ],

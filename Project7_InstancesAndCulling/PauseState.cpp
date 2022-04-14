@@ -54,7 +54,6 @@ bool PauseState::handleEvent(WPARAM btnState)
 	}
 	else if (btnState == VK_BACK) // Quit game
 	{
-		// backspace pressed, remove itself to return to the game
 		requestStateClear();
 		requestStackPush(States::MainMenu);
 	}

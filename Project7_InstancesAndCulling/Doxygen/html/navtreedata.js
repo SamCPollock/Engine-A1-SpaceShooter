@@ -25,7 +25,7 @@
 var NAVTREE =
 [
   [ "GameEngine-A2-SpaceShooter", "index.html", [
-    [ "Game Engine Development II - Assignment 2", "index.html", null ],
+    [ "Game Engine Development II - Assignment 3", "index.html", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -62,7 +62,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_category_8h.html",
-"struct_frame_resource.html#a2c0624d447e7fe7697b37a91275066d1"
+"namespacemembers_eval.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

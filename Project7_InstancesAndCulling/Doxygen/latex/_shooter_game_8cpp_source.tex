@@ -173,609 +173,638 @@
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00201}00201     mStateStack.\mbox{\hyperlink{class_state_stack_a9d64daa479c2cccad6f2ede77741a352}{registerState}}<\mbox{\hyperlink{class_title_state}{TitleState}}>(\mbox{\hyperlink{namespace_states_a571a0dc62822f97bb9511eb013d8e1c3abe3968e68fb767032bf86cf4b08cb9e4}{States::Title}});}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00202}00202     mStateStack.\mbox{\hyperlink{class_state_stack_a9d64daa479c2cccad6f2ede77741a352}{registerState}}<\mbox{\hyperlink{class_game_state}{GameState}}>(\mbox{\hyperlink{namespace_states_a571a0dc62822f97bb9511eb013d8e1c3a392b686639cb98b586bf0af7dc993633}{States::Game}});}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00203}00203     mStateStack.\mbox{\hyperlink{class_state_stack_a9d64daa479c2cccad6f2ede77741a352}{registerState}}<\mbox{\hyperlink{class_pause_state}{PauseState}}>(\mbox{\hyperlink{namespace_states_a571a0dc62822f97bb9511eb013d8e1c3a7cbdc18ae28451f619eac360e384790a}{States::Pause}});}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00204}00204 \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00204}00204     mStateStack.\mbox{\hyperlink{class_state_stack_a9d64daa479c2cccad6f2ede77741a352}{registerState}}<\mbox{\hyperlink{class_main_menu_state}{MainMenuState}}>(\mbox{\hyperlink{namespace_states_a571a0dc62822f97bb9511eb013d8e1c3ab7a82fdec62fa927adbfbb27fb6370ad}{States::MainMenu}});}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00205}00205 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00212}00212 \textcolor{keywordtype}{void} Game::OnMouseDown(WPARAM btnState, \textcolor{keywordtype}{int} x, \textcolor{keywordtype}{int} y)}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00213}00213 \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00214}00214     mLastMousePos.x = x;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00215}00215     mLastMousePos.y = y;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00216}00216 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00217}00217     SetCapture(mhMainWnd);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00218}00218 \}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00225}00225 \textcolor{keywordtype}{void} Game::OnMouseUp(WPARAM btnState, \textcolor{keywordtype}{int} x, \textcolor{keywordtype}{int} y)}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00226}00226 \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00227}00227     ReleaseCapture();}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00228}00228 \}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00229}00229 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00236}00236 \textcolor{keywordtype}{void} Game::OnMouseMove(WPARAM btnState, \textcolor{keywordtype}{int} x, \textcolor{keywordtype}{int} y)}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00237}00237 \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00238}00238     \textcolor{keywordflow}{if} ((btnState \& MK\_LBUTTON) != 0)}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00239}00239     \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00240}00240         \textcolor{comment}{// Make each pixel correspond to a quarter of a degree.}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00241}00241         \textcolor{keywordtype}{float} dx = XMConvertToRadians(0.25f * \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(x -\/ mLastMousePos.x));}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00242}00242         \textcolor{keywordtype}{float} dy = XMConvertToRadians(0.25f * \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(y -\/ mLastMousePos.y));}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00243}00243 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00244}00244         mCamera.Pitch(dy);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00245}00245         mCamera.RotateY(dx);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00246}00246     \}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00247}00247     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} ((btnState \& MK\_RBUTTON) != 0)}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00248}00248     \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00249}00249         \textcolor{comment}{// Make each pixel correspond to 0.2 unit in the scene.}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00250}00250         \textcolor{keywordtype}{float} dx = 0.05f * \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(x -\/ mLastMousePos.x);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00251}00251         \textcolor{keywordtype}{float} dy = 0.05f * \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(y -\/ mLastMousePos.y);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00252}00252 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00253}00253         \textcolor{comment}{//To Do}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00254}00254         \textcolor{comment}{// Update the camera radius based on input.}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00255}00255         \textcolor{comment}{//mRadius += dx -\/ dy;}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00256}00256 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00257}00257         \textcolor{comment}{// Restrict the radius.}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00258}00258         \textcolor{comment}{//mRadius = MathHelper::Clamp(mRadius, 5.0f, 150.0f);}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00259}00259     \}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00260}00260 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00261}00261     mLastMousePos.x = x;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00262}00262     mLastMousePos.y = y;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00263}00263 \}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00264}00264 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00269}00269 \textcolor{keywordtype}{void} Game::OnKeyboardInput(WPARAM btnState)}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00270}00270 \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00271}00271     mStateStack.\mbox{\hyperlink{class_state_stack_a2a6df2bdf1d3edfb12f09fbb1dfbf67d}{handleEvent}}(btnState);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00272}00272 \}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00273}00273 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00274}00274 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00279}00279 \textcolor{keywordtype}{void} Game::UpdateCamera(\textcolor{keyword}{const} GameTimer\& gt)}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00280}00280 \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00281}00281 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00282}00282     mCamera.UpdateViewMatrix();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00206}00206 \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00207}00207 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00214}00214 \textcolor{keywordtype}{void} Game::OnMouseDown(WPARAM btnState, \textcolor{keywordtype}{int} x, \textcolor{keywordtype}{int} y)}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00215}00215 \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00216}00216     mLastMousePos.x = x;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00217}00217     mLastMousePos.y = y;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00218}00218 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00219}00219     SetCapture(mhMainWnd);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00220}00220 \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00227}00227 \textcolor{keywordtype}{void} Game::OnMouseUp(WPARAM btnState, \textcolor{keywordtype}{int} x, \textcolor{keywordtype}{int} y)}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00228}00228 \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00229}00229     ReleaseCapture();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00230}00230 \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00231}00231 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00238}00238 \textcolor{keywordtype}{void} Game::OnMouseMove(WPARAM btnState, \textcolor{keywordtype}{int} x, \textcolor{keywordtype}{int} y)}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00239}00239 \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00240}00240     \textcolor{keywordflow}{if} ((btnState \& MK\_LBUTTON) != 0)}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00241}00241     \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00242}00242         \textcolor{comment}{// Make each pixel correspond to a quarter of a degree.}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00243}00243         \textcolor{keywordtype}{float} dx = XMConvertToRadians(0.25f * \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(x -\/ mLastMousePos.x));}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00244}00244         \textcolor{keywordtype}{float} dy = XMConvertToRadians(0.25f * \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(y -\/ mLastMousePos.y));}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00245}00245 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00246}00246         mCamera.Pitch(dy);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00247}00247         mCamera.RotateY(dx);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00248}00248     \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00249}00249     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} ((btnState \& MK\_RBUTTON) != 0)}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00250}00250     \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00251}00251         \textcolor{comment}{// Make each pixel correspond to 0.2 unit in the scene.}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00252}00252         \textcolor{keywordtype}{float} dx = 0.05f * \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(x -\/ mLastMousePos.x);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00253}00253         \textcolor{keywordtype}{float} dy = 0.05f * \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(y -\/ mLastMousePos.y);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00254}00254 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00255}00255         \textcolor{comment}{//To Do}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00256}00256         \textcolor{comment}{// Update the camera radius based on input.}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00257}00257         \textcolor{comment}{//mRadius += dx -\/ dy;}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00258}00258 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00259}00259         \textcolor{comment}{// Restrict the radius.}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00260}00260         \textcolor{comment}{//mRadius = MathHelper::Clamp(mRadius, 5.0f, 150.0f);}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00261}00261     \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00262}00262 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00263}00263     mLastMousePos.x = x;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00264}00264     mLastMousePos.y = y;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00265}00265 \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00266}00266 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00271}00271 \textcolor{keywordtype}{void} Game::OnKeyboardInput(WPARAM btnState)}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00272}00272 \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00273}00273     mStateStack.\mbox{\hyperlink{class_state_stack_a2a6df2bdf1d3edfb12f09fbb1dfbf67d}{handleEvent}}(btnState);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00274}00274 \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00275}00275 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00276}00276 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00281}00281 \textcolor{keywordtype}{void} Game::UpdateCamera(\textcolor{keyword}{const} GameTimer\& gt)}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00282}00282 \{}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00283}00283 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00284}00284 \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00284}00284     mCamera.UpdateViewMatrix();}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00285}00285 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00286}00286 \textcolor{keywordtype}{void} Game::AnimateMaterials(\textcolor{keyword}{const} GameTimer\& gt)}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00287}00287 \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00288}00288 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00289}00289 \}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00294}00294 \textcolor{keywordtype}{void} Game::UpdateObjectCBs(\textcolor{keyword}{const} GameTimer\& gt)}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00295}00295 \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00296}00296     \textcolor{keyword}{auto} currObjectCB = mCurrFrameResource-\/>\mbox{\hyperlink{struct_frame_resource_adec81cdfb788278fac8ad38066e6c18f}{ObjectCB}}.get();}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00297}00297     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& e : mStateStack.\mbox{\hyperlink{class_state_stack_a0ac721da5ae23e27a29a4962dce091b3}{GetStateStack}}()-\/>front().get()-\/>mAllRitems)}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00298}00298     \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00299}00299         \textcolor{comment}{// Only update the cbuffer data if the constants have changed.  }}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00300}00300         \textcolor{comment}{// This needs to be tracked per frame resource.}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00301}00301         \textcolor{keywordflow}{if} (e-\/>NumFramesDirty > 0)}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00302}00302         \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00303}00303             XMMATRIX world = XMLoadFloat4x4(\&e-\/>World);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00304}00304             XMMATRIX texTransform = XMLoadFloat4x4(\&e-\/>TexTransform);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00305}00305 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00306}00306             \mbox{\hyperlink{struct_object_constants}{ObjectConstants}} objConstants;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00307}00307             XMStoreFloat4x4(\&objConstants.\mbox{\hyperlink{struct_object_constants_ac2a0621da4e0ef99d7c8100ed64359ff}{World}}, XMMatrixTranspose(world));}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00308}00308             XMStoreFloat4x4(\&objConstants.\mbox{\hyperlink{struct_object_constants_a0a7f8e4817a18595707569b307060a42}{TexTransform}}, XMMatrixTranspose(texTransform));}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00309}00309 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00310}00310             currObjectCB-\/>CopyData(e-\/>ObjCBIndex, objConstants);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00286}00286 \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00287}00287 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00288}00288 \textcolor{keywordtype}{void} Game::AnimateMaterials(\textcolor{keyword}{const} GameTimer\& gt)}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00289}00289 \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00290}00290 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00291}00291 \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00296}00296 \textcolor{keywordtype}{void} Game::UpdateObjectCBs(\textcolor{keyword}{const} GameTimer\& gt)}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00297}00297 \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00298}00298     \textcolor{keyword}{auto} currObjectCB = mCurrFrameResource-\/>\mbox{\hyperlink{struct_frame_resource_adec81cdfb788278fac8ad38066e6c18f}{ObjectCB}}.get();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00299}00299     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& e : mStateStack.\mbox{\hyperlink{class_state_stack_a0ac721da5ae23e27a29a4962dce091b3}{GetStateStack}}()-\/>front().get()-\/>mAllRitems)}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00300}00300     \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00301}00301         \textcolor{comment}{// Only update the cbuffer data if the constants have changed.  }}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00302}00302         \textcolor{comment}{// This needs to be tracked per frame resource.}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00303}00303         \textcolor{keywordflow}{if} (e-\/>NumFramesDirty > 0)}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00304}00304         \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00305}00305             XMMATRIX world = XMLoadFloat4x4(\&e-\/>World);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00306}00306             XMMATRIX texTransform = XMLoadFloat4x4(\&e-\/>TexTransform);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00307}00307 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00308}00308             \mbox{\hyperlink{struct_object_constants}{ObjectConstants}} objConstants;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00309}00309             XMStoreFloat4x4(\&objConstants.\mbox{\hyperlink{struct_object_constants_ac2a0621da4e0ef99d7c8100ed64359ff}{World}}, XMMatrixTranspose(world));}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00310}00310             XMStoreFloat4x4(\&objConstants.\mbox{\hyperlink{struct_object_constants_a0a7f8e4817a18595707569b307060a42}{TexTransform}}, XMMatrixTranspose(texTransform));}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00311}00311 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00312}00312             \textcolor{comment}{// Next FrameResource need to be updated too.}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00313}00313             e-\/>NumFramesDirty-\/-\/;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00314}00314         \}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00315}00315     \}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00316}00316 \}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00317}00317 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00322}00322 \textcolor{keywordtype}{void} Game::UpdateMaterialCBs(\textcolor{keyword}{const} GameTimer\& gt)}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00323}00323 \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00324}00324     \textcolor{keyword}{auto} currMaterialCB = mCurrFrameResource-\/>\mbox{\hyperlink{struct_frame_resource_a502a3bd044ed30d31280f4382cc07570}{MaterialCB}}.get();}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00325}00325     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& e : mMaterials)}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00326}00326     \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00327}00327         \textcolor{comment}{// Only update the cbuffer data if the constants have changed.  If the cbuffer}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00328}00328         \textcolor{comment}{// data changes, it needs to be updated for each FrameResource.}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00329}00329         Material* mat = e.second.get();}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00330}00330         \textcolor{keywordflow}{if} (mat-\/>NumFramesDirty > 0)}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00331}00331         \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00332}00332             XMMATRIX matTransform = XMLoadFloat4x4(\&mat-\/>MatTransform);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00333}00333 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00334}00334             MaterialConstants matConstants;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00335}00335             matConstants.DiffuseAlbedo = mat-\/>DiffuseAlbedo;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00336}00336             matConstants.FresnelR0 = mat-\/>FresnelR0;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00337}00337             matConstants.Roughness = mat-\/>Roughness;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00338}00338             XMStoreFloat4x4(\&matConstants.MatTransform, XMMatrixTranspose(matTransform));}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00339}00339 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00340}00340             currMaterialCB-\/>CopyData(mat-\/>MatCBIndex, matConstants);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00312}00312             currObjectCB-\/>CopyData(e-\/>ObjCBIndex, objConstants);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00313}00313 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00314}00314             \textcolor{comment}{// Next FrameResource need to be updated too.}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00315}00315             e-\/>NumFramesDirty-\/-\/;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00316}00316         \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00317}00317     \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00318}00318 \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00319}00319 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00324}00324 \textcolor{keywordtype}{void} Game::UpdateMaterialCBs(\textcolor{keyword}{const} GameTimer\& gt)}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00325}00325 \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00326}00326     \textcolor{keyword}{auto} currMaterialCB = mCurrFrameResource-\/>\mbox{\hyperlink{struct_frame_resource_a502a3bd044ed30d31280f4382cc07570}{MaterialCB}}.get();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00327}00327     \textcolor{keywordflow}{for} (\textcolor{keyword}{auto}\& e : mMaterials)}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00328}00328     \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00329}00329         \textcolor{comment}{// Only update the cbuffer data if the constants have changed.  If the cbuffer}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00330}00330         \textcolor{comment}{// data changes, it needs to be updated for each FrameResource.}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00331}00331         Material* mat = e.second.get();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00332}00332         \textcolor{keywordflow}{if} (mat-\/>NumFramesDirty > 0)}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00333}00333         \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00334}00334             XMMATRIX matTransform = XMLoadFloat4x4(\&mat-\/>MatTransform);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00335}00335 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00336}00336             MaterialConstants matConstants;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00337}00337             matConstants.DiffuseAlbedo = mat-\/>DiffuseAlbedo;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00338}00338             matConstants.FresnelR0 = mat-\/>FresnelR0;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00339}00339             matConstants.Roughness = mat-\/>Roughness;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00340}00340             XMStoreFloat4x4(\&matConstants.MatTransform, XMMatrixTranspose(matTransform));}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00341}00341 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00342}00342             \textcolor{comment}{// Next FrameResource need to be updated too.}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00343}00343             mat-\/>NumFramesDirty-\/-\/;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00344}00344         \}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00345}00345     \}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00346}00346 \}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00347}00347 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00352}00352 \textcolor{keywordtype}{void} Game::UpdateMainPassCB(\textcolor{keyword}{const} GameTimer\& gt)}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00353}00353 \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00354}00354     XMMATRIX view = mCamera.GetView();}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00355}00355     XMMATRIX proj = mCamera.GetProj();}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00356}00356 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00357}00357     XMMATRIX viewProj = XMMatrixMultiply(view, proj);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00358}00358     XMMATRIX invView = XMMatrixInverse(\&XMMatrixDeterminant(view), view);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00359}00359     XMMATRIX invProj = XMMatrixInverse(\&XMMatrixDeterminant(proj), proj);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00360}00360     XMMATRIX invViewProj = XMMatrixInverse(\&XMMatrixDeterminant(viewProj), viewProj);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00361}00361 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00362}00362     XMStoreFloat4x4(\&mMainPassCB.\mbox{\hyperlink{struct_pass_constants_a31fec7617b89727cc44c9802c57bb57a}{View}}, XMMatrixTranspose(view));}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00363}00363     XMStoreFloat4x4(\&mMainPassCB.\mbox{\hyperlink{struct_pass_constants_a4c0b015fa6bc9623ccfa4be6a16a4da9}{InvView}}, XMMatrixTranspose(invView));}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00364}00364     XMStoreFloat4x4(\&mMainPassCB.\mbox{\hyperlink{struct_pass_constants_a8af99b882f26e3507717dacc0c957521}{Proj}}, XMMatrixTranspose(proj));}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00365}00365     XMStoreFloat4x4(\&mMainPassCB.\mbox{\hyperlink{struct_pass_constants_a9a1ac0a0421d54bf40c9749ec1d1537c}{InvProj}}, XMMatrixTranspose(invProj));}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00366}00366     XMStoreFloat4x4(\&mMainPassCB.\mbox{\hyperlink{struct_pass_constants_aa44b7dd1a9692065876bd8d2d6efb76c}{ViewProj}}, XMMatrixTranspose(viewProj));}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00367}00367     XMStoreFloat4x4(\&mMainPassCB.\mbox{\hyperlink{struct_pass_constants_a54f008edf338ad532633c2bb797fca88}{InvViewProj}}, XMMatrixTranspose(invViewProj));}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00368}00368     mMainPassCB.\mbox{\hyperlink{struct_pass_constants_aa902cc9c84da7a58dd0302624e58bfc3}{EyePosW}} = mCamera.GetPosition3f();}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00369}00369     mMainPassCB.\mbox{\hyperlink{struct_pass_constants_aca6c8d20f6c92f8a117ef21bd7666687}{RenderTargetSize}} = XMFLOAT2((\textcolor{keywordtype}{float})mClientWidth, (\textcolor{keywordtype}{float})mClientHeight);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00370}00370     mMainPassCB.\mbox{\hyperlink{struct_pass_constants_af25015138bf3b92384560ec1eed1e6aa}{InvRenderTargetSize}} = XMFLOAT2(1.0f / mClientWidth, 1.0f / mClientHeight);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00371}00371     mMainPassCB.\mbox{\hyperlink{struct_pass_constants_affe3124795eccdba77dae8cef5399e7d}{NearZ}} = 1.0f;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00372}00372     mMainPassCB.\mbox{\hyperlink{struct_pass_constants_acff44014fa749b6cc636c0ed3516bab7}{FarZ}} = 1000.0f;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00373}00373     mMainPassCB.\mbox{\hyperlink{struct_pass_constants_a8b7dc8578d216518bff83264bc85d34c}{TotalTime}} = gt.TotalTime();}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00374}00374     mMainPassCB.\mbox{\hyperlink{struct_pass_constants_afd52d73d793299a6ad6a68bc137bd841}{DeltaTime}} = gt.DeltaTime();}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00375}00375     mMainPassCB.\mbox{\hyperlink{struct_pass_constants_a23503802ae007eb1b745843257371878}{AmbientLight}} = \{ 0.25f, 0.25f, 0.35f, 1.0f \};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00376}00376     mMainPassCB.\mbox{\hyperlink{struct_pass_constants_ab8ff697b065ed13983d022e44e09f35f}{Lights}}[0].Direction = \{ 0.57735f, -\/0.57735f, 0.57735f \};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00377}00377     mMainPassCB.\mbox{\hyperlink{struct_pass_constants_ab8ff697b065ed13983d022e44e09f35f}{Lights}}[0].Strength = \{ 0.6f, 0.6f, 0.6f \};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00378}00378     mMainPassCB.\mbox{\hyperlink{struct_pass_constants_ab8ff697b065ed13983d022e44e09f35f}{Lights}}[1].Direction = \{ -\/0.57735f, -\/0.57735f, 0.57735f \};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00379}00379     mMainPassCB.\mbox{\hyperlink{struct_pass_constants_ab8ff697b065ed13983d022e44e09f35f}{Lights}}[1].Strength = \{ 0.3f, 0.3f, 0.3f \};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00380}00380     mMainPassCB.\mbox{\hyperlink{struct_pass_constants_ab8ff697b065ed13983d022e44e09f35f}{Lights}}[2].Direction = \{ 0.0f, -\/0.707f, -\/0.707f \};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00381}00381     mMainPassCB.\mbox{\hyperlink{struct_pass_constants_ab8ff697b065ed13983d022e44e09f35f}{Lights}}[2].Strength = \{ 0.15f, 0.15f, 0.15f \};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00382}00382 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00383}00383     \textcolor{keyword}{auto} currPassCB = mCurrFrameResource-\/>\mbox{\hyperlink{struct_frame_resource_a2a301e2320545cc025551247f9f60df5}{PassCB}}.get();}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00384}00384     currPassCB-\/>CopyData(0, mMainPassCB);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00385}00385 \}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00386}00386 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00390}00390 \textcolor{keywordtype}{void} Game::LoadTextures()}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00391}00391 \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00392}00392     \textcolor{comment}{//Eagle}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00393}00393     \textcolor{keyword}{auto} EagleTex = std::make\_unique<Texture>();}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00394}00394     EagleTex-\/>Name = \textcolor{stringliteral}{"{}EagleTex"{}};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00395}00395     EagleTex-\/>Filename = L\textcolor{stringliteral}{"{}../Textures/checkboard.dds"{}};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00396}00396     ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00397}00397         mCommandList.Get(), EagleTex-\/>Filename.c\_str(),}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00398}00398         EagleTex-\/>Resource, EagleTex-\/>UploadHeap));}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00399}00399 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00400}00400     mTextures[EagleTex-\/>Name] = std::move(EagleTex);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00342}00342             currMaterialCB-\/>CopyData(mat-\/>MatCBIndex, matConstants);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00343}00343 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00344}00344             \textcolor{comment}{// Next FrameResource need to be updated too.}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00345}00345             mat-\/>NumFramesDirty-\/-\/;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00346}00346         \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00347}00347     \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00348}00348 \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00349}00349 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00354}00354 \textcolor{keywordtype}{void} Game::UpdateMainPassCB(\textcolor{keyword}{const} GameTimer\& gt)}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00355}00355 \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00356}00356     XMMATRIX view = mCamera.GetView();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00357}00357     XMMATRIX proj = mCamera.GetProj();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00358}00358 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00359}00359     XMMATRIX viewProj = XMMatrixMultiply(view, proj);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00360}00360     XMMATRIX invView = XMMatrixInverse(\&XMMatrixDeterminant(view), view);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00361}00361     XMMATRIX invProj = XMMatrixInverse(\&XMMatrixDeterminant(proj), proj);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00362}00362     XMMATRIX invViewProj = XMMatrixInverse(\&XMMatrixDeterminant(viewProj), viewProj);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00363}00363 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00364}00364     XMStoreFloat4x4(\&mMainPassCB.\mbox{\hyperlink{struct_pass_constants_a31fec7617b89727cc44c9802c57bb57a}{View}}, XMMatrixTranspose(view));}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00365}00365     XMStoreFloat4x4(\&mMainPassCB.\mbox{\hyperlink{struct_pass_constants_a4c0b015fa6bc9623ccfa4be6a16a4da9}{InvView}}, XMMatrixTranspose(invView));}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00366}00366     XMStoreFloat4x4(\&mMainPassCB.\mbox{\hyperlink{struct_pass_constants_a8af99b882f26e3507717dacc0c957521}{Proj}}, XMMatrixTranspose(proj));}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00367}00367     XMStoreFloat4x4(\&mMainPassCB.\mbox{\hyperlink{struct_pass_constants_a9a1ac0a0421d54bf40c9749ec1d1537c}{InvProj}}, XMMatrixTranspose(invProj));}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00368}00368     XMStoreFloat4x4(\&mMainPassCB.\mbox{\hyperlink{struct_pass_constants_aa44b7dd1a9692065876bd8d2d6efb76c}{ViewProj}}, XMMatrixTranspose(viewProj));}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00369}00369     XMStoreFloat4x4(\&mMainPassCB.\mbox{\hyperlink{struct_pass_constants_a54f008edf338ad532633c2bb797fca88}{InvViewProj}}, XMMatrixTranspose(invViewProj));}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00370}00370     mMainPassCB.\mbox{\hyperlink{struct_pass_constants_aa902cc9c84da7a58dd0302624e58bfc3}{EyePosW}} = mCamera.GetPosition3f();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00371}00371     mMainPassCB.\mbox{\hyperlink{struct_pass_constants_aca6c8d20f6c92f8a117ef21bd7666687}{RenderTargetSize}} = XMFLOAT2((\textcolor{keywordtype}{float})mClientWidth, (\textcolor{keywordtype}{float})mClientHeight);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00372}00372     mMainPassCB.\mbox{\hyperlink{struct_pass_constants_af25015138bf3b92384560ec1eed1e6aa}{InvRenderTargetSize}} = XMFLOAT2(1.0f / mClientWidth, 1.0f / mClientHeight);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00373}00373     mMainPassCB.\mbox{\hyperlink{struct_pass_constants_affe3124795eccdba77dae8cef5399e7d}{NearZ}} = 1.0f;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00374}00374     mMainPassCB.\mbox{\hyperlink{struct_pass_constants_acff44014fa749b6cc636c0ed3516bab7}{FarZ}} = 1000.0f;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00375}00375     mMainPassCB.\mbox{\hyperlink{struct_pass_constants_a8b7dc8578d216518bff83264bc85d34c}{TotalTime}} = gt.TotalTime();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00376}00376     mMainPassCB.\mbox{\hyperlink{struct_pass_constants_afd52d73d793299a6ad6a68bc137bd841}{DeltaTime}} = gt.DeltaTime();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00377}00377     mMainPassCB.\mbox{\hyperlink{struct_pass_constants_a23503802ae007eb1b745843257371878}{AmbientLight}} = \{ 0.25f, 0.25f, 0.35f, 1.0f \};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00378}00378     mMainPassCB.\mbox{\hyperlink{struct_pass_constants_ab8ff697b065ed13983d022e44e09f35f}{Lights}}[0].Direction = \{ 0.57735f, -\/0.57735f, 0.57735f \};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00379}00379     mMainPassCB.\mbox{\hyperlink{struct_pass_constants_ab8ff697b065ed13983d022e44e09f35f}{Lights}}[0].Strength = \{ 0.6f, 0.6f, 0.6f \};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00380}00380     mMainPassCB.\mbox{\hyperlink{struct_pass_constants_ab8ff697b065ed13983d022e44e09f35f}{Lights}}[1].Direction = \{ -\/0.57735f, -\/0.57735f, 0.57735f \};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00381}00381     mMainPassCB.\mbox{\hyperlink{struct_pass_constants_ab8ff697b065ed13983d022e44e09f35f}{Lights}}[1].Strength = \{ 0.3f, 0.3f, 0.3f \};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00382}00382     mMainPassCB.\mbox{\hyperlink{struct_pass_constants_ab8ff697b065ed13983d022e44e09f35f}{Lights}}[2].Direction = \{ 0.0f, -\/0.707f, -\/0.707f \};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00383}00383     mMainPassCB.\mbox{\hyperlink{struct_pass_constants_ab8ff697b065ed13983d022e44e09f35f}{Lights}}[2].Strength = \{ 0.15f, 0.15f, 0.15f \};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00384}00384 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00385}00385     \textcolor{keyword}{auto} currPassCB = mCurrFrameResource-\/>\mbox{\hyperlink{struct_frame_resource_a2a301e2320545cc025551247f9f60df5}{PassCB}}.get();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00386}00386     currPassCB-\/>CopyData(0, mMainPassCB);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00387}00387 \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00388}00388 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00392}00392 \textcolor{keywordtype}{void} Game::LoadTextures()}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00393}00393 \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00394}00394     \textcolor{comment}{//Eagle}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00395}00395     \textcolor{keyword}{auto} EagleTex = std::make\_unique<Texture>();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00396}00396     EagleTex-\/>Name = \textcolor{stringliteral}{"{}EagleTex"{}};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00397}00397     EagleTex-\/>Filename = L\textcolor{stringliteral}{"{}../Textures/checkboard.dds"{}};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00398}00398     ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00399}00399         mCommandList.Get(), EagleTex-\/>Filename.c\_str(),}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00400}00400         EagleTex-\/>Resource, EagleTex-\/>UploadHeap));}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00401}00401 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00402}00402     \textcolor{comment}{//Raptor}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00403}00403     \textcolor{keyword}{auto} RaptorTex = std::make\_unique<Texture>();}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00404}00404     RaptorTex-\/>Name = \textcolor{stringliteral}{"{}RaptorTex"{}};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00405}00405     RaptorTex-\/>Filename = L\textcolor{stringliteral}{"{}../Textures/bricks2.dds"{}};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00406}00406     ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00407}00407         mCommandList.Get(), RaptorTex-\/>Filename.c\_str(),}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00408}00408         RaptorTex-\/>Resource, RaptorTex-\/>UploadHeap));}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00409}00409 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00410}00410     mTextures[RaptorTex-\/>Name] = std::move(RaptorTex);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00402}00402     mTextures[EagleTex-\/>Name] = std::move(EagleTex);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00403}00403 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00404}00404     \textcolor{comment}{//Raptor}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00405}00405     \textcolor{keyword}{auto} RaptorTex = std::make\_unique<Texture>();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00406}00406     RaptorTex-\/>Name = \textcolor{stringliteral}{"{}RaptorTex"{}};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00407}00407     RaptorTex-\/>Filename = L\textcolor{stringliteral}{"{}../Textures/bricks2.dds"{}};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00408}00408     ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00409}00409         mCommandList.Get(), RaptorTex-\/>Filename.c\_str(),}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00410}00410         RaptorTex-\/>Resource, RaptorTex-\/>UploadHeap));}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00411}00411 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00412}00412     \textcolor{comment}{//Desert}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00413}00413     \textcolor{keyword}{auto} DesertTex = std::make\_unique<Texture>();}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00414}00414     DesertTex-\/>Name = \textcolor{stringliteral}{"{}DesertTex"{}};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00415}00415     DesertTex-\/>Filename = L\textcolor{stringliteral}{"{}../Textures/bricks3.dds"{}};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00416}00416     ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00417}00417         mCommandList.Get(), DesertTex-\/>Filename.c\_str(),}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00418}00418         DesertTex-\/>Resource, DesertTex-\/>UploadHeap));}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00419}00419 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00420}00420     mTextures[DesertTex-\/>Name] = std::move(DesertTex);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00412}00412     mTextures[RaptorTex-\/>Name] = std::move(RaptorTex);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00413}00413 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00414}00414     \textcolor{comment}{//Desert}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00415}00415     \textcolor{keyword}{auto} DesertTex = std::make\_unique<Texture>();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00416}00416     DesertTex-\/>Name = \textcolor{stringliteral}{"{}DesertTex"{}};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00417}00417     DesertTex-\/>Filename = L\textcolor{stringliteral}{"{}../Textures/bricks3.dds"{}};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00418}00418     ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00419}00419         mCommandList.Get(), DesertTex-\/>Filename.c\_str(),}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00420}00420         DesertTex-\/>Resource, DesertTex-\/>UploadHeap));}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00421}00421 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00422}00422     \textcolor{comment}{//Title Background}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00423}00423     \textcolor{keyword}{auto} TitleBackgroundTex = std::make\_unique<Texture>();}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00424}00424     TitleBackgroundTex-\/>Name = \textcolor{stringliteral}{"{}TitleBackground"{}};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00425}00425     TitleBackgroundTex-\/>Filename = L\textcolor{stringliteral}{"{}../Textures/checkboard.dds"{}};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00426}00426     ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00427}00427         mCommandList.Get(), TitleBackgroundTex-\/>Filename.c\_str(),}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00428}00428         TitleBackgroundTex-\/>Resource, TitleBackgroundTex-\/>UploadHeap));}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00429}00429 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00430}00430     mTextures[TitleBackgroundTex-\/>Name] = std::move(TitleBackgroundTex);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00422}00422     mTextures[DesertTex-\/>Name] = std::move(DesertTex);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00423}00423 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00424}00424     \textcolor{comment}{//Title Background}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00425}00425     \textcolor{keyword}{auto} TitleBackgroundTex = std::make\_unique<Texture>();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00426}00426     TitleBackgroundTex-\/>Name = \textcolor{stringliteral}{"{}TitleBackground"{}};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00427}00427     TitleBackgroundTex-\/>Filename = L\textcolor{stringliteral}{"{}../Textures/checkboard.dds"{}};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00428}00428     ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00429}00429         mCommandList.Get(), TitleBackgroundTex-\/>Filename.c\_str(),}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00430}00430         TitleBackgroundTex-\/>Resource, TitleBackgroundTex-\/>UploadHeap));}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00431}00431 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00432}00432     \textcolor{comment}{//TitleText}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00433}00433     \textcolor{keyword}{auto} TitleTextTex = std::make\_unique<Texture>();}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00434}00434     TitleTextTex-\/>Name = \textcolor{stringliteral}{"{}TitleText"{}};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00435}00435     TitleTextTex-\/>Filename = L\textcolor{stringliteral}{"{}../Textures/TitleScreen.dds"{}};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00436}00436     ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00437}00437         mCommandList.Get(), TitleTextTex-\/>Filename.c\_str(),}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00438}00438         TitleTextTex-\/>Resource, TitleTextTex-\/>UploadHeap));}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00439}00439 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00440}00440     mTextures[TitleTextTex-\/>Name] = std::move(TitleTextTex);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00432}00432     mTextures[TitleBackgroundTex-\/>Name] = std::move(TitleBackgroundTex);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00433}00433 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00434}00434     \textcolor{comment}{//TitleText}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00435}00435     \textcolor{keyword}{auto} TitleTextTex = std::make\_unique<Texture>();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00436}00436     TitleTextTex-\/>Name = \textcolor{stringliteral}{"{}TitleText"{}};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00437}00437     TitleTextTex-\/>Filename = L\textcolor{stringliteral}{"{}../Textures/TitleScreen.dds"{}};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00438}00438     ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00439}00439         mCommandList.Get(), TitleTextTex-\/>Filename.c\_str(),}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00440}00440         TitleTextTex-\/>Resource, TitleTextTex-\/>UploadHeap));}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00441}00441 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00442}00442 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00442}00442     mTextures[TitleTextTex-\/>Name] = std::move(TitleTextTex);}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00443}00443 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00444}00444     \textcolor{comment}{//PAUSE STATE}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00445}00445     \textcolor{keyword}{auto} PauseDisplayTex = std::make\_unique<Texture>();}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00446}00446     PauseDisplayTex-\/>Name = \textcolor{stringliteral}{"{}PauseDisplay"{}};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00447}00447     PauseDisplayTex-\/>Filename = L\textcolor{stringliteral}{"{}../Textures/PauseScreen.dds"{}};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00444}00444     \textcolor{comment}{// Main Menu Text}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00445}00445     \textcolor{keyword}{auto} MainMenuText = std::make\_unique<Texture>();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00446}00446     MainMenuText-\/>Name = \textcolor{stringliteral}{"{}MainMenuText"{}};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00447}00447     MainMenuText-\/>Filename = L\textcolor{stringliteral}{"{}../Textures/MainMenu.dds"{}};}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00448}00448     ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00449}00449         mCommandList.Get(), PauseDisplayTex-\/>Filename.c\_str(),}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00450}00450         PauseDisplayTex-\/>Resource, PauseDisplayTex-\/>UploadHeap));}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00449}00449         mCommandList.Get(), MainMenuText-\/>Filename.c\_str(),}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00450}00450         MainMenuText-\/>Resource, MainMenuText-\/>UploadHeap));}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00451}00451 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00452}00452     mTextures[PauseDisplayTex-\/>Name] = std::move(PauseDisplayTex);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00452}00452     mTextures[MainMenuText-\/>Name] = std::move(MainMenuText);}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00453}00453 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00454}00454 \}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00455}00455 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00459}00459 \textcolor{keywordtype}{void} Game::BuildRootSignature()}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00460}00460 \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00461}00461     CD3DX12\_DESCRIPTOR\_RANGE texTable;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00462}00462     texTable.Init(D3D12\_DESCRIPTOR\_RANGE\_TYPE\_SRV, 1, 0);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00463}00463 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00464}00464     \textcolor{comment}{// Root parameter can be a table, root descriptor or root constants.}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00465}00465     CD3DX12\_ROOT\_PARAMETER slotRootParameter[4];}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00454}00454 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00455}00455     \textcolor{comment}{//PAUSE STATE}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00456}00456     \textcolor{keyword}{auto} PauseDisplayTex = std::make\_unique<Texture>();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00457}00457     PauseDisplayTex-\/>Name = \textcolor{stringliteral}{"{}PauseDisplay"{}};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00458}00458     PauseDisplayTex-\/>Filename = L\textcolor{stringliteral}{"{}../Textures/PauseScreen.dds"{}};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00459}00459     ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00460}00460         mCommandList.Get(), PauseDisplayTex-\/>Filename.c\_str(),}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00461}00461         PauseDisplayTex-\/>Resource, PauseDisplayTex-\/>UploadHeap));}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00462}00462 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00463}00463     mTextures[PauseDisplayTex-\/>Name] = std::move(PauseDisplayTex);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00464}00464 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00465}00465 \}}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00466}00466 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00467}00467     \textcolor{comment}{// Perfomance TIP: Order from most frequent to least frequent.}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00468}00468     slotRootParameter[0].InitAsDescriptorTable(1, \&texTable, D3D12\_SHADER\_VISIBILITY\_PIXEL);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00469}00469     slotRootParameter[1].InitAsConstantBufferView(0);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00470}00470     slotRootParameter[2].InitAsConstantBufferView(1);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00471}00471     slotRootParameter[3].InitAsConstantBufferView(2);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00472}00472 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00473}00473     \textcolor{keyword}{auto} staticSamplers = GetStaticSamplers();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00470}00470 \textcolor{keywordtype}{void} Game::BuildRootSignature()}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00471}00471 \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00472}00472     CD3DX12\_DESCRIPTOR\_RANGE texTable;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00473}00473     texTable.Init(D3D12\_DESCRIPTOR\_RANGE\_TYPE\_SRV, 1, 0);}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00474}00474 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00475}00475     \textcolor{comment}{// A root signature is an array of root parameters.}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00476}00476     \textcolor{comment}{//The Init function of the CD3DX12\_ROOT\_SIGNATURE\_DESC class has two parameters that allow you to}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00477}00477         \textcolor{comment}{//define an array of so -\/ called static samplers your application can use.}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00478}00478     CD3DX12\_ROOT\_SIGNATURE\_DESC rootSigDesc(4, slotRootParameter,}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00479}00479         (UINT)staticSamplers.size(), staticSamplers.data(),  \textcolor{comment}{//6 samplers!}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00480}00480         D3D12\_ROOT\_SIGNATURE\_FLAG\_ALLOW\_INPUT\_ASSEMBLER\_INPUT\_LAYOUT);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00481}00481 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00482}00482     \textcolor{comment}{// create a root signature with a single slot which points to a descriptor range consisting of a single constant buffer}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00483}00483     ComPtr<ID3DBlob> serializedRootSig = \textcolor{keyword}{nullptr};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00484}00484     ComPtr<ID3DBlob> errorBlob = \textcolor{keyword}{nullptr};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00485}00485     HRESULT hr = D3D12SerializeRootSignature(\&rootSigDesc, D3D\_ROOT\_SIGNATURE\_VERSION\_1,}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00486}00486         serializedRootSig.GetAddressOf(), errorBlob.GetAddressOf());}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00487}00487 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00488}00488     \textcolor{keywordflow}{if} (errorBlob != \textcolor{keyword}{nullptr})}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00489}00489     \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00490}00490         ::OutputDebugStringA((\textcolor{keywordtype}{char}*)errorBlob-\/>GetBufferPointer());}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00491}00491     \}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00492}00492     ThrowIfFailed(hr);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00493}00493 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00494}00494     ThrowIfFailed(md3dDevice-\/>CreateRootSignature(}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00495}00495         0,}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00496}00496         serializedRootSig-\/>GetBufferPointer(),}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00497}00497         serializedRootSig-\/>GetBufferSize(),}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00498}00498         IID\_PPV\_ARGS(mRootSignature.GetAddressOf())));}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00499}00499 \}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00500}00500 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00501}00501 \textcolor{comment}{//Once a texture resource is created, we need to create an SRV descriptor to it which we}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00502}00502 \textcolor{comment}{//can set to a root signature parameter slot for use by the shader programs.}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00503}00503 \textcolor{keywordtype}{void} Game::BuildDescriptorHeaps()}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00504}00504 \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00505}00505     \textcolor{comment}{//}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00506}00506     \textcolor{comment}{// Create the SRV heap.}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00507}00507     \textcolor{comment}{//}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00508}00508     D3D12\_DESCRIPTOR\_HEAP\_DESC srvHeapDesc = \{\};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00509}00509     srvHeapDesc.NumDescriptors = 13;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00510}00510     srvHeapDesc.Type = D3D12\_DESCRIPTOR\_HEAP\_TYPE\_CBV\_SRV\_UAV;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00511}00511     srvHeapDesc.Flags = D3D12\_DESCRIPTOR\_HEAP\_FLAG\_SHADER\_VISIBLE;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00512}00512     ThrowIfFailed(md3dDevice-\/>CreateDescriptorHeap(\&srvHeapDesc, IID\_PPV\_ARGS(\&mSrvDescriptorHeap)));}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00513}00513 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00514}00514     \textcolor{comment}{//}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00515}00515     \textcolor{comment}{// Fill out the heap with actual descriptors.}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00475}00475     \textcolor{comment}{// Root parameter can be a table, root descriptor or root constants.}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00476}00476     CD3DX12\_ROOT\_PARAMETER slotRootParameter[4];}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00477}00477 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00478}00478     \textcolor{comment}{// Perfomance TIP: Order from most frequent to least frequent.}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00479}00479     slotRootParameter[0].InitAsDescriptorTable(1, \&texTable, D3D12\_SHADER\_VISIBILITY\_PIXEL);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00480}00480     slotRootParameter[1].InitAsConstantBufferView(0);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00481}00481     slotRootParameter[2].InitAsConstantBufferView(1);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00482}00482     slotRootParameter[3].InitAsConstantBufferView(2);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00483}00483 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00484}00484     \textcolor{keyword}{auto} staticSamplers = GetStaticSamplers();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00485}00485 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00486}00486     \textcolor{comment}{// A root signature is an array of root parameters.}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00487}00487     \textcolor{comment}{//The Init function of the CD3DX12\_ROOT\_SIGNATURE\_DESC class has two parameters that allow you to}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00488}00488         \textcolor{comment}{//define an array of so -\/ called static samplers your application can use.}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00489}00489     CD3DX12\_ROOT\_SIGNATURE\_DESC rootSigDesc(4, slotRootParameter,}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00490}00490         (UINT)staticSamplers.size(), staticSamplers.data(),  \textcolor{comment}{//6 samplers!}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00491}00491         D3D12\_ROOT\_SIGNATURE\_FLAG\_ALLOW\_INPUT\_ASSEMBLER\_INPUT\_LAYOUT);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00492}00492 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00493}00493     \textcolor{comment}{// create a root signature with a single slot which points to a descriptor range consisting of a single constant buffer}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00494}00494     ComPtr<ID3DBlob> serializedRootSig = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00495}00495     ComPtr<ID3DBlob> errorBlob = \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00496}00496     HRESULT hr = D3D12SerializeRootSignature(\&rootSigDesc, D3D\_ROOT\_SIGNATURE\_VERSION\_1,}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00497}00497         serializedRootSig.GetAddressOf(), errorBlob.GetAddressOf());}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00498}00498 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00499}00499     \textcolor{keywordflow}{if} (errorBlob != \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00500}00500     \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00501}00501         ::OutputDebugStringA((\textcolor{keywordtype}{char}*)errorBlob-\/>GetBufferPointer());}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00502}00502     \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00503}00503     ThrowIfFailed(hr);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00504}00504 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00505}00505     ThrowIfFailed(md3dDevice-\/>CreateRootSignature(}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00506}00506         0,}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00507}00507         serializedRootSig-\/>GetBufferPointer(),}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00508}00508         serializedRootSig-\/>GetBufferSize(),}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00509}00509         IID\_PPV\_ARGS(mRootSignature.GetAddressOf())));}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00510}00510 \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00511}00511 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00512}00512 \textcolor{comment}{//Once a texture resource is created, we need to create an SRV descriptor to it which we}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00513}00513 \textcolor{comment}{//can set to a root signature parameter slot for use by the shader programs.}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00514}00514 \textcolor{keywordtype}{void} Game::BuildDescriptorHeaps()}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00515}00515 \{}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00516}00516     \textcolor{comment}{//}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00517}00517     CD3DX12\_CPU\_DESCRIPTOR\_HANDLE hDescriptor(mSrvDescriptorHeap-\/>GetCPUDescriptorHandleForHeapStart());}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00518}00518 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00519}00519     \textcolor{keyword}{auto} EagleTex = mTextures[\textcolor{stringliteral}{"{}EagleTex"{}}]-\/>Resource;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00520}00520     \textcolor{keyword}{auto} RaptorTex = mTextures[\textcolor{stringliteral}{"{}RaptorTex"{}}]-\/>Resource;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00521}00521     \textcolor{keyword}{auto} DesertTex = mTextures[\textcolor{stringliteral}{"{}DesertTex"{}}]-\/>Resource;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00522}00522     \textcolor{keyword}{auto} TitleBackgroundTex = mTextures[\textcolor{stringliteral}{"{}TitleBackground"{}}]-\/>Resource;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00523}00523     \textcolor{keyword}{auto} TitleTextTex = mTextures[\textcolor{stringliteral}{"{}TitleText"{}}]-\/>Resource;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00517}00517     \textcolor{comment}{// Create the SRV heap.}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00518}00518     \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00519}00519     D3D12\_DESCRIPTOR\_HEAP\_DESC srvHeapDesc = \{\};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00520}00520     srvHeapDesc.NumDescriptors = 13;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00521}00521     srvHeapDesc.Type = D3D12\_DESCRIPTOR\_HEAP\_TYPE\_CBV\_SRV\_UAV;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00522}00522     srvHeapDesc.Flags = D3D12\_DESCRIPTOR\_HEAP\_FLAG\_SHADER\_VISIBLE;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00523}00523     ThrowIfFailed(md3dDevice-\/>CreateDescriptorHeap(\&srvHeapDesc, IID\_PPV\_ARGS(\&mSrvDescriptorHeap)));}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00524}00524 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00525}00525     \textcolor{keyword}{auto} PauseDisplayTex = mTextures[\textcolor{stringliteral}{"{}PauseDisplay"{}}]-\/>Resource;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00526}00526 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00527}00527     D3D12\_SHADER\_RESOURCE\_VIEW\_DESC srvDesc = \{\};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00528}00528 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00529}00529     \textcolor{comment}{//This mapping enables the shader resource view (SRV) to choose how memory gets routed to the 4 return components in a shader after a memory fetch.}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00530}00530     \textcolor{comment}{//When a texture is sampled in a shader, it will return a vector of the texture data at the specified texture coordinates.}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00531}00531     \textcolor{comment}{//This field provides a way to reorder the vector components returned when sampling the texture.}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00532}00532     \textcolor{comment}{//D3D12\_DEFAULT\_SHADER\_4\_COMPONENT\_MAPPING  will not reorder the components and just return the data in the order it is stored in the texture resource.}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00533}00533     srvDesc.Shader4ComponentMapping = D3D12\_DEFAULT\_SHADER\_4\_COMPONENT\_MAPPING;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00534}00534 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00535}00535     srvDesc.Format = EagleTex-\/>GetDesc().Format;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00525}00525     \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00526}00526     \textcolor{comment}{// Fill out the heap with actual descriptors.}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00527}00527     \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00528}00528     CD3DX12\_CPU\_DESCRIPTOR\_HANDLE hDescriptor(mSrvDescriptorHeap-\/>GetCPUDescriptorHandleForHeapStart());}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00529}00529 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00530}00530     \textcolor{keyword}{auto} EagleTex = mTextures[\textcolor{stringliteral}{"{}EagleTex"{}}]-\/>Resource;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00531}00531     \textcolor{keyword}{auto} RaptorTex = mTextures[\textcolor{stringliteral}{"{}RaptorTex"{}}]-\/>Resource;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00532}00532     \textcolor{keyword}{auto} DesertTex = mTextures[\textcolor{stringliteral}{"{}DesertTex"{}}]-\/>Resource;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00533}00533     \textcolor{keyword}{auto} TitleBackgroundTex = mTextures[\textcolor{stringliteral}{"{}TitleBackground"{}}]-\/>Resource;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00534}00534     \textcolor{keyword}{auto} TitleTextTex = mTextures[\textcolor{stringliteral}{"{}TitleText"{}}]-\/>Resource;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00535}00535     \textcolor{keyword}{auto} MainMenuTex = mTextures[\textcolor{stringliteral}{"{}MainMenuText"{}}]-\/>Resource;}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00536}00536 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00537}00537     srvDesc.ViewDimension = D3D12\_SRV\_DIMENSION\_TEXTURE2D;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00538}00538     srvDesc.Texture2D.MostDetailedMip = 0;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00539}00539     \textcolor{comment}{//The number of mipmap levels to view, starting at MostDetailedMip.This field, along with MostDetailedMip allows us to}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00540}00540     \textcolor{comment}{//specify a subrange of mipmap levels to view.You can specify -\/ 1 to indicate to view}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00541}00541     \textcolor{comment}{//all mipmap levels from MostDetailedMip down to the last mipmap level.}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00542}00542 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00543}00543     srvDesc.Texture2D.MipLevels = EagleTex-\/>GetDesc().MipLevels;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00544}00544 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00545}00545     \textcolor{comment}{//Specifies the minimum mipmap level that can be accessed. 0.0 means all the mipmap levels can be accessed.}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00546}00546     \textcolor{comment}{//Specifying 3.0 means mipmap levels 3.0 to MipCount -\/ 1 can be accessed.}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00547}00547     srvDesc.Texture2D.ResourceMinLODClamp = 0.0f;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00537}00537     \textcolor{keyword}{auto} PauseDisplayTex = mTextures[\textcolor{stringliteral}{"{}PauseDisplay"{}}]-\/>Resource;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00538}00538 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00539}00539     D3D12\_SHADER\_RESOURCE\_VIEW\_DESC srvDesc = \{\};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00540}00540 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00541}00541     \textcolor{comment}{//This mapping enables the shader resource view (SRV) to choose how memory gets routed to the 4 return components in a shader after a memory fetch.}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00542}00542     \textcolor{comment}{//When a texture is sampled in a shader, it will return a vector of the texture data at the specified texture coordinates.}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00543}00543     \textcolor{comment}{//This field provides a way to reorder the vector components returned when sampling the texture.}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00544}00544     \textcolor{comment}{//D3D12\_DEFAULT\_SHADER\_4\_COMPONENT\_MAPPING  will not reorder the components and just return the data in the order it is stored in the texture resource.}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00545}00545     srvDesc.Shader4ComponentMapping = D3D12\_DEFAULT\_SHADER\_4\_COMPONENT\_MAPPING;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00546}00546 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00547}00547     srvDesc.Format = EagleTex-\/>GetDesc().Format;}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00548}00548 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00549}00549     md3dDevice-\/>CreateShaderResourceView(EagleTex.Get(), \&srvDesc, hDescriptor);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00550}00550 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00551}00551     \textcolor{comment}{//Raptor Descriptor}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00552}00552     hDescriptor.Offset(1, mCbvSrvDescriptorSize);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00553}00553     srvDesc.Format = RaptorTex-\/>GetDesc().Format;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00554}00554     md3dDevice-\/>CreateShaderResourceView(RaptorTex.Get(), \&srvDesc, hDescriptor);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00555}00555 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00556}00556     \textcolor{comment}{//Desert Descriptor}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00557}00557     hDescriptor.Offset(1, mCbvSrvDescriptorSize);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00558}00558     srvDesc.Format = DesertTex-\/>GetDesc().Format;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00559}00559     md3dDevice-\/>CreateShaderResourceView(DesertTex.Get(), \&srvDesc, hDescriptor);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00549}00549     srvDesc.ViewDimension = D3D12\_SRV\_DIMENSION\_TEXTURE2D;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00550}00550     srvDesc.Texture2D.MostDetailedMip = 0;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00551}00551     \textcolor{comment}{//The number of mipmap levels to view, starting at MostDetailedMip.This field, along with MostDetailedMip allows us to}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00552}00552     \textcolor{comment}{//specify a subrange of mipmap levels to view.You can specify -\/ 1 to indicate to view}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00553}00553     \textcolor{comment}{//all mipmap levels from MostDetailedMip down to the last mipmap level.}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00554}00554 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00555}00555     srvDesc.Texture2D.MipLevels = EagleTex-\/>GetDesc().MipLevels;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00556}00556 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00557}00557     \textcolor{comment}{//Specifies the minimum mipmap level that can be accessed. 0.0 means all the mipmap levels can be accessed.}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00558}00558     \textcolor{comment}{//Specifying 3.0 means mipmap levels 3.0 to MipCount -\/ 1 can be accessed.}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00559}00559     srvDesc.Texture2D.ResourceMinLODClamp = 0.0f;}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00560}00560 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00561}00561 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00562}00562     \textcolor{comment}{//TitleBackground Descriptor}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00563}00563     hDescriptor.Offset(1, mCbvSrvDescriptorSize);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00564}00564     srvDesc.Format = TitleBackgroundTex-\/>GetDesc().Format;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00565}00565     md3dDevice-\/>CreateShaderResourceView(TitleBackgroundTex.Get(), \&srvDesc, hDescriptor);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00566}00566 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00567}00567     \textcolor{comment}{//Title Text Descriptor}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00568}00568     hDescriptor.Offset(1, mCbvSrvDescriptorSize);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00569}00569     srvDesc.Format = TitleTextTex-\/>GetDesc().Format;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00570}00570     md3dDevice-\/>CreateShaderResourceView(TitleTextTex.Get(), \&srvDesc, hDescriptor);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00571}00571 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00572}00572     \textcolor{comment}{//Pause DisplayDescriptor}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00573}00573     hDescriptor.Offset(1, mCbvSrvDescriptorSize);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00574}00574     srvDesc.Format = PauseDisplayTex-\/>GetDesc().Format;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00575}00575     md3dDevice-\/>CreateShaderResourceView(PauseDisplayTex.Get(), \&srvDesc, hDescriptor);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00576}00576 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00577}00577 \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00561}00561     md3dDevice-\/>CreateShaderResourceView(EagleTex.Get(), \&srvDesc, hDescriptor);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00562}00562 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00563}00563     \textcolor{comment}{//Raptor Descriptor}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00564}00564     hDescriptor.Offset(1, mCbvSrvDescriptorSize);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00565}00565     srvDesc.Format = RaptorTex-\/>GetDesc().Format;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00566}00566     md3dDevice-\/>CreateShaderResourceView(RaptorTex.Get(), \&srvDesc, hDescriptor);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00567}00567 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00568}00568     \textcolor{comment}{//Desert Descriptor}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00569}00569     hDescriptor.Offset(1, mCbvSrvDescriptorSize);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00570}00570     srvDesc.Format = DesertTex-\/>GetDesc().Format;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00571}00571     md3dDevice-\/>CreateShaderResourceView(DesertTex.Get(), \&srvDesc, hDescriptor);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00572}00572 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00573}00573 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00574}00574     \textcolor{comment}{//TitleBackground Descriptor}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00575}00575     hDescriptor.Offset(1, mCbvSrvDescriptorSize);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00576}00576     srvDesc.Format = TitleBackgroundTex-\/>GetDesc().Format;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00577}00577     md3dDevice-\/>CreateShaderResourceView(TitleBackgroundTex.Get(), \&srvDesc, hDescriptor);}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00578}00578 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00582}00582 \textcolor{keywordtype}{void} Game::BuildShadersAndInputLayout()}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00583}00583 \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00584}00584     mShaders[\textcolor{stringliteral}{"{}standardVS"{}}] = d3dUtil::CompileShader(L\textcolor{stringliteral}{"{}Shaders\(\backslash\)\(\backslash\)Default.hlsl"{}}, \textcolor{keyword}{nullptr}, \textcolor{stringliteral}{"{}VS"{}}, \textcolor{stringliteral}{"{}vs\_5\_1"{}});}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00585}00585     mShaders[\textcolor{stringliteral}{"{}opaquePS"{}}] = d3dUtil::CompileShader(L\textcolor{stringliteral}{"{}Shaders\(\backslash\)\(\backslash\)Default.hlsl"{}}, \textcolor{keyword}{nullptr}, \textcolor{stringliteral}{"{}PS"{}}, \textcolor{stringliteral}{"{}ps\_5\_1"{}});}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00586}00586 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00587}00587     mInputLayout =}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00588}00588     \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00589}00589         \{ \textcolor{stringliteral}{"{}POSITION"{}}, 0, DXGI\_FORMAT\_R32G32B32\_FLOAT, 0, 0, D3D12\_INPUT\_CLASSIFICATION\_PER\_VERTEX\_DATA, 0 \},}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00590}00590         \{ \textcolor{stringliteral}{"{}NORMAL"{}}, 0, DXGI\_FORMAT\_R32G32B32\_FLOAT, 0, 12, D3D12\_INPUT\_CLASSIFICATION\_PER\_VERTEX\_DATA, 0 \},}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00591}00591         \textcolor{comment}{//step3}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00592}00592         \textcolor{comment}{//The texture coordinates determine what part of the texture gets mapped on the triangles.}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00593}00593         \{ \textcolor{stringliteral}{"{}TEXCOORD"{}}, 0, DXGI\_FORMAT\_R32G32\_FLOAT, 0, 24, D3D12\_INPUT\_CLASSIFICATION\_PER\_VERTEX\_DATA, 0 \},}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00594}00594     \};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00579}00579     \textcolor{comment}{//Title Text Descriptor}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00580}00580     hDescriptor.Offset(1, mCbvSrvDescriptorSize);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00581}00581     srvDesc.Format = TitleTextTex-\/>GetDesc().Format;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00582}00582     md3dDevice-\/>CreateShaderResourceView(TitleTextTex.Get(), \&srvDesc, hDescriptor);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00583}00583 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00584}00584     \textcolor{comment}{//Main Menu Text Descriptor}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00585}00585     hDescriptor.Offset(1, mCbvSrvDescriptorSize);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00586}00586     srvDesc.Format = TitleTextTex-\/>GetDesc().Format;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00587}00587     md3dDevice-\/>CreateShaderResourceView(MainMenuTex.Get(), \&srvDesc, hDescriptor);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00588}00588 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00589}00589 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00590}00590     \textcolor{comment}{//Pause DisplayDescriptor}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00591}00591     hDescriptor.Offset(1, mCbvSrvDescriptorSize);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00592}00592     srvDesc.Format = PauseDisplayTex-\/>GetDesc().Format;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00593}00593     md3dDevice-\/>CreateShaderResourceView(PauseDisplayTex.Get(), \&srvDesc, hDescriptor);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00594}00594 }
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00595}00595 \}}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00596}00596 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00600}00600 \textcolor{keywordtype}{void} Game::BuildShapeGeometry()}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00600}00600 \textcolor{keywordtype}{void} Game::BuildShadersAndInputLayout()}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00601}00601 \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00602}00602     GeometryGenerator geoGen;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00603}00603     \textcolor{comment}{//GeometryGenerator::MeshData box = geoGen.CreateQuad(0.0f, 0.0f, 20.0f, 10.0f, 10.0f);}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00604}00604     GeometryGenerator::MeshData box = geoGen.CreateBox(1, 1, 1, 1);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00605}00605     SubmeshGeometry boxSubmesh;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00606}00606     boxSubmesh.IndexCount = (UINT)box.Indices32.size();}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00607}00607     boxSubmesh.StartIndexLocation = 0;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00608}00608     boxSubmesh.BaseVertexLocation = 0;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00609}00609 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00610}00610 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00611}00611     std::vector<Vertex> vertices(box.Vertices.size());}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00612}00612 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00613}00613     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < box.Vertices.size(); ++i)}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00614}00614     \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00615}00615         vertices[i].Pos = box.Vertices[i].Position;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00616}00616         vertices[i].Normal = box.Vertices[i].Normal;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00617}00617         vertices[i].TexC = box.Vertices[i].TexC;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00618}00618     \}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00619}00619 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00620}00620     std::vector<std::uint16\_t> indices = box.GetIndices16();}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00621}00621 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00622}00622     \textcolor{keyword}{const} UINT vbByteSize = (UINT)vertices.size() * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_vertex}{Vertex}});}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00623}00623     \textcolor{keyword}{const} UINT ibByteSize = (UINT)indices.size() * \textcolor{keyword}{sizeof}(std::uint16\_t);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00624}00624 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00625}00625     \textcolor{keyword}{auto} geo = std::make\_unique<MeshGeometry>();}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00626}00626     geo-\/>Name = \textcolor{stringliteral}{"{}boxGeo"{}};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00602}00602     mShaders[\textcolor{stringliteral}{"{}standardVS"{}}] = d3dUtil::CompileShader(L\textcolor{stringliteral}{"{}Shaders\(\backslash\)\(\backslash\)Default.hlsl"{}}, \textcolor{keyword}{nullptr}, \textcolor{stringliteral}{"{}VS"{}}, \textcolor{stringliteral}{"{}vs\_5\_1"{}});}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00603}00603     mShaders[\textcolor{stringliteral}{"{}opaquePS"{}}] = d3dUtil::CompileShader(L\textcolor{stringliteral}{"{}Shaders\(\backslash\)\(\backslash\)Default.hlsl"{}}, \textcolor{keyword}{nullptr}, \textcolor{stringliteral}{"{}PS"{}}, \textcolor{stringliteral}{"{}ps\_5\_1"{}});}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00604}00604 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00605}00605     mInputLayout =}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00606}00606     \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00607}00607         \{ \textcolor{stringliteral}{"{}POSITION"{}}, 0, DXGI\_FORMAT\_R32G32B32\_FLOAT, 0, 0, D3D12\_INPUT\_CLASSIFICATION\_PER\_VERTEX\_DATA, 0 \},}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00608}00608         \{ \textcolor{stringliteral}{"{}NORMAL"{}}, 0, DXGI\_FORMAT\_R32G32B32\_FLOAT, 0, 12, D3D12\_INPUT\_CLASSIFICATION\_PER\_VERTEX\_DATA, 0 \},}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00609}00609         \textcolor{comment}{//step3}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00610}00610         \textcolor{comment}{//The texture coordinates determine what part of the texture gets mapped on the triangles.}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00611}00611         \{ \textcolor{stringliteral}{"{}TEXCOORD"{}}, 0, DXGI\_FORMAT\_R32G32\_FLOAT, 0, 24, D3D12\_INPUT\_CLASSIFICATION\_PER\_VERTEX\_DATA, 0 \},}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00612}00612     \};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00613}00613 \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00614}00614 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00618}00618 \textcolor{keywordtype}{void} Game::BuildShapeGeometry()}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00619}00619 \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00620}00620     GeometryGenerator geoGen;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00621}00621     \textcolor{comment}{//GeometryGenerator::MeshData box = geoGen.CreateQuad(0.0f, 0.0f, 20.0f, 10.0f, 10.0f);}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00622}00622     GeometryGenerator::MeshData box = geoGen.CreateBox(1, 1, 1, 1);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00623}00623     SubmeshGeometry boxSubmesh;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00624}00624     boxSubmesh.IndexCount = (UINT)box.Indices32.size();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00625}00625     boxSubmesh.StartIndexLocation = 0;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00626}00626     boxSubmesh.BaseVertexLocation = 0;}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00627}00627 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00628}00628     ThrowIfFailed(D3DCreateBlob(vbByteSize, \&geo-\/>VertexBufferCPU));}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00629}00629     CopyMemory(geo-\/>VertexBufferCPU-\/>GetBufferPointer(), vertices.data(), vbByteSize);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00628}00628 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00629}00629     std::vector<Vertex> vertices(box.Vertices.size());}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00630}00630 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00631}00631     ThrowIfFailed(D3DCreateBlob(ibByteSize, \&geo-\/>IndexBufferCPU));}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00632}00632     CopyMemory(geo-\/>IndexBufferCPU-\/>GetBufferPointer(), indices.data(), ibByteSize);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00633}00633 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00634}00634     geo-\/>VertexBufferGPU = d3dUtil::CreateDefaultBuffer(md3dDevice.Get(),}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00635}00635         mCommandList.Get(), vertices.data(), vbByteSize, geo-\/>VertexBufferUploader);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00636}00636 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00637}00637     geo-\/>IndexBufferGPU = d3dUtil::CreateDefaultBuffer(md3dDevice.Get(),}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00638}00638         mCommandList.Get(), indices.data(), ibByteSize, geo-\/>IndexBufferUploader);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00631}00631     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < box.Vertices.size(); ++i)}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00632}00632     \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00633}00633         vertices[i].Pos = box.Vertices[i].Position;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00634}00634         vertices[i].Normal = box.Vertices[i].Normal;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00635}00635         vertices[i].TexC = box.Vertices[i].TexC;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00636}00636     \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00637}00637 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00638}00638     std::vector<std::uint16\_t> indices = box.GetIndices16();}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00639}00639 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00640}00640     geo-\/>VertexByteStride = \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_vertex}{Vertex}});}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00641}00641     geo-\/>VertexBufferByteSize = vbByteSize;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00642}00642     geo-\/>IndexFormat = DXGI\_FORMAT\_R16\_UINT;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00643}00643     geo-\/>IndexBufferByteSize = ibByteSize;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00644}00644 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00645}00645     geo-\/>DrawArgs[\textcolor{stringliteral}{"{}box"{}}] = boxSubmesh;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00646}00646 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00647}00647     mGeometries[geo-\/>Name] = std::move(geo);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00648}00648 \}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00649}00649 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00653}00653 \textcolor{keywordtype}{void} Game::BuildPSOs()}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00654}00654 \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00655}00655     D3D12\_GRAPHICS\_PIPELINE\_STATE\_DESC opaquePsoDesc;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00656}00656 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00657}00657     \textcolor{comment}{//}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00658}00658     \textcolor{comment}{// PSO for opaque objects.}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00659}00659     \textcolor{comment}{//}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00660}00660     ZeroMemory(\&opaquePsoDesc, \textcolor{keyword}{sizeof}(D3D12\_GRAPHICS\_PIPELINE\_STATE\_DESC));}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00661}00661     opaquePsoDesc.InputLayout = \{ mInputLayout.data(), (UINT)mInputLayout.size() \};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00662}00662     opaquePsoDesc.pRootSignature = mRootSignature.Get();}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00663}00663     opaquePsoDesc.VS =}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00664}00664     \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00665}00665         \textcolor{keyword}{reinterpret\_cast<}BYTE*\textcolor{keyword}{>}(mShaders[\textcolor{stringliteral}{"{}standardVS"{}}]-\/>GetBufferPointer()),}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00666}00666         mShaders[\textcolor{stringliteral}{"{}standardVS"{}}]-\/>GetBufferSize()}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00667}00667     \};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00668}00668     opaquePsoDesc.PS =}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00669}00669     \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00670}00670         \textcolor{keyword}{reinterpret\_cast<}BYTE*\textcolor{keyword}{>}(mShaders[\textcolor{stringliteral}{"{}opaquePS"{}}]-\/>GetBufferPointer()),}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00671}00671         mShaders[\textcolor{stringliteral}{"{}opaquePS"{}}]-\/>GetBufferSize()}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00672}00672     \};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00673}00673     opaquePsoDesc.RasterizerState = CD3DX12\_RASTERIZER\_DESC(D3D12\_DEFAULT);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00674}00674     opaquePsoDesc.BlendState = CD3DX12\_BLEND\_DESC(D3D12\_DEFAULT);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00675}00675     opaquePsoDesc.DepthStencilState = CD3DX12\_DEPTH\_STENCIL\_DESC(D3D12\_DEFAULT);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00676}00676     opaquePsoDesc.SampleMask = UINT\_MAX;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00677}00677     opaquePsoDesc.PrimitiveTopologyType = D3D12\_PRIMITIVE\_TOPOLOGY\_TYPE\_TRIANGLE;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00678}00678     opaquePsoDesc.NumRenderTargets = 1;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00679}00679     opaquePsoDesc.RTVFormats[0] = mBackBufferFormat;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00680}00680     opaquePsoDesc.SampleDesc.Count = m4xMsaaState ? 4 : 1;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00681}00681     opaquePsoDesc.SampleDesc.Quality = m4xMsaaState ? (m4xMsaaQuality -\/ 1) : 0;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00682}00682     opaquePsoDesc.DSVFormat = mDepthStencilFormat;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00683}00683     ThrowIfFailed(md3dDevice-\/>CreateGraphicsPipelineState(\&opaquePsoDesc, IID\_PPV\_ARGS(\&mOpaquePSO)));}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00684}00684 \}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00685}00685 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00689}\mbox{\hyperlink{class_game_ab84803799b4362f7d2a625c78d4a5f82}{00689}} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_ab84803799b4362f7d2a625c78d4a5f82}{Game::ClearFrameResources}}()}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00690}00690 \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00691}00691     mFrameResources.clear();}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00692}00692 \}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00693}00693 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00698}\mbox{\hyperlink{class_game_abb4c8b08ae6340e889f865f55ffcaa0d}{00698}} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_abb4c8b08ae6340e889f865f55ffcaa0d}{Game::BuildFrameResources}}(\textcolor{keywordtype}{int} numRenderItems)}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00699}00699 \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00700}00700     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < \mbox{\hyperlink{_shooter_game_8cpp_a7c82b7821d2662eb6e0cfdc08a6c4bd4}{gNumFrameResources}}; ++i)}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00701}00701     \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00702}00702         mFrameResources.push\_back(std::make\_unique<FrameResource>(md3dDevice.Get(),}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00703}00703             1, (UINT)numRenderItems, (UINT)mMaterials.size()));}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00704}00704     \}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00705}00705 \}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00709}\mbox{\hyperlink{class_game_a8150ddca90b1ce3c38becca970246d99}{00709}} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_a8150ddca90b1ce3c38becca970246d99}{Game::BuildMaterials}}()}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00710}00710 \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00711}00711     \textcolor{keywordtype}{int} index = 0;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00712}00712 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00713}00713     \textcolor{keyword}{auto} Eagle = std::make\_unique<Material>();}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00714}00714     Eagle-\/>Name = \textcolor{stringliteral}{"{}Eagle"{}};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00715}00715     Eagle-\/>MatCBIndex = index;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00716}00716     Eagle-\/>DiffuseSrvHeapIndex = index++;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00717}00717     Eagle-\/>DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00718}00718     Eagle-\/>FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00719}00719     Eagle-\/>Roughness = 0.2f;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00720}00720 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00721}00721     mMaterials[\textcolor{stringliteral}{"{}Eagle"{}}] = std::move(Eagle);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00722}00722 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00723}00723     \textcolor{keyword}{auto} Raptor = std::make\_unique<Material>();}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00724}00724     Raptor-\/>Name = \textcolor{stringliteral}{"{}Raptor"{}};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00725}00725     Raptor-\/>MatCBIndex = index;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00726}00726     Raptor-\/>DiffuseSrvHeapIndex = index++;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00727}00727     Raptor-\/>DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00728}00728     Raptor-\/>FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00729}00729     Raptor-\/>Roughness = 0.2f;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00640}00640     \textcolor{keyword}{const} UINT vbByteSize = (UINT)vertices.size() * \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_vertex}{Vertex}});}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00641}00641     \textcolor{keyword}{const} UINT ibByteSize = (UINT)indices.size() * \textcolor{keyword}{sizeof}(std::uint16\_t);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00642}00642 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00643}00643     \textcolor{keyword}{auto} geo = std::make\_unique<MeshGeometry>();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00644}00644     geo-\/>Name = \textcolor{stringliteral}{"{}boxGeo"{}};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00645}00645 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00646}00646     ThrowIfFailed(D3DCreateBlob(vbByteSize, \&geo-\/>VertexBufferCPU));}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00647}00647     CopyMemory(geo-\/>VertexBufferCPU-\/>GetBufferPointer(), vertices.data(), vbByteSize);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00648}00648 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00649}00649     ThrowIfFailed(D3DCreateBlob(ibByteSize, \&geo-\/>IndexBufferCPU));}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00650}00650     CopyMemory(geo-\/>IndexBufferCPU-\/>GetBufferPointer(), indices.data(), ibByteSize);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00651}00651 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00652}00652     geo-\/>VertexBufferGPU = d3dUtil::CreateDefaultBuffer(md3dDevice.Get(),}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00653}00653         mCommandList.Get(), vertices.data(), vbByteSize, geo-\/>VertexBufferUploader);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00654}00654 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00655}00655     geo-\/>IndexBufferGPU = d3dUtil::CreateDefaultBuffer(md3dDevice.Get(),}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00656}00656         mCommandList.Get(), indices.data(), ibByteSize, geo-\/>IndexBufferUploader);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00657}00657 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00658}00658     geo-\/>VertexByteStride = \textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_vertex}{Vertex}});}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00659}00659     geo-\/>VertexBufferByteSize = vbByteSize;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00660}00660     geo-\/>IndexFormat = DXGI\_FORMAT\_R16\_UINT;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00661}00661     geo-\/>IndexBufferByteSize = ibByteSize;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00662}00662 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00663}00663     geo-\/>DrawArgs[\textcolor{stringliteral}{"{}box"{}}] = boxSubmesh;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00664}00664 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00665}00665     mGeometries[geo-\/>Name] = std::move(geo);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00666}00666 \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00667}00667 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00671}00671 \textcolor{keywordtype}{void} Game::BuildPSOs()}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00672}00672 \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00673}00673     D3D12\_GRAPHICS\_PIPELINE\_STATE\_DESC opaquePsoDesc;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00674}00674 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00675}00675     \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00676}00676     \textcolor{comment}{// PSO for opaque objects.}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00677}00677     \textcolor{comment}{//}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00678}00678     ZeroMemory(\&opaquePsoDesc, \textcolor{keyword}{sizeof}(D3D12\_GRAPHICS\_PIPELINE\_STATE\_DESC));}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00679}00679     opaquePsoDesc.InputLayout = \{ mInputLayout.data(), (UINT)mInputLayout.size() \};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00680}00680     opaquePsoDesc.pRootSignature = mRootSignature.Get();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00681}00681     opaquePsoDesc.VS =}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00682}00682     \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00683}00683         \textcolor{keyword}{reinterpret\_cast<}BYTE*\textcolor{keyword}{>}(mShaders[\textcolor{stringliteral}{"{}standardVS"{}}]-\/>GetBufferPointer()),}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00684}00684         mShaders[\textcolor{stringliteral}{"{}standardVS"{}}]-\/>GetBufferSize()}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00685}00685     \};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00686}00686     opaquePsoDesc.PS =}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00687}00687     \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00688}00688         \textcolor{keyword}{reinterpret\_cast<}BYTE*\textcolor{keyword}{>}(mShaders[\textcolor{stringliteral}{"{}opaquePS"{}}]-\/>GetBufferPointer()),}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00689}00689         mShaders[\textcolor{stringliteral}{"{}opaquePS"{}}]-\/>GetBufferSize()}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00690}00690     \};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00691}00691     opaquePsoDesc.RasterizerState = CD3DX12\_RASTERIZER\_DESC(D3D12\_DEFAULT);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00692}00692     opaquePsoDesc.BlendState = CD3DX12\_BLEND\_DESC(D3D12\_DEFAULT);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00693}00693     opaquePsoDesc.DepthStencilState = CD3DX12\_DEPTH\_STENCIL\_DESC(D3D12\_DEFAULT);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00694}00694     opaquePsoDesc.SampleMask = UINT\_MAX;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00695}00695     opaquePsoDesc.PrimitiveTopologyType = D3D12\_PRIMITIVE\_TOPOLOGY\_TYPE\_TRIANGLE;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00696}00696     opaquePsoDesc.NumRenderTargets = 1;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00697}00697     opaquePsoDesc.RTVFormats[0] = mBackBufferFormat;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00698}00698     opaquePsoDesc.SampleDesc.Count = m4xMsaaState ? 4 : 1;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00699}00699     opaquePsoDesc.SampleDesc.Quality = m4xMsaaState ? (m4xMsaaQuality -\/ 1) : 0;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00700}00700     opaquePsoDesc.DSVFormat = mDepthStencilFormat;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00701}00701     ThrowIfFailed(md3dDevice-\/>CreateGraphicsPipelineState(\&opaquePsoDesc, IID\_PPV\_ARGS(\&mOpaquePSO)));}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00702}00702 \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00703}00703 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00707}\mbox{\hyperlink{class_game_ab84803799b4362f7d2a625c78d4a5f82}{00707}} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_ab84803799b4362f7d2a625c78d4a5f82}{Game::ClearFrameResources}}()}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00708}00708 \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00709}00709     mFrameResources.clear();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00710}00710 \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00711}00711 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00716}\mbox{\hyperlink{class_game_abb4c8b08ae6340e889f865f55ffcaa0d}{00716}} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_abb4c8b08ae6340e889f865f55ffcaa0d}{Game::BuildFrameResources}}(\textcolor{keywordtype}{int} numRenderItems)}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00717}00717 \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00718}00718     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < \mbox{\hyperlink{_shooter_game_8cpp_a7c82b7821d2662eb6e0cfdc08a6c4bd4}{gNumFrameResources}}; ++i)}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00719}00719     \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00720}00720         mFrameResources.push\_back(std::make\_unique<FrameResource>(md3dDevice.Get(),}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00721}00721             1, (UINT)numRenderItems, (UINT)mMaterials.size()));}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00722}00722     \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00723}00723 \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00727}\mbox{\hyperlink{class_game_a8150ddca90b1ce3c38becca970246d99}{00727}} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_game_a8150ddca90b1ce3c38becca970246d99}{Game::BuildMaterials}}()}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00728}00728 \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00729}00729     \textcolor{keywordtype}{int} index = 0;}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00730}00730 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00731}00731     mMaterials[\textcolor{stringliteral}{"{}Raptor"{}}] = std::move(Raptor);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00732}00732 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00733}00733     \textcolor{keyword}{auto} Desert = std::make\_unique<Material>();}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00734}00734     Desert-\/>Name = \textcolor{stringliteral}{"{}Desert"{}};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00735}00735     Desert-\/>MatCBIndex = index;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00736}00736     Desert-\/>DiffuseSrvHeapIndex = index++;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00737}00737     Desert-\/>DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00738}00738     Desert-\/>FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00739}00739     Desert-\/>Roughness = 0.2f;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00731}00731     \textcolor{keyword}{auto} Eagle = std::make\_unique<Material>();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00732}00732     Eagle-\/>Name = \textcolor{stringliteral}{"{}Eagle"{}};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00733}00733     Eagle-\/>MatCBIndex = index;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00734}00734     Eagle-\/>DiffuseSrvHeapIndex = index++;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00735}00735     Eagle-\/>DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00736}00736     Eagle-\/>FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00737}00737     Eagle-\/>Roughness = 0.2f;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00738}00738 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00739}00739     mMaterials[\textcolor{stringliteral}{"{}Eagle"{}}] = std::move(Eagle);}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00740}00740 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00741}00741     mMaterials[\textcolor{stringliteral}{"{}Desert"{}}] = std::move(Desert);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00742}00742 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00743}00743 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00744}00744     \textcolor{comment}{// Title background material}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00745}00745     \textcolor{keyword}{auto} TitleScreen = std::make\_unique<Material>();}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00746}00746     TitleScreen-\/>Name = \textcolor{stringliteral}{"{}TitleScreen"{}};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00747}00747     TitleScreen-\/>MatCBIndex = index;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00748}00748     TitleScreen-\/>DiffuseSrvHeapIndex = index++;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00749}00749     TitleScreen-\/>DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00750}00750     TitleScreen-\/>FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00751}00751     TitleScreen-\/>Roughness = 0.2f;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00752}00752 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00753}00753     mMaterials[\textcolor{stringliteral}{"{}TitleScreen"{}}] = std::move(TitleScreen);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00754}00754 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00755}00755     \textcolor{comment}{// title text material}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00756}00756     \textcolor{keyword}{auto} TitleScreenPrompt = std::make\_unique<Material>();}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00757}00757     TitleScreenPrompt-\/>Name = \textcolor{stringliteral}{"{}TitleScreenPrompt"{}};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00758}00758     TitleScreenPrompt-\/>MatCBIndex = index;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00759}00759     TitleScreenPrompt-\/>DiffuseSrvHeapIndex = index++;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00760}00760     TitleScreenPrompt-\/>DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00761}00761     TitleScreenPrompt-\/>FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00762}00762     TitleScreenPrompt-\/>Roughness = 0.2f;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00763}00763 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00764}00764     mMaterials[\textcolor{stringliteral}{"{}TitleScreenPrompt"{}}] = std::move(TitleScreenPrompt);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00765}00765 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00766}00766     \textcolor{comment}{// pause material}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00767}00767     \textcolor{keyword}{auto} PauseDisplay = std::make\_unique<Material>();}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00768}00768     PauseDisplay-\/>Name = \textcolor{stringliteral}{"{}PauseDisplay"{}};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00769}00769     PauseDisplay-\/>MatCBIndex = index;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00770}00770     PauseDisplay-\/>DiffuseSrvHeapIndex = index++;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00771}00771     PauseDisplay-\/>DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00772}00772     PauseDisplay-\/>FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00773}00773     PauseDisplay-\/>Roughness = 0.2f;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00774}00774 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00775}00775     mMaterials[\textcolor{stringliteral}{"{}PauseDisplay"{}}] = std::move(PauseDisplay);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00776}00776 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00777}00777 \}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00778}00778 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00779}00779 \textcolor{keywordtype}{void} Game::BuildRenderItems()}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00780}00780 \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00781}00781 \}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00787}00787 \textcolor{keywordtype}{void} Game::DrawRenderItems(ID3D12GraphicsCommandList* cmdList, \textcolor{keyword}{const} std::vector<RenderItem*>\& ritems)}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00788}00788 \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00789}00789     UINT objCBByteSize = d3dUtil::CalcConstantBufferByteSize(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_object_constants}{ObjectConstants}}));}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00790}00790     UINT matCBByteSize = d3dUtil::CalcConstantBufferByteSize(\textcolor{keyword}{sizeof}(MaterialConstants));}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00791}00791 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00792}00792     \textcolor{keyword}{auto} objectCB = mCurrFrameResource-\/>\mbox{\hyperlink{struct_frame_resource_adec81cdfb788278fac8ad38066e6c18f}{ObjectCB}}-\/>Resource();}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00793}00793     \textcolor{keyword}{auto} matCB = mCurrFrameResource-\/>\mbox{\hyperlink{struct_frame_resource_a502a3bd044ed30d31280f4382cc07570}{MaterialCB}}-\/>Resource();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00741}00741     \textcolor{keyword}{auto} Raptor = std::make\_unique<Material>();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00742}00742     Raptor-\/>Name = \textcolor{stringliteral}{"{}Raptor"{}};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00743}00743     Raptor-\/>MatCBIndex = index;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00744}00744     Raptor-\/>DiffuseSrvHeapIndex = index++;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00745}00745     Raptor-\/>DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00746}00746     Raptor-\/>FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00747}00747     Raptor-\/>Roughness = 0.2f;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00748}00748 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00749}00749     mMaterials[\textcolor{stringliteral}{"{}Raptor"{}}] = std::move(Raptor);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00750}00750 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00751}00751     \textcolor{keyword}{auto} Desert = std::make\_unique<Material>();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00752}00752     Desert-\/>Name = \textcolor{stringliteral}{"{}Desert"{}};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00753}00753     Desert-\/>MatCBIndex = index;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00754}00754     Desert-\/>DiffuseSrvHeapIndex = index++;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00755}00755     Desert-\/>DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00756}00756     Desert-\/>FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00757}00757     Desert-\/>Roughness = 0.2f;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00758}00758 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00759}00759     mMaterials[\textcolor{stringliteral}{"{}Desert"{}}] = std::move(Desert);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00760}00760 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00761}00761 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00762}00762     \textcolor{comment}{// Title background material}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00763}00763     \textcolor{keyword}{auto} TitleScreen = std::make\_unique<Material>();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00764}00764     TitleScreen-\/>Name = \textcolor{stringliteral}{"{}TitleScreen"{}};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00765}00765     TitleScreen-\/>MatCBIndex = index;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00766}00766     TitleScreen-\/>DiffuseSrvHeapIndex = index++;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00767}00767     TitleScreen-\/>DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00768}00768     TitleScreen-\/>FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00769}00769     TitleScreen-\/>Roughness = 0.2f;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00770}00770 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00771}00771     mMaterials[\textcolor{stringliteral}{"{}TitleScreen"{}}] = std::move(TitleScreen);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00772}00772 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00773}00773     \textcolor{comment}{// title text material}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00774}00774     \textcolor{keyword}{auto} TitleScreenPrompt = std::make\_unique<Material>();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00775}00775     TitleScreenPrompt-\/>Name = \textcolor{stringliteral}{"{}TitleScreenPrompt"{}};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00776}00776     TitleScreenPrompt-\/>MatCBIndex = index;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00777}00777     TitleScreenPrompt-\/>DiffuseSrvHeapIndex = index++;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00778}00778     TitleScreenPrompt-\/>DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00779}00779     TitleScreenPrompt-\/>FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00780}00780     TitleScreenPrompt-\/>Roughness = 0.2f;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00781}00781 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00782}00782     mMaterials[\textcolor{stringliteral}{"{}TitleScreenPrompt"{}}] = std::move(TitleScreenPrompt);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00783}00783 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00784}00784     \textcolor{comment}{// Main Menu text material}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00785}00785     \textcolor{keyword}{auto} MainMenuTextPrompt = std::make\_unique<Material>();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00786}00786     MainMenuTextPrompt-\/>Name = \textcolor{stringliteral}{"{}MainMenuText"{}};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00787}00787     MainMenuTextPrompt-\/>MatCBIndex = index;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00788}00788     MainMenuTextPrompt-\/>DiffuseSrvHeapIndex = index++;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00789}00789     MainMenuTextPrompt-\/>DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00790}00790     MainMenuTextPrompt-\/>FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00791}00791     MainMenuTextPrompt-\/>Roughness = 0.2f;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00792}00792 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00793}00793     mMaterials[\textcolor{stringliteral}{"{}MainMenuText"{}}] = std::move(MainMenuTextPrompt);}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00794}00794 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00795}00795     \textcolor{comment}{// For each render item...}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00796}00796     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < ritems.size(); ++i)}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00797}00797     \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00798}00798         \textcolor{keyword}{auto} ri = ritems[i];}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00799}00799 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00800}00800         cmdList-\/>IASetVertexBuffers(0, 1, \&ri-\/>Geo-\/>VertexBufferView());}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00801}00801         cmdList-\/>IASetIndexBuffer(\&ri-\/>Geo-\/>IndexBufferView());}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00802}00802         cmdList-\/>IASetPrimitiveTopology(ri-\/>PrimitiveType);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00795}00795     \textcolor{comment}{// pause material}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00796}00796     \textcolor{keyword}{auto} PauseDisplay = std::make\_unique<Material>();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00797}00797     PauseDisplay-\/>Name = \textcolor{stringliteral}{"{}PauseDisplay"{}};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00798}00798     PauseDisplay-\/>MatCBIndex = index;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00799}00799     PauseDisplay-\/>DiffuseSrvHeapIndex = index++;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00800}00800     PauseDisplay-\/>DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00801}00801     PauseDisplay-\/>FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00802}00802     PauseDisplay-\/>Roughness = 0.2f;}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00803}00803 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00804}00804         \textcolor{comment}{//step18}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00805}00805         CD3DX12\_GPU\_DESCRIPTOR\_HANDLE tex(mSrvDescriptorHeap-\/>GetGPUDescriptorHandleForHeapStart());}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00806}00806         tex.Offset(ri-\/>Mat-\/>DiffuseSrvHeapIndex, mCbvSrvDescriptorSize);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00804}00804     mMaterials[\textcolor{stringliteral}{"{}PauseDisplay"{}}] = std::move(PauseDisplay);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00805}00805 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00806}00806 \}}
 \DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00807}00807 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00808}00808         D3D12\_GPU\_VIRTUAL\_ADDRESS objCBAddress = objectCB-\/>GetGPUVirtualAddress() + ri-\/>ObjCBIndex * objCBByteSize;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00809}00809         D3D12\_GPU\_VIRTUAL\_ADDRESS matCBAddress = matCB-\/>GetGPUVirtualAddress() + ri-\/>Mat-\/>MatCBIndex * matCBByteSize;}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00810}00810 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00811}00811         \textcolor{comment}{//step19}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00812}00812         cmdList-\/>SetGraphicsRootDescriptorTable(0, tex);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00813}00813         cmdList-\/>SetGraphicsRootConstantBufferView(1, objCBAddress);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00814}00814         cmdList-\/>SetGraphicsRootConstantBufferView(3, matCBAddress);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00815}00815 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00816}00816         cmdList-\/>DrawIndexedInstanced(ri-\/>IndexCount, 1, ri-\/>StartIndexLocation, ri-\/>BaseVertexLocation, 0);}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00817}00817     \}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00818}00818 \}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00819}00819 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00820}00820 std::array<const CD3DX12\_STATIC\_SAMPLER\_DESC, 6> Game::GetStaticSamplers()}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00821}00821 \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00822}00822     \textcolor{comment}{// Applications usually only need a handful of samplers.  So just define them all up front}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00823}00823     \textcolor{comment}{// and keep them available as part of the root signature.  }}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00824}00824 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00825}00825     \textcolor{keyword}{const} CD3DX12\_STATIC\_SAMPLER\_DESC pointWrap(}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00826}00826         0, \textcolor{comment}{// shaderRegister}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00827}00827         D3D12\_FILTER\_MIN\_MAG\_MIP\_POINT, \textcolor{comment}{// filter}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00828}00828         D3D12\_TEXTURE\_ADDRESS\_MODE\_WRAP,  \textcolor{comment}{// addressU}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00829}00829         D3D12\_TEXTURE\_ADDRESS\_MODE\_WRAP,  \textcolor{comment}{// addressV}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00830}00830         D3D12\_TEXTURE\_ADDRESS\_MODE\_WRAP); \textcolor{comment}{// addressW}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00831}00831 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00832}00832     \textcolor{keyword}{const} CD3DX12\_STATIC\_SAMPLER\_DESC pointClamp(}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00833}00833         1, \textcolor{comment}{// shaderRegister}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00834}00834         D3D12\_FILTER\_MIN\_MAG\_MIP\_POINT, \textcolor{comment}{// filter}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00835}00835         D3D12\_TEXTURE\_ADDRESS\_MODE\_CLAMP,  \textcolor{comment}{// addressU}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00836}00836         D3D12\_TEXTURE\_ADDRESS\_MODE\_CLAMP,  \textcolor{comment}{// addressV}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00837}00837         D3D12\_TEXTURE\_ADDRESS\_MODE\_CLAMP); \textcolor{comment}{// addressW}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00838}00838 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00839}00839     \textcolor{keyword}{const} CD3DX12\_STATIC\_SAMPLER\_DESC linearWrap(}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00840}00840         2, \textcolor{comment}{// shaderRegister}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00841}00841         D3D12\_FILTER\_MIN\_MAG\_MIP\_LINEAR, \textcolor{comment}{// filter}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00842}00842         D3D12\_TEXTURE\_ADDRESS\_MODE\_WRAP,  \textcolor{comment}{// addressU}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00843}00843         D3D12\_TEXTURE\_ADDRESS\_MODE\_WRAP,  \textcolor{comment}{// addressV}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00844}00844         D3D12\_TEXTURE\_ADDRESS\_MODE\_WRAP); \textcolor{comment}{// addressW}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00845}00845 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00846}00846     \textcolor{keyword}{const} CD3DX12\_STATIC\_SAMPLER\_DESC linearClamp(}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00847}00847         3, \textcolor{comment}{// shaderRegister}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00848}00848         D3D12\_FILTER\_MIN\_MAG\_MIP\_LINEAR, \textcolor{comment}{// filter}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00849}00849         D3D12\_TEXTURE\_ADDRESS\_MODE\_CLAMP,  \textcolor{comment}{// addressU}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00850}00850         D3D12\_TEXTURE\_ADDRESS\_MODE\_CLAMP,  \textcolor{comment}{// addressV}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00851}00851         D3D12\_TEXTURE\_ADDRESS\_MODE\_CLAMP); \textcolor{comment}{// addressW}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00852}00852 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00853}00853     \textcolor{keyword}{const} CD3DX12\_STATIC\_SAMPLER\_DESC anisotropicWrap(}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00854}00854         4, \textcolor{comment}{// shaderRegister}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00855}00855         D3D12\_FILTER\_ANISOTROPIC, \textcolor{comment}{// filter}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00856}00856         D3D12\_TEXTURE\_ADDRESS\_MODE\_WRAP,  \textcolor{comment}{// addressU}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00857}00857         D3D12\_TEXTURE\_ADDRESS\_MODE\_WRAP,  \textcolor{comment}{// addressV}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00858}00858         D3D12\_TEXTURE\_ADDRESS\_MODE\_WRAP,  \textcolor{comment}{// addressW}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00859}00859         0.0f,                             \textcolor{comment}{// mipLODBias}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00860}00860         8);                               \textcolor{comment}{// maxAnisotropy}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00861}00861 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00862}00862     \textcolor{keyword}{const} CD3DX12\_STATIC\_SAMPLER\_DESC anisotropicClamp(}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00863}00863         5, \textcolor{comment}{// shaderRegister}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00864}00864         D3D12\_FILTER\_ANISOTROPIC, \textcolor{comment}{// filter}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00865}00865         D3D12\_TEXTURE\_ADDRESS\_MODE\_CLAMP,  \textcolor{comment}{// addressU}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00866}00866         D3D12\_TEXTURE\_ADDRESS\_MODE\_CLAMP,  \textcolor{comment}{// addressV}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00867}00867         D3D12\_TEXTURE\_ADDRESS\_MODE\_CLAMP,  \textcolor{comment}{// addressW}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00868}00868         0.0f,                              \textcolor{comment}{// mipLODBias}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00869}00869         8);                                \textcolor{comment}{// maxAnisotropy}}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00870}00870 }
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00871}00871     \textcolor{keywordflow}{return} \{}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00872}00872         pointWrap, pointClamp,}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00873}00873         linearWrap, linearClamp,}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00874}00874         anisotropicWrap, anisotropicClamp \};}
-\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00875}00875 \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00808}00808 \textcolor{keywordtype}{void} Game::BuildRenderItems()}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00809}00809 \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00810}00810 \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00816}00816 \textcolor{keywordtype}{void} Game::DrawRenderItems(ID3D12GraphicsCommandList* cmdList, \textcolor{keyword}{const} std::vector<RenderItem*>\& ritems)}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00817}00817 \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00818}00818     UINT objCBByteSize = d3dUtil::CalcConstantBufferByteSize(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_object_constants}{ObjectConstants}}));}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00819}00819     UINT matCBByteSize = d3dUtil::CalcConstantBufferByteSize(\textcolor{keyword}{sizeof}(MaterialConstants));}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00820}00820 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00821}00821     \textcolor{keyword}{auto} objectCB = mCurrFrameResource-\/>\mbox{\hyperlink{struct_frame_resource_adec81cdfb788278fac8ad38066e6c18f}{ObjectCB}}-\/>Resource();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00822}00822     \textcolor{keyword}{auto} matCB = mCurrFrameResource-\/>\mbox{\hyperlink{struct_frame_resource_a502a3bd044ed30d31280f4382cc07570}{MaterialCB}}-\/>Resource();}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00823}00823 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00824}00824     \textcolor{comment}{// For each render item...}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00825}00825     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{size\_t} i = 0; i < ritems.size(); ++i)}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00826}00826     \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00827}00827         \textcolor{keyword}{auto} ri = ritems[i];}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00828}00828 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00829}00829         cmdList-\/>IASetVertexBuffers(0, 1, \&ri-\/>Geo-\/>VertexBufferView());}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00830}00830         cmdList-\/>IASetIndexBuffer(\&ri-\/>Geo-\/>IndexBufferView());}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00831}00831         cmdList-\/>IASetPrimitiveTopology(ri-\/>PrimitiveType);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00832}00832 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00833}00833         \textcolor{comment}{//step18}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00834}00834         CD3DX12\_GPU\_DESCRIPTOR\_HANDLE tex(mSrvDescriptorHeap-\/>GetGPUDescriptorHandleForHeapStart());}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00835}00835         tex.Offset(ri-\/>Mat-\/>DiffuseSrvHeapIndex, mCbvSrvDescriptorSize);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00836}00836 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00837}00837         D3D12\_GPU\_VIRTUAL\_ADDRESS objCBAddress = objectCB-\/>GetGPUVirtualAddress() + ri-\/>ObjCBIndex * objCBByteSize;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00838}00838         D3D12\_GPU\_VIRTUAL\_ADDRESS matCBAddress = matCB-\/>GetGPUVirtualAddress() + ri-\/>Mat-\/>MatCBIndex * matCBByteSize;}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00839}00839 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00840}00840         \textcolor{comment}{//step19}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00841}00841         cmdList-\/>SetGraphicsRootDescriptorTable(0, tex);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00842}00842         cmdList-\/>SetGraphicsRootConstantBufferView(1, objCBAddress);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00843}00843         cmdList-\/>SetGraphicsRootConstantBufferView(3, matCBAddress);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00844}00844 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00845}00845         cmdList-\/>DrawIndexedInstanced(ri-\/>IndexCount, 1, ri-\/>StartIndexLocation, ri-\/>BaseVertexLocation, 0);}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00846}00846     \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00847}00847 \}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00848}00848 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00849}00849 std::array<const CD3DX12\_STATIC\_SAMPLER\_DESC, 6> Game::GetStaticSamplers()}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00850}00850 \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00851}00851     \textcolor{comment}{// Applications usually only need a handful of samplers.  So just define them all up front}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00852}00852     \textcolor{comment}{// and keep them available as part of the root signature.  }}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00853}00853 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00854}00854     \textcolor{keyword}{const} CD3DX12\_STATIC\_SAMPLER\_DESC pointWrap(}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00855}00855         0, \textcolor{comment}{// shaderRegister}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00856}00856         D3D12\_FILTER\_MIN\_MAG\_MIP\_POINT, \textcolor{comment}{// filter}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00857}00857         D3D12\_TEXTURE\_ADDRESS\_MODE\_WRAP,  \textcolor{comment}{// addressU}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00858}00858         D3D12\_TEXTURE\_ADDRESS\_MODE\_WRAP,  \textcolor{comment}{// addressV}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00859}00859         D3D12\_TEXTURE\_ADDRESS\_MODE\_WRAP); \textcolor{comment}{// addressW}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00860}00860 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00861}00861     \textcolor{keyword}{const} CD3DX12\_STATIC\_SAMPLER\_DESC pointClamp(}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00862}00862         1, \textcolor{comment}{// shaderRegister}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00863}00863         D3D12\_FILTER\_MIN\_MAG\_MIP\_POINT, \textcolor{comment}{// filter}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00864}00864         D3D12\_TEXTURE\_ADDRESS\_MODE\_CLAMP,  \textcolor{comment}{// addressU}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00865}00865         D3D12\_TEXTURE\_ADDRESS\_MODE\_CLAMP,  \textcolor{comment}{// addressV}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00866}00866         D3D12\_TEXTURE\_ADDRESS\_MODE\_CLAMP); \textcolor{comment}{// addressW}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00867}00867 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00868}00868     \textcolor{keyword}{const} CD3DX12\_STATIC\_SAMPLER\_DESC linearWrap(}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00869}00869         2, \textcolor{comment}{// shaderRegister}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00870}00870         D3D12\_FILTER\_MIN\_MAG\_MIP\_LINEAR, \textcolor{comment}{// filter}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00871}00871         D3D12\_TEXTURE\_ADDRESS\_MODE\_WRAP,  \textcolor{comment}{// addressU}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00872}00872         D3D12\_TEXTURE\_ADDRESS\_MODE\_WRAP,  \textcolor{comment}{// addressV}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00873}00873         D3D12\_TEXTURE\_ADDRESS\_MODE\_WRAP); \textcolor{comment}{// addressW}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00874}00874 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00875}00875     \textcolor{keyword}{const} CD3DX12\_STATIC\_SAMPLER\_DESC linearClamp(}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00876}00876         3, \textcolor{comment}{// shaderRegister}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00877}00877         D3D12\_FILTER\_MIN\_MAG\_MIP\_LINEAR, \textcolor{comment}{// filter}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00878}00878         D3D12\_TEXTURE\_ADDRESS\_MODE\_CLAMP,  \textcolor{comment}{// addressU}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00879}00879         D3D12\_TEXTURE\_ADDRESS\_MODE\_CLAMP,  \textcolor{comment}{// addressV}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00880}00880         D3D12\_TEXTURE\_ADDRESS\_MODE\_CLAMP); \textcolor{comment}{// addressW}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00881}00881 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00882}00882     \textcolor{keyword}{const} CD3DX12\_STATIC\_SAMPLER\_DESC anisotropicWrap(}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00883}00883         4, \textcolor{comment}{// shaderRegister}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00884}00884         D3D12\_FILTER\_ANISOTROPIC, \textcolor{comment}{// filter}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00885}00885         D3D12\_TEXTURE\_ADDRESS\_MODE\_WRAP,  \textcolor{comment}{// addressU}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00886}00886         D3D12\_TEXTURE\_ADDRESS\_MODE\_WRAP,  \textcolor{comment}{// addressV}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00887}00887         D3D12\_TEXTURE\_ADDRESS\_MODE\_WRAP,  \textcolor{comment}{// addressW}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00888}00888         0.0f,                             \textcolor{comment}{// mipLODBias}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00889}00889         8);                               \textcolor{comment}{// maxAnisotropy}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00890}00890 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00891}00891     \textcolor{keyword}{const} CD3DX12\_STATIC\_SAMPLER\_DESC anisotropicClamp(}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00892}00892         5, \textcolor{comment}{// shaderRegister}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00893}00893         D3D12\_FILTER\_ANISOTROPIC, \textcolor{comment}{// filter}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00894}00894         D3D12\_TEXTURE\_ADDRESS\_MODE\_CLAMP,  \textcolor{comment}{// addressU}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00895}00895         D3D12\_TEXTURE\_ADDRESS\_MODE\_CLAMP,  \textcolor{comment}{// addressV}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00896}00896         D3D12\_TEXTURE\_ADDRESS\_MODE\_CLAMP,  \textcolor{comment}{// addressW}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00897}00897         0.0f,                              \textcolor{comment}{// mipLODBias}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00898}00898         8);                                \textcolor{comment}{// maxAnisotropy}}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00899}00899 }
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00900}00900     \textcolor{keywordflow}{return} \{}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00901}00901         pointWrap, pointClamp,}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00902}00902         linearWrap, linearClamp,}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00903}00903         anisotropicWrap, anisotropicClamp \};}
+\DoxyCodeLine{\Hypertarget{_shooter_game_8cpp_source_l00904}00904 \}}
 
 \end{DoxyCode}
