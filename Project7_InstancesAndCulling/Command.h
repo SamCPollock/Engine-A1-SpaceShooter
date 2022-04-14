@@ -1,10 +1,3 @@
-///***************************************************************************************
-/// Command
-///
-/// Command struct, denotes messages that are sent tho game objects. Actions tell game objects to perform functions.
-/// /// Sam Pollock, 2022
-///***************************************************************************************
-
 
 #pragma once
 #include "Category.h"
@@ -21,14 +14,14 @@ struct Command
 {
 	Command();
 
-	std::function<void(SceneNode&, const GameTimer&)> action;
-	unsigned int category;
+	std::function<void(SceneNode&, const GameTimer&)>	action;
+	unsigned int								category;
 };
 
 template <typename GameObject, typename Function>
 std::function<void(SceneNode&, const GameTimer&)> derivedAction(Function fn)
 {
-	return [=](SceneNode& node, const GameTimer& gt) 
+	return [=](SceneNode& node, const GameTimer& gt)
 	{
 		// Check if cast is safe
 		assert(dynamic_cast<GameObject*>(&node) != nullptr);

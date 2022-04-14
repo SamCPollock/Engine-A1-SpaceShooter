@@ -1,5 +1,4 @@
 #include "GameState.h"
-#include "SpriteNode.h"
 #include "ShooterGame.h"
 
 GameState::GameState(StateStack* stack, Context* context)
@@ -10,51 +9,50 @@ GameState::GameState(StateStack* stack, Context* context)
 	BuildScene();
 }
 
-void GameState::Draw()
+void GameState::draw()
 {
 	mWorld.draw();
+
 }
 
-bool GameState::Update(const GameTimer& gt)
+bool GameState::update(const GameTimer& gt)
 {
-	//ProcessInput();
-	HandleRealTimeInput();
+	ProcessInput();
 	mWorld.update(gt);
 
 	return true;
 }
 
-bool GameState::HandleEvent(WPARAM btnState)
+bool GameState::handleEvent(WPARAM btnState)
 {
-	////Handle player input
-	//InputCommandQueue& commands = mWorld->getCommandQueue();
-	//mPlayer->handleEvent(commands);
-
-	//If Return to title is pressed
-	if (btnState == 'M')
+#pragma region step 1
+	if (btnState == 'P')
 	{
-		//Push Pause State
-		RequestStackPush(States::Title);
+		requestStackPush(States::Pause);
 	}
-
+#pragma endregion
 	return true;
 }
 
-bool GameState::HandleRealTimeInput()
+void GameState::ProcessInput()
 {
-	//Handle player input
-	InputCommandQueue& commands = mWorld.getCommandQueue();
-	GetContext()->player->handleEvent(commands);
-	GetContext()->player->handleRealtimeInput(commands);
-
-	return true;
+	CommandQueue& commands = mWorld.getCommandQueue();
+	getContext()->player->handleEvent(commands);
+	getContext()->player->handleRealtimeInput(commands);
 }
 
 void GameState::BuildScene()
 {
-	GetContext()->game->BuildMaterials();
+
+	/*getContext()->game->mAllRitems.clear();
+	getContext()->game->mOpaqueRitems.clear();*/
+
+	getContext()->game->BuildMaterials();
+
 
 	mWorld.buildScene();
+
+	//pause stuff
 
 	std::unique_ptr<SpriteNode> backgroundSprite(new SpriteNode(this, "PauseDisplay"));
 	//mPauseBackground = backgroundSprite.get();
@@ -69,8 +67,10 @@ void GameState::BuildScene()
 	//	getContext()->game->mOpaqueRitems.push_back(e.get());
 
 
-	GetContext()->game->ResetFrameResources();
-	GetContext()->game->BuildFrameResources(mAllRitems.size());
+	getContext()->game->ClearFrameResources();
+	getContext()->game->BuildFrameResources(mAllRitems.size());
+
+
 
 
 }

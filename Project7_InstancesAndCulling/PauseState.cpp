@@ -1,44 +1,54 @@
+#pragma region step 3
 #include "PauseState.h"
-#include "SpriteNode.h"
 #include "ShooterGame.h"
 #include "GameState.h"
+#include "State.h"
 
-PauseState::PauseState(StateStack& stack, Context context)
+PauseState::PauseState(StateStack* stack, Context* context)
 	: State(stack, context)
+
 {
+	BuildScene();
+}
+
+PauseState::~PauseState()
+{
+}
+
+void PauseState::draw()
+{
+	((GameState*)((*mStack->GetStateStack())[0].get()))->mPauseSceneGraph->draw();
 
 }
 
-void PauseState::Draw()
+bool PauseState::update(const GameTimer& gt)
 {
-	((GameState*)(mStack->GetPreviousState()))->mPauseStateSceneGraph->draw();
-}
-
-bool PauseState::Update(const GameTimer& gt)
-{
-	((GameState*)(mStack->GetPreviousState()))->mPauseStateSceneGraph->update(gt);
+	((GameState*)((*mStack->GetStateStack())[0].get()))->mPauseSceneGraph->update(gt);
 
 	return false;
 }
 
-bool PauseState::HandleEvent(WPARAM btnState)
+bool PauseState::handleEvent(WPARAM btnState)
 {
-	//If ESC is pressed
-	if (btnState == VK_ESCAPE)
+
+	if (btnState == 'O')
 	{
-		RequestStackPop();
+		// O pressed, remove itself to return to the game
+		requestStackPop();
 	}
-	//If N is pressed
-	if (btnState == 'N' || btnState == 'n')
+	else if (btnState == VK_BACK)
 	{
-		RequestStateClear();
-		RequestStackPush(States::Menu);
+		// Escape pressed, remove itself to return to the game
+		requestStateClear();
+		requestStackPush(States::Menu);
 	}
 
 	return false;
 }
 
-bool PauseState::HandleRealTimeInput()
+
+void PauseState::BuildScene()
 {
-	return false;
 }
+
+#pragma endregion

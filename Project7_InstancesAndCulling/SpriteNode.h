@@ -1,9 +1,3 @@
-///***************************************************************************************
-/// SpriteNode
-/// Variant of Scenenode with less options. 
-/// Sam Pollock, 2022
-///***************************************************************************************
-
 #pragma once
 #include "Entity.h"
 
@@ -15,8 +9,9 @@ public:
 	//RenderItem* mSpriteNodeRitem;
 
 private:
-	virtual void drawCurrent() const;
-	virtual void buildCurrent();
+	virtual void		drawCurrent() const;
+	virtual void		buildCurrent();
 
-	std::string mSprite;
+
+	std::string			mSprite;
 };

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef BOOK_STATEIDENTIFIERS_HPP
+#define BOOK_STATEIDENTIFIERS_HPP
+
 
 namespace States
 {
@@ -8,7 +10,9 @@ namespace States
 		Title,
 		Menu,
 		Game,
+		Setting,
 		Pause
 	};
 }
 
+#endif // BOOK_STATEIDENTIFIERS_HPP

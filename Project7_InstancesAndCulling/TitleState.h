@@ -1,23 +1,25 @@
-#pragma once
+#ifndef BOOK_TITLESTATE_HPP
+#define BOOK_TITLESTATE_HPP
+
 #include "State.h"
-#include "World.h"
-#include "ShooterGame.h"
+#include "../Common/d3dApp.h"
 
 class TitleState : public State
 {
 public:
 	TitleState(StateStack* stack, Context* context);
-
-	virtual void Draw();
-	virtual bool Update(const GameTimer& gt);
-	virtual bool HandleEvent(WPARAM btnState);
-	virtual bool HandleRealTimeInput();
-
-	//World* mWorld;
+	virtual void		draw();
+	virtual bool		update(const GameTimer& gt);
+	virtual bool		handleEvent(WPARAM btnState);
 
 private:
-	virtual void BuildScene() override;
+	/*SpriteNode* mBackground;
+	SpriteNode* mPrompt;*/
 
-	//SpriteNode* mBackground; 
+
+
+	// Inherited via State
+	virtual void BuildScene() override;
 };
 
+#endif // BOOK_TITLESTATE_HPP

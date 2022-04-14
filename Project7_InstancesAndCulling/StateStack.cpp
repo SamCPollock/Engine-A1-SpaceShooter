@@ -1,53 +1,47 @@
+
 #include "StateStack.h"
 
+#include <cassert>
 
 StateStack::StateStack(State::Context context)
-	: mStack(),
-	mPendingList(),
-	mContext(context),
-	mFactories()
+	: mStack()
+	, mPendingList()
+	, mContext(context)
+	, mFactories()
 {
 }
 
-void StateStack::Update(const GameTimer& timer)
+void StateStack::update(const GameTimer& gt)
 {
-	//Iterate from Top to Bottom, stop as soon as Update returns false
+
+
+	// Iterate from top to bottom, stop as soon as update() returns false
 	for (auto itr = mStack.rbegin(); itr != mStack.rend(); ++itr)
 	{
-		if (!(*itr)->Update(timer))
+		if (!(*itr)->update(gt))
 			break;
 	}
 
 	applyPendingChanges();
 }
 
-void StateStack::Draw()
+void StateStack::draw()
 {
-	//Draw all active states from Bottom to Top
-	for (State::StatePtr& state : mStack)
-	{
-		state->Draw();
-	}
+	// Draw all active states from bottom to top
+	for (State::Ptr& state : mStack)
+		state->draw();
 }
 
-void StateStack::HandleEvent(WPARAM btnState)
+void StateStack::handleEvent(WPARAM btnState)
 {
-	//Iterate from Top to Bottom, stops as soon as HandleEvent() returns false
+	// Iterate from top to bottom, stop as soon as handleEvent() returns false
 	for (auto itr = mStack.rbegin(); itr != mStack.rend(); ++itr)
 	{
-		if (!(*itr)->HandleEvent(btnState))
+		if (!(*itr)->handleEvent(btnState))
 			break;
 	}
-}
 
-void StateStack::handleRealTimeInput()
-{
-	//Iterate from Top to Bottom, stop as soon as HandleEvent() returns false
-	for (auto itr = mStack.rbegin(); itr != mStack.rend(); ++itr)
-	{
-		if (!(*itr)->HandleRealTimeInput())
-			break;
-	}
+	applyPendingChanges();
 }
 
 void StateStack::pushState(States::ID stateID)
@@ -65,20 +59,17 @@ void StateStack::clearStates()
 	mPendingList.push_back(PendingChange(Clear));
 }
 
-std::vector<State::StatePtr>* StateStack::GetStateStack()
+bool StateStack::isEmpty() const
+{
+	return mStack.empty();
+}
+
+std::vector<State::Ptr>* StateStack::GetStateStack()
 {
 	return &mStack;
 }
 
-State* StateStack::GetPreviousState()
-{
-	if (mStack.size() >= 2)
-	{
-		return mStack[mStack.size() - 2].get();
-	}
-}
-
-State::StatePtr StateStack::createState(States::ID stateID)
+State::Ptr StateStack::createState(States::ID stateID)
 {
 	auto found = mFactories.find(stateID);
 	assert(found != mFactories.end());
@@ -88,18 +79,18 @@ State::StatePtr StateStack::createState(States::ID stateID)
 
 void StateStack::applyPendingChanges()
 {
-	
 	for (PendingChange change : mPendingList)
 	{
 		switch (change.action)
 		{
 		case Push:
-			//mContext.game->FlushCommandQueue();
 			mStack.push_back(createState(change.stateID));
 			break;
+
 		case Pop:
 			mStack.pop_back();
 			break;
+
 		case Clear:
 			mStack.clear();
 			break;
@@ -110,17 +101,7 @@ void StateStack::applyPendingChanges()
 }
 
 StateStack::PendingChange::PendingChange(Action action, States::ID stateID)
-	: action(action),
-	stateID(stateID)
+	: action(action)
+	, stateID(stateID)
 {
 }
-
-
-//template <typename T>
-//void StateStack::registerState(States::ID stateID)
-//{
-//	mFactories[stateID] = [this]()
-//	{
-//		return State::StatePtr(new T(this, &mContext));
-//	};
-//}
