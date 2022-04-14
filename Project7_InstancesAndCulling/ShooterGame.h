@@ -14,6 +14,7 @@
 #include "GameState.h"
 #include "PauseState.h"
 #include "StateStack.h"
+#include "MainMenuState.h"
 
 class StateStack;
 

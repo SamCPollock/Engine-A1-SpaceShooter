@@ -5,8 +5,8 @@
 ///***************************************************************************************
 
 
-#ifndef BOOK_STATE_HPP
-#define BOOK_STATE_HPP
+#ifndef STATE_HPP
+#define STATE_HPP
 
 #include "StateIdentifiers.h"
 #include "../Common/d3dApp.h"
@@ -51,4 +51,4 @@ private:
 	Context* mContext;
 };
 
-#endif // BOOK_STATE_HPP
+#endif 

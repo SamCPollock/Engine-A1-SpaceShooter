@@ -157,6 +157,7 @@
     <ClCompile Include="main.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="MainMenuState.cpp" />
     <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SceneNode.cpp" />
@@ -186,6 +187,7 @@
     <ClInclude Include="FrameResource.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="InputCommandQueue.h" />
+    <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="PauseState.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="SceneNode.h" />

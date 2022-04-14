@@ -5,8 +5,8 @@
 ///***************************************************************************************
 
 
-#ifndef BOOK_STATESTACK_HPP
-#define BOOK_STATESTACK_HPP
+#ifndef STATESTACK_HPP
+#define STATESTACK_HPP
 
 #include "State.h"
 #include "StateIdentifiers.h"
@@ -82,4 +82,4 @@ void StateStack::registerState(States::ID stateID)
 
 }
 
-#endif // BOOK_STATESTACK_HPP
+#endif 

@@ -6,8 +6,8 @@
 
 
 
-#ifndef BOOK_TITLESTATE_HPP
-#define BOOK_TITLESTATE_HPP
+#ifndef TITLESTATE_HPP
+#define TITLESTATE_HPP
 
 #include "State.h"
 #include "../Common/d3dApp.h"
@@ -24,4 +24,4 @@ private:
 	virtual void BuildScene() override;
 };
 
-#endif // BOOK_TITLESTATE_HPP
+#endif 

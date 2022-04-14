@@ -6,8 +6,8 @@
 
 
 
-#ifndef BOOK_GAMESTATE_HPP
-#define BOOK_GAMESTATE_HPP
+#ifndef GAMESTATE_HPP
+#define GAMESTATE_HPP
 
 
 #include "Player.h"
@@ -41,4 +41,4 @@ private:
 	virtual void BuildScene() override;
 };
 
-#endif // BOOK_GAMESTATE_HPP
+#endif

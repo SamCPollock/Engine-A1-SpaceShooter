@@ -96,6 +96,9 @@
     <ClCompile Include="..\Common\d3dApp.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
+    <ClCompile Include="MainMenuState.cpp">
+      <Filter>Part3</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Common\Camera.h">
@@ -175,6 +178,9 @@
     </ClInclude>
     <ClInclude Include="..\Common\d3dApp.h">
       <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenuState.h">
+      <Filter>Part3</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

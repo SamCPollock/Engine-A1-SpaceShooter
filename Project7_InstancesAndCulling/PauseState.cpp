@@ -48,7 +48,7 @@ bool PauseState::update(const GameTimer& gt)
 bool PauseState::handleEvent(WPARAM btnState)
 {
 
-	if (btnState == 'P')	// unpause
+	if (btnState == 'P' || btnState == VK_RETURN)	// unpause
 	{
 		requestStackPop();
 	}

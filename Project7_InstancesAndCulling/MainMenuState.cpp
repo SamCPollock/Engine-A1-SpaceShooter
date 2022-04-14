@@ -1,13 +1,14 @@
-#include "TitleState.h"
+#include "MainMenuState.h"
 #include "World.h"
 #include "ShooterGame.h"
+
 
 /// <summary>
 /// Constructor, builds the scene
 /// </summary>
 /// <param name="stack"></param>
 /// <param name="context"></param>
-TitleState::TitleState(StateStack* stack, Context* context)
+MainMenuState::MainMenuState(StateStack* stack, Context* context)
 	: State(stack, context)
 {
 	BuildScene();
@@ -15,7 +16,7 @@ TitleState::TitleState(StateStack* stack, Context* context)
 /// <summary>
 /// Calls the scenegraphs draw function
 /// </summary>
-void TitleState::draw()
+void MainMenuState::draw()
 {
 	mSceneGraph->draw();
 }
@@ -24,7 +25,7 @@ void TitleState::draw()
 /// </summary>
 /// <param name="gt"></param>
 /// <returns></returns>
-bool TitleState::update(const GameTimer& gt)
+bool MainMenuState::update(const GameTimer& gt)
 {
 	mSceneGraph->update(gt);
 	return true;
@@ -34,11 +35,21 @@ bool TitleState::update(const GameTimer& gt)
 /// </summary>
 /// <param name="btnState"></param>
 /// <returns></returns>
-bool TitleState::handleEvent(WPARAM btnState)
+bool MainMenuState::handleEvent(WPARAM btnState)
 {
-	//key pressed
-	requestStackPop();
-	requestStackPush(States::MainMenu);
+
+	if (btnState == VK_RETURN)	// Start the game
+	{
+		requestStackPop();
+		requestStackPush(States::Game);
+
+	}
+	else if (btnState == VK_BACK) // Quit game
+	{
+		// backspace pressed, remove itself to return to the game
+		requestStackPop();
+
+	}
 
 	return true;
 }
@@ -47,26 +58,32 @@ bool TitleState::handleEvent(WPARAM btnState)
 /// <summary>
 /// Builds the scene, including a background and a text sprite.
 /// </summary>
-void TitleState::BuildScene()
+void MainMenuState::BuildScene()
 {
 
 	getContext()->game->BuildMaterials();
 
 
-	std::unique_ptr<SpriteNode> backgroundSprite(new SpriteNode(this, "TitleScreen"));
-	backgroundSprite->setPosition(0, 0, 3);
+	std::unique_ptr<SpriteNode> backgroundSprite(new SpriteNode(this, "Desert"));
+	//mBackground = backgroundSprite.get();
+	backgroundSprite->setPosition(0, 0, 0);
 	backgroundSprite->setScale(12.0, 1.0, 8.5);
 	backgroundSprite->setVelocity(0, 0, 0);
 	mSceneGraph->attachChild(std::move(backgroundSprite));
 
-	std::unique_ptr<SpriteNode> TitlePrompt(new SpriteNode(this, "TitleScreenPrompt"));
-	TitlePrompt->setPosition(0, 0.1, 2);
+	std::unique_ptr<SpriteNode> TitlePrompt(new SpriteNode(this, "MainMenuText"));
+	//mPrompt = TitlePrompt.get();
+	TitlePrompt->setPosition(0, 0.1, 0);
 	TitlePrompt->setScale(6, 1.0, 5);
 	TitlePrompt->setVelocity(0, 0, 0);
 	mSceneGraph->attachChild(std::move(TitlePrompt));
 
 
 	mSceneGraph->build();
+
+
+	/*for (auto& e : mAllRitems)
+		getContext()->game->mOpaqueRitems.push_back(e.get());*/
 
 
 	getContext()->game->ClearFrameResources();

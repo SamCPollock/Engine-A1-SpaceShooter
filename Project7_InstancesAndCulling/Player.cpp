@@ -38,6 +38,11 @@ Player::Player()
 	mKeyBinding['S'] = MoveDown;
 	mKeyBinding['D'] = MoveRight;
 
+	mKeyBinding[VK_UP] = MoveUp;
+	mKeyBinding[VK_LEFT] = MoveLeft;
+	mKeyBinding[VK_DOWN] = MoveDown;
+	mKeyBinding[VK_RIGHT] = MoveRight;
+
 	// Set initial action bindings
 	initializeActions();
 

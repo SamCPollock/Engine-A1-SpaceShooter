@@ -201,6 +201,8 @@ void Game::registerStates()
 	mStateStack.registerState<TitleState>(States::Title);
 	mStateStack.registerState<GameState>(States::Game);
 	mStateStack.registerState<PauseState>(States::Pause);
+	mStateStack.registerState<MainMenuState>(States::MainMenu);
+
 }
 
 /// <summary>
@@ -439,6 +441,15 @@ void Game::LoadTextures()
 
 	mTextures[TitleTextTex->Name] = std::move(TitleTextTex);
 
+	// Main Menu Text
+	auto MainMenuText = std::make_unique<Texture>();
+	MainMenuText->Name = "MainMenuText";
+	MainMenuText->Filename = L"../Textures/MainMenu.dds";
+	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
+		mCommandList.Get(), MainMenuText->Filename.c_str(),
+		MainMenuText->Resource, MainMenuText->UploadHeap));
+
+	mTextures[MainMenuText->Name] = std::move(MainMenuText);
 
 
 	//PAUSE STATE
@@ -521,6 +532,7 @@ void Game::BuildDescriptorHeaps()
 	auto DesertTex = mTextures["DesertTex"]->Resource;
 	auto TitleBackgroundTex = mTextures["TitleBackground"]->Resource;
 	auto TitleTextTex = mTextures["TitleText"]->Resource;
+	auto MainMenuTex = mTextures["MainMenuText"]->Resource;
 
 	auto PauseDisplayTex = mTextures["PauseDisplay"]->Resource;
 
@@ -568,6 +580,12 @@ void Game::BuildDescriptorHeaps()
 	hDescriptor.Offset(1, mCbvSrvDescriptorSize);
 	srvDesc.Format = TitleTextTex->GetDesc().Format;
 	md3dDevice->CreateShaderResourceView(TitleTextTex.Get(), &srvDesc, hDescriptor);
+
+	//Main Menu Text Descriptor
+	hDescriptor.Offset(1, mCbvSrvDescriptorSize);
+	srvDesc.Format = TitleTextTex->GetDesc().Format;
+	md3dDevice->CreateShaderResourceView(MainMenuTex.Get(), &srvDesc, hDescriptor);
+
 
 	//Pause DisplayDescriptor
 	hDescriptor.Offset(1, mCbvSrvDescriptorSize);
@@ -762,6 +780,17 @@ void Game::BuildMaterials()
 	TitleScreenPrompt->Roughness = 0.2f;
 
 	mMaterials["TitleScreenPrompt"] = std::move(TitleScreenPrompt);
+
+	// Main Menu text material
+	auto MainMenuTextPrompt = std::make_unique<Material>();
+	MainMenuTextPrompt->Name = "MainMenuText";
+	MainMenuTextPrompt->MatCBIndex = index;
+	MainMenuTextPrompt->DiffuseSrvHeapIndex = index++;
+	MainMenuTextPrompt->DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+	MainMenuTextPrompt->FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);
+	MainMenuTextPrompt->Roughness = 0.2f;
+
+	mMaterials["MainMenuText"] = std::move(MainMenuTextPrompt);
 
 	// pause material
 	auto PauseDisplay = std::make_unique<Material>();

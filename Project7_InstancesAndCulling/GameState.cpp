@@ -41,7 +41,7 @@ bool GameState::update(const GameTimer& gt)
 bool GameState::handleEvent(WPARAM btnState)
 {
 	// Handle player input
-	if (btnState == 'P')
+	if (btnState == 'P' || btnState == VK_RETURN || btnState == VK_BACK)
 	{
 		requestStackPush(States::Pause);
 	}
