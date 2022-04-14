@@ -1,0 +1,65 @@
+\hypertarget{_title_state_8cpp_source}{}\doxysection{C\+:/\+Users/samcp/\+Downloads/\+GBC/\+Year 3 -\/ Downloads/\+Semester 2/\+Game Engine 4/\+A1-\/\+DX12-\/\+Shooter/\+A1-\/\+Bonus\+Time/\+Project7\+\_\+\+Instances\+And\+Culling/\+Title\+State.cpp}
+\mbox{\hyperlink{_title_state_8cpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00001}00001 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_title_state_8h}{TitleState.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00002}00002 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_world_8h}{World.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00003}00003 \textcolor{preprocessor}{\#include "{}\mbox{\hyperlink{_shooter_game_8h}{ShooterGame.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00004}00004 }
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00010}\mbox{\hyperlink{class_title_state_aad68d2a0aece65492974d3ee448ff71f}{00010}} \mbox{\hyperlink{class_title_state_aad68d2a0aece65492974d3ee448ff71f}{TitleState::TitleState}}(\mbox{\hyperlink{class_state_stack}{StateStack}}* stack, \mbox{\hyperlink{struct_state_1_1_context}{Context}}* context)}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00011}00011     : \mbox{\hyperlink{class_state}{State}}(stack, context)}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00012}00012 \{}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00013}00013     BuildScene();}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00014}00014 \}}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00018}\mbox{\hyperlink{class_title_state_ae12beafe5aad6929a56089942de1220e}{00018}} \textcolor{keywordtype}{void} \mbox{\hyperlink{class_title_state_ae12beafe5aad6929a56089942de1220e}{TitleState::draw}}()}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00019}00019 \{}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00020}00020     \mbox{\hyperlink{class_state_af4c75bfbdf3ef7697dffd853bf54feeb}{mSceneGraph}}-\/>\mbox{\hyperlink{class_scene_node_a41b1a847182e49103bc145bd4604e056}{draw}}();}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00021}00021 \}}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00027}\mbox{\hyperlink{class_title_state_a26db23a9e13dcd488d0a550024aa67a0}{00027}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_title_state_a26db23a9e13dcd488d0a550024aa67a0}{TitleState::update}}(\textcolor{keyword}{const} GameTimer\& gt)}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00028}00028 \{}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00029}00029     \mbox{\hyperlink{class_state_af4c75bfbdf3ef7697dffd853bf54feeb}{mSceneGraph}}-\/>\mbox{\hyperlink{class_scene_node_a858b7a088c0a2d01aaa90baf05d58d08}{update}}(gt);}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00030}00030     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00031}00031 \}}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00037}\mbox{\hyperlink{class_title_state_af599217999e2373896f4441dcfb4b78b}{00037}} \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_title_state_af599217999e2373896f4441dcfb4b78b}{TitleState::handleEvent}}(WPARAM btnState)}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00038}00038 \{}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00039}00039     \textcolor{comment}{//key pressed}}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00040}00040     \mbox{\hyperlink{class_state_aa418660892d6161772c907bd8d70f910}{requestStackPop}}();}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00041}00041     \mbox{\hyperlink{class_state_a6763de833ceb9c23df45aff163a4a1cd}{requestStackPush}}(\mbox{\hyperlink{namespace_states_a571a0dc62822f97bb9511eb013d8e1c3a392b686639cb98b586bf0af7dc993633}{States::Game}});}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00042}00042 }
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00043}00043     \textcolor{keywordflow}{return} \textcolor{keyword}{true};}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00044}00044 \}}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00045}00045 }
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00046}00046 }
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00050}00050 \textcolor{keywordtype}{void} TitleState::BuildScene()}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00051}00051 \{}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00052}00052 }
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00053}00053     \mbox{\hyperlink{class_state_abe550429014cc7efbb44c216ba54feef}{getContext}}()-\/>\mbox{\hyperlink{struct_state_1_1_context_a3fd6b76972ddb3303602df2eaa98a8e9}{game}}-\/>\mbox{\hyperlink{class_game_a8150ddca90b1ce3c38becca970246d99}{BuildMaterials}}();}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00054}00054 }
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00055}00055 }
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00056}00056     std::unique\_ptr<SpriteNode> backgroundSprite(\textcolor{keyword}{new} \mbox{\hyperlink{class_sprite_node}{SpriteNode}}(\textcolor{keyword}{this}, \textcolor{stringliteral}{"{}TitleScreen"{}}));}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00057}00057     \textcolor{comment}{//mBackground = backgroundSprite.get();}}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00058}00058     backgroundSprite-\/>setPosition(0, 0, 0);}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00059}00059     backgroundSprite-\/>setScale(12.0, 1.0, 8.5);}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00060}00060     backgroundSprite-\/>setVelocity(0, 0, 0);}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00061}00061     \mbox{\hyperlink{class_state_af4c75bfbdf3ef7697dffd853bf54feeb}{mSceneGraph}}-\/>\mbox{\hyperlink{class_scene_node_acdfa2c2ba28bce076c886eaba2d9e650}{attachChild}}(std::move(backgroundSprite));}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00062}00062 }
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00063}00063     std::unique\_ptr<SpriteNode> TitlePrompt(\textcolor{keyword}{new} \mbox{\hyperlink{class_sprite_node}{SpriteNode}}(\textcolor{keyword}{this}, \textcolor{stringliteral}{"{}TitleScreenPrompt"{}}));}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00064}00064     \textcolor{comment}{//mPrompt = TitlePrompt.get();}}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00065}00065     TitlePrompt-\/>setPosition(0, 0.1, 0);}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00066}00066     TitlePrompt-\/>setScale(6, 1.0, 5);}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00067}00067     TitlePrompt-\/>setVelocity(0, 0, 0);}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00068}00068     \mbox{\hyperlink{class_state_af4c75bfbdf3ef7697dffd853bf54feeb}{mSceneGraph}}-\/>\mbox{\hyperlink{class_scene_node_acdfa2c2ba28bce076c886eaba2d9e650}{attachChild}}(std::move(TitlePrompt));}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00069}00069 }
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00070}00070 }
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00071}00071     \mbox{\hyperlink{class_state_af4c75bfbdf3ef7697dffd853bf54feeb}{mSceneGraph}}-\/>\mbox{\hyperlink{class_scene_node_a67ca883a91d8c45004a0786330548d8f}{build}}();}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00072}00072 }
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00073}00073 }
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00074}00074     \textcolor{comment}{/*for (auto\& e : mAllRitems)}}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00075}00075 \textcolor{comment}{        getContext()-\/>game-\/>mOpaqueRitems.push\_back(e.get());*/}}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00076}00076 }
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00077}00077 }
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00078}00078     \mbox{\hyperlink{class_state_abe550429014cc7efbb44c216ba54feef}{getContext}}()-\/>\mbox{\hyperlink{struct_state_1_1_context_a3fd6b76972ddb3303602df2eaa98a8e9}{game}}-\/>\mbox{\hyperlink{class_game_ab84803799b4362f7d2a625c78d4a5f82}{ClearFrameResources}}();}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00079}00079     \mbox{\hyperlink{class_state_abe550429014cc7efbb44c216ba54feef}{getContext}}()-\/>\mbox{\hyperlink{struct_state_1_1_context_a3fd6b76972ddb3303602df2eaa98a8e9}{game}}-\/>\mbox{\hyperlink{class_game_abb4c8b08ae6340e889f865f55ffcaa0d}{BuildFrameResources}}(\mbox{\hyperlink{class_state_a505581614dd080700cda88bd1b930960}{mAllRitems}}.size());}
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00080}00080 }
+\DoxyCodeLine{\Hypertarget{_title_state_8cpp_source_l00081}00081 \}}
+
+\end{DoxyCode}

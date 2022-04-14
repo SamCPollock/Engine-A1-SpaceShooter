@@ -9,26 +9,30 @@
 #include "SceneNode.h"
 #include "Ship.h"
 #include "SpriteNode.h"
-#include "Command.h"
 #include "InputCommandQueue.h"
+#include "Command.h"
+
+class State;
 
 class World
 {
 public:
-	explicit World(Game* game);
+	World(State* state);
+	~World();
 	void update(const GameTimer& gt);
 	void draw();
-
-
-	void buildScene();
-
-	SceneNode* GetSceneGraph() { return mSceneGraph;  }
 	InputCommandQueue& getCommandQueue();
 
 
+	void buildScene();
 private:
 	InputCommandQueue mCommandQueue;
 
+
+	void playerBoundsCheck();
+
+
+private:
 	enum class Layer
 	{
 		Background,
@@ -36,9 +40,8 @@ private:
 	};
 
 
-
 private:
-	Game* mGame;
+	State* mState;
 
 	SceneNode* mSceneGraph;
 	std::array<SceneNode*, 2>	mSceneLayers;
@@ -48,5 +51,6 @@ private:
 	float mScrollSpeed;
 	Ship* mPlayerShip;
 	SpriteNode* mBackground;
+	SpriteNode* mBackground2;
 	Ship* mEnemy;
 };

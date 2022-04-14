@@ -1,6 +1,7 @@
 #include "InputCommandQueue.h"
 #include "SceneNode.h"
 
+
 /// <summary>
 /// Adds a command to the input command queue
 /// </summary>
@@ -9,7 +10,6 @@ void InputCommandQueue::push(const Command& command)
 {
 	mQueue.push(command);
 }
-
 /// <summary>
 /// Removes a command from the input command queue
 /// </summary>
@@ -18,10 +18,8 @@ Command InputCommandQueue::pop()
 {
 	Command command = mQueue.front();
 	mQueue.pop();
-
 	return command;
 }
-
 /// <summary>
 /// Returns true or false whether the command queue is empty
 /// </summary>
@@ -30,3 +28,5 @@ bool InputCommandQueue::isEmpty() const
 {
 	return mQueue.empty();
 }
+
+

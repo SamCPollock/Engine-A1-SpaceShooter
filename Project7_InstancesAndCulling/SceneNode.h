@@ -1,3 +1,4 @@
+
 ///***************************************************************************************
 /// Scene Node,
 /// Uses RenderItem from GBC Graphics, 2021. 
@@ -12,6 +13,7 @@
 #include "../Common/UploadBuffer.h"
 #include "../Common/GeometryGenerator.h"
 #include "../Common/Camera.h"
+
 #include "FrameResource.h"
 
 #include "Category.h"
@@ -20,9 +22,9 @@ using Microsoft::WRL::ComPtr;
 using namespace DirectX;
 using namespace DirectX::PackedVector;
 
-
-
-///*** FROM YEAR 2 GRAPHICS 
+#pragma comment(lib, "d3dcompiler.lib")
+#pragma comment(lib, "D3D12.lib")
+///*** FROM YEAR 2 GRAPHICS
 // Lightweight structure stores parameters to draw a shape.  This will
 // vary from app-to-app.
 struct RenderItem
@@ -60,9 +62,6 @@ struct RenderItem
 class State;
 struct Command;
 
-/// <summary>
-/// Scenenode 
-/// </summary>
 class SceneNode
 {
 public:
@@ -70,54 +69,44 @@ public:
 
 
 public:
-	SceneNode(State* game);								// Constuctor
+	SceneNode(State* state);
 
-	void attachChild(Ptr child);						// Attach another scenenode as child.
-	Ptr detachChild(const SceneNode& node);				// Detach child
+	void					attachChild(Ptr child);
+	Ptr						detachChild(const SceneNode& node);
 
-	void update(const GameTimer& gt);					// Update frames
-	void draw() const;									// Draw/display
-	void build();						
+	void					update(const GameTimer& gt);
+	void					draw() const;
+	void					build();
 
-	XMFLOAT3 getWorldPosition() const;					// return world pos
-	void setPosition(float x, float y, float z);		// set pos.
-	XMFLOAT3 getWorldRotation() const;					// return world rotation
-	void setWorldRotation(float x, float y, float z);	// set world rotation
-	XMFLOAT3 getWorldScale() const;						// return scale
-	void setScale(float x, float y, float z);			// sets scale
+	XMFLOAT3				getWorldPosition() const;
+	void					setPosition(float x, float y, float z);
+	XMFLOAT3				getWorldRotation() const;
+	void					setWorldRotation(float x, float y, float z);
+	XMFLOAT3				getWorldScale() const;
+	void					setScale(float x, float y, float z);
 
-	XMFLOAT4X4	getWorldTransform() const;				// returns world transform matrix
-	XMFLOAT4X4	getTransform() const;					// returns transform matrix 
+	XMFLOAT4X4				getWorldTransform() const;
+	XMFLOAT4X4				getTransform() const;
 
-	void move(float x, float y, float z);				// moves sceneNode.
+	void					onCommand(const Command& command, const GameTimer& gt);
+	virtual unsigned int	getCategory() const;
 
+	void					move(float x, float y, float z);
 
-	void onCommand(const Command& command, const GameTimer& gt);	// forwards command to children
-	virtual unsigned int getCategory() const;		// returns the category of the game object. 
-
-	void SetMatGeoDrawName(std::string materialName, std::string geometriesName, std::string drawArgsName);
-
-
-
+	void ClearChildren();
 private:
-	virtual void updateCurrent(const GameTimer& gt);	// updates scenNode
-	void updateChildren(const GameTimer& gt);			// updates all children
+	virtual void			updateCurrent(const GameTimer& gt);
+	void					updateChildren(const GameTimer& gt);
 
-	virtual void drawCurrent() const;					// draws sceneNode
-	void drawChildren() const;							// draws all children
-	virtual void buildCurrent();						// builds sceneNOde
-	void buildChildren();								// builds all children
+	virtual void			drawCurrent() const;
+	void					drawChildren() const;
+	virtual void			buildCurrent();
+	void					buildChildren();
+
 
 protected:
 	State* state;
 	RenderItem* renderer;
-
-	//unsigned int mCategory = Category::Scene;
-
-	std::string mMaterialName;
-	std::string mGeometriesName;
-	std::string mDrawArgsName;
-
 private:
 	XMFLOAT3				mWorldPosition;
 	XMFLOAT3				mWorldRotation;

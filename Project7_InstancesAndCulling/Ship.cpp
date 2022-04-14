@@ -22,7 +22,6 @@ Ship::Ship(Type type, State* state) : Entity(state)
 		break;
 	}
 }
-
 /// <summary>
 /// GetCategory, returns an int representing the category of the ship (Either PlayerAircraft or EnemyAircraft, to determine response to commands) 
 /// </summary>
@@ -31,48 +30,43 @@ unsigned int Ship::getCategory() const
 {
 	switch (mType)
 	{
-		case Type::Eagle:
+	case Type::Eagle:
 		return Category::PlayerAircraft;
 
 	default:
 		return Category::EnemyAircraft;
 	}
 }
-
 /// <summary>
 /// Overrides virtual SceneNode function, draws self.
 /// </summary>
 void Ship::drawCurrent() const
 {
-	// Set buffer sizes according to object and material constants. 
 	UINT objCBByteSize = d3dUtil::CalcConstantBufferByteSize(sizeof(ObjectConstants));
 	UINT matCBByteSize = d3dUtil::CalcConstantBufferByteSize(sizeof(MaterialConstants));
 
+	auto objectCB = state->getContext()->game->GetCurrFrameResource()->ObjectCB->Resource();
+	auto matCB = state->getContext()->game->GetCurrFrameResource()->MaterialCB->Resource();
 
-	auto objectCB = state->GetContext()->game->mCurrFrameResource->ObjectCB->Resource();
-	auto matCB = state->GetContext()->game->mCurrFrameResource->MaterialCB->Resource();
-
-	// Render the ship. 
 	if (renderer != nullptr)
 	{
-		state->GetContext()->game->getCmdList()->IASetVertexBuffers(0, 1, &renderer->Geo->VertexBufferView());
-		state->GetContext()->game->getCmdList()->IASetIndexBuffer(&renderer->Geo->IndexBufferView());
-		state->GetContext()->game->getCmdList()->IASetPrimitiveTopology(renderer->PrimitiveType);
+		state->getContext()->game->getCmdList()->IASetVertexBuffers(0, 1, &renderer->Geo->VertexBufferView());
+		state->getContext()->game->getCmdList()->IASetIndexBuffer(&renderer->Geo->IndexBufferView());
+		state->getContext()->game->getCmdList()->IASetPrimitiveTopology(renderer->PrimitiveType);
 
-		CD3DX12_GPU_DESCRIPTOR_HANDLE tex(state->GetContext()->game->mSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart());
-		tex.Offset(renderer->Mat->DiffuseSrvHeapIndex, state->GetContext()->game->mCbvSrvDescriptorSize);
+		CD3DX12_GPU_DESCRIPTOR_HANDLE tex(state->getContext()->game->GetSrvSrvDescriptorHeap()->GetGPUDescriptorHandleForHeapStart());
+		tex.Offset(renderer->Mat->DiffuseSrvHeapIndex, state->getContext()->game->GetCbvSrvDescriptorSize());
 
 		D3D12_GPU_VIRTUAL_ADDRESS objCBAddress = objectCB->GetGPUVirtualAddress() + (UINT64)renderer->ObjCBIndex * objCBByteSize;
 		D3D12_GPU_VIRTUAL_ADDRESS matCBAddress = matCB->GetGPUVirtualAddress() + (UINT64)renderer->Mat->MatCBIndex * matCBByteSize;
 
-		state->GetContext()->game->getCmdList()->SetGraphicsRootDescriptorTable(0, tex);
-		state->GetContext()->game->getCmdList()->SetGraphicsRootConstantBufferView(1, objCBAddress);
-		state->GetContext()->game->getCmdList()->SetGraphicsRootConstantBufferView(3, matCBAddress);
+		state->getContext()->game->getCmdList()->SetGraphicsRootDescriptorTable(0, tex);
+		state->getContext()->game->getCmdList()->SetGraphicsRootConstantBufferView(1, objCBAddress);
+		state->getContext()->game->getCmdList()->SetGraphicsRootConstantBufferView(3, matCBAddress);
 
-		state->GetContext()->game->getCmdList()->DrawIndexedInstanced(renderer->IndexCount, 1, renderer->StartIndexLocation, renderer->BaseVertexLocation, 0);
+		state->getContext()->game->getCmdList()->DrawIndexedInstanced(renderer->IndexCount, 1, renderer->StartIndexLocation, renderer->BaseVertexLocation, 0);
 	}
 }
-
 /// <summary>
 /// build current, gets the renderer and adds the object and builds it. 
 /// </summary>
@@ -82,12 +76,12 @@ void Ship::buildCurrent()
 	renderer = render.get();
 	renderer->World = getTransform();
 	renderer->ObjCBIndex = (UINT)state->mAllRitems.size();
-	renderer->Mat = state->GetContext()->game->getMaterials()[mSprite].get();
-	renderer->Geo = state->GetContext()->game->getGeometries()["boxGeo"].get();
+	renderer->Mat = state->getContext()->game->getMaterials()[mSprite].get();
+	renderer->Geo = state->getContext()->game->getGeometries()["boxGeo"].get();
 	renderer->PrimitiveType = D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
 	renderer->IndexCount = renderer->Geo->DrawArgs["box"].IndexCount;
 	renderer->StartIndexLocation = renderer->Geo->DrawArgs["box"].StartIndexLocation;
 	renderer->BaseVertexLocation = renderer->Geo->DrawArgs["box"].BaseVertexLocation;
-	//mShipRitem = render.get();
+	//mAircraftRitem = render.get();
 	state->mAllRitems.push_back(std::move(render));
 }

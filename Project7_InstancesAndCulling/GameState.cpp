@@ -1,7 +1,11 @@
 #include "GameState.h"
-#include "SpriteNode.h"
 #include "ShooterGame.h"
 
+/// <summary>
+/// Constructor, sets up the world nad pause scene references. 
+/// </summary>
+/// <param name="stack"></param>
+/// <param name="context"></param>
 GameState::GameState(StateStack* stack, Context* context)
 	: State(stack, context)
 	, mWorld(this)
@@ -9,68 +13,70 @@ GameState::GameState(StateStack* stack, Context* context)
 {
 	BuildScene();
 }
-
-void GameState::Draw()
+/// <summary>
+/// Calls the world's draw
+/// </summary>
+void GameState::draw()
 {
 	mWorld.draw();
-}
 
-bool GameState::Update(const GameTimer& gt)
+}
+/// <summary>
+/// Calls the worlds update and calls process input
+/// </summary>
+/// <param name="gt"></param>
+/// <returns></returns>
+bool GameState::update(const GameTimer& gt)
 {
-	//ProcessInput();
-	HandleRealTimeInput();
+	ProcessInput();
 	mWorld.update(gt);
 
 	return true;
 }
-
-bool GameState::HandleEvent(WPARAM btnState)
+/// <summary>
+/// Handles player input, checking whether to enter pause state. 
+/// </summary>
+/// <param name="btnState"></param>
+/// <returns></returns>
+bool GameState::handleEvent(WPARAM btnState)
 {
-	////Handle player input
-	//InputCommandQueue& commands = mWorld->getCommandQueue();
-	//mPlayer->handleEvent(commands);
-
-	//If Return to title is pressed
-	if (btnState == 'M')
+	// Handle player input
+	if (btnState == 'P')
 	{
-		//Push Pause State
-		RequestStackPush(States::Title);
+		requestStackPush(States::Pause);
 	}
-
+#pragma endregion
 	return true;
 }
-
-bool GameState::HandleRealTimeInput()
+/// <summary>
+/// Processes input, passes it to the player 
+/// </summary>
+void GameState::ProcessInput()
 {
-	//Handle player input
 	InputCommandQueue& commands = mWorld.getCommandQueue();
-	GetContext()->player->handleEvent(commands);
-	GetContext()->player->handleRealtimeInput(commands);
-
-	return true;
+	getContext()->player->handleEvent(commands);
+	getContext()->player->handleRealtimeInput(commands);
 }
-
+/// <summary>
+/// Builds the scene, including the cube used as a pause menu
+/// </summary>
 void GameState::BuildScene()
 {
-	GetContext()->game->BuildMaterials();
+	getContext()->game->BuildMaterials();
+
 
 	mWorld.buildScene();
 
+	//pause stuff
 	std::unique_ptr<SpriteNode> backgroundSprite(new SpriteNode(this, "PauseDisplay"));
-	//mPauseBackground = backgroundSprite.get();
-	backgroundSprite->setPosition(0, 0.15, 0);
-	backgroundSprite->setScale(6, 1.0, 6);
+	backgroundSprite->setPosition(0, 1.15, 2);
+	backgroundSprite->setScale(6, 0.2, 6);
 	backgroundSprite->setVelocity(0, 0, 0);
 	mPauseSceneGraph->attachChild(std::move(backgroundSprite));
 
 	mPauseSceneGraph->build();
-	////pause stuff end
-	//for (auto& e : getContext()->game->mAllRitems)
-	//	getContext()->game->mOpaqueRitems.push_back(e.get());
 
-
-	GetContext()->game->ResetFrameResources();
-	GetContext()->game->BuildFrameResources(mAllRitems.size());
-
+	getContext()->game->ClearFrameResources();
+	getContext()->game->BuildFrameResources(mAllRitems.size());
 
 }

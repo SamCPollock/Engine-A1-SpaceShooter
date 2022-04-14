@@ -1,105 +1,131 @@
+
 #include "StateStack.h"
 
+#include <cassert>
 
+/// <summary>
+/// Constructor, gets the stack, pending list, context, and factories. 
+/// </summary>
+/// <param name="context"></param>
 StateStack::StateStack(State::Context context)
-	: mStack(),
-	mPendingList(),
-	mContext(context),
-	mFactories()
+	: mStack()
+	, mPendingList()
+	, mContext(context)
+	, mFactories()
 {
 }
 
-void StateStack::Update(const GameTimer& timer)
+/// <summary>
+/// Update, loops through the stack then breaks when there is nothing left
+/// </summary>
+/// <param name="gt"></param>
+void StateStack::update(const GameTimer& gt)
 {
-	//Iterate from Top to Bottom, stop as soon as Update returns false
+
 	for (auto itr = mStack.rbegin(); itr != mStack.rend(); ++itr)
 	{
-		if (!(*itr)->Update(timer))
+		if (!(*itr)->update(gt))
 			break;
 	}
 
 	applyPendingChanges();
 }
 
-void StateStack::Draw()
+/// <summary>
+/// Draws all active states, starting at the bottom and going up
+/// </summary>
+void StateStack::draw()
 {
-	//Draw all active states from Bottom to Top
-	for (State::StatePtr& state : mStack)
+	for (State::Ptr& state : mStack)
 	{
-		state->Draw();
+		state->draw();
 	}
 }
 
-void StateStack::HandleEvent(WPARAM btnState)
+/// <summary>
+/// Loops through the stack from top going down. 
+/// </summary>
+/// <param name="btnState"></param>
+void StateStack::handleEvent(WPARAM btnState)
 {
-	//Iterate from Top to Bottom, stops as soon as HandleEvent() returns false
 	for (auto itr = mStack.rbegin(); itr != mStack.rend(); ++itr)
 	{
-		if (!(*itr)->HandleEvent(btnState))
+		if (!(*itr)->handleEvent(btnState))
+		{
 			break;
+		}
 	}
+
+	applyPendingChanges();
 }
 
-void StateStack::handleRealTimeInput()
-{
-	//Iterate from Top to Bottom, stop as soon as HandleEvent() returns false
-	for (auto itr = mStack.rbegin(); itr != mStack.rend(); ++itr)
-	{
-		if (!(*itr)->HandleRealTimeInput())
-			break;
-	}
-}
-
+/// <summary>
+/// Pushes a state onto the list of pending state changes
+/// </summary>
+/// <param name="stateID"></param>
 void StateStack::pushState(States::ID stateID)
 {
 	mPendingList.push_back(PendingChange(Push, stateID));
 }
-
+/// <summary>
+/// Adds a pop to the list of pending state changes
+/// </summary>
 void StateStack::popState()
 {
 	mPendingList.push_back(PendingChange(Pop));
 }
-
+/// <summary>
+/// clears the full list
+/// </summary>
 void StateStack::clearStates()
 {
 	mPendingList.push_back(PendingChange(Clear));
 }
-
-std::vector<State::StatePtr>* StateStack::GetStateStack()
+/// <summary>
+/// Returns wheteher the stack is empty or not
+/// </summary>
+/// <returns></returns>
+bool StateStack::isEmpty() const
+{
+	return mStack.empty();
+}
+/// <summary>
+/// Returns a pointer to the statestack
+/// </summary>
+/// <returns></returns>
+std::vector<State::Ptr>* StateStack::GetStateStack()
 {
 	return &mStack;
 }
-
-State* StateStack::GetPreviousState()
-{
-	if (mStack.size() >= 2)
-	{
-		return mStack[mStack.size() - 2].get();
-	}
-}
-
-State::StatePtr StateStack::createState(States::ID stateID)
+/// <summary>
+/// Uses the factory to create states 
+/// </summary>
+/// <param name="stateID"></param>
+/// <returns></returns>
+State::Ptr StateStack::createState(States::ID stateID)
 {
 	auto found = mFactories.find(stateID);
 	assert(found != mFactories.end());
 
 	return found->second();
 }
-
+/// <summary>
+/// Foreach loop to apply each pending change from the pending changes list
+/// </summary>
 void StateStack::applyPendingChanges()
 {
-	
 	for (PendingChange change : mPendingList)
 	{
 		switch (change.action)
 		{
 		case Push:
-			//mContext.game->FlushCommandQueue();
 			mStack.push_back(createState(change.stateID));
 			break;
+
 		case Pop:
 			mStack.pop_back();
 			break;
+
 		case Clear:
 			mStack.clear();
 			break;
@@ -110,17 +136,7 @@ void StateStack::applyPendingChanges()
 }
 
 StateStack::PendingChange::PendingChange(Action action, States::ID stateID)
-	: action(action),
-	stateID(stateID)
+	: action(action)
+	, stateID(stateID)
 {
 }
-
-
-//template <typename T>
-//void StateStack::registerState(States::ID stateID)
-//{
-//	mFactories[stateID] = [this]()
-//	{
-//		return State::StatePtr(new T(this, &mContext));
-//	};
-//}

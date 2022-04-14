@@ -1,13 +1,22 @@
+///***************************************************************************************
+/// StateStack
+/// Stack which holds all active states, is used to switch between active states. 
+/// Sam Pollock, 2022
+///***************************************************************************************
+
+
+#ifndef BOOK_STATESTACK_HPP
+#define BOOK_STATESTACK_HPP
 
 #include "State.h"
 #include "StateIdentifiers.h"
-//#include "ShooterGame.h"
 #include "../Common/d3dApp.h"
 
 #include <vector>
 #include <utility>
 #include <functional>
 #include <map>
+
 
 
 class Game;
@@ -19,59 +28,58 @@ public:
 	{
 		Push,
 		Pop,
-		Clear
+		Clear,
 	};
+
 
 public:
 	explicit StateStack(State::Context context);
 
 	template <typename T>
 	void registerState(States::ID stateID);
-
-
-	void Update(const GameTimer& timer);
-	void Draw();
-	void HandleEvent(WPARAM btnState);
-	void handleRealTimeInput();
-
+		 
+	void update(const GameTimer& gt);
+	void draw();
+	void handleEvent(WPARAM btnState);
+		 
 	void pushState(States::ID stateID);
 	void popState();
 	void clearStates();
+		 
+	bool isEmpty() const;
+	std::vector<State::Ptr>* GetStateStack();
 
-	bool isEmpty() const { return mStack.empty(); }
-	std::vector<State::StatePtr>* GetStateStack();
-
-
-	int GetStackSize() { return mStack.size(); }
-	State* GetCurrentState() { return mStack.back().get(); }
-	State* GetPreviousState();
 
 private:
-	State::StatePtr createState(States::ID stateID);
+	State::Ptr createState(States::ID stateID);
+public:
 	void applyPendingChanges();
 
+
+private:
 	struct PendingChange
 	{
 		explicit PendingChange(Action action, States::ID stateID = States::None);
-
 		Action action;
 		States::ID stateID;
 	};
 
-private:
-	std::vector<State::StatePtr> mStack;
+	std::vector<State::Ptr>	 mStack;
 	std::vector<PendingChange> mPendingList;
-	std::map<States::ID, std::function<State::StatePtr()>> mFactories;
 
 	State::Context mContext;
-
+	std::map<States::ID, std::function<State::Ptr()>> mFactories;
 };
+
 
 template <typename T>
 void StateStack::registerState(States::ID stateID)
 {
 	mFactories[stateID] = [this]()
 	{
-		return State::StatePtr(new T(*this, mContext));
+		return State::Ptr(new T(this, &mContext));
 	};
+
 }
+
+#endif // BOOK_STATESTACK_HPP

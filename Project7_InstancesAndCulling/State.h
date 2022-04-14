@@ -1,58 +1,54 @@
-#pragma once
+///***************************************************************************************
+/// State, parent
+/// Parent class storing Context for each state which inherits.  
+/// Sam Pollock, 2022
+///***************************************************************************************
 
-#include "../Common/d3dApp.h"
+
+#ifndef BOOK_STATE_HPP
+#define BOOK_STATE_HPP
+
 #include "StateIdentifiers.h"
+#include "../Common/d3dApp.h"
 #include "SpriteNode.h"
-
 #include <memory>
 
 class StateStack;
 class Player;
 class Game;
 
-
 class State
 {
-public: 
-
-	typedef std::unique_ptr<State> StatePtr; 
+public:
+	typedef std::unique_ptr<State> Ptr;
 
 	struct Context
 	{
 		Context(Player* player, Game* Game);
-		
 		Player* player;
-		Game* game; 
-
+		Game* game;
 	};
 
-	//SceneNode* GetSceneGraph() { return mSceneGraph; }
 
+public:
 	State(StateStack* stack, Context* context);
-	virtual ~State();
-
-	virtual void Draw() = 0;
-
-	virtual bool Update(const GameTimer& gt) = 0;
-	virtual bool HandleEvent(WPARAM btnState) = 0;
-	virtual bool HandleRealTimeInput() = 0;
-	virtual void BuildScene() = 0;
-
-	Context* GetContext() const;
-	std::vector < std::unique_ptr<RenderItem>> mAllRitems;
-
+	virtual				~State();
+	virtual void		draw() = 0;
+	virtual bool		update(const GameTimer& gt) = 0;
+	virtual bool		handleEvent(WPARAM btnState) = 0;
+	virtual void		BuildScene() = 0;
+	Context* getContext() const;
+	std::vector<std::unique_ptr<RenderItem>> mAllRitems;
 protected:
-	void RequestStackPush(States::ID stateID);
-	void RequestStackPop();
-	void RequestStateClear();
-
+	void				requestStackPush(States::ID stateID);
+	void				requestStackPop();
+	void				requestStateClear();
 	StateStack* mStack;
 
 	SceneNode* mSceneGraph;
-
+	// List of all the render items.
 private:
 	Context* mContext;
-
-
 };
 
+#endif // BOOK_STATE_HPP

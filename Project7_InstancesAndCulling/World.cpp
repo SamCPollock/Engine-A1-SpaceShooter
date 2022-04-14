@@ -1,6 +1,7 @@
 #define NOMINMAX
-#include "World.h"
 
+#include "World.h"
+#include "State.h"
 
 /// <summary>
 /// Constructor, makes the world
@@ -11,56 +12,52 @@
 //	 sets up the scrollspeed. 
 /// </summary>
 /// <param name="game"></param>
-World::World(Game* game)
-	: mSceneGraph(new SceneNode(game))
-	, mGame(game)
+World::World(State* state)
+	: mState(state)
+	, mSceneGraph(new SceneNode(state))
 	, mPlayerShip(nullptr)
 	, mBackground(nullptr)
-	, mWorldBounds(-3.0f, 3.0f, 200.0f, 0.0f) //Left, Right, Down, Up
+	, mWorldBounds(-4.5f, 4.5f, -2.0f, 5.0f) //Left, Right, Down, Up
 	, mSpawnPosition(0.f, 0.f)
 	, mScrollSpeed(1.0f)
 {
 }
-
+/// <summary>
+/// Destructor
+/// </summary>
+World::~World()
+{
+}
 /// <summary>
 /// World update, updates the scenegraph
-/// adds "bouncing" movemetn to the ship. 
+/// Moves the background and the enemies.
+/// Ensures the player stays within the bounds 
+/// Also tilts the player according to movement to provide 3D Feeling
 /// </summary>
 /// <param name="gt"></param>
 void World::update(const GameTimer& gt)
 {
-	mPlayerShip->setVelocity(XMFLOAT3(0.0f, 0.0f, 0.0f));
+	mPlayerShip->setVelocity(0.0f, 0.0f, 0.0f);
 
-	// FOrward commands to the scene graph
 	while (!mCommandQueue.isEmpty())
-	{
 		mSceneGraph->onCommand(mCommandQueue.pop(), gt);
+
+	if (mBackground->getWorldPosition().z < -16)
+	{
+		mBackground->setPosition(0, 0, 16);
+	}
+	if (mBackground2->getWorldPosition().z < -16)
+	{
+		mBackground2->setPosition(0, 0, 16);
 	}
 
 
+	// Regular update step, adapt position (correct if outside view)
 	mSceneGraph->update(gt);
+	playerBoundsCheck();
 
 
-
-	if (mEnemy->getWorldPosition().x > -mWorldBounds.x)
-	{
-		mEnemy->setVelocity(XMFLOAT3(-2.0f, 0, 0));
-	}
-	else if (mEnemy->getWorldPosition().x < mWorldBounds.x)
-	{
-		mEnemy->setVelocity(XMFLOAT3(2, 0, 0));
-	}
-
-	if (mEnemy->getVelocity().x > 0)
-	{
-		mEnemy->setWorldRotation(0, 0, -5);
-	}
-	else
-	{
-		mEnemy->setWorldRotation(0, 0, 5);
-
-	}
-
+	// Tilting the player with movement
 	if (mPlayerShip->getVelocity().x > 0)
 	{
 		mPlayerShip->setWorldRotation(mPlayerShip->getWorldRotation().x, 0, -5);
@@ -83,26 +80,17 @@ void World::update(const GameTimer& gt)
 	{
 		mPlayerShip->setWorldRotation(-0.5, 0, mPlayerShip->getWorldRotation().z);
 	}
-	
+
 	else
 	{
 		mPlayerShip->setWorldRotation(0, 0, mPlayerShip->getWorldRotation().z);
 
 	}
+
 }
 
 /// <summary>
-/// Returns the member input command queue
-/// </summary>
-/// <returns></returns>
-InputCommandQueue& World::getCommandQueue()
-{
-	return mCommandQueue;
-}
-
-
-/// <summary>
-/// Calls the sceneGraphs draw function
+/// Calls the scene graphs draw
 /// </summary>
 void World::draw()
 {
@@ -110,70 +98,102 @@ void World::draw()
 }
 
 /// <summary>
-/// Build scene, 
-/// create unique ptr for each object, set up the initial entitiy properties for them. 
+/// Returns the inputcommandqueue
+/// </summary>
+/// <returns></returns>
+InputCommandQueue& World::getCommandQueue()
+{
+	return mCommandQueue;
+}
+
+/// <summary>
+/// Builds the scene, adds the player, enemies, and backgrounds
 /// </summary>
 void World::buildScene()
 {
-	std::unique_ptr<Ship> player(new Ship(Ship::Type::Eagle, mGame));
+	mSceneGraph->ClearChildren();
+
+	std::unique_ptr<Ship> player(new Ship(Ship::Type::Eagle, mState));
 	mPlayerShip = player.get();
-	mPlayerShip->setPosition(0.0f, 2.5f, -4.0);
-	mPlayerShip->setScale(0.5f, 1.0f, 1.0f);
-	mPlayerShip->setWorldRotation(0, 0, -5.0f);
-	mPlayerShip->setVelocity(0.0f, 0.0f, 0.0f);
+	mPlayerShip->setPosition(0.0f, 1.1f, 0.0f);
+	mPlayerShip->setScale(0.5f, 0.5f, 0.5f);
+	mPlayerShip->setVelocity(mScrollSpeed, 0.0f, 0.0f);
 	mSceneGraph->attachChild(std::move(player));
 
-	std::unique_ptr<Ship> enemy(new Ship(Ship::Type::Raptor, mGame));
-	mEnemy = enemy.get();
-	mEnemy->setPosition(0.0f, 2.5f, 6.0f);
-	mEnemy->setScale(0.5f, 1.0f, 1.0f);
-	mEnemy->setWorldRotation(0, 0, -5.0f);
-	mEnemy->setVelocity(2, 0.0f, 0.0f);
-	mSceneGraph->attachChild(std::move(enemy));
-
-
-	std::unique_ptr<Ship> enemy1(new Ship(Ship::Type::Raptor, mGame));
+	std::unique_ptr<Ship> enemy1(new Ship(Ship::Type::Raptor, mState));
 	auto raptor = enemy1.get();
-	raptor->setPosition(1.5f, 0.0f, 8.0f);
-	raptor->setScale(1.0f, 1.0f, 1.0f);
-	raptor->setWorldRotation(0.0f, XM_PI, 0.0f);
-	mEnemy->attachChild(std::move(enemy1));
+	raptor->setPosition(2, 1.0f, 6);
+	raptor->setScale(0.6f, 0.6f, 0.6f);
+	raptor->setWorldRotation(0.0f, 0, 0.0f);
+	raptor->setVelocity(0, 0, -mScrollSpeed);
 
-	std::unique_ptr<Ship> enemy2(new Ship(Ship::Type::Raptor, mGame));
+	mSceneGraph->attachChild(std::move(enemy1));
+
+	std::unique_ptr<Ship> enemy2(new Ship(Ship::Type::Raptor, mState));
 	auto raptor2 = enemy2.get();
-	raptor2->setPosition(-1.5, 0, 8.0f);
-	raptor2->setScale(1.0, 1.0, 1.0);
-	raptor2->setWorldRotation(0, XM_PI, 0);
-	mEnemy->attachChild(std::move(enemy2));
+	raptor2->setPosition(-2, 1, 8);
+	raptor2->setScale(0.6f, 0.6f, 0.6f);
+	raptor2->setWorldRotation(0, 0, 0);
+	raptor2->setVelocity(0, 0, -mScrollSpeed);
 
+	mSceneGraph->attachChild(std::move(enemy2));
 
-	std::unique_ptr<Ship> enemy3(new Ship(Ship::Type::Raptor, mGame));
+	std::unique_ptr<Ship> enemy3(new Ship(Ship::Type::Raptor, mState));
 	auto raptor3 = enemy3.get();
-	raptor3->setPosition(-2.5, 0, 10.0f);
-	raptor3->setScale(1.0, 1.0, 1.0);
-	raptor3->setWorldRotation(0, XM_PI, 0);
-	mEnemy->attachChild(std::move(enemy3));
+	raptor3->setPosition(-1, 1, 12);
+	raptor3->setScale(0.6f, 0.6f, 0.6f);
+	raptor3->setWorldRotation(0, 0, 0);
+	raptor3->setVelocity(0, 0, -mScrollSpeed);
 
-	std::unique_ptr<Ship> enemy4(new Ship(Ship::Type::Raptor, mGame));
+	mSceneGraph->attachChild(std::move(enemy3));
+
+	std::unique_ptr<Ship> enemy4(new Ship(Ship::Type::Raptor, mState));
 	auto raptor4 = enemy4.get();
-	raptor4->setPosition(0, 0, 10.0f);
-	raptor4->setScale(1.0, 1.0, 1.0);
-	raptor4->setWorldRotation(0, XM_PI, 0);
-	mEnemy->attachChild(std::move(enemy4));
+	raptor4->setPosition(1, 1, 14);
+	raptor4->setScale(0.6f, 0.6f, 0.6f);
+	raptor4->setWorldRotation(0, 0, 0);
+	raptor4->setVelocity(0, 0, -mScrollSpeed);
 
-	std::unique_ptr<Ship> enemy5(new Ship(Ship::Type::Raptor, mGame));
+	mSceneGraph->attachChild(std::move(enemy4));
+
+	std::unique_ptr<Ship> enemy5(new Ship(Ship::Type::Raptor, mState));
 	auto raptor5 = enemy5.get();
-	raptor5->setPosition(2.5, 0, 10.0f);
-	raptor5->setScale(1.0, 1.0, 1.0);
-	raptor5->setWorldRotation(0, XM_PI, 0);
-	mEnemy->attachChild(std::move(enemy5));
+	raptor5->setPosition(-1, 1, 16);
+	raptor5->setScale(0.6f, 0.6f, 0.6f);
+	raptor5->setWorldRotation(0, 0, 0);
+	raptor5->setVelocity(0, 0, -mScrollSpeed);
 
-	std::unique_ptr<SpriteNode> backgroundSprite(new SpriteNode(mGame));
+	mSceneGraph->attachChild(std::move(enemy5));
+
+	std::unique_ptr<SpriteNode> backgroundSprite(new SpriteNode(mState));
 	mBackground = backgroundSprite.get();
 	mBackground->setPosition(0, 0, 0.0);
-	mBackground->setScale(200.0, 1.0, 200.0);
+	mBackground->setScale(16.0, 1.0, 16.0);
 	mBackground->setVelocity(0, 0, -mScrollSpeed);
 	mSceneGraph->attachChild(std::move(backgroundSprite));
 
+	std::unique_ptr<SpriteNode> backgroundSprite2(new SpriteNode(mState));
+	mBackground2 = backgroundSprite2.get();
+	mBackground2->setPosition(0, 0, 16);
+	mBackground2->setScale(16.0, 1.0, 16.0);
+	mBackground2->setVelocity(0, 0, -mScrollSpeed);
+	mSceneGraph->attachChild(std::move(backgroundSprite2));
+
 	mSceneGraph->build();
+
+}
+
+/// <summary>
+/// Keeps the player within screen bounds.
+/// </summary>
+void World::playerBoundsCheck()
+{
+	const float borderDistance = 100.f;
+
+	XMFLOAT3 position = mPlayerShip->getWorldPosition();
+	position.x = std::max(position.x, mWorldBounds.x);
+	position.x = std::min(position.x, mWorldBounds.y);
+	position.z = std::max(position.z, mWorldBounds.z);
+	position.z = std::min(position.z, mWorldBounds.w);
+	mPlayerShip->setPosition(position.x, position.y, position.z);
 }

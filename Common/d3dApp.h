@@ -51,6 +51,10 @@ protected:
 	virtual void OnMouseUp(WPARAM btnState, int x, int y)  { }
 	virtual void OnMouseMove(WPARAM btnState, int x, int y){ }
 
+	virtual void OnKeyboardInput(WPARAM btnState) {}
+	
+	void FlushCommandQueue();
+
 protected:
 
 	bool InitMainWindow();
@@ -58,7 +62,6 @@ protected:
 	void CreateCommandObjects();
     void CreateSwapChain();
 
-	void FlushCommandQueue();
 
 	ID3D12Resource* CurrentBackBuffer()const;
 	D3D12_CPU_DESCRIPTOR_HANDLE CurrentBackBufferView()const;

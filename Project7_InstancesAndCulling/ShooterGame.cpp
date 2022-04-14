@@ -1,7 +1,6 @@
 #include "ShooterGame.h"
 
-
-
+#include "StateStack.h"
 const int gNumFrameResources = 3;
 
 /// <summary>
@@ -9,21 +8,11 @@ const int gNumFrameResources = 3;
 /// Sets the world instance to this game. 
 /// </summary>
 /// <param name="hInstance"></param>
-//Game::Game(HINSTANCE hInstance)
-//	: D3DApp(hInstance)
-//	//, mWorld(this)	// Maybe don't need, doing state stack instead? 
-//	//, mPlayer()
-//	, mStateStack(State::Context(&mPlayer, this))
-//
-//{
-//}
-
 Game::Game(HINSTANCE hInstance)
 	: D3DApp(hInstance)
 	, mStateStack(State::Context(&mPlayer, this))
 {
 }
-
 /// <summary>
 /// Destructor, tidies up. 
 /// </summary>
@@ -32,8 +21,6 @@ Game::~Game()
 	if (md3dDevice != nullptr)
 		FlushCommandQueue();
 }
-
-
 /// <summary>
 /// Initialize the game, 
 /// sets the window caption
@@ -47,10 +34,11 @@ bool Game::Initialize()
 	if (!D3DApp::Initialize())
 		return false;
 
+
 	mMainWndCaption = L"Pollock-Assignment3";
 
-	mCamera.SetPosition(0.0f, 20.0f, -6.0f);
-	mCamera.Pitch(7.5f);
+	mCamera.SetPosition(0.0f, 10.0f, -4.0f);
+	mCamera.Pitch(7.3f);
 
 	// Reset the command list to prep for initialization commands.
 	ThrowIfFailed(mCommandList->Reset(mDirectCmdListAlloc.Get(), nullptr));
@@ -65,11 +53,12 @@ bool Game::Initialize()
 	BuildShadersAndInputLayout();
 	BuildShapeGeometry();
 	BuildMaterials();
+	registerStates();
+
 	//BuildRenderItems();
 	//BuildFrameResources();
 	BuildPSOs();
-
-	RegisterStates();
+	mPlayer = Player();
 
 	// Execute the initialization commands.
 	ThrowIfFailed(mCommandList->Close());
@@ -79,30 +68,43 @@ bool Game::Initialize()
 	// Wait until initialization is complete.
 	FlushCommandQueue();
 
-	mStateStack.pushState(States::Game);
+	mStateStack.pushState(States::Title);
 
 	return true;
 }
 
+/// <summary>
+/// Resizes the window, setting the aspect ratio
+/// </summary>
+void Game::OnResize()
+{
+	D3DApp::OnResize();
+
+	// The window resized, so update the aspect ratio and recompute the projection matrix.
+	//XMMATRIX P = XMMatrixPerspectiveFovLH(0.25f * MathHelper::Pi, AspectRatio(), 1.0f, 1000.0f);
+	//XMStoreFloat4x4(&mProj, P);
+
+	mCamera.SetLens(0.25f * MathHelper::Pi, AspectRatio(), 1.0f, 1000.0f);
+}
+/// <summary>
+/// Update, calls each function that needs to occur every frame, including:
+/// Updaitng the camera, animating materials, and updating CBs
+/// </summary>
+/// <param name="gt"></param>
 void Game::Update(const GameTimer& gt)
 {
-	//OnKeyboardInput(gt);
-
-	///**** MIGHT NOT NEED THESE DUE TO mStateStack handling them.
 	//ProcessInput();
 	//mWorld.update(gt);
 
-
-
-	mStateStack.Update(gt);
-	mStateStack.handleRealTimeInput();
+	mStateStack.update(gt);
 
 	if (mStateStack.isEmpty())
 	{
-		PostQuitMessage(0);
+		exit(0);
 	}
 
 	UpdateCamera(gt);
+
 
 	// Cycle through the circular frame resource array.
 	mCurrFrameResourceIndex = (mCurrFrameResourceIndex + 1) % gNumFrameResources;
@@ -118,10 +120,12 @@ void Game::Update(const GameTimer& gt)
 		CloseHandle(eventHandle);
 	}
 
-	//AnimateMaterials(gt);
+	AnimateMaterials(gt);
 	UpdateObjectCBs(gt);
 	UpdateMaterialCBs(gt);
 	UpdateMainPassCB(gt);
+
+
 }
 
 /// <summary>
@@ -162,8 +166,8 @@ void Game::Draw(const GameTimer& gt)
 	auto passCB = mCurrFrameResource->PassCB->Resource();
 	mCommandList->SetGraphicsRootConstantBufferView(2, passCB->GetGPUVirtualAddress());
 
-	mStateStack.Draw();
 	//mWorld.draw();
+	mStateStack.draw();
 	//DrawRenderItems(mCommandList.Get(), mOpaqueRitems);
 
 	// Indicate a state transition on the resource usage.
@@ -189,7 +193,22 @@ void Game::Draw(const GameTimer& gt)
 	// set until the GPU finishes processing all the commands prior to this Signal().
 	mCommandQueue->Signal(mFence.Get(), mCurrentFence);
 }
+/// <summary>
+/// Registers each state to the statestsack
+/// </summary>
+void Game::registerStates()
+{
+	mStateStack.registerState<TitleState>(States::Title);
+	mStateStack.registerState<GameState>(States::Game);
+	mStateStack.registerState<PauseState>(States::Pause);
+}
 
+/// <summary>
+/// Onmousedown, get the positing of click
+/// </summary>
+/// <param name="btnState"></param>
+/// <param name="x"></param>
+/// <param name="y"></param>
 void Game::OnMouseDown(WPARAM btnState, int x, int y)
 {
 	mLastMousePos.x = x;
@@ -197,12 +216,23 @@ void Game::OnMouseDown(WPARAM btnState, int x, int y)
 
 	SetCapture(mhMainWnd);
 }
-
+/// <summary>
+/// Onmouseup , stop tracking mouse position
+/// </summary>
+/// <param name="btnState"></param>
+/// <param name="x"></param>
+/// <param name="y"></param>
 void Game::OnMouseUp(WPARAM btnState, int x, int y)
 {
 	ReleaseCapture();
 }
 
+/// <summary>
+/// On mouse move, adjust the camera angle
+/// </summary>
+/// <param name="btnState"></param>
+/// <param name="x"></param>
+/// <param name="y"></param>
 void Game::OnMouseMove(WPARAM btnState, int x, int y)
 {
 	if ((btnState & MK_LBUTTON) != 0)
@@ -233,98 +263,32 @@ void Game::OnMouseMove(WPARAM btnState, int x, int y)
 }
 
 /// <summary>
-/// ProcessInput, handles each event and input from the player's command queue. 
+/// Onkeyboard input, get the stateStack to handle events
 /// </summary>
-//void Game::ProcessInput()
-//{
-//	InputCommandQueue& commands = mWorld.getCommandQueue();
-//	mPlayer.handleEvent(commands);
-//	mPlayer.handleRealtimeInput(commands);
-//}
+/// <param name="btnState"></param>
+void Game::OnKeyboardInput(WPARAM btnState)
+{
+	mStateStack.handleEvent(btnState);
+}
+
 
 /// <summary>
-/// Takes keyboard input, uses it to move the camera. 
+/// Update the camera to new view angle
 /// </summary>
 /// <param name="gt"></param>
-//void Game::OnKeyboardInput(const GameTimer& gt)
-//{
-//	const float dt = gt.DeltaTime();
-//
-//	mCamera.GetLook();
-//	float tmin = 0;
-//	float buffer = 0.5;
-//	XMFLOAT3  oppositef3(-1, -1, -1);
-//	XMVECTOR opposite = XMLoadFloat3(&oppositef3);
-//
-//	if (GetAsyncKeyState('W') & 0x8000)
-//	{
-//		bool hit = false;
-//
-//		if (!hit)
-//		{
-//			mCamera.Walk(10.0f * dt);
-//
-//		}
-//	}
-//
-//	if (GetAsyncKeyState('S') & 0x8000)
-//	{
-//		bool hit = false;
-//		if (!hit)
-//		{
-//			mCamera.Walk(-10.0f * dt);
-//		}
-//
-//	}
-//	if (GetAsyncKeyState('A') & 0x8000)
-//	{
-//		bool hit = false;
-//		if (!hit)
-//		{
-//			mCamera.Strafe(-10.0f * dt);
-//		}
-//
-//
-//	}
-//	if (GetAsyncKeyState('D') & 0x8000)
-//	{
-//		bool hit = false;
-//		if (!hit)
-//		{
-//			mCamera.Strafe(10.0f * dt);
-//		}
-//	}
-//
-//
-//	mCamera.UpdateViewMatrix();
-//}
-
 void Game::UpdateCamera(const GameTimer& gt)
 {
-	// Convert Spherical to Cartesian coordinates.
-	//mEyePos.x = mRadius * sinf(mPhi) * cosf(mTheta);
-	//mEyePos.z = mRadius * sinf(mPhi) * sinf(mTheta);
-	//mEyePos.y = mRadius * cosf(mPhi);
 
-	//// Build the view matrix.
-	//XMVECTOR pos = XMVectorSet(mEyePos.x, mEyePos.y, mEyePos.z, 1.0f);
-	//XMVECTOR target = XMVectorZero();
-	//XMVECTOR up = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
-
-	//XMMATRIX view = XMMatrixLookAtLH(pos, target, up);
-	//XMStoreFloat4x4(&mView, view);
-
-	mCamera.UpdateViewMatrix(); // Need this to update the camera when ProcessKeyboardInput is not getting called every update.
+	mCamera.UpdateViewMatrix();
 
 }
-//
-//void Game::AnimateMaterials(const GameTimer& gt)
-//{
-//
-//}
 
+void Game::AnimateMaterials(const GameTimer& gt)
+{
+
+}
 /// <summary>
-/// Updates the object CBs
+/// Update object buffers
 /// </summary>
 /// <param name="gt"></param>
 void Game::UpdateObjectCBs(const GameTimer& gt)
@@ -352,7 +316,7 @@ void Game::UpdateObjectCBs(const GameTimer& gt)
 }
 
 /// <summary>
-/// Update material C buffers
+/// Updates material cbs
 /// </summary>
 /// <param name="gt"></param>
 void Game::UpdateMaterialCBs(const GameTimer& gt)
@@ -382,7 +346,7 @@ void Game::UpdateMaterialCBs(const GameTimer& gt)
 }
 
 /// <summary>
-/// updates main pass buffers 
+/// Updates main pass CBs
 /// </summary>
 /// <param name="gt"></param>
 void Game::UpdateMainPassCB(const GameTimer& gt)
@@ -420,96 +384,77 @@ void Game::UpdateMainPassCB(const GameTimer& gt)
 	currPassCB->CopyData(0, mMainPassCB);
 }
 
-
 /// <summary>
-/// loads the textures from the textures folder. 
+/// Loads each texture from files
 /// </summary>
 void Game::LoadTextures()
 {
-	////Eagle
-	//auto EagleTex = std::make_unique<Texture>();
-	//EagleTex->Name = "EagleTex";
-	//EagleTex->Filename = L"../Textures/checkboard.dds";
-	//ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
-	//	mCommandList.Get(), EagleTex->Filename.c_str(),
-	//	EagleTex->Resource, EagleTex->UploadHeap));
-
-	//mTextures[EagleTex->Name] = std::move(EagleTex);
-
-	////Raptor
-	//auto RaptorTex = std::make_unique<Texture>();
-	//RaptorTex->Name = "RaptorTex";
-	//RaptorTex->Filename = L"../Textures/bricks2.dds";
-	//ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
-	//	mCommandList.Get(), RaptorTex->Filename.c_str(),
-	//	RaptorTex->Resource, RaptorTex->UploadHeap));
-
-	//mTextures[RaptorTex->Name] = std::move(RaptorTex);
-
-	////Desert
-	//auto DesertTex = std::make_unique<Texture>();
-	//DesertTex->Name = "DesertTex";
-	//DesertTex->Filename = L"../Textures/bricks3.dds";
-	//ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
-	//	mCommandList.Get(), DesertTex->Filename.c_str(),
-	//	DesertTex->Resource, DesertTex->UploadHeap));
-
-	//mTextures[DesertTex->Name] = std::move(DesertTex);
-
-	//// TitleBackground
-	//auto TitleBackgroundTex = std::make_unique<Texture>();
-	//TitleBackgroundTex->Name = "TitleBackgroundTex";
-	//TitleBackgroundTex->Filename = L"../Textures/bricks3.dds";
-	//ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
-	//	mCommandList.Get(), TitleBackgroundTex->Filename.c_str(),
-	//	TitleBackgroundTex->Resource, TitleBackgroundTex->UploadHeap));
-
-	//mTextures[TitleBackgroundTex->Name] = std::move(TitleBackgroundTex);
-
-	//// TitleText
-	//auto TitleBackgroundTex = std::make_unique<Texture>();
-	//TitleBackgroundTex->Name = "TitleBackgroundTex";
-	//TitleBackgroundTex->Filename = L"../Textures/bricks2.dds";
-	//ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
-	//	mCommandList.Get(), TitleBackgroundTex->Filename.c_str(),
-	//	TitleBackgroundTex->Resource, TitleBackgroundTex->UploadHeap));
-
-	//mTextures[TitleBackgroundTex->Name] = std::move(TitleBackgroundTex);
-
-
-	CreateTextures("EagleTex", L"../Textures/checkboard.dds");
-	CreateTextures("RaptorTex", L"../Textures/bricks2.dds");
-	CreateTextures("DesertTex", L"../Textures/bricks3.dds");
-	CreateTextures("TitleBackgroundTex", L"../Textures/bricks3.dds");
-	CreateTextures("TitleTextTex", L"../Textures/bricks3.dds");
-	CreateTextures("MenuBackgroundTex", L"../Textures/bricks3.dds");
-	CreateTextures("MenuInstructionsTex", L"../Textures/bricks3.dds");
-	CreateTextures("PauseOverlayTex", L"../Textures/bricks3.dds");
-
-
-}
-
-
-
-void Game::CreateTextures(std::string name, std::wstring path)
-{
-	auto texture = std::make_unique<Texture>();
-	texture->Name = name;
-	texture->Filename = path;
+	//Eagle
+	auto EagleTex = std::make_unique<Texture>();
+	EagleTex->Name = "EagleTex";
+	EagleTex->Filename = L"../Textures/checkboard.dds";
 	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
-		mCommandList.Get(), texture->Filename.c_str(),
-		texture->Resource, texture->UploadHeap));
+		mCommandList.Get(), EagleTex->Filename.c_str(),
+		EagleTex->Resource, EagleTex->UploadHeap));
 
-	//Save textures name for srvDescriptorHeap
-	mTexturesName.push_back(name);
+	mTextures[EagleTex->Name] = std::move(EagleTex);
 
-	//Store texture in map
-	mTextures[texture->Name] = std::move(texture);
+	//Raptor
+	auto RaptorTex = std::make_unique<Texture>();
+	RaptorTex->Name = "RaptorTex";
+	RaptorTex->Filename = L"../Textures/bricks2.dds";
+	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
+		mCommandList.Get(), RaptorTex->Filename.c_str(),
+		RaptorTex->Resource, RaptorTex->UploadHeap));
+
+	mTextures[RaptorTex->Name] = std::move(RaptorTex);
+
+	//Desert
+	auto DesertTex = std::make_unique<Texture>();
+	DesertTex->Name = "DesertTex";
+	DesertTex->Filename = L"../Textures/bricks3.dds";
+	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
+		mCommandList.Get(), DesertTex->Filename.c_str(),
+		DesertTex->Resource, DesertTex->UploadHeap));
+
+	mTextures[DesertTex->Name] = std::move(DesertTex);
+
+	//Title Background
+	auto TitleBackgroundTex = std::make_unique<Texture>();
+	TitleBackgroundTex->Name = "TitleBackground";
+	TitleBackgroundTex->Filename = L"../Textures/checkboard.dds";
+	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
+		mCommandList.Get(), TitleBackgroundTex->Filename.c_str(),
+		TitleBackgroundTex->Resource, TitleBackgroundTex->UploadHeap));
+
+	mTextures[TitleBackgroundTex->Name] = std::move(TitleBackgroundTex);
+
+	//TitleText
+	auto TitleTextTex = std::make_unique<Texture>();
+	TitleTextTex->Name = "TitleText";
+	TitleTextTex->Filename = L"../Textures/TitleScreen.dds";
+	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
+		mCommandList.Get(), TitleTextTex->Filename.c_str(),
+		TitleTextTex->Resource, TitleTextTex->UploadHeap));
+
+	mTextures[TitleTextTex->Name] = std::move(TitleTextTex);
+
+
+
+	//PAUSE STATE
+	auto PauseDisplayTex = std::make_unique<Texture>();
+	PauseDisplayTex->Name = "PauseDisplay";
+	PauseDisplayTex->Filename = L"../Textures/PauseScreen.dds";
+	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
+		mCommandList.Get(), PauseDisplayTex->Filename.c_str(),
+		PauseDisplayTex->Resource, PauseDisplayTex->UploadHeap));
+
+	mTextures[PauseDisplayTex->Name] = std::move(PauseDisplayTex);
 
 }
 
 /// <summary>
-/// Builds the root signature. 
+/// Builds the root signatures
 /// </summary>
 void Game::BuildRootSignature()
 {
@@ -553,21 +498,15 @@ void Game::BuildRootSignature()
 		IID_PPV_ARGS(mRootSignature.GetAddressOf())));
 }
 
-
-
-
-/// <summary>
-/// Builds the descriptor heap
-/// Once a texture resource is created, we need to create an SRV descriptor to it which we
-/// can set to a root signature parameter slot for use by the shader programs.
-/// </summary>
+//Once a texture resource is created, we need to create an SRV descriptor to it which we
+//can set to a root signature parameter slot for use by the shader programs.
 void Game::BuildDescriptorHeaps()
 {
 	//
 	// Create the SRV heap.
 	//
 	D3D12_DESCRIPTOR_HEAP_DESC srvHeapDesc = {};
-	srvHeapDesc.NumDescriptors = 3;
+	srvHeapDesc.NumDescriptors = 13;
 	srvHeapDesc.Type = D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
 	srvHeapDesc.Flags = D3D12_DESCRIPTOR_HEAP_FLAG_SHADER_VISIBLE;
 	ThrowIfFailed(md3dDevice->CreateDescriptorHeap(&srvHeapDesc, IID_PPV_ARGS(&mSrvDescriptorHeap)));
@@ -580,13 +519,10 @@ void Game::BuildDescriptorHeaps()
 	auto EagleTex = mTextures["EagleTex"]->Resource;
 	auto RaptorTex = mTextures["RaptorTex"]->Resource;
 	auto DesertTex = mTextures["DesertTex"]->Resource;
-	
-	auto TitleBackgroundTex = mTextures["TitleBackgroundTex"]->Resource;
-	auto TitleTextTex = mTextures["TitleTextTex"]->Resource;
-	auto MenuBackgroundTex = mTextures["MenuBackgroundTex"]->Resource;
-	auto MenuInstructionsTex = mTextures["MenuInstructionsTex"]->Resource;
-	auto PauseOverlayTex = mTextures["PauseOverlayTex"]->Resource;
+	auto TitleBackgroundTex = mTextures["TitleBackground"]->Resource;
+	auto TitleTextTex = mTextures["TitleText"]->Resource;
 
+	auto PauseDisplayTex = mTextures["PauseDisplay"]->Resource;
 
 	D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc = {};
 
@@ -623,34 +559,26 @@ void Game::BuildDescriptorHeaps()
 	md3dDevice->CreateShaderResourceView(DesertTex.Get(), &srvDesc, hDescriptor);
 
 
+	//TitleBackground Descriptor
+	hDescriptor.Offset(1, mCbvSrvDescriptorSize);
+	srvDesc.Format = TitleBackgroundTex->GetDesc().Format;
+	md3dDevice->CreateShaderResourceView(TitleBackgroundTex.Get(), &srvDesc, hDescriptor);
 
-	////Title Background Descriptor
-	//hDescriptor.Offset(1, mCbvSrvDescriptorSize);
-	//srvDesc.Format = DesertTex->GetDesc().Format;
-	//md3dDevice->CreateShaderResourceView(TitleBackgroundTex.Get(), &srvDesc, hDescriptor);
+	//Title Text Descriptor
+	hDescriptor.Offset(1, mCbvSrvDescriptorSize);
+	srvDesc.Format = TitleTextTex->GetDesc().Format;
+	md3dDevice->CreateShaderResourceView(TitleTextTex.Get(), &srvDesc, hDescriptor);
 
-	////TitleText Descriptor
-	//hDescriptor.Offset(1, mCbvSrvDescriptorSize);
-	//srvDesc.Format = DesertTex->GetDesc().Format;
-	//md3dDevice->CreateShaderResourceView(TitleTextTex.Get(), &srvDesc, hDescriptor);
-
-	////Menu Background Descriptor
-	//hDescriptor.Offset(1, mCbvSrvDescriptorSize);
-	//srvDesc.Format = DesertTex->GetDesc().Format;
-	//md3dDevice->CreateShaderResourceView(MenuBackgroundTex.Get(), &srvDesc, hDescriptor);
-
-	////Menu Instructions Descriptor
-	//hDescriptor.Offset(1, mCbvSrvDescriptorSize);
-	//srvDesc.Format = DesertTex->GetDesc().Format;
-	//md3dDevice->CreateShaderResourceView(MenuInstructionsTex.Get(), &srvDesc, hDescriptor);
-
-	////Pause Overlay Descriptor
-	//hDescriptor.Offset(1, mCbvSrvDescriptorSize);
-	//srvDesc.Format = DesertTex->GetDesc().Format;
-	//md3dDevice->CreateShaderResourceView(PauseOverlayTex.Get(), &srvDesc, hDescriptor);
+	//Pause DisplayDescriptor
+	hDescriptor.Offset(1, mCbvSrvDescriptorSize);
+	srvDesc.Format = PauseDisplayTex->GetDesc().Format;
+	md3dDevice->CreateShaderResourceView(PauseDisplayTex.Get(), &srvDesc, hDescriptor);
 
 }
 
+/// <summary>
+/// Builds shaders and input layounts
+/// </summary>
 void Game::BuildShadersAndInputLayout()
 {
 	mShaders["standardVS"] = d3dUtil::CompileShader(L"Shaders\\Default.hlsl", nullptr, "VS", "vs_5_1");
@@ -660,20 +588,20 @@ void Game::BuildShadersAndInputLayout()
 	{
 		{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
 		{ "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 12, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
+		//step3
 		//The texture coordinates determine what part of the texture gets mapped on the triangles.
 		{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 24, D3D12_INPUT_CLASSIFICATION_PER_VERTEX_DATA, 0 },
 	};
 }
 
-
 /// <summary>
-/// Builds the shape geometry boxes. 
+/// Builds the shape geometry, including the cube used for all scenenodes. 
 /// </summary>
 void Game::BuildShapeGeometry()
 {
 	GeometryGenerator geoGen;
 	//GeometryGenerator::MeshData box = geoGen.CreateQuad(0.0f, 0.0f, 20.0f, 10.0f, 10.0f);
-	GeometryGenerator::MeshData box = geoGen.CreateBox(2, -1, -1, 1);
+	GeometryGenerator::MeshData box = geoGen.CreateBox(1, 1, 1, 1);
 	SubmeshGeometry boxSubmesh;
 	boxSubmesh.IndexCount = (UINT)box.Indices32.size();
 	boxSubmesh.StartIndexLocation = 0;
@@ -720,7 +648,7 @@ void Game::BuildShapeGeometry()
 }
 
 /// <summary>
-///  Builds pipeline state objects
+/// Bulids the pipeline state objects
 /// </summary>
 void Game::BuildPSOs()
 {
@@ -756,32 +684,36 @@ void Game::BuildPSOs()
 }
 
 /// <summary>
-/// Builds frame resources. 
+/// Clears all frame resources
 /// </summary>
-void Game::BuildFrameResources(int renderItemCount)
-{
-	for (int i = 0; i < gNumFrameResources; i++)
-	{
-		mFrameResources.push_back(std::make_unique<FrameResource>(md3dDevice.Get(),
-			1, (UINT)renderItemCount, (UINT)mMaterials.size()));
-	}
-}
-
-
-void Game::ResetFrameResources()
+void Game::ClearFrameResources()
 {
 	mFrameResources.clear();
 }
 
 /// <summary>
-/// Builds materials using the textures. 
+/// Loops through frame resources and bulids each one
+/// </summary>
+/// <param name="numRenderItems"></param>
+void Game::BuildFrameResources(int numRenderItems)
+{
+	for (int i = 0; i < gNumFrameResources; ++i)
+	{
+		mFrameResources.push_back(std::make_unique<FrameResource>(md3dDevice.Get(),
+			1, (UINT)numRenderItems, (UINT)mMaterials.size()));
+	}
+}
+/// <summary>
+/// Bulids each material. 
 /// </summary>
 void Game::BuildMaterials()
 {
+	int index = 0;
+
 	auto Eagle = std::make_unique<Material>();
 	Eagle->Name = "Eagle";
-	Eagle->MatCBIndex = 0;
-	Eagle->DiffuseSrvHeapIndex = 0;
+	Eagle->MatCBIndex = index;
+	Eagle->DiffuseSrvHeapIndex = index++;
 	Eagle->DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
 	Eagle->FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);
 	Eagle->Roughness = 0.2f;
@@ -790,8 +722,8 @@ void Game::BuildMaterials()
 
 	auto Raptor = std::make_unique<Material>();
 	Raptor->Name = "Raptor";
-	Raptor->MatCBIndex = 1;
-	Raptor->DiffuseSrvHeapIndex = 1;
+	Raptor->MatCBIndex = index;
+	Raptor->DiffuseSrvHeapIndex = index++;
 	Raptor->DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
 	Raptor->FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);
 	Raptor->Roughness = 0.2f;
@@ -800,84 +732,55 @@ void Game::BuildMaterials()
 
 	auto Desert = std::make_unique<Material>();
 	Desert->Name = "Desert";
-	Desert->MatCBIndex = 2;
-	Desert->DiffuseSrvHeapIndex = 2;
+	Desert->MatCBIndex = index;
+	Desert->DiffuseSrvHeapIndex = index++;
 	Desert->DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
 	Desert->FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);
 	Desert->Roughness = 0.2f;
 
 	mMaterials["Desert"] = std::move(Desert);
 
-	//CreateMaterials("Desert", XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT3(0.05f, 0.05f, 0.05f), 0.2f);
 
+	// Title background material
+	auto TitleScreen = std::make_unique<Material>();
+	TitleScreen->Name = "TitleScreen";
+	TitleScreen->MatCBIndex = index;
+	TitleScreen->DiffuseSrvHeapIndex = index++;
+	TitleScreen->DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+	TitleScreen->FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);
+	TitleScreen->Roughness = 0.2f;
 
-	auto TitleBackgroundMat = std::make_unique<Material>();
-	TitleBackgroundMat->Name = "TitleBackgroundMat";
-	TitleBackgroundMat->MatCBIndex = 2;
-	TitleBackgroundMat->DiffuseSrvHeapIndex = 2;
-	TitleBackgroundMat->DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
-	TitleBackgroundMat->FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);
-	TitleBackgroundMat->Roughness = 0.2f;
-	mMaterials["TitleBackgroundMat"] = std::move(TitleBackgroundMat);
+	mMaterials["TitleScreen"] = std::move(TitleScreen);
 
-	auto TitleTextMat = std::make_unique<Material>();
-	TitleTextMat->Name = "TitleTextMat";
-	TitleTextMat->MatCBIndex = 2;
-	TitleTextMat->DiffuseSrvHeapIndex = 2;
-	TitleTextMat->DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
-	TitleTextMat->FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);
-	TitleTextMat->Roughness = 0.2f;
-	mMaterials["TitleTextMat"] = std::move(TitleTextMat);
+	// title text material
+	auto TitleScreenPrompt = std::make_unique<Material>();
+	TitleScreenPrompt->Name = "TitleScreenPrompt";
+	TitleScreenPrompt->MatCBIndex = index;
+	TitleScreenPrompt->DiffuseSrvHeapIndex = index++;
+	TitleScreenPrompt->DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+	TitleScreenPrompt->FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);
+	TitleScreenPrompt->Roughness = 0.2f;
 
+	mMaterials["TitleScreenPrompt"] = std::move(TitleScreenPrompt);
 
-	/*CreateMaterials("TitleBackgroundMat", XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT3(0.05f, 0.05f, 0.05f), 0.2f);
-	CreateMaterials("TitleTextMat", XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT3(0.05f, 0.05f, 0.05f), 0.2f);
-	CreateMaterials("MenuBackgroundMat", XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT3(0.05f, 0.05f, 0.05f), 0.2f);
-	CreateMaterials("MenuInstructionsMat", XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT3(0.05f, 0.05f, 0.05f), 0.2f);
-	CreateMaterials("PauseOverlayMat", XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f), XMFLOAT3(0.05f, 0.05f, 0.05f), 0.2f);*/
+	// pause material
+	auto PauseDisplay = std::make_unique<Material>();
+	PauseDisplay->Name = "PauseDisplay";
+	PauseDisplay->MatCBIndex = index;
+	PauseDisplay->DiffuseSrvHeapIndex = index++;
+	PauseDisplay->DiffuseAlbedo = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+	PauseDisplay->FresnelR0 = XMFLOAT3(0.05f, 0.05f, 0.05f);
+	PauseDisplay->Roughness = 0.2f;
+
+	mMaterials["PauseDisplay"] = std::move(PauseDisplay);
+
 }
 
-void Game::CreateMaterials(std::string name, XMFLOAT4 diffuseAlbedo, XMFLOAT3 fresnelR0, float roughness)
-{
-	auto material = std::make_unique<Material>();
-	material->Name = name;
-	material->MatCBIndex = mMatCBIdx++;
-	material->DiffuseSrvHeapIndex = mDiffuseSrvHeapIdx++;
-	material->DiffuseAlbedo = diffuseAlbedo;
-	material->FresnelR0 = fresnelR0;
-	material->Roughness = roughness;
-
-	mMaterials[name] = std::move(material);
-}
-
-void Game::RegisterStates()
-{
-	mStateStack.registerState<TitleState>(States::Title);
-	mStateStack.registerState<MenuState>(States::Menu);
-	mStateStack.registerState<GameState>(States::Game);
-	mStateStack.registerState<PauseState>(States::Pause);
-}
-
-void Game::OnKeyDown(WPARAM btnState)
-{
-	mStateStack.HandleEvent(btnState);
-}
-
-
-/// <summary>
-/// Builds render items (calls the buildScene function from the world)
-/// </summary>
 void Game::BuildRenderItems()
 {
-	//mWorld.buildScene();
-
-	//// All the render items are opaque.
-	//for (auto& e : mAllRitems)
-	//	mOpaqueRitems.push_back(e.get());
 }
-
 /// <summary>
-///  Draws each render item.
+/// Draws each render item, using a loop
 /// </summary>
 /// <param name="cmdList"></param>
 /// <param name="ritems"></param>
@@ -898,12 +801,14 @@ void Game::DrawRenderItems(ID3D12GraphicsCommandList* cmdList, const std::vector
 		cmdList->IASetIndexBuffer(&ri->Geo->IndexBufferView());
 		cmdList->IASetPrimitiveTopology(ri->PrimitiveType);
 
+		//step18
 		CD3DX12_GPU_DESCRIPTOR_HANDLE tex(mSrvDescriptorHeap->GetGPUDescriptorHandleForHeapStart());
 		tex.Offset(ri->Mat->DiffuseSrvHeapIndex, mCbvSrvDescriptorSize);
 
 		D3D12_GPU_VIRTUAL_ADDRESS objCBAddress = objectCB->GetGPUVirtualAddress() + ri->ObjCBIndex * objCBByteSize;
 		D3D12_GPU_VIRTUAL_ADDRESS matCBAddress = matCB->GetGPUVirtualAddress() + ri->Mat->MatCBIndex * matCBByteSize;
 
+		//step19
 		cmdList->SetGraphicsRootDescriptorTable(0, tex);
 		cmdList->SetGraphicsRootConstantBufferView(1, objCBAddress);
 		cmdList->SetGraphicsRootConstantBufferView(3, matCBAddress);
@@ -911,7 +816,6 @@ void Game::DrawRenderItems(ID3D12GraphicsCommandList* cmdList, const std::vector
 		cmdList->DrawIndexedInstanced(ri->IndexCount, 1, ri->StartIndexLocation, ri->BaseVertexLocation, 0);
 	}
 }
-
 
 std::array<const CD3DX12_STATIC_SAMPLER_DESC, 6> Game::GetStaticSamplers()
 {

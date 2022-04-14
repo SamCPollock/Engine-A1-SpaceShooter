@@ -5,7 +5,6 @@
 /// /// Sam Pollock, 2022
 ///***************************************************************************************
 
-
 #pragma once
 #include "Category.h"
 
@@ -21,14 +20,14 @@ struct Command
 {
 	Command();
 
-	std::function<void(SceneNode&, const GameTimer&)> action;
+	std::function<void(SceneNode&, const GameTimer&)>	action;
 	unsigned int category;
 };
 
 template <typename GameObject, typename Function>
 std::function<void(SceneNode&, const GameTimer&)> derivedAction(Function fn)
 {
-	return [=](SceneNode& node, const GameTimer& gt) 
+	return [=](SceneNode& node, const GameTimer& gt)
 	{
 		// Check if cast is safe
 		assert(dynamic_cast<GameObject*>(&node) != nullptr);

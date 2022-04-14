@@ -1,5 +1,7 @@
 #include "Entity.h"
 
+#include "../Common/MathHelper.h"
+
 /// <summary>
 /// Entity constructor. Sets Game & ScenNode references, initializes velocity to (0,0,0)
 /// </summary>
@@ -30,7 +32,6 @@ void Entity::setVelocity(float vx, float vy, float vz)
 	mVelocity.z = vz;
 }
 
-
 /// <summary>
 /// Returns velocity as an XMFLOAT3
 /// </summary>
@@ -40,12 +41,29 @@ XMFLOAT3 Entity::getVelocity() const
 	return mVelocity;
 }
 
+/// <summary>
+/// Updates current, uses GameTimer to determine rate of update. 
+/// Moves the entity according to velocity * deltaTime. 
+/// </summary>
+/// <param name="gt"></param>
 void Entity::accelerate(XMFLOAT3 velocity)
 {
-	mVelocity.x = mVelocity.x + velocity.x; 
+	mVelocity.x = mVelocity.x + velocity.x;
 	mVelocity.y = mVelocity.y + velocity.y;
 	mVelocity.z = mVelocity.z + velocity.z;
+}
 
+/// <summary>
+/// Increase the Entity's velocity according to a vector3.
+/// </summary>
+/// <param name="vx"></param>
+/// <param name="vy"></param>
+/// <param name="vz"></param>
+void Entity::accelerate(float vx, float vy, float vz)
+{
+	mVelocity.x = mVelocity.x + vx;
+	mVelocity.y = mVelocity.y + vy;
+	mVelocity.z = mVelocity.z + vz;
 }
 
 /// <summary>

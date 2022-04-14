@@ -1,40 +1,60 @@
 #include "State.h"
 #include "StateStack.h"
 
+/// <summary>
+/// Context, sets up the context (getting player and game refs)
+/// </summary>
+/// <param name="player"></param>
+/// <param name="game"></param>
 State::Context::Context(Player* player, Game* game)
 	: player(player), game(game)
 {
 }
-
-
+/// <summary>
+/// Constructor
+/// </summary>
+/// <param name="stack"></param>
+/// <param name="context"></param>
 State::State(StateStack* stack, Context* context)
-	: mStack(stack),
-	mContext(context),
-	mSceneGraph(new SceneNode(this))
+	: mStack(stack)
+	, mContext(context)
+	, mSceneGraph(new SceneNode(this))
 {
+	//BuildScene();
 }
-
+/// <summary>
+/// Destructor
+/// </summary>
 State::~State()
 {
 }
-
-State::Context* State::GetContext() const
+/// <summary>
+/// Adds a state to the stack to be pushed
+/// </summary>
+/// <param name="stateID"></param>
+void State::requestStackPush(States::ID stateID)
 {
-	return mContext;
-}
-
-void State::RequestStackPush(States::ID stateID)
-{
-	//mContext.game->FlushCommandQueue();
 	mStack->pushState(stateID);
 }
-
-void State::RequestStackPop()
+/// <summary>
+/// Requests removal of a state from the stack
+/// </summary>
+void State::requestStackPop()
 {
 	mStack->popState();
 }
-
-void State::RequestStateClear()
+/// <summary>
+/// Requests emptying the stack
+/// </summary>
+void State::requestStateClear()
 {
 	mStack->clearStates();
+}
+/// <summary>
+/// Returns the context
+/// </summary>
+/// <returns></returns>
+State::Context* State::getContext() const
+{
+	return mContext;
 }

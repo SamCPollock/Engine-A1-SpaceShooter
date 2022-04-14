@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['walk_0',['Walk',['../class_camera.html#a05cfb8c4c4e3a9bccaaad6ee0eb5af1f',1,'Camera']]],
-  ['winmain_1',['WinMain',['../main_8cpp.html#aabcda87589d774901aa87061b8fd0176',1,'main.cpp']]],
-  ['world_2',['World',['../class_world.html#a358fecc8d0e42996d7bd1884f126a97c',1,'World']]]
+  ['_7eframeresource_0',['~FrameResource',['../struct_frame_resource.html#a93d669d1d4db3b4ed5cd6f0f6b921809',1,'FrameResource']]],
+  ['_7egame_1',['~Game',['../class_game.html#ae3d112ca6e0e55150d2fdbc704474530',1,'Game']]],
+  ['_7epausestate_2',['~PauseState',['../class_pause_state.html#af5d47befed16ad991bd90f219d4985c7',1,'PauseState']]],
+  ['_7estate_3',['~State',['../class_state.html#afab438d92b90dc18d194dbd9c9c8bab3',1,'State']]],
+  ['_7eworld_4',['~World',['../class_world.html#a8c73fba541a5817fff65147ba47cd827',1,'World']]]
 ];

@@ -27,9 +27,6 @@
     <ClCompile Include="..\..\Common\Camera.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Common\d3dApp.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Common\d3dUtil.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
@@ -62,9 +59,6 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="MenuState.cpp">
-      <Filter>Part3</Filter>
     </ClCompile>
     <ClCompile Include="PauseState.cpp">
       <Filter>Part3</Filter>
@@ -99,12 +93,12 @@
     <ClCompile Include="Entity.cpp">
       <Filter>Part3</Filter>
     </ClCompile>
+    <ClCompile Include="..\Common\d3dApp.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Common\Camera.h">
-      <Filter>Resource Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Common\d3dApp.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Common\d3dUtil.h">
@@ -152,9 +146,6 @@
     <ClInclude Include="PauseState.h">
       <Filter>Part3</Filter>
     </ClInclude>
-    <ClInclude Include="MenuState.h">
-      <Filter>Part3</Filter>
-    </ClInclude>
     <ClInclude Include="GameState.h">
       <Filter>Part3</Filter>
     </ClInclude>
@@ -181,6 +172,9 @@
     </ClInclude>
     <ClInclude Include="Entity.h">
       <Filter>Part3</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Common\d3dApp.h">
+      <Filter>Resource Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

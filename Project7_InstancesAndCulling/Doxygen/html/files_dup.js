@@ -14,13 +14,21 @@ var files_dup =
       [ "Vertex", "struct_vertex.html", "struct_vertex" ],
       [ "FrameResource", "struct_frame_resource.html", "struct_frame_resource" ]
     ] ],
+    [ "GameState.cpp", "_game_state_8cpp.html", null ],
+    [ "GameState.h", "_game_state_8h.html", [
+      [ "GameState", "class_game_state.html", "class_game_state" ]
+    ] ],
     [ "InputCommandQueue.cpp", "_input_command_queue_8cpp.html", null ],
     [ "InputCommandQueue.h", "_input_command_queue_8h.html", [
       [ "InputCommandQueue", "class_input_command_queue.html", "class_input_command_queue" ]
     ] ],
     [ "main.cpp", "main_8cpp.html", "main_8cpp" ],
+    [ "PauseState.cpp", "_pause_state_8cpp.html", null ],
+    [ "PauseState.h", "_pause_state_8h.html", [
+      [ "PauseState", "class_pause_state.html", "class_pause_state" ]
+    ] ],
     [ "Player.cpp", "_player_8cpp.html", [
-      [ "PlayerMover", "struct_player_mover.html", "struct_player_mover" ]
+      [ "ShipMover", "struct_ship_mover.html", "struct_ship_mover" ]
     ] ],
     [ "Player.h", "_player_8h.html", [
       [ "Player", "class_player.html", "class_player" ]
@@ -41,6 +49,20 @@ var files_dup =
     [ "SpriteNode.cpp", "_sprite_node_8cpp.html", null ],
     [ "SpriteNode.h", "_sprite_node_8h.html", [
       [ "SpriteNode", "class_sprite_node.html", "class_sprite_node" ]
+    ] ],
+    [ "State.cpp", "_state_8cpp.html", null ],
+    [ "State.h", "_state_8h.html", [
+      [ "State", "class_state.html", "class_state" ],
+      [ "State::Context", "struct_state_1_1_context.html", "struct_state_1_1_context" ]
+    ] ],
+    [ "StateIdentifiers.h", "_state_identifiers_8h.html", "_state_identifiers_8h" ],
+    [ "StateStack.cpp", "_state_stack_8cpp.html", null ],
+    [ "StateStack.h", "_state_stack_8h.html", [
+      [ "StateStack", "class_state_stack.html", "class_state_stack" ]
+    ] ],
+    [ "TitleState.cpp", "_title_state_8cpp.html", null ],
+    [ "TitleState.h", "_title_state_8h.html", [
+      [ "TitleState", "class_title_state.html", "class_title_state" ]
     ] ],
     [ "World.cpp", "_world_8cpp.html", "_world_8cpp" ],
     [ "World.h", "_world_8h.html", [

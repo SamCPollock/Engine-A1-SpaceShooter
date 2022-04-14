@@ -1,0 +1,176 @@
+\hypertarget{class_game_state}{}\doxysection{Game\+State Class Reference}
+\label{class_game_state}\index{GameState@{GameState}}
+
+
+\mbox{\hyperlink{class_game_state}{Game\+State}}, \mbox{\hyperlink{class_state}{State}} which handles the main game loop Sam Pollock, 2022.  
+
+
+
+
+{\ttfamily \#include $<$Game\+State.\+h$>$}
+
+Inheritance diagram for Game\+State\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_game_state}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_game_state_a05f2b11b65c32912f95c06d68b8bd4c4}{Game\+State}} (\mbox{\hyperlink{class_state_stack}{State\+Stack}} $\ast$stack, \mbox{\hyperlink{struct_state_1_1_context}{Context}} $\ast$context)
+\begin{DoxyCompactList}\small\item\em Constructor, sets up the world nad pause scene references. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_game_state_a3c511417d8934943ae65c04681f321a3}{draw}} ()
+\begin{DoxyCompactList}\small\item\em Calls the world\textquotesingle{}s draw \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_game_state_ac0bea22df7996fa7dd05520ff46199de}{update}} (const Game\+Timer \&gt)
+\begin{DoxyCompactList}\small\item\em Calls the worlds update and calls process input \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_game_state_aebcbccf8a184f5444758320061ba5cc9}{handle\+Event}} (WPARAM btn\+State)
+\begin{DoxyCompactList}\small\item\em Handles player input, checking whether to enter pause state. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_game_state_aaf255a97137afb613c3509da8f01aa06}{Process\+Input}} ()
+\begin{DoxyCompactList}\small\item\em Processes input, passes it to the player \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_scene_node}{Scene\+Node}} $\ast$ \mbox{\hyperlink{class_game_state_a5f3c6c7a86e4ec1be9ea3b22005e760e}{m\+Pause\+Scene\+Graph}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_game_state}{Game\+State}}, \mbox{\hyperlink{class_state}{State}} which handles the main game loop Sam Pollock, 2022. 
+
+\DoxyHorRuler{0}
+ 
+
+Definition at line \mbox{\hyperlink{_game_state_8h_source_l00018}{18}} of file \mbox{\hyperlink{_game_state_8h_source}{Game\+State.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_game_state_a05f2b11b65c32912f95c06d68b8bd4c4}\label{class_game_state_a05f2b11b65c32912f95c06d68b8bd4c4}} 
+\index{GameState@{GameState}!GameState@{GameState}}
+\index{GameState@{GameState}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{GameState()}{GameState()}}
+{\footnotesize\ttfamily Game\+State\+::\+Game\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_state_stack}{State\+Stack}} $\ast$}]{stack,  }\item[{\mbox{\hyperlink{struct_state_1_1_context}{Context}} $\ast$}]{context }\end{DoxyParamCaption})}
+
+
+
+Constructor, sets up the world nad pause scene references. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stack} & \\
+\hline
+{\em context} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_game_state_8cpp_source_l00009}{9}} of file \mbox{\hyperlink{_game_state_8cpp_source}{Game\+State.\+cpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_game_state_a3c511417d8934943ae65c04681f321a3}\label{class_game_state_a3c511417d8934943ae65c04681f321a3}} 
+\index{GameState@{GameState}!draw@{draw}}
+\index{draw@{draw}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void Game\+State\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Calls the world\textquotesingle{}s draw 
+
+
+
+Implements \mbox{\hyperlink{class_state_ae261605bc40b7e3959ce5df5457e4942}{State}}.
+
+
+
+Definition at line \mbox{\hyperlink{_game_state_8cpp_source_l00019}{19}} of file \mbox{\hyperlink{_game_state_8cpp_source}{Game\+State.\+cpp}}.
+
+\mbox{\Hypertarget{class_game_state_aebcbccf8a184f5444758320061ba5cc9}\label{class_game_state_aebcbccf8a184f5444758320061ba5cc9}} 
+\index{GameState@{GameState}!handleEvent@{handleEvent}}
+\index{handleEvent@{handleEvent}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{handleEvent()}{handleEvent()}}
+{\footnotesize\ttfamily bool Game\+State\+::handle\+Event (\begin{DoxyParamCaption}\item[{WPARAM}]{btn\+State }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Handles player input, checking whether to enter pause state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em btn\+State} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_state_a3b119f64a399bd17bf37c377a094906a}{State}}.
+
+
+
+Definition at line \mbox{\hyperlink{_game_state_8cpp_source_l00041}{41}} of file \mbox{\hyperlink{_game_state_8cpp_source}{Game\+State.\+cpp}}.
+
+\mbox{\Hypertarget{class_game_state_aaf255a97137afb613c3509da8f01aa06}\label{class_game_state_aaf255a97137afb613c3509da8f01aa06}} 
+\index{GameState@{GameState}!ProcessInput@{ProcessInput}}
+\index{ProcessInput@{ProcessInput}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{ProcessInput()}{ProcessInput()}}
+{\footnotesize\ttfamily void Game\+State\+::\+Process\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Processes input, passes it to the player 
+
+
+
+Definition at line \mbox{\hyperlink{_game_state_8cpp_source_l00054}{54}} of file \mbox{\hyperlink{_game_state_8cpp_source}{Game\+State.\+cpp}}.
+
+\mbox{\Hypertarget{class_game_state_ac0bea22df7996fa7dd05520ff46199de}\label{class_game_state_ac0bea22df7996fa7dd05520ff46199de}} 
+\index{GameState@{GameState}!update@{update}}
+\index{update@{update}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily bool Game\+State\+::update (\begin{DoxyParamCaption}\item[{const Game\+Timer \&}]{gt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Calls the worlds update and calls process input 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gt} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_state_a3edbdcd142b9da8470d1f7d3fbe74e83}{State}}.
+
+
+
+Definition at line \mbox{\hyperlink{_game_state_8cpp_source_l00029}{29}} of file \mbox{\hyperlink{_game_state_8cpp_source}{Game\+State.\+cpp}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{class_game_state_a5f3c6c7a86e4ec1be9ea3b22005e760e}\label{class_game_state_a5f3c6c7a86e4ec1be9ea3b22005e760e}} 
+\index{GameState@{GameState}!mPauseSceneGraph@{mPauseSceneGraph}}
+\index{mPauseSceneGraph@{mPauseSceneGraph}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{mPauseSceneGraph}{mPauseSceneGraph}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_scene_node}{Scene\+Node}}$\ast$ Game\+State\+::m\+Pause\+Scene\+Graph}
+
+
+
+Definition at line \mbox{\hyperlink{_game_state_8h_source_l00034}{34}} of file \mbox{\hyperlink{_game_state_8h_source}{Game\+State.\+h}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/samcp/\+Downloads/\+GBC/\+Year 3 -\/ Downloads/\+Semester 2/\+Game Engine 4/\+A1-\/\+DX12-\/\+Shooter/\+A1-\/\+Bonus\+Time/\+Project7\+\_\+\+Instances\+And\+Culling/\mbox{\hyperlink{_game_state_8h}{Game\+State.\+h}}\item 
+C\+:/\+Users/samcp/\+Downloads/\+GBC/\+Year 3 -\/ Downloads/\+Semester 2/\+Game Engine 4/\+A1-\/\+DX12-\/\+Shooter/\+A1-\/\+Bonus\+Time/\+Project7\+\_\+\+Instances\+And\+Culling/\mbox{\hyperlink{_game_state_8cpp}{Game\+State.\+cpp}}\end{DoxyCompactItemize}

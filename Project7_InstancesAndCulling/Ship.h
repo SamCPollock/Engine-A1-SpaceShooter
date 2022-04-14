@@ -23,16 +23,16 @@ public:
 
 public:
 	Ship(Type type, State* state);
-	virtual unsigned int getCategory() const; 
+	virtual unsigned int getCategory() const;
 
 
 private:
-	virtual void drawCurrent() const;
-	virtual void buildCurrent();
+	virtual void		drawCurrent() const;
+	virtual void		buildCurrent();
 
 
 private:
-	Type mType;
-	std::string mSprite;
-	//RenderItem* mShipRitem;
+	Type				mType;
+	std::string			mSprite;
+	//RenderItem* mAircraftRitem;
 };
