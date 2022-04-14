@@ -1,6 +1,11 @@
 #include "Ship.h"
 #include "ShooterGame.h"
 
+/// <summary>
+/// Constructor, uses switch case to determine what type of ship to create. 
+/// </summary>
+/// <param name="type"></param>
+/// <param name="game"></param>
 Ship::Ship(Type type, State* state) : Entity(state)
 , mType(type)
 {
@@ -17,7 +22,10 @@ Ship::Ship(Type type, State* state) : Entity(state)
 		break;
 	}
 }
-
+/// <summary>
+/// GetCategory, returns an int representing the category of the ship (Either PlayerAircraft or EnemyAircraft, to determine response to commands) 
+/// </summary>
+/// <returns></returns>
 unsigned int Ship::getCategory() const
 {
 	switch (mType)
@@ -29,7 +37,9 @@ unsigned int Ship::getCategory() const
 		return Category::EnemyAircraft;
 	}
 }
-
+/// <summary>
+/// Overrides virtual SceneNode function, draws self.
+/// </summary>
 void Ship::drawCurrent() const
 {
 	UINT objCBByteSize = d3dUtil::CalcConstantBufferByteSize(sizeof(ObjectConstants));
@@ -57,7 +67,9 @@ void Ship::drawCurrent() const
 		state->getContext()->game->getCmdList()->DrawIndexedInstanced(renderer->IndexCount, 1, renderer->StartIndexLocation, renderer->BaseVertexLocation, 0);
 	}
 }
-
+/// <summary>
+/// build current, gets the renderer and adds the object and builds it. 
+/// </summary>
 void Ship::buildCurrent()
 {
 	auto render = std::make_unique<RenderItem>();

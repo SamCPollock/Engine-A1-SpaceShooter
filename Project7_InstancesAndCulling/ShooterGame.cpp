@@ -3,18 +3,32 @@
 #include "StateStack.h"
 const int gNumFrameResources = 3;
 
+/// <summary>
+/// constructor, sets up the D3DApp instance 
+/// Sets the world instance to this game. 
+/// </summary>
+/// <param name="hInstance"></param>
 Game::Game(HINSTANCE hInstance)
 	: D3DApp(hInstance)
 	, mStateStack(State::Context(&mPlayer, this))
 {
 }
-
+/// <summary>
+/// Destructor, tidies up. 
+/// </summary>
 Game::~Game()
 {
 	if (md3dDevice != nullptr)
 		FlushCommandQueue();
 }
-
+/// <summary>
+/// Initialize the game, 
+/// sets the window caption
+/// sets the initial camera position
+/// Goes through initialization procedure (load textures, build the following: root signature, descriptor heaps 
+/// shaders and input layout, shape geometry, materials, render items, frame resources, and PSOs. 
+/// </summary>
+/// <returns></returns>
 bool Game::Initialize()
 {
 	if (!D3DApp::Initialize())
@@ -59,6 +73,9 @@ bool Game::Initialize()
 	return true;
 }
 
+/// <summary>
+/// Resizes the window, setting the aspect ratio
+/// </summary>
 void Game::OnResize()
 {
 	D3DApp::OnResize();
@@ -69,7 +86,11 @@ void Game::OnResize()
 
 	mCamera.SetLens(0.25f * MathHelper::Pi, AspectRatio(), 1.0f, 1000.0f);
 }
-
+/// <summary>
+/// Update, calls each function that needs to occur every frame, including:
+/// Updaitng the camera, animating materials, and updating CBs
+/// </summary>
+/// <param name="gt"></param>
 void Game::Update(const GameTimer& gt)
 {
 	//ProcessInput();
@@ -107,6 +128,10 @@ void Game::Update(const GameTimer& gt)
 
 }
 
+/// <summary>
+/// Draw function, goes through game, does the standard stuff to draw the world. 
+/// </summary>
+/// <param name="gt"></param>
 void Game::Draw(const GameTimer& gt)
 {
 	auto cmdListAlloc = mCurrFrameResource->CmdListAlloc;
@@ -168,16 +193,22 @@ void Game::Draw(const GameTimer& gt)
 	// set until the GPU finishes processing all the commands prior to this Signal().
 	mCommandQueue->Signal(mFence.Get(), mCurrentFence);
 }
-
+/// <summary>
+/// Registers each state to the statestsack
+/// </summary>
 void Game::registerStates()
 {
 	mStateStack.registerState<TitleState>(States::Title);
-	//mStateStack.registerState<MenuState>(States::Menu);
 	mStateStack.registerState<GameState>(States::Game);
 	mStateStack.registerState<PauseState>(States::Pause);
-	//mStateStack.registerState<SettingState>(States::Setting);
 }
 
+/// <summary>
+/// Onmousedown, get the positing of click
+/// </summary>
+/// <param name="btnState"></param>
+/// <param name="x"></param>
+/// <param name="y"></param>
 void Game::OnMouseDown(WPARAM btnState, int x, int y)
 {
 	mLastMousePos.x = x;
@@ -185,12 +216,23 @@ void Game::OnMouseDown(WPARAM btnState, int x, int y)
 
 	SetCapture(mhMainWnd);
 }
-
+/// <summary>
+/// Onmouseup , stop tracking mouse position
+/// </summary>
+/// <param name="btnState"></param>
+/// <param name="x"></param>
+/// <param name="y"></param>
 void Game::OnMouseUp(WPARAM btnState, int x, int y)
 {
 	ReleaseCapture();
 }
 
+/// <summary>
+/// On mouse move, adjust the camera angle
+/// </summary>
+/// <param name="btnState"></param>
+/// <param name="x"></param>
+/// <param name="y"></param>
 void Game::OnMouseMove(WPARAM btnState, int x, int y)
 {
 	if ((btnState & MK_LBUTTON) != 0)
@@ -220,13 +262,20 @@ void Game::OnMouseMove(WPARAM btnState, int x, int y)
 	mLastMousePos.y = y;
 }
 
+/// <summary>
+/// Onkeyboard input, get the stateStack to handle events
+/// </summary>
+/// <param name="btnState"></param>
 void Game::OnKeyboardInput(WPARAM btnState)
 {
 	mStateStack.handleEvent(btnState);
 }
 
 
-
+/// <summary>
+/// Update the camera to new view angle
+/// </summary>
+/// <param name="gt"></param>
 void Game::UpdateCamera(const GameTimer& gt)
 {
 
@@ -238,7 +287,10 @@ void Game::AnimateMaterials(const GameTimer& gt)
 {
 
 }
-
+/// <summary>
+/// Update object buffers
+/// </summary>
+/// <param name="gt"></param>
 void Game::UpdateObjectCBs(const GameTimer& gt)
 {
 	auto currObjectCB = mCurrFrameResource->ObjectCB.get();
@@ -263,6 +315,10 @@ void Game::UpdateObjectCBs(const GameTimer& gt)
 	}
 }
 
+/// <summary>
+/// Updates material cbs
+/// </summary>
+/// <param name="gt"></param>
 void Game::UpdateMaterialCBs(const GameTimer& gt)
 {
 	auto currMaterialCB = mCurrFrameResource->MaterialCB.get();
@@ -289,7 +345,10 @@ void Game::UpdateMaterialCBs(const GameTimer& gt)
 	}
 }
 
-
+/// <summary>
+/// Updates main pass CBs
+/// </summary>
+/// <param name="gt"></param>
 void Game::UpdateMainPassCB(const GameTimer& gt)
 {
 	XMMATRIX view = mCamera.GetView();
@@ -325,6 +384,9 @@ void Game::UpdateMainPassCB(const GameTimer& gt)
 	currPassCB->CopyData(0, mMainPassCB);
 }
 
+/// <summary>
+/// Loads each texture from files
+/// </summary>
 void Game::LoadTextures()
 {
 	//Eagle
@@ -391,6 +453,9 @@ void Game::LoadTextures()
 
 }
 
+/// <summary>
+/// Builds the root signatures
+/// </summary>
 void Game::BuildRootSignature()
 {
 	CD3DX12_DESCRIPTOR_RANGE texTable;
@@ -511,6 +576,9 @@ void Game::BuildDescriptorHeaps()
 
 }
 
+/// <summary>
+/// Builds shaders and input layounts
+/// </summary>
 void Game::BuildShadersAndInputLayout()
 {
 	mShaders["standardVS"] = d3dUtil::CompileShader(L"Shaders\\Default.hlsl", nullptr, "VS", "vs_5_1");
@@ -526,6 +594,9 @@ void Game::BuildShadersAndInputLayout()
 	};
 }
 
+/// <summary>
+/// Builds the shape geometry, including the cube used for all scenenodes. 
+/// </summary>
 void Game::BuildShapeGeometry()
 {
 	GeometryGenerator geoGen;
@@ -576,6 +647,9 @@ void Game::BuildShapeGeometry()
 	mGeometries[geo->Name] = std::move(geo);
 }
 
+/// <summary>
+/// Bulids the pipeline state objects
+/// </summary>
 void Game::BuildPSOs()
 {
 	D3D12_GRAPHICS_PIPELINE_STATE_DESC opaquePsoDesc;
@@ -609,19 +683,18 @@ void Game::BuildPSOs()
 	ThrowIfFailed(md3dDevice->CreateGraphicsPipelineState(&opaquePsoDesc, IID_PPV_ARGS(&mOpaquePSO)));
 }
 
+/// <summary>
+/// Clears all frame resources
+/// </summary>
 void Game::ClearFrameResources()
 {
 	mFrameResources.clear();
 }
 
-//void Game::BuildFrameResources()
-//{
-//	for (int i = 0; i < gNumFrameResources; ++i)
-//	{
-//		mFrameResources.push_back(std::make_unique<FrameResource>(md3dDevice.Get(),
-//			1, (UINT)mAllRitems.size(), (UINT)mMaterials.size()));
-//	}
-//}
+/// <summary>
+/// Loops through frame resources and bulids each one
+/// </summary>
+/// <param name="numRenderItems"></param>
 void Game::BuildFrameResources(int numRenderItems)
 {
 	for (int i = 0; i < gNumFrameResources; ++i)
@@ -630,7 +703,9 @@ void Game::BuildFrameResources(int numRenderItems)
 			1, (UINT)numRenderItems, (UINT)mMaterials.size()));
 	}
 }
-//step13
+/// <summary>
+/// Bulids each material. 
+/// </summary>
 void Game::BuildMaterials()
 {
 	int index = 0;
@@ -704,7 +779,11 @@ void Game::BuildMaterials()
 void Game::BuildRenderItems()
 {
 }
-
+/// <summary>
+/// Draws each render item, using a loop
+/// </summary>
+/// <param name="cmdList"></param>
+/// <param name="ritems"></param>
 void Game::DrawRenderItems(ID3D12GraphicsCommandList* cmdList, const std::vector<RenderItem*>& ritems)
 {
 	UINT objCBByteSize = d3dUtil::CalcConstantBufferByteSize(sizeof(ObjectConstants));
@@ -738,7 +817,6 @@ void Game::DrawRenderItems(ID3D12GraphicsCommandList* cmdList, const std::vector
 	}
 }
 
-//step21
 std::array<const CD3DX12_STATIC_SAMPLER_DESC, 6> Game::GetStaticSamplers()
 {
 	// Applications usually only need a handful of samplers.  So just define them all up front

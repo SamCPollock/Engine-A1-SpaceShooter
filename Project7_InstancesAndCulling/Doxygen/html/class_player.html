@@ -104,10 +104,10 @@ $(document).ready(function(){initNavTree('class_player.html',''); initResizable(
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr class="memitem:a2da5df212d083bbb1460237f34ab0d88"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a2da5df212d083bbb1460237f34ab0d88">Action</a> { <br />
-&#160;&#160;<a class="el" href="class_player.html#a2da5df212d083bbb1460237f34ab0d88a6c74df21e9d4e850dd175a23b78c6540">MoveUp</a>
-, <a class="el" href="class_player.html#a2da5df212d083bbb1460237f34ab0d88a685fada3f0a5111b3b8e56f5357a05b0">MoveDown</a>
-, <a class="el" href="class_player.html#a2da5df212d083bbb1460237f34ab0d88a0166b28e57a9a8553a603a4c0fbe5807">MoveLeft</a>
+&#160;&#160;<a class="el" href="class_player.html#a2da5df212d083bbb1460237f34ab0d88a0166b28e57a9a8553a603a4c0fbe5807">MoveLeft</a>
 , <a class="el" href="class_player.html#a2da5df212d083bbb1460237f34ab0d88aa89dbd9060b77566a66b115531df631b">MoveRight</a>
+, <a class="el" href="class_player.html#a2da5df212d083bbb1460237f34ab0d88a6c74df21e9d4e850dd175a23b78c6540">MoveUp</a>
+, <a class="el" href="class_player.html#a2da5df212d083bbb1460237f34ab0d88a685fada3f0a5111b3b8e56f5357a05b0">MoveDown</a>
 , <br />
 &#160;&#160;<a class="el" href="class_player.html#a2da5df212d083bbb1460237f34ab0d88a0b5dc1e9ee9644d81f6198e23da6dc74">ActionCount</a>
 <br />
@@ -131,10 +131,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6ffaa42ae4d105bd8a775f18ce37c463"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#a6ffaa42ae4d105bd8a775f18ce37c463">getAssignedKey</a> (<a class="el" href="class_player.html#a2da5df212d083bbb1460237f34ab0d88">Action</a> action) const</td></tr>
 <tr class="memdesc:a6ffaa42ae4d105bd8a775f18ce37c463"><td class="mdescLeft">&#160;</td><td class="mdescRight">GetKeyAssigned, returns the key bound to an action.  <a href="class_player.html#a6ffaa42ae4d105bd8a775f18ce37c463">More...</a><br /></td></tr>
 <tr class="separator:a6ffaa42ae4d105bd8a775f18ce37c463"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab64bba89bb7995a8b517668ec85c36e7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_player.html#ab64bba89bb7995a8b517668ec85c36e7">resetKeyFlags</a> ()</td></tr>
+<tr class="memdesc:ab64bba89bb7995a8b517668ec85c36e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">isRealTimeAction, returns a boolean depending on whether any actions are realtime.  <a href="class_player.html#ab64bba89bb7995a8b517668ec85c36e7">More...</a><br /></td></tr>
+<tr class="separator:ab64bba89bb7995a8b517668ec85c36e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_player_8h_source.html#l00016">16</a> of file <a class="el" href="_player_8h_source.html">Player.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_8h_source.html#l00015">15</a> of file <a class="el" href="_player_8h_source.html">Player.h</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="a2da5df212d083bbb1460237f34ab0d88" name="a2da5df212d083bbb1460237f34ab0d88"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2da5df212d083bbb1460237f34ab0d88">&#9670;&nbsp;</a></span>Action</h2>
@@ -148,14 +151,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a2da5df212d083bbb1460237f34ab0d88a6c74df21e9d4e850dd175a23b78c6540" name="a2da5df212d083bbb1460237f34ab0d88a6c74df21e9d4e850dd175a23b78c6540"></a>MoveUp&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a2da5df212d083bbb1460237f34ab0d88a685fada3f0a5111b3b8e56f5357a05b0" name="a2da5df212d083bbb1460237f34ab0d88a685fada3f0a5111b3b8e56f5357a05b0"></a>MoveDown&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a2da5df212d083bbb1460237f34ab0d88a0166b28e57a9a8553a603a4c0fbe5807" name="a2da5df212d083bbb1460237f34ab0d88a0166b28e57a9a8553a603a4c0fbe5807"></a>MoveLeft&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a2da5df212d083bbb1460237f34ab0d88a0166b28e57a9a8553a603a4c0fbe5807" name="a2da5df212d083bbb1460237f34ab0d88a0166b28e57a9a8553a603a4c0fbe5807"></a>MoveLeft&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a2da5df212d083bbb1460237f34ab0d88aa89dbd9060b77566a66b115531df631b" name="a2da5df212d083bbb1460237f34ab0d88aa89dbd9060b77566a66b115531df631b"></a>MoveRight&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2da5df212d083bbb1460237f34ab0d88a6c74df21e9d4e850dd175a23b78c6540" name="a2da5df212d083bbb1460237f34ab0d88a6c74df21e9d4e850dd175a23b78c6540"></a>MoveUp&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2da5df212d083bbb1460237f34ab0d88a685fada3f0a5111b3b8e56f5357a05b0" name="a2da5df212d083bbb1460237f34ab0d88a685fada3f0a5111b3b8e56f5357a05b0"></a>MoveDown&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a2da5df212d083bbb1460237f34ab0d88a0b5dc1e9ee9644d81f6198e23da6dc74" name="a2da5df212d083bbb1460237f34ab0d88a0b5dc1e9ee9644d81f6198e23da6dc74"></a>ActionCount&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="_player_8h_source.html#l00024">24</a> of file <a class="el" href="_player_8h_source.html">Player.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_8h_source.html#l00023">23</a> of file <a class="el" href="_player_8h_source.html">Player.h</a>.</p>
 
 </div>
 </div>
@@ -178,7 +181,7 @@ Public Member Functions</h2></td></tr>
 <p><a class="el" href="class_player.html">Player</a> constructor. </p>
 <p >Set up default key bindings and initialize actions. </p>
 
-<p class="definition">Definition at line <a class="el" href="_player_8cpp_source.html#l00039">39</a> of file <a class="el" href="_player_8cpp_source.html">Player.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_8cpp_source.html#l00034">34</a> of file <a class="el" href="_player_8cpp_source.html">Player.cpp</a>.</p>
 
 </div>
 </div>
@@ -218,7 +221,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_player_8cpp_source.html#l00111">111</a> of file <a class="el" href="_player_8cpp_source.html">Player.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_8cpp_source.html#l00100">100</a> of file <a class="el" href="_player_8cpp_source.html">Player.cpp</a>.</p>
 
 </div>
 </div>
@@ -247,7 +250,7 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_player_8cpp_source.html#l00133">133</a> of file <a class="el" href="_player_8cpp_source.html">Player.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_8cpp_source.html#l00119">119</a> of file <a class="el" href="_player_8cpp_source.html">Player.cpp</a>.</p>
 
 </div>
 </div>
@@ -275,7 +278,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_player_8cpp_source.html#l00066">66</a> of file <a class="el" href="_player_8cpp_source.html">Player.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_8cpp_source.html#l00055">55</a> of file <a class="el" href="_player_8cpp_source.html">Player.cpp</a>.</p>
 
 </div>
 </div>
@@ -303,7 +306,35 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_player_8cpp_source.html#l00095">95</a> of file <a class="el" href="_player_8cpp_source.html">Player.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_player_8cpp_source.html#l00084">84</a> of file <a class="el" href="_player_8cpp_source.html">Player.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ab64bba89bb7995a8b517668ec85c36e7" name="ab64bba89bb7995a8b517668ec85c36e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab64bba89bb7995a8b517668ec85c36e7">&#9670;&nbsp;</a></span>resetKeyFlags()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Player::resetKeyFlags </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>isRealTimeAction, returns a boolean depending on whether any actions are realtime. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">action</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_player_8cpp_source.html#l00146">146</a> of file <a class="el" href="_player_8cpp_source.html">Player.cpp</a>.</p>
 
 </div>
 </div>

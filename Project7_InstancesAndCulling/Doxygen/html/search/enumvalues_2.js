@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['movedown_0',['MoveDown',['../class_player.html#a2da5df212d083bbb1460237f34ab0d88a685fada3f0a5111b3b8e56f5357a05b0',1,'Player']]],
-  ['moveleft_1',['MoveLeft',['../class_player.html#a2da5df212d083bbb1460237f34ab0d88a0166b28e57a9a8553a603a4c0fbe5807',1,'Player']]],
-  ['moveright_2',['MoveRight',['../class_player.html#a2da5df212d083bbb1460237f34ab0d88aa89dbd9060b77566a66b115531df631b',1,'Player']]],
-  ['moveup_3',['MoveUp',['../class_player.html#a2da5df212d083bbb1460237f34ab0d88a6c74df21e9d4e850dd175a23b78c6540',1,'Player']]]
+  ['eagle_0',['Eagle',['../class_ship.html#a34a678eafbd25e014d84021dea22aef9a7885830f9d3a8722f628e2985cd26daf',1,'Ship']]],
+  ['enemyaircraft_1',['EnemyAircraft',['../namespace_category.html#a2ff936dbd42aeae91fdfb6f8456a8ab0a200d37e43bb2556f6e93fcc933124034',1,'Category']]]
 ];

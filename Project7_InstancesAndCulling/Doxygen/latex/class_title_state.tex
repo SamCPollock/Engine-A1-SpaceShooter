@@ -1,0 +1,142 @@
+\hypertarget{class_title_state}{}\doxysection{Title\+State Class Reference}
+\label{class_title_state}\index{TitleState@{TitleState}}
+
+
+\mbox{\hyperlink{class_title_state}{Title\+State}} \mbox{\hyperlink{class_state}{State}} which shows a simple title and moves to gamestate on button press.  
+
+
+
+
+{\ttfamily \#include $<$Title\+State.\+h$>$}
+
+Inheritance diagram for Title\+State\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_title_state}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_title_state_aad68d2a0aece65492974d3ee448ff71f}{Title\+State}} (\mbox{\hyperlink{class_state_stack}{State\+Stack}} $\ast$stack, \mbox{\hyperlink{struct_state_1_1_context}{Context}} $\ast$context)
+\begin{DoxyCompactList}\small\item\em Constructor, builds the scene \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_title_state_ae12beafe5aad6929a56089942de1220e}{draw}} ()
+\begin{DoxyCompactList}\small\item\em Calls the scenegraphs draw function \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_title_state_a26db23a9e13dcd488d0a550024aa67a0}{update}} (const Game\+Timer \&gt)
+\begin{DoxyCompactList}\small\item\em Calls the scenegraph\textquotesingle{}s update \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_title_state_af599217999e2373896f4441dcfb4b78b}{handle\+Event}} (WPARAM btn\+State)
+\begin{DoxyCompactList}\small\item\em On any key press, pops the current state (title) and pushes the game state. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{class_title_state}{Title\+State}} \mbox{\hyperlink{class_state}{State}} which shows a simple title and moves to gamestate on button press. 
+
+Sam Pollock, 2022 \DoxyHorRuler{0}
+ 
+
+Definition at line \mbox{\hyperlink{_title_state_8h_source_l00015}{15}} of file \mbox{\hyperlink{_title_state_8h_source}{Title\+State.\+h}}.
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_title_state_aad68d2a0aece65492974d3ee448ff71f}\label{class_title_state_aad68d2a0aece65492974d3ee448ff71f}} 
+\index{TitleState@{TitleState}!TitleState@{TitleState}}
+\index{TitleState@{TitleState}!TitleState@{TitleState}}
+\doxysubsubsection{\texorpdfstring{TitleState()}{TitleState()}}
+{\footnotesize\ttfamily Title\+State\+::\+Title\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_state_stack}{State\+Stack}} $\ast$}]{stack,  }\item[{\mbox{\hyperlink{struct_state_1_1_context}{Context}} $\ast$}]{context }\end{DoxyParamCaption})}
+
+
+
+Constructor, builds the scene 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stack} & \\
+\hline
+{\em context} & \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \mbox{\hyperlink{_title_state_8cpp_source_l00010}{10}} of file \mbox{\hyperlink{_title_state_8cpp_source}{Title\+State.\+cpp}}.
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_title_state_ae12beafe5aad6929a56089942de1220e}\label{class_title_state_ae12beafe5aad6929a56089942de1220e}} 
+\index{TitleState@{TitleState}!draw@{draw}}
+\index{draw@{draw}!TitleState@{TitleState}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void Title\+State\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Calls the scenegraphs draw function 
+
+
+
+Implements \mbox{\hyperlink{class_state_ae261605bc40b7e3959ce5df5457e4942}{State}}.
+
+
+
+Definition at line \mbox{\hyperlink{_title_state_8cpp_source_l00018}{18}} of file \mbox{\hyperlink{_title_state_8cpp_source}{Title\+State.\+cpp}}.
+
+\mbox{\Hypertarget{class_title_state_af599217999e2373896f4441dcfb4b78b}\label{class_title_state_af599217999e2373896f4441dcfb4b78b}} 
+\index{TitleState@{TitleState}!handleEvent@{handleEvent}}
+\index{handleEvent@{handleEvent}!TitleState@{TitleState}}
+\doxysubsubsection{\texorpdfstring{handleEvent()}{handleEvent()}}
+{\footnotesize\ttfamily bool Title\+State\+::handle\+Event (\begin{DoxyParamCaption}\item[{WPARAM}]{btn\+State }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+On any key press, pops the current state (title) and pushes the game state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em btn\+State} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_state_a3b119f64a399bd17bf37c377a094906a}{State}}.
+
+
+
+Definition at line \mbox{\hyperlink{_title_state_8cpp_source_l00037}{37}} of file \mbox{\hyperlink{_title_state_8cpp_source}{Title\+State.\+cpp}}.
+
+\mbox{\Hypertarget{class_title_state_a26db23a9e13dcd488d0a550024aa67a0}\label{class_title_state_a26db23a9e13dcd488d0a550024aa67a0}} 
+\index{TitleState@{TitleState}!update@{update}}
+\index{update@{update}!TitleState@{TitleState}}
+\doxysubsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily bool Title\+State\+::update (\begin{DoxyParamCaption}\item[{const Game\+Timer \&}]{gt }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Calls the scenegraph\textquotesingle{}s update 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gt} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_state_a3edbdcd142b9da8470d1f7d3fbe74e83}{State}}.
+
+
+
+Definition at line \mbox{\hyperlink{_title_state_8cpp_source_l00027}{27}} of file \mbox{\hyperlink{_title_state_8cpp_source}{Title\+State.\+cpp}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/samcp/\+Downloads/\+GBC/\+Year 3 -\/ Downloads/\+Semester 2/\+Game Engine 4/\+A1-\/\+DX12-\/\+Shooter/\+A1-\/\+Bonus\+Time/\+Project7\+\_\+\+Instances\+And\+Culling/\mbox{\hyperlink{_title_state_8h}{Title\+State.\+h}}\item 
+C\+:/\+Users/samcp/\+Downloads/\+GBC/\+Year 3 -\/ Downloads/\+Semester 2/\+Game Engine 4/\+A1-\/\+DX12-\/\+Shooter/\+A1-\/\+Bonus\+Time/\+Project7\+\_\+\+Instances\+And\+Culling/\mbox{\hyperlink{_title_state_8cpp}{Title\+State.\+cpp}}\end{DoxyCompactItemize}

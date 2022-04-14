@@ -1,3 +1,11 @@
+///***************************************************************************************
+/// ShooterGame
+/// Handles game functionality, initializing the game, taking user input. 
+/// Sam Pollock, 2022
+///***************************************************************************************
+
+
+
 #include "World.h"
 #include "Player.h"
 

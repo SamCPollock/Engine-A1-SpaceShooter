@@ -3,6 +3,15 @@
 #include "World.h"
 #include "State.h"
 
+/// <summary>
+/// Constructor, makes the world
+/// Sets the sceneGraph (scenenode), 
+/// sets up a nullptr for ship and background, 
+/// sets the bounds for the world 
+/// sets up the spawn positions, 
+//	 sets up the scrollspeed. 
+/// </summary>
+/// <param name="game"></param>
 World::World(State* state)
 	: mState(state)
 	, mSceneGraph(new SceneNode(state))
@@ -13,17 +22,23 @@ World::World(State* state)
 	, mScrollSpeed(1.0f)
 {
 }
-
+/// <summary>
+/// Destructor
+/// </summary>
 World::~World()
 {
 }
-
+/// <summary>
+/// World update, updates the scenegraph
+/// Moves the background and the enemies.
+/// Ensures the player stays within the bounds 
+/// Also tilts the player according to movement to provide 3D Feeling
+/// </summary>
+/// <param name="gt"></param>
 void World::update(const GameTimer& gt)
 {
-	// Scroll the world
 	mPlayerShip->setVelocity(0.0f, 0.0f, 0.0f);
 
-	// Forward commands to scene graph, adapt velocity (scrolling, diagonal correction)
 	while (!mCommandQueue.isEmpty())
 		mSceneGraph->onCommand(mCommandQueue.pop(), gt);
 
@@ -35,17 +50,14 @@ void World::update(const GameTimer& gt)
 	{
 		mBackground2->setPosition(0, 0, 16);
 	}
-#pragma region step 5
 
-	adaptPlayerVelocity();
 
 	// Regular update step, adapt position (correct if outside view)
 	mSceneGraph->update(gt);
-	adaptPlayerPosition();
-
-#pragma endregion
+	playerBoundsCheck();
 
 
+	// Tilting the player with movement
 	if (mPlayerShip->getVelocity().x > 0)
 	{
 		mPlayerShip->setWorldRotation(mPlayerShip->getWorldRotation().x, 0, -5);
@@ -77,16 +89,26 @@ void World::update(const GameTimer& gt)
 
 }
 
+/// <summary>
+/// Calls the scene graphs draw
+/// </summary>
 void World::draw()
 {
 	mSceneGraph->draw();
 }
 
+/// <summary>
+/// Returns the inputcommandqueue
+/// </summary>
+/// <returns></returns>
 InputCommandQueue& World::getCommandQueue()
 {
 	return mCommandQueue;
 }
 
+/// <summary>
+/// Builds the scene, adds the player, enemies, and backgrounds
+/// </summary>
 void World::buildScene()
 {
 	mSceneGraph->ClearChildren();
@@ -161,9 +183,11 @@ void World::buildScene()
 
 }
 
-void World::adaptPlayerPosition()
+/// <summary>
+/// Keeps the player within screen bounds.
+/// </summary>
+void World::playerBoundsCheck()
 {
-	// Keep player's position inside the screen bounds, at least borderDistance units from the border
 	const float borderDistance = 100.f;
 
 	XMFLOAT3 position = mPlayerShip->getWorldPosition();
@@ -172,14 +196,4 @@ void World::adaptPlayerPosition()
 	position.z = std::max(position.z, mWorldBounds.z);
 	position.z = std::min(position.z, mWorldBounds.w);
 	mPlayerShip->setPosition(position.x, position.y, position.z);
-}
-
-void World::adaptPlayerVelocity()
-{
-	XMFLOAT3 velocity = mPlayerShip->getVelocity();
-
-	// If moving diagonally, reduce velocity (to have always same velocity)
-	if (velocity.x != 0.f && velocity.z != 0.f)
-		mPlayerShip->setVelocity(velocity.x / std::sqrt(2.f), velocity.y / std::sqrt(2.f), velocity.z / std::sqrt(2.f));
-
 }

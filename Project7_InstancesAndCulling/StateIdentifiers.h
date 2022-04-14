@@ -1,3 +1,10 @@
+///***************************************************************************************
+/// StateIdentifiers
+/// Stores an enum with the ID of each state 
+/// Sam Pollock, 2022
+///***************************************************************************************
+
+
 #ifndef BOOK_STATEIDENTIFIERS_HPP
 #define BOOK_STATEIDENTIFIERS_HPP
 

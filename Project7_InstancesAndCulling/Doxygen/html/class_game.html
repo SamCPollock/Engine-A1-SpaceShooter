@@ -93,14 +93,10 @@ $(document).ready(function(){initNavTree('class_game.html',''); initResizable();
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_game-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Game Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p>ShooterGame Handles game functionality, initializing the game, taking user input.  
- <a href="class_game.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>&gt;</code></p>
 <div class="dynheader">
@@ -125,61 +121,31 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a16354d232327f6c21319713bf6983674"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a16354d232327f6c21319713bf6983674">Initialize</a> () override</td></tr>
 <tr class="memdesc:a16354d232327f6c21319713bf6983674"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the game, sets the window caption sets the initial camera position Goes through initialization procedure (load textures, build the following: root signature, descriptor heaps shaders and input layout, shape geometry, materials, render items, frame resources, and PSOs.  <a href="class_game.html#a16354d232327f6c21319713bf6983674">More...</a><br /></td></tr>
 <tr class="separator:a16354d232327f6c21319713bf6983674"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab84803799b4362f7d2a625c78d4a5f82"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#ab84803799b4362f7d2a625c78d4a5f82">ClearFrameResources</a> ()</td></tr>
+<tr class="memdesc:ab84803799b4362f7d2a625c78d4a5f82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears all frame resources  <a href="class_game.html#ab84803799b4362f7d2a625c78d4a5f82">More...</a><br /></td></tr>
+<tr class="separator:ab84803799b4362f7d2a625c78d4a5f82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb4c8b08ae6340e889f865f55ffcaa0d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#abb4c8b08ae6340e889f865f55ffcaa0d">BuildFrameResources</a> (int numRenderItems)</td></tr>
+<tr class="memdesc:abb4c8b08ae6340e889f865f55ffcaa0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loops through frame resources and bulids each one  <a href="class_game.html#abb4c8b08ae6340e889f865f55ffcaa0d">More...</a><br /></td></tr>
+<tr class="separator:abb4c8b08ae6340e889f865f55ffcaa0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8150ddca90b1ce3c38becca970246d99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a8150ddca90b1ce3c38becca970246d99">BuildMaterials</a> ()</td></tr>
+<tr class="memdesc:a8150ddca90b1ce3c38becca970246d99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bulids each material.  <a href="class_game.html#a8150ddca90b1ce3c38becca970246d99">More...</a><br /></td></tr>
+<tr class="separator:a8150ddca90b1ce3c38becca970246d99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9283a2ccc7cad9fdd4b25f7979d3c5c1"><td class="memItemLeft" align="right" valign="top">ID3D12GraphicsCommandList *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a9283a2ccc7cad9fdd4b25f7979d3c5c1">getCmdList</a> ()</td></tr>
 <tr class="separator:a9283a2ccc7cad9fdd4b25f7979d3c5c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab13f3fdd19f7fec4d64922e36cf3088"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::unique_ptr&lt; <a class="el" href="struct_render_item.html">RenderItem</a> &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#aab13f3fdd19f7fec4d64922e36cf3088">getRenderItems</a> ()</td></tr>
-<tr class="separator:aab13f3fdd19f7fec4d64922e36cf3088"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ab854095110829c9fb607b8bf3b50e1"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, std::unique_ptr&lt; Material &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a2ab854095110829c9fb607b8bf3b50e1">getMaterials</a> ()</td></tr>
 <tr class="separator:a2ab854095110829c9fb607b8bf3b50e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8fecc6dedc120a94d9940ad5d7518242"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, std::unique_ptr&lt; MeshGeometry &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a8fecc6dedc120a94d9940ad5d7518242">getGeometries</a> ()</td></tr>
 <tr class="separator:a8fecc6dedc120a94d9940ad5d7518242"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:a2a9401ba48c48468ceef6771309ddff7"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::unique_ptr&lt; <a class="el" href="struct_frame_resource.html">FrameResource</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a2a9401ba48c48468ceef6771309ddff7">mFrameResources</a></td></tr>
-<tr class="separator:a2a9401ba48c48468ceef6771309ddff7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6119ac12b9dafae4e105ac9b4e80c1b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_frame_resource.html">FrameResource</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a6119ac12b9dafae4e105ac9b4e80c1b2">mCurrFrameResource</a> = nullptr</td></tr>
-<tr class="separator:a6119ac12b9dafae4e105ac9b4e80c1b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f687875ba94b87162a7dc90b80b0092"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a1f687875ba94b87162a7dc90b80b0092">mCurrFrameResourceIndex</a> = 0</td></tr>
-<tr class="separator:a1f687875ba94b87162a7dc90b80b0092"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7a064571877d4b8becd1f53c98cafa9"><td class="memItemLeft" align="right" valign="top">UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#ad7a064571877d4b8becd1f53c98cafa9">mCbvSrvDescriptorSize</a> = 0</td></tr>
-<tr class="separator:ad7a064571877d4b8becd1f53c98cafa9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a987fac1aded1b4f4b9495eb0f1464c12"><td class="memItemLeft" align="right" valign="top">ComPtr&lt; ID3D12RootSignature &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a987fac1aded1b4f4b9495eb0f1464c12">mRootSignature</a> = nullptr</td></tr>
-<tr class="separator:a987fac1aded1b4f4b9495eb0f1464c12"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85befdbe03bbcdd30ad94cd64e0a1bd1"><td class="memItemLeft" align="right" valign="top">ComPtr&lt; ID3D12DescriptorHeap &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a85befdbe03bbcdd30ad94cd64e0a1bd1">mSrvDescriptorHeap</a> = nullptr</td></tr>
-<tr class="separator:a85befdbe03bbcdd30ad94cd64e0a1bd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e53612a0a54bdd46ea1d8b071260b77"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, std::unique_ptr&lt; MeshGeometry &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a0e53612a0a54bdd46ea1d8b071260b77">mGeometries</a></td></tr>
-<tr class="separator:a0e53612a0a54bdd46ea1d8b071260b77"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a871400f233e46cc637f383106e89dd71"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, std::unique_ptr&lt; Material &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a871400f233e46cc637f383106e89dd71">mMaterials</a></td></tr>
-<tr class="separator:a871400f233e46cc637f383106e89dd71"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a914940e399d2418018640ef3da130371"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, std::unique_ptr&lt; Texture &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a914940e399d2418018640ef3da130371">mTextures</a></td></tr>
-<tr class="separator:a914940e399d2418018640ef3da130371"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d821a872c24ff21b97300d24e37ac23"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, ComPtr&lt; ID3DBlob &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a5d821a872c24ff21b97300d24e37ac23">mShaders</a></td></tr>
-<tr class="separator:a5d821a872c24ff21b97300d24e37ac23"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f5868aab9c96810369a9ab91dec1d2b"><td class="memItemLeft" align="right" valign="top">std::vector&lt; D3D12_INPUT_ELEMENT_DESC &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a4f5868aab9c96810369a9ab91dec1d2b">mInputLayout</a></td></tr>
-<tr class="separator:a4f5868aab9c96810369a9ab91dec1d2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb640d01b04bbb82f3f2b02ac09554b2"><td class="memItemLeft" align="right" valign="top">ComPtr&lt; ID3D12PipelineState &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#acb640d01b04bbb82f3f2b02ac09554b2">mOpaquePSO</a> = nullptr</td></tr>
-<tr class="separator:acb640d01b04bbb82f3f2b02ac09554b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8184a727f9071c3db7e5efa3a6dce49"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::unique_ptr&lt; <a class="el" href="struct_render_item.html">RenderItem</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#aa8184a727f9071c3db7e5efa3a6dce49">mAllRitems</a></td></tr>
-<tr class="separator:aa8184a727f9071c3db7e5efa3a6dce49"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a626d5d97ee0e536b99703094828f5f79"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="struct_render_item.html">RenderItem</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a626d5d97ee0e536b99703094828f5f79">mOpaqueRitems</a></td></tr>
-<tr class="separator:a626d5d97ee0e536b99703094828f5f79"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2759008a4629646703b6e34e0501f6c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_pass_constants.html">PassConstants</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#ad2759008a4629646703b6e34e0501f6c">mMainPassCB</a></td></tr>
-<tr class="separator:ad2759008a4629646703b6e34e0501f6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab5cce9551fdd8b346b36747d6f4d3a38"><td class="memItemLeft" align="right" valign="top">POINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#ab5cce9551fdd8b346b36747d6f4d3a38">mLastMousePos</a></td></tr>
-<tr class="separator:ab5cce9551fdd8b346b36747d6f4d3a38"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a042dbbcf404fad865bdf72e534c675d5"><td class="memItemLeft" align="right" valign="top">Camera&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a042dbbcf404fad865bdf72e534c675d5">mCamera</a></td></tr>
-<tr class="separator:a042dbbcf404fad865bdf72e534c675d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adbc6dc1be92656b79625575a5d84e110"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_world.html">World</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#adbc6dc1be92656b79625575a5d84e110">mWorld</a></td></tr>
-<tr class="separator:adbc6dc1be92656b79625575a5d84e110"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1633a90f20203779bc1a1171c2d7ad77"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_player.html">Player</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a1633a90f20203779bc1a1171c2d7ad77">mPlayer</a></td></tr>
-<tr class="separator:a1633a90f20203779bc1a1171c2d7ad77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d8af1e6015e4dd251f0738a19d44cc9"><td class="memItemLeft" align="right" valign="top">ID3D12DescriptorHeap *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a1d8af1e6015e4dd251f0738a19d44cc9">GetSrvSrvDescriptorHeap</a> ()</td></tr>
+<tr class="separator:a1d8af1e6015e4dd251f0738a19d44cc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea66b5d58dda9b6299bf1921b84bd9ab"><td class="memItemLeft" align="right" valign="top">UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#aea66b5d58dda9b6299bf1921b84bd9ab">GetCbvSrvDescriptorSize</a> ()</td></tr>
+<tr class="separator:aea66b5d58dda9b6299bf1921b84bd9ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a561c53b8594651c78ea4114903b61486"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_frame_resource.html">FrameResource</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game.html#a561c53b8594651c78ea4114903b61486">GetCurrFrameResource</a> ()</td></tr>
+<tr class="separator:a561c53b8594651c78ea4114903b61486"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >ShooterGame Handles game functionality, initializing the game, taking user input. </p>
-<p >Sam Pollock, 2022 </p><hr  />
- 
-<p class="definition">Definition at line <a class="el" href="_shooter_game_8h_source.html#l00011">11</a> of file <a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>.</p>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="_shooter_game_8h_source.html#l00021">21</a> of file <a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a3f68a62a1fe1ca8dcd1deb054b384cef" name="a3f68a62a1fe1ca8dcd1deb054b384cef"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3f68a62a1fe1ca8dcd1deb054b384cef">&#9670;&nbsp;</a></span>Game() <span class="overload">[1/2]</span></h2>
@@ -205,7 +171,7 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="_shooter_game_8cpp_source.html#l00010">10</a> of file <a class="el" href="_shooter_game_8cpp_source.html">ShooterGame.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_shooter_game_8cpp_source.html#l00011">11</a> of file <a class="el" href="_shooter_game_8cpp_source.html">ShooterGame.cpp</a>.</p>
 
 </div>
 </div>
@@ -252,11 +218,108 @@ Public Attributes</h2></td></tr>
 
 <p>Destructor, tidies up. </p>
 
-<p class="definition">Definition at line <a class="el" href="_shooter_game_8cpp_source.html#l00020">20</a> of file <a class="el" href="_shooter_game_8cpp_source.html">ShooterGame.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_shooter_game_8cpp_source.html#l00019">19</a> of file <a class="el" href="_shooter_game_8cpp_source.html">ShooterGame.cpp</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="abb4c8b08ae6340e889f865f55ffcaa0d" name="abb4c8b08ae6340e889f865f55ffcaa0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb4c8b08ae6340e889f865f55ffcaa0d">&#9670;&nbsp;</a></span>BuildFrameResources()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Game::BuildFrameResources </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>numRenderItems</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Loops through frame resources and bulids each one </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">numRenderItems</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_shooter_game_8cpp_source.html#l00698">698</a> of file <a class="el" href="_shooter_game_8cpp_source.html">ShooterGame.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a8150ddca90b1ce3c38becca970246d99" name="a8150ddca90b1ce3c38becca970246d99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8150ddca90b1ce3c38becca970246d99">&#9670;&nbsp;</a></span>BuildMaterials()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Game::BuildMaterials </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Bulids each material. </p>
+
+<p class="definition">Definition at line <a class="el" href="_shooter_game_8cpp_source.html#l00709">709</a> of file <a class="el" href="_shooter_game_8cpp_source.html">ShooterGame.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ab84803799b4362f7d2a625c78d4a5f82" name="ab84803799b4362f7d2a625c78d4a5f82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab84803799b4362f7d2a625c78d4a5f82">&#9670;&nbsp;</a></span>ClearFrameResources()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Game::ClearFrameResources </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clears all frame resources </p>
+
+<p class="definition">Definition at line <a class="el" href="_shooter_game_8cpp_source.html#l00689">689</a> of file <a class="el" href="_shooter_game_8cpp_source.html">ShooterGame.cpp</a>.</p>
+
+</div>
+</div>
+<a id="aea66b5d58dda9b6299bf1921b84bd9ab" name="aea66b5d58dda9b6299bf1921b84bd9ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea66b5d58dda9b6299bf1921b84bd9ab">&#9670;&nbsp;</a></span>GetCbvSrvDescriptorSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT Game::GetCbvSrvDescriptorSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_shooter_game_8h_source.html#l00113">113</a> of file <a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>.</p>
+
+</div>
+</div>
 <a id="a9283a2ccc7cad9fdd4b25f7979d3c5c1" name="a9283a2ccc7cad9fdd4b25f7979d3c5c1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9283a2ccc7cad9fdd4b25f7979d3c5c1">&#9670;&nbsp;</a></span>getCmdList()</h2>
 
@@ -280,7 +343,34 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_shooter_game_8h_source.html#l00101">101</a> of file <a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_shooter_game_8h_source.html#l00108">108</a> of file <a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>.</p>
+
+</div>
+</div>
+<a id="a561c53b8594651c78ea4114903b61486" name="a561c53b8594651c78ea4114903b61486"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a561c53b8594651c78ea4114903b61486">&#9670;&nbsp;</a></span>GetCurrFrameResource()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_frame_resource.html">FrameResource</a> * Game::GetCurrFrameResource </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="_shooter_game_8h_source.html#l00114">114</a> of file <a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>.</p>
 
 </div>
 </div>
@@ -307,7 +397,7 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_shooter_game_8h_source.html#l00104">104</a> of file <a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_shooter_game_8h_source.html#l00111">111</a> of file <a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>.</p>
 
 </div>
 </div>
@@ -334,12 +424,12 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_shooter_game_8h_source.html#l00103">103</a> of file <a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_shooter_game_8h_source.html#l00110">110</a> of file <a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>.</p>
 
 </div>
 </div>
-<a id="aab13f3fdd19f7fec4d64922e36cf3088" name="aab13f3fdd19f7fec4d64922e36cf3088"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aab13f3fdd19f7fec4d64922e36cf3088">&#9670;&nbsp;</a></span>getRenderItems()</h2>
+<a id="a1d8af1e6015e4dd251f0738a19d44cc9" name="a1d8af1e6015e4dd251f0738a19d44cc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d8af1e6015e4dd251f0738a19d44cc9">&#9670;&nbsp;</a></span>GetSrvSrvDescriptorHeap()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -348,7 +438,7 @@ Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt; std::unique_ptr&lt; <a class="el" href="struct_render_item.html">RenderItem</a> &gt; &gt; &amp; Game::getRenderItems </td>
+          <td class="memname">ID3D12DescriptorHeap * Game::GetSrvSrvDescriptorHeap </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -361,7 +451,7 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_shooter_game_8h_source.html#l00102">102</a> of file <a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_shooter_game_8h_source.html#l00112">112</a> of file <a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>.</p>
 
 </div>
 </div>
@@ -391,7 +481,7 @@ Public Attributes</h2></td></tr>
 <p>Initialize the game, sets the window caption sets the initial camera position Goes through initialization procedure (load textures, build the following: root signature, descriptor heaps shaders and input layout, shape geometry, materials, render items, frame resources, and PSOs. </p>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_shooter_game_8cpp_source.html#l00035">35</a> of file <a class="el" href="_shooter_game_8cpp_source.html">ShooterGame.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="_shooter_game_8cpp_source.html#l00032">32</a> of file <a class="el" href="_shooter_game_8cpp_source.html">ShooterGame.cpp</a>.</p>
 
 </div>
 </div>
@@ -418,311 +508,6 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a id="aa8184a727f9071c3db7e5efa3a6dce49" name="aa8184a727f9071c3db7e5efa3a6dce49"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa8184a727f9071c3db7e5efa3a6dce49">&#9670;&nbsp;</a></span>mAllRitems</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt;std::unique_ptr&lt;<a class="el" href="struct_render_item.html">RenderItem</a>&gt; &gt; Game::mAllRitems</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_shooter_game_8h_source.html#l00080">80</a> of file <a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>.</p>
-
-</div>
-</div>
-<a id="a042dbbcf404fad865bdf72e534c675d5" name="a042dbbcf404fad865bdf72e534c675d5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a042dbbcf404fad865bdf72e534c675d5">&#9670;&nbsp;</a></span>mCamera</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Camera Game::mCamera</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_shooter_game_8h_source.html#l00096">96</a> of file <a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>.</p>
-
-</div>
-</div>
-<a id="ad7a064571877d4b8becd1f53c98cafa9" name="ad7a064571877d4b8becd1f53c98cafa9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad7a064571877d4b8becd1f53c98cafa9">&#9670;&nbsp;</a></span>mCbvSrvDescriptorSize</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">UINT Game::mCbvSrvDescriptorSize = 0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_shooter_game_8h_source.html#l00062">62</a> of file <a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>.</p>
-
-</div>
-</div>
-<a id="a6119ac12b9dafae4e105ac9b4e80c1b2" name="a6119ac12b9dafae4e105ac9b4e80c1b2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6119ac12b9dafae4e105ac9b4e80c1b2">&#9670;&nbsp;</a></span>mCurrFrameResource</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="struct_frame_resource.html">FrameResource</a>* Game::mCurrFrameResource = nullptr</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_shooter_game_8h_source.html#l00059">59</a> of file <a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>.</p>
-
-</div>
-</div>
-<a id="a1f687875ba94b87162a7dc90b80b0092" name="a1f687875ba94b87162a7dc90b80b0092"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1f687875ba94b87162a7dc90b80b0092">&#9670;&nbsp;</a></span>mCurrFrameResourceIndex</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Game::mCurrFrameResourceIndex = 0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_shooter_game_8h_source.html#l00060">60</a> of file <a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>.</p>
-
-</div>
-</div>
-<a id="a2a9401ba48c48468ceef6771309ddff7" name="a2a9401ba48c48468ceef6771309ddff7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2a9401ba48c48468ceef6771309ddff7">&#9670;&nbsp;</a></span>mFrameResources</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt;std::unique_ptr&lt;<a class="el" href="struct_frame_resource.html">FrameResource</a>&gt; &gt; Game::mFrameResources</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_shooter_game_8h_source.html#l00058">58</a> of file <a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>.</p>
-
-</div>
-</div>
-<a id="a0e53612a0a54bdd46ea1d8b071260b77" name="a0e53612a0a54bdd46ea1d8b071260b77"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e53612a0a54bdd46ea1d8b071260b77">&#9670;&nbsp;</a></span>mGeometries</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::unordered_map&lt;std::string, std::unique_ptr&lt;MeshGeometry&gt; &gt; Game::mGeometries</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_shooter_game_8h_source.html#l00068">68</a> of file <a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>.</p>
-
-</div>
-</div>
-<a id="a4f5868aab9c96810369a9ab91dec1d2b" name="a4f5868aab9c96810369a9ab91dec1d2b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4f5868aab9c96810369a9ab91dec1d2b">&#9670;&nbsp;</a></span>mInputLayout</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt;D3D12_INPUT_ELEMENT_DESC&gt; Game::mInputLayout</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_shooter_game_8h_source.html#l00075">75</a> of file <a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>.</p>
-
-</div>
-</div>
-<a id="ab5cce9551fdd8b346b36747d6f4d3a38" name="ab5cce9551fdd8b346b36747d6f4d3a38"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab5cce9551fdd8b346b36747d6f4d3a38">&#9670;&nbsp;</a></span>mLastMousePos</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">POINT Game::mLastMousePos</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_shooter_game_8h_source.html#l00095">95</a> of file <a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>.</p>
-
-</div>
-</div>
-<a id="ad2759008a4629646703b6e34e0501f6c" name="ad2759008a4629646703b6e34e0501f6c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad2759008a4629646703b6e34e0501f6c">&#9670;&nbsp;</a></span>mMainPassCB</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="struct_pass_constants.html">PassConstants</a> Game::mMainPassCB</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_shooter_game_8h_source.html#l00085">85</a> of file <a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>.</p>
-
-</div>
-</div>
-<a id="a871400f233e46cc637f383106e89dd71" name="a871400f233e46cc637f383106e89dd71"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a871400f233e46cc637f383106e89dd71">&#9670;&nbsp;</a></span>mMaterials</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::unordered_map&lt;std::string, std::unique_ptr&lt;Material&gt; &gt; Game::mMaterials</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_shooter_game_8h_source.html#l00069">69</a> of file <a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>.</p>
-
-</div>
-</div>
-<a id="acb640d01b04bbb82f3f2b02ac09554b2" name="acb640d01b04bbb82f3f2b02ac09554b2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acb640d01b04bbb82f3f2b02ac09554b2">&#9670;&nbsp;</a></span>mOpaquePSO</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">ComPtr&lt;ID3D12PipelineState&gt; Game::mOpaquePSO = nullptr</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_shooter_game_8h_source.html#l00077">77</a> of file <a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>.</p>
-
-</div>
-</div>
-<a id="a626d5d97ee0e536b99703094828f5f79" name="a626d5d97ee0e536b99703094828f5f79"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a626d5d97ee0e536b99703094828f5f79">&#9670;&nbsp;</a></span>mOpaqueRitems</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::vector&lt;<a class="el" href="struct_render_item.html">RenderItem</a>*&gt; Game::mOpaqueRitems</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_shooter_game_8h_source.html#l00083">83</a> of file <a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>.</p>
-
-</div>
-</div>
-<a id="a1633a90f20203779bc1a1171c2d7ad77" name="a1633a90f20203779bc1a1171c2d7ad77"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1633a90f20203779bc1a1171c2d7ad77">&#9670;&nbsp;</a></span>mPlayer</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_player.html">Player</a> Game::mPlayer</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_shooter_game_8h_source.html#l00098">98</a> of file <a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>.</p>
-
-</div>
-</div>
-<a id="a987fac1aded1b4f4b9495eb0f1464c12" name="a987fac1aded1b4f4b9495eb0f1464c12"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a987fac1aded1b4f4b9495eb0f1464c12">&#9670;&nbsp;</a></span>mRootSignature</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">ComPtr&lt;ID3D12RootSignature&gt; Game::mRootSignature = nullptr</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_shooter_game_8h_source.html#l00064">64</a> of file <a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>.</p>
-
-</div>
-</div>
-<a id="a5d821a872c24ff21b97300d24e37ac23" name="a5d821a872c24ff21b97300d24e37ac23"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5d821a872c24ff21b97300d24e37ac23">&#9670;&nbsp;</a></span>mShaders</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::unordered_map&lt;std::string, ComPtr&lt;ID3DBlob&gt; &gt; Game::mShaders</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_shooter_game_8h_source.html#l00073">73</a> of file <a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>.</p>
-
-</div>
-</div>
-<a id="a85befdbe03bbcdd30ad94cd64e0a1bd1" name="a85befdbe03bbcdd30ad94cd64e0a1bd1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a85befdbe03bbcdd30ad94cd64e0a1bd1">&#9670;&nbsp;</a></span>mSrvDescriptorHeap</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">ComPtr&lt;ID3D12DescriptorHeap&gt; Game::mSrvDescriptorHeap = nullptr</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_shooter_game_8h_source.html#l00066">66</a> of file <a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>.</p>
-
-</div>
-</div>
-<a id="a914940e399d2418018640ef3da130371" name="a914940e399d2418018640ef3da130371"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a914940e399d2418018640ef3da130371">&#9670;&nbsp;</a></span>mTextures</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::unordered_map&lt;std::string, std::unique_ptr&lt;Texture&gt; &gt; Game::mTextures</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_shooter_game_8h_source.html#l00071">71</a> of file <a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>.</p>
-
-</div>
-</div>
-<a id="adbc6dc1be92656b79625575a5d84e110" name="adbc6dc1be92656b79625575a5d84e110"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adbc6dc1be92656b79625575a5d84e110">&#9670;&nbsp;</a></span>mWorld</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_world.html">World</a> Game::mWorld</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_shooter_game_8h_source.html#l00097">97</a> of file <a class="el" href="_shooter_game_8h_source.html">ShooterGame.h</a>.</p>
 
 </div>
 </div>

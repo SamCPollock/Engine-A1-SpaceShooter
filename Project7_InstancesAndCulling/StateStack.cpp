@@ -3,6 +3,10 @@
 
 #include <cassert>
 
+/// <summary>
+/// Constructor, gets the stack, pending list, context, and factories. 
+/// </summary>
+/// <param name="context"></param>
 StateStack::StateStack(State::Context context)
 	: mStack()
 	, mPendingList()
@@ -11,11 +15,13 @@ StateStack::StateStack(State::Context context)
 {
 }
 
+/// <summary>
+/// Update, loops through the stack then breaks when there is nothing left
+/// </summary>
+/// <param name="gt"></param>
 void StateStack::update(const GameTimer& gt)
 {
 
-
-	// Iterate from top to bottom, stop as soon as update() returns false
 	for (auto itr = mStack.rbegin(); itr != mStack.rend(); ++itr)
 	{
 		if (!(*itr)->update(gt))
@@ -25,50 +31,77 @@ void StateStack::update(const GameTimer& gt)
 	applyPendingChanges();
 }
 
+/// <summary>
+/// Draws all active states, starting at the bottom and going up
+/// </summary>
 void StateStack::draw()
 {
-	// Draw all active states from bottom to top
 	for (State::Ptr& state : mStack)
+	{
 		state->draw();
+	}
 }
 
+/// <summary>
+/// Loops through the stack from top going down. 
+/// </summary>
+/// <param name="btnState"></param>
 void StateStack::handleEvent(WPARAM btnState)
 {
-	// Iterate from top to bottom, stop as soon as handleEvent() returns false
 	for (auto itr = mStack.rbegin(); itr != mStack.rend(); ++itr)
 	{
 		if (!(*itr)->handleEvent(btnState))
+		{
 			break;
+		}
 	}
 
 	applyPendingChanges();
 }
 
+/// <summary>
+/// Pushes a state onto the list of pending state changes
+/// </summary>
+/// <param name="stateID"></param>
 void StateStack::pushState(States::ID stateID)
 {
 	mPendingList.push_back(PendingChange(Push, stateID));
 }
-
+/// <summary>
+/// Adds a pop to the list of pending state changes
+/// </summary>
 void StateStack::popState()
 {
 	mPendingList.push_back(PendingChange(Pop));
 }
-
+/// <summary>
+/// clears the full list
+/// </summary>
 void StateStack::clearStates()
 {
 	mPendingList.push_back(PendingChange(Clear));
 }
-
+/// <summary>
+/// Returns wheteher the stack is empty or not
+/// </summary>
+/// <returns></returns>
 bool StateStack::isEmpty() const
 {
 	return mStack.empty();
 }
-
+/// <summary>
+/// Returns a pointer to the statestack
+/// </summary>
+/// <returns></returns>
 std::vector<State::Ptr>* StateStack::GetStateStack()
 {
 	return &mStack;
 }
-
+/// <summary>
+/// Uses the factory to create states 
+/// </summary>
+/// <param name="stateID"></param>
+/// <returns></returns>
 State::Ptr StateStack::createState(States::ID stateID)
 {
 	auto found = mFactories.find(stateID);
@@ -76,7 +109,9 @@ State::Ptr StateStack::createState(States::ID stateID)
 
 	return found->second();
 }
-
+/// <summary>
+/// Foreach loop to apply each pending change from the pending changes list
+/// </summary>
 void StateStack::applyPendingChanges()
 {
 	for (PendingChange change : mPendingList)

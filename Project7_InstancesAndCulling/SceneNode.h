@@ -1,3 +1,12 @@
+
+///***************************************************************************************
+/// Scene Node,
+/// Uses RenderItem from GBC Graphics, 2021. 
+/// Used to in scene to set up heirarchy and handle updated, transform, and drawing.
+/// Sam Pollock, 2022
+///***************************************************************************************
+
+
 #pragma once
 #include "../Common/d3dApp.h"
 #include "../Common/MathHelper.h"
@@ -15,7 +24,7 @@ using namespace DirectX::PackedVector;
 
 #pragma comment(lib, "d3dcompiler.lib")
 #pragma comment(lib, "D3D12.lib")
-
+///*** FROM YEAR 2 GRAPHICS
 // Lightweight structure stores parameters to draw a shape.  This will
 // vary from app-to-app.
 struct RenderItem

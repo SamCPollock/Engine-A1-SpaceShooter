@@ -1,6 +1,11 @@
 #include "GameState.h"
 #include "ShooterGame.h"
 
+/// <summary>
+/// Constructor, sets up the world nad pause scene references. 
+/// </summary>
+/// <param name="stack"></param>
+/// <param name="context"></param>
 GameState::GameState(StateStack* stack, Context* context)
 	: State(stack, context)
 	, mWorld(this)
@@ -8,13 +13,19 @@ GameState::GameState(StateStack* stack, Context* context)
 {
 	BuildScene();
 }
-
+/// <summary>
+/// Calls the world's draw
+/// </summary>
 void GameState::draw()
 {
 	mWorld.draw();
 
 }
-
+/// <summary>
+/// Calls the worlds update and calls process input
+/// </summary>
+/// <param name="gt"></param>
+/// <returns></returns>
 bool GameState::update(const GameTimer& gt)
 {
 	ProcessInput();
@@ -22,7 +33,11 @@ bool GameState::update(const GameTimer& gt)
 
 	return true;
 }
-
+/// <summary>
+/// Handles player input, checking whether to enter pause state. 
+/// </summary>
+/// <param name="btnState"></param>
+/// <returns></returns>
 bool GameState::handleEvent(WPARAM btnState)
 {
 	// Handle player input
@@ -33,14 +48,18 @@ bool GameState::handleEvent(WPARAM btnState)
 #pragma endregion
 	return true;
 }
-
+/// <summary>
+/// Processes input, passes it to the player 
+/// </summary>
 void GameState::ProcessInput()
 {
 	InputCommandQueue& commands = mWorld.getCommandQueue();
 	getContext()->player->handleEvent(commands);
 	getContext()->player->handleRealtimeInput(commands);
 }
-
+/// <summary>
+/// Builds the scene, including the cube used as a pause menu
+/// </summary>
 void GameState::BuildScene()
 {
 	getContext()->game->BuildMaterials();

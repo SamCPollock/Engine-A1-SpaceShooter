@@ -2,45 +2,39 @@
 \label{class_world}\index{World@{World}}
 
 
-\mbox{\hyperlink{class_world}{World}} Set up the world, setting up layers and choosing entities to populate them.  
-
-
-
-
 {\ttfamily \#include $<$World.\+h$>$}
 
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_world_a358fecc8d0e42996d7bd1884f126a97c}{World}} (\mbox{\hyperlink{class_game}{Game}} $\ast$game)
+\mbox{\hyperlink{class_world_a99c692ab277a66c03ca48e8ea568ecb0}{World}} (\mbox{\hyperlink{class_state}{State}} $\ast$state)
 \begin{DoxyCompactList}\small\item\em Constructor, makes the world Sets the scene\+Graph (scenenode), sets up a nullptr for ship and background, sets the bounds for the world sets up the spawn positions, ~\newline
  \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_world_a8c73fba541a5817fff65147ba47cd827}{$\sim$\+World}} ()
+\begin{DoxyCompactList}\small\item\em Destructor \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_world_a36c003f54e14e022a360551af5e7923e}{update}} (const Game\+Timer \&gt)
-\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_world}{World}} update, updates the scenegraph adds \char`\"{}bouncing\char`\"{} movemetn to the ship. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_world}{World}} update, updates the scenegraph Moves the background and the enemies. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_world_ab51a17ccbb108616daacd0c34973dc8d}{draw}} ()
-\begin{DoxyCompactList}\small\item\em Calls the scene\+Graphs draw function \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{class_world_ae7df49f5d488e5cd1254bf360966f410}{build\+Scene}} ()
-\begin{DoxyCompactList}\small\item\em Build scene, create unique ptr for each object, set up the initial entitiy properties for them. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Calls the scene graphs draw \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_input_command_queue}{Input\+Command\+Queue}} \& \mbox{\hyperlink{class_world_ad57739b1e6659c2846b57a6fa2621d68}{get\+Command\+Queue}} ()
-\begin{DoxyCompactList}\small\item\em Returns the member input command queue \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Returns the inputcommandqueue \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_world_ae7df49f5d488e5cd1254bf360966f410}{build\+Scene}} ()
+\begin{DoxyCompactList}\small\item\em Builds the scene, adds the player, enemies, and backgrounds \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-\mbox{\hyperlink{class_world}{World}} Set up the world, setting up layers and choosing entities to populate them. 
 
-Sam Pollock, 2022 \DoxyHorRuler{0}
- 
 
-Definition at line \mbox{\hyperlink{_world_8h_source_l00015}{15}} of file \mbox{\hyperlink{_world_8h_source}{World.\+h}}.
+Definition at line \mbox{\hyperlink{_world_8h_source_l00017}{17}} of file \mbox{\hyperlink{_world_8h_source}{World.\+h}}.
 
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{class_world_a358fecc8d0e42996d7bd1884f126a97c}\label{class_world_a358fecc8d0e42996d7bd1884f126a97c}} 
+\mbox{\Hypertarget{class_world_a99c692ab277a66c03ca48e8ea568ecb0}\label{class_world_a99c692ab277a66c03ca48e8ea568ecb0}} 
 \index{World@{World}!World@{World}}
 \index{World@{World}!World@{World}}
 \doxysubsubsection{\texorpdfstring{World()}{World()}}
-{\footnotesize\ttfamily World\+::\+World (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_game}{Game}} $\ast$}]{game }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+{\footnotesize\ttfamily World\+::\+World (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_state}{State}} $\ast$}]{state }\end{DoxyParamCaption})}
 
 
 
@@ -54,7 +48,21 @@ Constructor, makes the world Sets the scene\+Graph (scenenode), sets up a nullpt
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{_world_8cpp_source_l00014}{14}} of file \mbox{\hyperlink{_world_8cpp_source}{World.\+cpp}}.
+Definition at line \mbox{\hyperlink{_world_8cpp_source_l00015}{15}} of file \mbox{\hyperlink{_world_8cpp_source}{World.\+cpp}}.
+
+\mbox{\Hypertarget{class_world_a8c73fba541a5817fff65147ba47cd827}\label{class_world_a8c73fba541a5817fff65147ba47cd827}} 
+\index{World@{World}!````~World@{$\sim$World}}
+\index{````~World@{$\sim$World}!World@{World}}
+\doxysubsubsection{\texorpdfstring{$\sim$World()}{~World()}}
+{\footnotesize\ttfamily World\+::$\sim$\+World (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructor 
+
+
+
+Definition at line \mbox{\hyperlink{_world_8cpp_source_l00028}{28}} of file \mbox{\hyperlink{_world_8cpp_source}{World.\+cpp}}.
 
 
 
@@ -67,11 +75,11 @@ Definition at line \mbox{\hyperlink{_world_8cpp_source_l00014}{14}} of file \mbo
 
 
 
-Build scene, create unique ptr for each object, set up the initial entitiy properties for them. 
+Builds the scene, adds the player, enemies, and backgrounds 
 
 
 
-Definition at line \mbox{\hyperlink{_world_8cpp_source_l00102}{102}} of file \mbox{\hyperlink{_world_8cpp_source}{World.\+cpp}}.
+Definition at line \mbox{\hyperlink{_world_8cpp_source_l00112}{112}} of file \mbox{\hyperlink{_world_8cpp_source}{World.\+cpp}}.
 
 \mbox{\Hypertarget{class_world_ab51a17ccbb108616daacd0c34973dc8d}\label{class_world_ab51a17ccbb108616daacd0c34973dc8d}} 
 \index{World@{World}!draw@{draw}}
@@ -81,11 +89,11 @@ Definition at line \mbox{\hyperlink{_world_8cpp_source_l00102}{102}} of file \mb
 
 
 
-Calls the scene\+Graphs draw function 
+Calls the scene graphs draw 
 
 
 
-Definition at line \mbox{\hyperlink{_world_8cpp_source_l00093}{93}} of file \mbox{\hyperlink{_world_8cpp_source}{World.\+cpp}}.
+Definition at line \mbox{\hyperlink{_world_8cpp_source_l00095}{95}} of file \mbox{\hyperlink{_world_8cpp_source}{World.\+cpp}}.
 
 \mbox{\Hypertarget{class_world_ad57739b1e6659c2846b57a6fa2621d68}\label{class_world_ad57739b1e6659c2846b57a6fa2621d68}} 
 \index{World@{World}!getCommandQueue@{getCommandQueue}}
@@ -95,14 +103,14 @@ Definition at line \mbox{\hyperlink{_world_8cpp_source_l00093}{93}} of file \mbo
 
 
 
-Returns the member input command queue 
+Returns the inputcommandqueue 
 
 \begin{DoxyReturn}{Returns}
 
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{_world_8cpp_source_l00084}{84}} of file \mbox{\hyperlink{_world_8cpp_source}{World.\+cpp}}.
+Definition at line \mbox{\hyperlink{_world_8cpp_source_l00104}{104}} of file \mbox{\hyperlink{_world_8cpp_source}{World.\+cpp}}.
 
 \mbox{\Hypertarget{class_world_a36c003f54e14e022a360551af5e7923e}\label{class_world_a36c003f54e14e022a360551af5e7923e}} 
 \index{World@{World}!update@{update}}
@@ -112,7 +120,9 @@ Definition at line \mbox{\hyperlink{_world_8cpp_source_l00084}{84}} of file \mbo
 
 
 
-\mbox{\hyperlink{class_world}{World}} update, updates the scenegraph adds \char`\"{}bouncing\char`\"{} movemetn to the ship. 
+\mbox{\hyperlink{class_world}{World}} update, updates the scenegraph Moves the background and the enemies. 
+
+Ensures the player stays within the bounds Also tilts the player according to movement to provide 3D Feeling 
 
 
 \begin{DoxyParams}{Parameters}
@@ -121,7 +131,7 @@ Definition at line \mbox{\hyperlink{_world_8cpp_source_l00084}{84}} of file \mbo
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{_world_8cpp_source_l00030}{30}} of file \mbox{\hyperlink{_world_8cpp_source}{World.\+cpp}}.
+Definition at line \mbox{\hyperlink{_world_8cpp_source_l00038}{38}} of file \mbox{\hyperlink{_world_8cpp_source}{World.\+cpp}}.
 
 
 

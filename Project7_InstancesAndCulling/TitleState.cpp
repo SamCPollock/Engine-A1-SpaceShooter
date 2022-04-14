@@ -2,24 +2,38 @@
 #include "World.h"
 #include "ShooterGame.h"
 
-
+/// <summary>
+/// Constructor, builds the scene
+/// </summary>
+/// <param name="stack"></param>
+/// <param name="context"></param>
 TitleState::TitleState(StateStack* stack, Context* context)
 	: State(stack, context)
 {
 	BuildScene();
 }
-
+/// <summary>
+/// Calls the scenegraphs draw function
+/// </summary>
 void TitleState::draw()
 {
 	mSceneGraph->draw();
 }
-
+/// <summary>
+/// Calls the scenegraph's update
+/// </summary>
+/// <param name="gt"></param>
+/// <returns></returns>
 bool TitleState::update(const GameTimer& gt)
 {
 	mSceneGraph->update(gt);
 	return true;
 }
-
+/// <summary>
+/// On any key press, pops the current state (title) and pushes the game state. 
+/// </summary>
+/// <param name="btnState"></param>
+/// <returns></returns>
 bool TitleState::handleEvent(WPARAM btnState)
 {
 	//key pressed
@@ -30,11 +44,11 @@ bool TitleState::handleEvent(WPARAM btnState)
 }
 
 
-
+/// <summary>
+/// Builds the scene, including a background and a text sprite.
+/// </summary>
 void TitleState::BuildScene()
 {
-	/*getContext()->game->mAllRitems.clear();
-	getContext()->game->mOpaqueRitems.clear();*/
 
 	getContext()->game->BuildMaterials();
 

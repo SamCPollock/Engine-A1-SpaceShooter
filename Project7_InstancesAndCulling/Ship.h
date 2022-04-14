@@ -1,3 +1,10 @@
+///***************************************************************************************
+/// Ship,
+/// Used to set up Ship entity, determines type (ie, whether brick or tile).
+/// Sam Pollock, 2022
+///***************************************************************************************
+
+
 #pragma once
 #include "Entity.h"
 #include <string>

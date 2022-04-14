@@ -1,3 +1,10 @@
+///***************************************************************************************
+/// StateStack
+/// Stack which holds all active states, is used to switch between active states. 
+/// Sam Pollock, 2022
+///***************************************************************************************
+
+
 #ifndef BOOK_STATESTACK_HPP
 #define BOOK_STATESTACK_HPP
 
@@ -26,44 +33,42 @@ public:
 
 
 public:
-	explicit			StateStack(State::Context context);
+	explicit StateStack(State::Context context);
 
 	template <typename T>
-	void				registerState(States::ID stateID);
-
-	void				update(const GameTimer& gt);
-	void				draw();
-	void				handleEvent(WPARAM btnState);
-
-	void				pushState(States::ID stateID);
-	void				popState();
-	void				clearStates();
-
-	bool				isEmpty() const;
+	void registerState(States::ID stateID);
+		 
+	void update(const GameTimer& gt);
+	void draw();
+	void handleEvent(WPARAM btnState);
+		 
+	void pushState(States::ID stateID);
+	void popState();
+	void clearStates();
+		 
+	bool isEmpty() const;
 	std::vector<State::Ptr>* GetStateStack();
 
 
 private:
-	State::Ptr			createState(States::ID stateID);
+	State::Ptr createState(States::ID stateID);
 public:
-	void				applyPendingChanges();
+	void applyPendingChanges();
 
 
 private:
 	struct PendingChange
 	{
-		explicit			PendingChange(Action action, States::ID stateID = States::None);
-		Action				action;
-		States::ID			stateID;
+		explicit PendingChange(Action action, States::ID stateID = States::None);
+		Action action;
+		States::ID stateID;
 	};
 
+	std::vector<State::Ptr>	 mStack;
+	std::vector<PendingChange> mPendingList;
 
-private:
-	std::vector<State::Ptr>								mStack;
-	std::vector<PendingChange>							mPendingList;
-
-	State::Context										mContext;
-	std::map<States::ID, std::function<State::Ptr()>>	mFactories;
+	State::Context mContext;
+	std::map<States::ID, std::function<State::Ptr()>> mFactories;
 };
 
 

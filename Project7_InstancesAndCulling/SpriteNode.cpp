@@ -1,15 +1,20 @@
 #include "SpriteNode.h"
 #include "ShooterGame.h"
-
+/// <summary>
+/// Constructor
+/// </summary>
+/// <param name="state"></param>
+/// <param name="spriteImage"></param>
 SpriteNode::SpriteNode(State* state, std::string spriteImage) : Entity(state)
 , mSprite(spriteImage)
 {
 }
-
+/// <summary>
+/// Draws the current spriteNode
+/// </summary>
 void SpriteNode::drawCurrent() const
 {
-	//renderer->World = getTransform();
-	//renderer->NumFramesDirty++;
+
 
 	UINT objCBByteSize = d3dUtil::CalcConstantBufferByteSize(sizeof(ObjectConstants));
 	UINT matCBByteSize = d3dUtil::CalcConstantBufferByteSize(sizeof(MaterialConstants));
@@ -37,7 +42,9 @@ void SpriteNode::drawCurrent() const
 	}
 
 }
-
+/// <summary>
+/// Builds the sprite node
+/// </summary>
 void SpriteNode::buildCurrent()
 {
 	auto render = std::make_unique<RenderItem>();

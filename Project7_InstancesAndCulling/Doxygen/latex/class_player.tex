@@ -8,10 +8,10 @@
 \begin{DoxyCompactItemize}
 \item 
 enum \mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88}{Action}} \{ \newline
-\mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88a6c74df21e9d4e850dd175a23b78c6540}{Move\+Up}}
-, \mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88a685fada3f0a5111b3b8e56f5357a05b0}{Move\+Down}}
-, \mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88a0166b28e57a9a8553a603a4c0fbe5807}{Move\+Left}}
+\mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88a0166b28e57a9a8553a603a4c0fbe5807}{Move\+Left}}
 , \mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88aa89dbd9060b77566a66b115531df631b}{Move\+Right}}
+, \mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88a6c74df21e9d4e850dd175a23b78c6540}{Move\+Up}}
+, \mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88a685fada3f0a5111b3b8e56f5357a05b0}{Move\+Down}}
 , \newline
 \mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88a0b5dc1e9ee9644d81f6198e23da6dc74}{Action\+Count}}
  \}
@@ -28,13 +28,15 @@ void \mbox{\hyperlink{class_player_aab9d82be79245fbfeaa899c73c7c1b76}{handle\+Re
 void \mbox{\hyperlink{class_player_a1aebc48270700e3052aaf2653be62bc6}{assign\+Key}} (\mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88}{Action}} action, char key)
 \begin{DoxyCompactList}\small\item\em Assign\+Key, unbinds previous key bindings to replace with new keybindings. \end{DoxyCompactList}\item 
 char \mbox{\hyperlink{class_player_a6ffaa42ae4d105bd8a775f18ce37c463}{get\+Assigned\+Key}} (\mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88}{Action}} action) const
-\begin{DoxyCompactList}\small\item\em Get\+Key\+Assigned, returns the key bound to an action. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Get\+Key\+Assigned, returns the key bound to an action. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_player_ab64bba89bb7995a8b517668ec85c36e7}{reset\+Key\+Flags}} ()
+\begin{DoxyCompactList}\small\item\em is\+Real\+Time\+Action, returns a boolean depending on whether any actions are realtime. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 
 
-Definition at line \mbox{\hyperlink{_player_8h_source_l00016}{16}} of file \mbox{\hyperlink{_player_8h_source}{Player.\+h}}.
+Definition at line \mbox{\hyperlink{_player_8h_source_l00015}{15}} of file \mbox{\hyperlink{_player_8h_source}{Player.\+h}}.
 
 
 
@@ -46,20 +48,20 @@ Definition at line \mbox{\hyperlink{_player_8h_source_l00016}{16}} of file \mbox
 {\footnotesize\ttfamily enum \mbox{\hyperlink{class_player_a2da5df212d083bbb1460237f34ab0d88}{Player\+::\+Action}}}
 
 \begin{DoxyEnumFields}{Enumerator}
-\raisebox{\heightof{T}}[0pt][0pt]{\index{MoveUp@{MoveUp}!Player@{Player}}\index{Player@{Player}!MoveUp@{MoveUp}}}\mbox{\Hypertarget{class_player_a2da5df212d083bbb1460237f34ab0d88a6c74df21e9d4e850dd175a23b78c6540}\label{class_player_a2da5df212d083bbb1460237f34ab0d88a6c74df21e9d4e850dd175a23b78c6540}} 
-Move\+Up&\\
-\hline
-
-\raisebox{\heightof{T}}[0pt][0pt]{\index{MoveDown@{MoveDown}!Player@{Player}}\index{Player@{Player}!MoveDown@{MoveDown}}}\mbox{\Hypertarget{class_player_a2da5df212d083bbb1460237f34ab0d88a685fada3f0a5111b3b8e56f5357a05b0}\label{class_player_a2da5df212d083bbb1460237f34ab0d88a685fada3f0a5111b3b8e56f5357a05b0}} 
-Move\+Down&\\
-\hline
-
 \raisebox{\heightof{T}}[0pt][0pt]{\index{MoveLeft@{MoveLeft}!Player@{Player}}\index{Player@{Player}!MoveLeft@{MoveLeft}}}\mbox{\Hypertarget{class_player_a2da5df212d083bbb1460237f34ab0d88a0166b28e57a9a8553a603a4c0fbe5807}\label{class_player_a2da5df212d083bbb1460237f34ab0d88a0166b28e57a9a8553a603a4c0fbe5807}} 
 Move\+Left&\\
 \hline
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{MoveRight@{MoveRight}!Player@{Player}}\index{Player@{Player}!MoveRight@{MoveRight}}}\mbox{\Hypertarget{class_player_a2da5df212d083bbb1460237f34ab0d88aa89dbd9060b77566a66b115531df631b}\label{class_player_a2da5df212d083bbb1460237f34ab0d88aa89dbd9060b77566a66b115531df631b}} 
 Move\+Right&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MoveUp@{MoveUp}!Player@{Player}}\index{Player@{Player}!MoveUp@{MoveUp}}}\mbox{\Hypertarget{class_player_a2da5df212d083bbb1460237f34ab0d88a6c74df21e9d4e850dd175a23b78c6540}\label{class_player_a2da5df212d083bbb1460237f34ab0d88a6c74df21e9d4e850dd175a23b78c6540}} 
+Move\+Up&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MoveDown@{MoveDown}!Player@{Player}}\index{Player@{Player}!MoveDown@{MoveDown}}}\mbox{\Hypertarget{class_player_a2da5df212d083bbb1460237f34ab0d88a685fada3f0a5111b3b8e56f5357a05b0}\label{class_player_a2da5df212d083bbb1460237f34ab0d88a685fada3f0a5111b3b8e56f5357a05b0}} 
+Move\+Down&\\
 \hline
 
 \raisebox{\heightof{T}}[0pt][0pt]{\index{ActionCount@{ActionCount}!Player@{Player}}\index{Player@{Player}!ActionCount@{ActionCount}}}\mbox{\Hypertarget{class_player_a2da5df212d083bbb1460237f34ab0d88a0b5dc1e9ee9644d81f6198e23da6dc74}\label{class_player_a2da5df212d083bbb1460237f34ab0d88a0b5dc1e9ee9644d81f6198e23da6dc74}} 
@@ -69,7 +71,7 @@ Action\+Count&\\
 \end{DoxyEnumFields}
 
 
-Definition at line \mbox{\hyperlink{_player_8h_source_l00024}{24}} of file \mbox{\hyperlink{_player_8h_source}{Player.\+h}}.
+Definition at line \mbox{\hyperlink{_player_8h_source_l00023}{23}} of file \mbox{\hyperlink{_player_8h_source}{Player.\+h}}.
 
 
 
@@ -86,7 +88,7 @@ Definition at line \mbox{\hyperlink{_player_8h_source_l00024}{24}} of file \mbox
 
 Set up default key bindings and initialize actions. 
 
-Definition at line \mbox{\hyperlink{_player_8cpp_source_l00039}{39}} of file \mbox{\hyperlink{_player_8cpp_source}{Player.\+cpp}}.
+Definition at line \mbox{\hyperlink{_player_8cpp_source_l00034}{34}} of file \mbox{\hyperlink{_player_8cpp_source}{Player.\+cpp}}.
 
 
 
@@ -110,7 +112,7 @@ Assign\+Key, unbinds previous key bindings to replace with new keybindings.
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{_player_8cpp_source_l00111}{111}} of file \mbox{\hyperlink{_player_8cpp_source}{Player.\+cpp}}.
+Definition at line \mbox{\hyperlink{_player_8cpp_source_l00100}{100}} of file \mbox{\hyperlink{_player_8cpp_source}{Player.\+cpp}}.
 
 \mbox{\Hypertarget{class_player_a6ffaa42ae4d105bd8a775f18ce37c463}\label{class_player_a6ffaa42ae4d105bd8a775f18ce37c463}} 
 \index{Player@{Player}!getAssignedKey@{getAssignedKey}}
@@ -132,7 +134,7 @@ Get\+Key\+Assigned, returns the key bound to an action.
 \end{DoxyReturn}
 
 
-Definition at line \mbox{\hyperlink{_player_8cpp_source_l00133}{133}} of file \mbox{\hyperlink{_player_8cpp_source}{Player.\+cpp}}.
+Definition at line \mbox{\hyperlink{_player_8cpp_source_l00119}{119}} of file \mbox{\hyperlink{_player_8cpp_source}{Player.\+cpp}}.
 
 \mbox{\Hypertarget{class_player_a1a0a2008ad8a81caec0b473d231f483f}\label{class_player_a1a0a2008ad8a81caec0b473d231f483f}} 
 \index{Player@{Player}!handleEvent@{handleEvent}}
@@ -151,7 +153,7 @@ handle\+Event, takes in a command and checks for related actions.
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{_player_8cpp_source_l00066}{66}} of file \mbox{\hyperlink{_player_8cpp_source}{Player.\+cpp}}.
+Definition at line \mbox{\hyperlink{_player_8cpp_source_l00055}{55}} of file \mbox{\hyperlink{_player_8cpp_source}{Player.\+cpp}}.
 
 \mbox{\Hypertarget{class_player_aab9d82be79245fbfeaa899c73c7c1b76}\label{class_player_aab9d82be79245fbfeaa899c73c7c1b76}} 
 \index{Player@{Player}!handleRealtimeInput@{handleRealtimeInput}}
@@ -170,7 +172,29 @@ Handle\+Realtime\+Input, takes in an Input\+Command\+QUeueu and goes through eac
 \end{DoxyParams}
 
 
-Definition at line \mbox{\hyperlink{_player_8cpp_source_l00095}{95}} of file \mbox{\hyperlink{_player_8cpp_source}{Player.\+cpp}}.
+Definition at line \mbox{\hyperlink{_player_8cpp_source_l00084}{84}} of file \mbox{\hyperlink{_player_8cpp_source}{Player.\+cpp}}.
+
+\mbox{\Hypertarget{class_player_ab64bba89bb7995a8b517668ec85c36e7}\label{class_player_ab64bba89bb7995a8b517668ec85c36e7}} 
+\index{Player@{Player}!resetKeyFlags@{resetKeyFlags}}
+\index{resetKeyFlags@{resetKeyFlags}!Player@{Player}}
+\doxysubsubsection{\texorpdfstring{resetKeyFlags()}{resetKeyFlags()}}
+{\footnotesize\ttfamily void Player\+::reset\+Key\+Flags (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+is\+Real\+Time\+Action, returns a boolean depending on whether any actions are realtime. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em action} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{_player_8cpp_source_l00146}{146}} of file \mbox{\hyperlink{_player_8cpp_source}{Player.\+cpp}}.
 
 
 

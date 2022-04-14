@@ -1,3 +1,10 @@
+///***************************************************************************************
+/// State, parent
+/// Parent class storing Context for each state which inherits.  
+/// Sam Pollock, 2022
+///***************************************************************************************
+
+
 #ifndef BOOK_STATE_HPP
 #define BOOK_STATE_HPP
 
