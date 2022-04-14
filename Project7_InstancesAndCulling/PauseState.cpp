@@ -56,7 +56,7 @@ bool PauseState::handleEvent(WPARAM btnState)
 	{
 		// backspace pressed, remove itself to return to the game
 		requestStateClear();
-		requestStackPush(States::Title);
+		requestStackPush(States::MainMenu);
 	}
 
 	return false;
