@@ -1,7 +1,7 @@
 #include "Ship.h"
 #include "ShooterGame.h"
 
-Aircraft::Aircraft(Type type, State* state) : Entity(state)
+Ship::Ship(Type type, State* state) : Entity(state)
 , mType(type)
 {
 	switch (type)
@@ -18,7 +18,7 @@ Aircraft::Aircraft(Type type, State* state) : Entity(state)
 	}
 }
 
-unsigned int Aircraft::getCategory() const
+unsigned int Ship::getCategory() const
 {
 	switch (mType)
 	{
@@ -30,7 +30,7 @@ unsigned int Aircraft::getCategory() const
 	}
 }
 
-void Aircraft::drawCurrent() const
+void Ship::drawCurrent() const
 {
 	UINT objCBByteSize = d3dUtil::CalcConstantBufferByteSize(sizeof(ObjectConstants));
 	UINT matCBByteSize = d3dUtil::CalcConstantBufferByteSize(sizeof(MaterialConstants));
@@ -58,7 +58,7 @@ void Aircraft::drawCurrent() const
 	}
 }
 
-void Aircraft::buildCurrent()
+void Ship::buildCurrent()
 {
 	auto render = std::make_unique<RenderItem>();
 	renderer = render.get();

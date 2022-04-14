@@ -1,3 +1,11 @@
+///***************************************************************************************
+/// Entity
+///
+/// Parent class for "Entity" Game Objects. Used to set velocity and update position of moving entities. 
+/// Sam Pollock, 2022
+///***************************************************************************************
+
+
 #pragma once
 #include "SceneNode.h"
 
@@ -6,16 +14,16 @@ class Entity :
 {
 public:
 	Entity(State* state);
-	void				setVelocity(XMFLOAT3 velocity);
-	void				setVelocity(float vx, float vy, float vz);
-	XMFLOAT3			getVelocity() const;
+	void setVelocity(XMFLOAT3 velocity);
+	void setVelocity(float vx, float vy, float vz);
+	XMFLOAT3 getVelocity() const;
 
-	void				accelerate(XMFLOAT3 velocity);
-	void				accelerate(float vx, float vy, float vz);
+	void accelerate(XMFLOAT3 velocity);
+	void accelerate(float vx, float vy, float vz);
 
-	virtual	void		updateCurrent(const GameTimer& gt);
+	virtual	void updateCurrent(const GameTimer& gt);
 
 public:
-	XMFLOAT3		mVelocity;
+	XMFLOAT3 mVelocity;
 };
 

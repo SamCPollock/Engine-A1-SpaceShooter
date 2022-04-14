@@ -1,3 +1,10 @@
+///***************************************************************************************
+/// Category
+///
+/// Container for enum of entity categories. 
+/// Sam Pollock, 2022
+///***************************************************************************************
+
 
 #pragma once
 //We divide our game objects into categories. Each category is a group of one or multiple game objects

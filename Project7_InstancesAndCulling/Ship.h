@@ -2,7 +2,7 @@
 #include "Entity.h"
 #include <string>
 
-class Aircraft :
+class Ship :
 	public Entity
 {
 public:
@@ -15,7 +15,7 @@ public:
 
 
 public:
-	Aircraft(Type type, State* state);
+	Ship(Type type, State* state);
 	virtual unsigned int getCategory() const;
 
 

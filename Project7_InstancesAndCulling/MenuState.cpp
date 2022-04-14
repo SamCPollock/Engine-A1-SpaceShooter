@@ -3,12 +3,12 @@
 
 MenuState::MenuState(StateStack* stack, Context* context)
 	: State(stack, context)
-	, mOptionIndex(0)
+	/*, mOptionIndex(0)
 	, mBackground(nullptr)
 	, mMenuPlay(nullptr)
 	, mMenuSetting(nullptr)
 	, mMenuQuit(nullptr)
-	, mMenuSelector(nullptr)
+	, mMenuSelector(nullptr)*/
 {
 	BuildScene();
 
@@ -23,61 +23,68 @@ bool MenuState::update(const GameTimer& gt)
 {
 	mSceneGraph->update(gt);
 
-	float x = mOptions[mOptionIndex]->getWorldPosition().x - 0.9;
+	/*float x = mOptions[mOptionIndex]->getWorldPosition().x - 0.9;
 	float y = mOptions[mOptionIndex]->getWorldPosition().y;
 	float z = mOptions[mOptionIndex]->getWorldPosition().z;
 
-	mMenuSelector->setPosition(x, y, z);
+	mMenuSelector->setPosition(x, y, z);*/
 
 	return true;
 }
 
 bool MenuState::handleEvent(WPARAM btnState)
 {
-	if (btnState == VK_RETURN)
-	{
-		if (mOptionIndex == Play)
-		{
-			requestStackPop();
-			requestStackPush(States::Game);
-		}
-		else if (mOptionIndex == Setting)
-		{
-			requestStackPop();
-			requestStackPush(States::Setting);
-		}
-		else if (mOptionIndex == Exit)
-		{
-			// The exit option was chosen, by removing itself, the stack will be empty, and the game will know it is time to close.
-			requestStackPop();
-		}
-	}
-	else if (btnState == VK_UP)
-	{
-		// Decrement and wrap-around
-		if (mOptionIndex > 0)
-			mOptionIndex--;
-		else
-			mOptionIndex = mOptions.size() - 1;
 
-		updateOptionText();
-	}
-	else if (btnState == VK_DOWN)
-	{
-		// Increment and wrap-around
-		if (mOptionIndex < mOptions.size() - 1)
-			mOptionIndex++;
-		else
-			mOptionIndex = 0;
-
-		updateOptionText();
-	}
-	else
-	{
-		return false;
-	}
+	//key pressed
+	requestStackPop();
+	requestStackPush(States::Menu);
 
 	return true;
+
+	//if (btnState == VK_RETURN)
+	//{
+	//	if (mOptionIndex == Play)
+	//	{
+	//		requestStackPop();
+	//		requestStackPush(States::Game);
+	//	}
+	//	else if (mOptionIndex == Setting)
+	//	{
+	//		requestStackPop();
+	//		requestStackPush(States::Setting);
+	//	}
+	//	else if (mOptionIndex == Exit)
+	//	{
+	//		// The exit option was chosen, by removing itself, the stack will be empty, and the game will know it is time to close.
+	//		requestStackPop();
+	//	}
+	//}
+	//else if (btnState == VK_UP)
+	//{
+	//	// Decrement and wrap-around
+	//	if (mOptionIndex > 0)
+	//		mOptionIndex--;
+	//	else
+	//		mOptionIndex = mOptions.size() - 1;
+
+	//	updateOptionText();
+	//}
+	//else if (btnState == VK_DOWN)
+	//{
+	//	// Increment and wrap-around
+	//	if (mOptionIndex < mOptions.size() - 1)
+	//		mOptionIndex++;
+	//	else
+	//		mOptionIndex = 0;
+
+	//	updateOptionText();
+	//}
+	//else
+	//{
+	//	return false;
+	//}
+
+	//return true;
 }
 
 void MenuState::updateOptionText()

@@ -12,21 +12,20 @@ class World
 public:
 	World(State* state);
 	~World();
-	void								update(const GameTimer& gt);
-	void								draw();
-	CommandQueue& getCommandQueue();
+	void update(const GameTimer& gt);
+	void draw();
+	InputCommandQueue& getCommandQueue();
 
 	//Game* Getgame() { return mGame; }
 
-	void								buildScene();
+	void buildScene();
 private:
-	CommandQueue						mCommandQueue;
+	InputCommandQueue mCommandQueue;
 
 
-#pragma region step 3
-	void								adaptPlayerPosition();
-	void								adaptPlayerVelocity();
-#pragma endregion
+	void adaptPlayerPosition();
+	void adaptPlayerVelocity();
+
 
 private:
 	enum class Layer
@@ -42,11 +41,11 @@ private:
 	SceneNode* mSceneGraph;
 	std::array<SceneNode*, 2>	mSceneLayers;
 
-	XMFLOAT4							mWorldBounds;
-	XMFLOAT2		    				mSpawnPosition;
-	float								mScrollSpeed;
-	Aircraft* mPlayerAircraft;
+	XMFLOAT4 mWorldBounds;
+	XMFLOAT2 mSpawnPosition;
+	float mScrollSpeed;
+	Ship* mPlayerShip;
 	SpriteNode* mBackground;
 	SpriteNode* mBackground2;
-	Aircraft* mEnemy;
+	Ship* mEnemy;
 };

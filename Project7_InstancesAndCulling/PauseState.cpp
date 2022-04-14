@@ -40,7 +40,7 @@ bool PauseState::handleEvent(WPARAM btnState)
 	{
 		// Escape pressed, remove itself to return to the game
 		requestStateClear();
-		requestStackPush(States::Menu);
+		requestStackPush(States::Title);
 	}
 
 	return false;

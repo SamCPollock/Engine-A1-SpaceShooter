@@ -21,10 +21,10 @@ bool Game::Initialize()
 		return false;
 
 
-	mMainWndCaption = L"Assignment Solution";
+	mMainWndCaption = L"Pollock-Assignment3";
 
-	mCamera.SetPosition(0.0f, 10.0f, 0.0f);
-	mCamera.Pitch(3.14f / 2.0f);
+	mCamera.SetPosition(0.0f, 10.0f, -4.0f);
+	mCamera.Pitch(7.3f);
 
 	// Reset the command list to prep for initialization commands.
 	ThrowIfFailed(mCommandList->Reset(mDirectCmdListAlloc.Get(), nullptr));
@@ -193,13 +193,37 @@ void Game::OnMouseUp(WPARAM btnState, int x, int y)
 
 void Game::OnMouseMove(WPARAM btnState, int x, int y)
 {
+	if ((btnState & MK_LBUTTON) != 0)
+	{
+		// Make each pixel correspond to a quarter of a degree.
+		float dx = XMConvertToRadians(0.25f * static_cast<float>(x - mLastMousePos.x));
+		float dy = XMConvertToRadians(0.25f * static_cast<float>(y - mLastMousePos.y));
 
+		mCamera.Pitch(dy);
+		mCamera.RotateY(dx);
+	}
+	else if ((btnState & MK_RBUTTON) != 0)
+	{
+		// Make each pixel correspond to 0.2 unit in the scene.
+		float dx = 0.05f * static_cast<float>(x - mLastMousePos.x);
+		float dy = 0.05f * static_cast<float>(y - mLastMousePos.y);
+
+		//To Do
+		// Update the camera radius based on input.
+		//mRadius += dx - dy;
+
+		// Restrict the radius.
+		//mRadius = MathHelper::Clamp(mRadius, 5.0f, 150.0f);
+	}
+
+	mLastMousePos.x = x;
+	mLastMousePos.y = y;
 }
-//
-//void Game::OnKeyboardInput(WPARAM btnState)
-//{
-//	mStateStack.handleEvent(btnState);
-//}
+
+void Game::OnKeyboardInput(WPARAM btnState)
+{
+	mStateStack.handleEvent(btnState);
+}
 
 
 
@@ -306,7 +330,7 @@ void Game::LoadTextures()
 	//Eagle
 	auto EagleTex = std::make_unique<Texture>();
 	EagleTex->Name = "EagleTex";
-	EagleTex->Filename = L"../../Textures/Eagle.dds";
+	EagleTex->Filename = L"../../Textures/checkboard.dds";
 	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
 		mCommandList.Get(), EagleTex->Filename.c_str(),
 		EagleTex->Resource, EagleTex->UploadHeap));
@@ -316,7 +340,7 @@ void Game::LoadTextures()
 	//Raptor
 	auto RaptorTex = std::make_unique<Texture>();
 	RaptorTex->Name = "RaptorTex";
-	RaptorTex->Filename = L"../../Textures/Raptor.dds";
+	RaptorTex->Filename = L"../../Textures/bricks2.dds";
 	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
 		mCommandList.Get(), RaptorTex->Filename.c_str(),
 		RaptorTex->Resource, RaptorTex->UploadHeap));
@@ -326,7 +350,7 @@ void Game::LoadTextures()
 	//Desert
 	auto DesertTex = std::make_unique<Texture>();
 	DesertTex->Name = "DesertTex";
-	DesertTex->Filename = L"../../Textures/Desert.dds";
+	DesertTex->Filename = L"../../Textures/bricks3.dds";
 	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
 		mCommandList.Get(), DesertTex->Filename.c_str(),
 		DesertTex->Resource, DesertTex->UploadHeap));
@@ -336,7 +360,7 @@ void Game::LoadTextures()
 	//MenuBackground
 	auto MenuTex = std::make_unique<Texture>();
 	MenuTex->Name = "MenuTex";
-	MenuTex->Filename = L"../../Textures/Desert.dds";
+	MenuTex->Filename = L"../../Textures/checkboard.dds";
 	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
 		mCommandList.Get(), MenuTex->Filename.c_str(),
 		MenuTex->Resource, MenuTex->UploadHeap));
@@ -346,7 +370,7 @@ void Game::LoadTextures()
 	//MenuBackground
 	auto TitlePromptTex = std::make_unique<Texture>();
 	TitlePromptTex->Name = "TitlePrompt";
-	TitlePromptTex->Filename = L"../../Textures/Desert.dds";
+	TitlePromptTex->Filename = L"../Textures/TitleScreen.dds";
 	ThrowIfFailed(DirectX::CreateDDSTextureFromFile12(md3dDevice.Get(),
 		mCommandList.Get(), TitlePromptTex->Filename.c_str(),
 		TitlePromptTex->Resource, TitlePromptTex->UploadHeap));
@@ -619,7 +643,7 @@ void Game::BuildShapeGeometry()
 {
 	GeometryGenerator geoGen;
 	//GeometryGenerator::MeshData box = geoGen.CreateQuad(0.0f, 0.0f, 20.0f, 10.0f, 10.0f);
-	GeometryGenerator::MeshData box = geoGen.CreateBox(1, 0, 1, 1);
+	GeometryGenerator::MeshData box = geoGen.CreateBox(1, 1, 1, 1);
 	SubmeshGeometry boxSubmesh;
 	boxSubmesh.IndexCount = (UINT)box.Indices32.size();
 	boxSubmesh.StartIndexLocation = 0;

@@ -2,19 +2,19 @@
 #include "SceneNode.h"
 
 
-void CommandQueue::push(const Command& command)
+void InputCommandQueue::push(const Command& command)
 {
 	mQueue.push(command);
 }
 
-Command CommandQueue::pop()
+Command InputCommandQueue::pop()
 {
 	Command command = mQueue.front();
 	mQueue.pop();
 	return command;
 }
 
-bool CommandQueue::isEmpty() const
+bool InputCommandQueue::isEmpty() const
 {
 	return mQueue.empty();
 }

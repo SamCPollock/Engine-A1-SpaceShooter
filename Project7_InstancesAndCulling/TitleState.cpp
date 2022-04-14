@@ -24,7 +24,7 @@ bool TitleState::handleEvent(WPARAM btnState)
 {
 	//key pressed
 	requestStackPop();
-	requestStackPush(States::Menu);
+	requestStackPush(States::Game);
 
 	return true;
 }

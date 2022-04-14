@@ -1,3 +1,9 @@
+///***************************************************************************************
+/// Command
+///
+/// Command struct, denotes messages that are sent tho game objects. Actions tell game objects to perform functions.
+/// /// Sam Pollock, 2022
+///***************************************************************************************
 
 #pragma once
 #include "Category.h"
@@ -15,7 +21,7 @@ struct Command
 	Command();
 
 	std::function<void(SceneNode&, const GameTimer&)>	action;
-	unsigned int								category;
+	unsigned int category;
 };
 
 template <typename GameObject, typename Function>

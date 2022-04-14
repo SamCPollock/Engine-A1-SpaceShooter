@@ -10,16 +10,16 @@
 #include <stdio.h>
 
 using namespace DirectX;
-struct AircraftMover
+struct ShipMover
 {
-	AircraftMover(float vx, float vy, float vz)
+	ShipMover(float vx, float vy, float vz)
 		: velocity(vx, vy, vz)
 	{
 	}
 
-	void operator() (Aircraft& aircraft, const GameTimer&) const
+	void operator() (Ship& ship, const GameTimer&) const
 	{
-		aircraft.accelerate(velocity);
+		ship.accelerate(velocity);
 	}
 
 	XMFLOAT3 velocity;
@@ -49,7 +49,7 @@ Player::Player()
 		pair.second.category = Category::PlayerAircraft;
 }
 
-void Player::handleEvent(CommandQueue& commands)
+void Player::handleEvent(InputCommandQueue& commands)
 {
 	for (auto pair : mKeyBinding)
 	{
@@ -74,7 +74,7 @@ void Player::handleEvent(CommandQueue& commands)
 	}
 }
 
-void Player::handleRealtimeInput(CommandQueue& commands)
+void Player::handleRealtimeInput(InputCommandQueue& commands)
 {
 	for (auto pair : mKeyBinding)
 	{
@@ -114,12 +114,12 @@ char Player::getAssignedKey(Action action) const
 
 void Player::initializeActions()
 {
-	const float playerSpeed = 20.f;
+	const float playerSpeed = 6.f;
 
-	mActionBinding[MoveLeft].action = derivedAction<Aircraft>(AircraftMover(-playerSpeed, 0.f, 0.0f));
-	mActionBinding[MoveRight].action = derivedAction<Aircraft>(AircraftMover(+playerSpeed, 0.f, 0.0f));
-	mActionBinding[MoveUp].action = derivedAction<Aircraft>(AircraftMover(0.f, 0.0f, +playerSpeed));
-	mActionBinding[MoveDown].action = derivedAction<Aircraft>(AircraftMover(0.f, 0.0f, -playerSpeed));
+	mActionBinding[MoveLeft].action = derivedAction<Ship>(ShipMover(-playerSpeed, 0.f, 0.0f));
+	mActionBinding[MoveRight].action = derivedAction<Ship>(ShipMover(+playerSpeed, 0.f, 0.0f));
+	mActionBinding[MoveUp].action = derivedAction<Ship>(ShipMover(0.f, 0.0f, +playerSpeed));
+	mActionBinding[MoveDown].action = derivedAction<Ship>(ShipMover(0.f, 0.0f, -playerSpeed));
 }
 
 void Player::resetKeyFlags()
